@@ -29,6 +29,11 @@ class Item {
   set desc(desc){
     this._desc = desc;
   }
+  toString(){
+    var retStr = "You see a " + this.name + ". It is worth " + this.value + ".";
+    retStr += "It can br described as: " + this.desc;
+    return retStr;
+  }
 }
 
 
