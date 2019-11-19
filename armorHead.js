@@ -1,4 +1,4 @@
-const HEAD_ARMOR = [
+const COMPLETE_HEAD_ARMOR_LIST = [
   {
     name: "Leather Hat",
     class: Item,
