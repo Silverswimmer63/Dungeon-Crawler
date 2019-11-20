@@ -45,3 +45,26 @@ class Item {
 //bar hatever it returns
 //var baz = new Item("Mike", 9001, "It's a me, Mike-o");
 //i would have an object of class Item with whatever i had those things doing inside the item
+
+/*make an armor class in a new file called armor.js that extends item.
+Have it add 2 new properties, _damageSoak and _location and getters and setters for those properties.
+*/
+class Armor extends Item {
+  constructor(name, icon, value, damageSoak, location, desc) {
+    super(name, icon, value, desc);
+    this._damageSoak = damageSoak;
+    this._location = location;
+  }
+  get damageSoak(){
+    return this._damageSoak;
+  }
+  set damageSoak(damageSoak){
+    this._damageSoak = damageSoak;
+  }
+  get location(){
+    return this._location;
+  }
+  set location(location){
+    this._location = location;
+  }
+}
