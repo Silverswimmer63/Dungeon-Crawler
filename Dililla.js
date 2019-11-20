@@ -1,66 +1,66 @@
 const COMPLETE_ARMOR_LIST= [
   {
     name: "Leather Legs",
-    class: Item,
+    type: Item,
     value: 2,
     desc:"Low damege protection",
     icon:"<",
-    damageresist: ,
+    damageresist:.04 ,
   }
   {
     name: "ChainMail Legs",
-    class: Item,
+    type: Item,
     value: 5,
     desc:"higher damege protection then Leather",
     icon:"<",
-      damage: {min: 4, max:30},
+      damageresist:.14,
   }
   {
     name: "Copper Legs",
-  class: Item,
+  type: Item,
   value: 10,
   desc:"higher damege protection then ChainMail",
   icon:"<",
-    damage: {min: 4, max:30},
+    damageresist:.24,
 }
 {
   name: "Bronze Legs",
-class: Item,
+type: Item,
 value: 15,
 desc:"higher damege protection then Copper",
 icon:"<",
-  damage: {min: 4, max:30},
+  damageresist:.34,
 }
 {
   name: "Iron Legs",
-class: Item,
+type: Item,
 value: 20,
 desc:"higher damege protection then Bronze",
 icon:"<",
-  damage: {min: 4, max:30},
+  damageresist:.44,
 }
 {
   name: "Steel Legs",
-class: Item,
+type: Item,
 value: 25,
 desc:"higher damege protection then Iron",
 icon:"<",
-  damage: {min: 4, max:30},
+  damageresist:.54,
 }
 {
   name: "Silver Legs",
-class: Item,
+type: Item,
 value: 33,
 desc:"higher damege protection then Steel",
 icon:"<",
-  damage: {min: 4, max:30},
+  damageresist:.64,
 }
 {
   name: "Platinum Legs",
-class: Item,
+type: Item,
 value: 42,
 desc:"Max damege protection",
 icon:"<",
-  damage: {min: 4, max:30},
+  damageresist:.74,
 }
 ]
