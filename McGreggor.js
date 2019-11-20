@@ -46,7 +46,9 @@ icon:"b"}
 desc: "A normal plastic toy knife, it does no damage yet somehow it was recalled because it could
 inspire hate or whatever", icon:"4"}
 
-{}
+{name:"Mike's Mouse's trophy", class:Endgame Collectible, vlaue:384107401847017409308758173587130870775014,
+desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of
+inbred human rat hybrids", icon:"W"}
 
 {name: "BFG9000", class: Ranged,
 value:900000000000000000000000000000000,
