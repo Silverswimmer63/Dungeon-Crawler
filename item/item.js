@@ -1,9 +1,9 @@
 /*
-{name:"Crunched up energy drink", //namem, should be a string
- class: VenderTrash, //does this need to be a class? could be a boll or string
- value:2, //should be a number
-desc:"A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction", //shoud be a long string
-icon:","} // should be a single item string
+{1.name:"Crunched up energy drink", //namem, should be a string
+ 5.type: VenderTrash, //does this need to be a class? could be a boll or string
+ 4.value:2, //should be a number
+ 3.desc:"A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction", //shoud be a long string
+ 2.icon:","} // should be a single item string
 */
 
 /* class Item(name, icon, desc, value, type="trash")
