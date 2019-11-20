@@ -1,6 +1,6 @@
 const cOMPLETE_LOOT_LiST = [
 {name: "Throwing stones",
-class: ranged,
+class: Ranged,
 value: 1,
 desc: "just rocks... literaly just rocks",
 icon: "L",
@@ -8,7 +8,7 @@ range: 4,
 damage: {min:2, max:5}
 }
 {name: "Fireworks",
-class: ranged,
+class: Ranged,
 value: 5,
 desc: "whoshhhh................... BANG!",
 icon: "L",
@@ -23,7 +23,6 @@ icon: "L",
 range: 5,
 damage: {min:6, max:8}
 }
-<<<<<<< Updated upstream
 {name: "Trained falcon",
 class: Ranged,
 value: 10,
@@ -79,7 +78,7 @@ desc: "A bag of gold tied to your hand kratos style",
 icon: "L",
 range: 4,
 damage: {min:26, max:28}
-=======
+}
 {name: “Trained falcon”,
 Class: Ranged,
 Value: 10,
@@ -135,8 +134,7 @@ Desc: “A bag of gold tied to your hand kratos style”,
 Icon: “L”,
 Range: 4,
 Damage: {min:26, max:28}
->>>>>>> Stashed changes
-
+}
 {name: "laser pointer",
 class: Ranged,
 value: 40,
