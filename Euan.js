@@ -1,7 +1,7 @@
 const COMPLETE_HEAD_ARMOR_LIST = [
   {
     name: "Leather Hat",
-    class: Item,
+    type: Item,
     value: 3,
     desc: "A simple hat for the early days",
     icon: "^",
@@ -9,7 +9,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Chain Mail Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "A strong but light armor that gives slight protection",
     icon: "^",
@@ -17,7 +17,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Copper Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "A good helmet that will serve you well",
     icon: "^",
@@ -25,7 +25,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Bronze Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "Better than Copper",
     icon: "^",
@@ -33,7 +33,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Iron Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "A good quality helmet that will protect your head from arrows",
     icon: "^",
@@ -41,7 +41,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Steel Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "Even better at not letting you die",
     icon: "^",
@@ -49,7 +49,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Silver Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "Almost the best",
     icon: "^",
@@ -57,7 +57,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
   }
   {
     name: "Platinum Helmet",
-    class: Item,
+    type: Item,
     value: 7,
     desc: "The best of the best",
     icon: "^",
