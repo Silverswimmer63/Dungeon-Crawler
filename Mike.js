@@ -23,6 +23,7 @@ icon: "L",
 range: 5,
 damage: {min:6, max:8}
 }
+<<<<<<< Updated upstream
 {name: "Trained falcon",
 class: ranged,
 value: 10,
@@ -78,6 +79,63 @@ desc: "A bag of gold tied to your hand kratos style",
 icon: "L",
 range: 4,
 damage: {min:26, max:28}
+=======
+{name: “Trained falcon”,
+Class: Ranged,
+Value: 10,
+desc: “I Guess he likes you”,
+Icon: “L”,
+Range: 5,
+Damage: {min:5, max:6}
+}
+{name: “Magnetic rocks”,
+Class: Ranged,
+Value: 8,
+Desc: “there cool… fun to play with… hurts when someone throws them at you”,
+Icon: “L”,
+Range: 4,
+Damage: {min:3, max:6}
+}
+{name: “Rusty revolver”,
+Class: Ranged,
+Value: 20,
+Desc: “Please just sell it, its unsafe to use every time you pull the trigger there a good chance you'll just blow your hand off”,
+Icon: “L”,
+Range: 6,
+Damage: {min:8, max:12}
+}
+{name: “Throwing Axe”,
+Class: Ranged,
+Value: 24,
+Desc: “while normal throw axes are a quarter of half size of your arm but these are thesizeof full on battle axe”,
+Icon: “L”,
+Range: 2,
+Damage: {min:16, max:24}
+}
+{name: “shootgun”,
+Class: Ranged,
+Value: 26,
+Desc: “a shot gun but longer”,
+Icon: “L”,
+Range: 3,
+Damage: {min:20, max:26},
+}
+{name: “Snake lasso”,
+Class: Ranged,
+Value: 30,
+Desc: “Unfortunately he's been defanged but he still has some bit”,
+Icon: “L”,
+Range: 5,
+Damage: {min:24, max:26},
+}
+{name: “Money bag”,
+Class: Ranged,
+Value: 36,
+Desc: “A bag of gold tied to your hand kratos style”,
+Icon: “L”,
+Range: 4,
+Damage: {min:26, max:28}
+>>>>>>> Stashed changes
 
 {name: "laser pointer",
 class: ranged,
