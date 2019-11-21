@@ -1,6 +1,6 @@
 
 
-const COMPLETE_LOOT_LIST + [
+const COMPLETE_LOOT_LIST = [
 {name:"Crunched up energy drink", class: VenderTrash, value:2,
 desc:"A smashed and abused can of Ketamine-infused energy. There are
 only droplets left but it is not enough to satisfy your crippling addiction",
