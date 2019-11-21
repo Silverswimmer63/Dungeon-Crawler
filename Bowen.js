@@ -1,3 +1,4 @@
+console.log("Bowen.js linked");
 //Body Armor list
 const COMPLETE_ARMOR_BODY_LIST = [
   {name: "Leather",
@@ -63,7 +64,7 @@ class BodyArmor {
     this._icon = icon;
     this._value = value;
     this._desc = desc;
-    this._damageResist = damageResist;
+    this._damageResist = damageResist;//it is a number value for resistance
   }
   get name() {
     return this._name
