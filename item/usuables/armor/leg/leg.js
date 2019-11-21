@@ -1,3 +1,5 @@
 class Legs extends Armor {
-  super (name, icon, value, desc, damageresist) {}
+  constructor (name, icon, value, desc, damageresist){
+  super (name, icon, value, desc, damageresist);
+}
 }
