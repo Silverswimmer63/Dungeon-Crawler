@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console.log("Bowen.js linked");
 //Body Body list
 const COMPLETE_Body_BODY_LIST = [
@@ -58,3 +59,5 @@ const COMPLETE_Body_BODY_LIST = [
   damageResist:.8
   }
 ]
+=======
+>>>>>>> e6efb17500d01b49be14c151da95cc9c3e492b32

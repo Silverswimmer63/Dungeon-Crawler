@@ -21,6 +21,10 @@ class Item {
     this._desc = desc; // the description of the item
     this._value = value;
     this._type = type; // if the item is in a collection or trash
+<<<<<<< HEAD
+=======
+  
+>>>>>>> e6efb17500d01b49be14c151da95cc9c3e492b32
 
   }
   /**************************************** Getter and Setters *********************************/
