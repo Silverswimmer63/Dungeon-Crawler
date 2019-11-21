@@ -1,3 +1,30 @@
+class Melee extends Item{
+  constructor(name, icon, desc, value, type="trash"){
+    super (name, icon, desc, value, type="trash")
+  this._name = name;
+  this._desc = desc;
+  this._damage = damage;
+  this._value = value;
+  this._icon = icon;
+ }
+/****************************Getters and Setters*******************************/
+get name() { return this._name; }
+set name(name) { this._name = name; }
+
+get desc() { return this._desc; }
+set desc(desc) { this._desc = desc;}
+
+get damage() { return this._damage; }
+set damage(damage) { this._damage = damage; }
+
+get value() { return this._value; }
+set value(value) { this._value = value; }
+
+get icon() { return this._icon; }
+set icon(icon) { this._icon = icon; }
+}
+
+
 const COMPLETE_Melee_LIST = [
   {name: "Fists",
   type: Melee,
@@ -55,29 +82,3 @@ const COMPLETE_Melee_LIST = [
   damage: 24,
   icon:"/"}
 ]
-
-class Melee extends Item{
-  constructor(name, type, value, desc, damage, icon){
-    super (name, desc, damage, value, icon)
-  this._name = name;
-  this._desc = desc;
-  this._damage = damage;
-  this._value = value;
-  this._icon = icon;
- }
-/****************************Getters and Setters*******************************/
-get name() { return this._name; }
-set name(name) { this._name = name; }
-
-get desc() { return this._desc; }
-set desc(desc) { this._desc = desc;}
-
-get damage() { return this._damage; }
-set damage(damage) { this._damage = damage; }
-
-get value() { return this._value; }
-set value(value) { this._value = value; }
-
-get icon() { return this._icon; }
-set icon(icon) { this._icon = icon; }
-}
