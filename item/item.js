@@ -21,7 +21,6 @@ class Item {
     this._desc = desc; // the description of the item
     this._value = value;
     this._type = type; // if the item is in a collection or trash
-    this._damageresist = damageresist;
 
   }
   /**************************************** Getter and Setters *********************************/
@@ -39,9 +38,6 @@ class Item {
 
   get type(){ return this._value; }
   set type(type){ this._type = type; }
-
-  get damageresist(){ return this._damageresist; }
-  set damageresist(damageresist){ this._damageresist = damageresist ;}
 
   toString(){
     var retString = this.name + "<br>";
