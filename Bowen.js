@@ -1,3 +1,4 @@
+console.log("Bowen.js linked");
 //Body Armor list
 const COMPLETE_ARMOR_BODY_LIST = [
   {name: "Leather",
