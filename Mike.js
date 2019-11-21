@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
 const COMPLETE_LOOT_LiST = [
-{name: "Throwing Stones",
-=======
-const cOMPLETE_LOOT_LiST = [
 {name: "Throwing stones",
->>>>>>> Stashed changes
 type: Ranged,
 value: 1,
 desc: "Just rocks... literaly just rocks",
@@ -55,11 +50,7 @@ damage: {min:8, max:12}
 {name: "Throwing Axe",
 type: Ranged,
 value: 24,
-<<<<<<< Updated upstream
-desc: "While normal throw axes are a quarter of half size of your arm but these are the size of full on battle axe",
-=======
 desc: "while normal throwing axes are a quarter size of a regular axe but these are the size of a full on battle axe",
->>>>>>> Stashed changes
 icon: "L",
 range: 2,
 damage: {min:16, max:24}
@@ -67,11 +58,7 @@ damage: {min:16, max:24}
 {name: "Shootgun",
 type: Ranged,
 value: 26,
-<<<<<<< Updated upstream
 desc: "A shotgun but longer",
-=======
-desc: "a shotgun but longer",
->>>>>>> Stashed changes
 icon: "L",
 range: 4,
 damage: {min:20, max:26},
