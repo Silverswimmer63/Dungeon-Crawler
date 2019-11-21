@@ -1,66 +1,66 @@
 console.log("Bowen.js linked");
-//Body Item list
-const COMPLETE_Item_BODY_LIST = [
+//Body Body list
+const COMPLETE_Body_BODY_LIST = [
   {name: "Leather",
-  type: Item,
+  type: Body,
   value: 5,
-  desc: "This body Item protects you from basic, low damage attacks",
+  desc: "This body Body protects you from basic, low damage attacks",
   icon: "&",
   damageResist:.1
 },
   {name: "Chainmail",
-  type: Item,
+  type: Body,
   value: 10,
-  desc: "A better suit of Item that protects you slightly more from attacks.",
+  desc: "A better suit of Body that protects you slightly more from attacks.",
   icon: "&",
   damageResist:.2
   },
   {name: "Copper",
-  type: Item,
+  type: Body,
   value: 15,
   desc: "This is a stronger upgrade and is better at resisting small weapona attacks",
   icon: "&",
   damageResist:.3
   },
   {name: "Bronze",
-  type: Item,
+  type: Body,
   value: 20,
   desc: "",
   icon: "&",
   damageResist:.4
   },
   {name: "Iron",
-  type: Item,
+  type: Body,
   value: 25,
   desc: "This protects you from medium-level attacks",
   icon: "&",
   damageResist:.5
   },
   {name: "Steel",
-  type: Item,
+  type: Body,
   value: 30,
   desc: "A better upgrade that protects you from aggressive attacks",
   icon: "&",
   damageResist:.6
   },
   {name: "Silver",
-  type: Item,
+  type: Body,
   value: 40,
   desc: "A better upgrade that protects you for heavy aggressive attacks",
   icon: "&",
   damageResist:.7
   },
   {name: "Platinum",
-  type: Item,
+  type: Body,
   value: 50,
-  desc: "This is the best suit of Item on the market that you can buy/get",
+  desc: "This is the best suit of Body on the market that you can buy/get",
   icon: "&",
   damageResist:.8
   }
 ]
 <<<<<<< Updated upstream
 =======
-class Item extends Item {
+class Body extends Armor {
   constructor(name, icon, value, desc, damageResist) {
     this._name = name;// the this keywodr means thet it is something the class owns
     this._icon = icon;
