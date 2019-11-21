@@ -64,3 +64,49 @@ icon:"<",
   damageresist:.74,
 }
 ]
+
+
+class Item {
+  constructor(name, type, icon, value, desc, damageresist) {
+    super (name, icon, value, desc)
+    this._name = name;// the this keywodr means thet it is something the class owns
+    this._icon = icon;
+    this._value = value;
+    this._desc = desc;
+  }
+  get name() {
+    return this._name
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get icon(){
+    return this._icon;
+  }
+  set icon(icon){
+    this._icon = icon;
+  }
+  get value(){
+    return this._value;
+  }
+  set value(value){
+    this._value = value;
+  }
+  get desc(){
+    return this._desc;
+  }
+  set desc(desc){
+    this._desc = desc;
+  }
+  get damageresist(damageresist){
+    return this._damageresist;
+  }
+  set damageresist(){
+    this._damageresist = damageresist;
+  }
+  toString(){
+    var retStr = "You see a " + this.name + ". It is worth " + this.value + ".";
+    retStr += "It can br described as: " + this.desc;
+    return retStr;
+  }
+}
