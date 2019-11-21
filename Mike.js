@@ -1,4 +1,4 @@
-const cOMPLETE_LOOT_LiST = [
+const COMPLETE_LOOT_LiST = [
 {name: "Throwing stones",
 type: Ranged,
 value: 1,
