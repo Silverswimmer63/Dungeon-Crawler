@@ -1,5 +1,5 @@
 const COMPLETE_LOOT_LiST = [
-{name: "Throwing Stones",
+{name: "Throwing stones",
 type: Ranged,
 value: 1,
 desc: "Just rocks... literaly just rocks",
@@ -50,7 +50,7 @@ damage: {min:8, max:12}
 {name: "Throwing Axe",
 type: Ranged,
 value: 24,
-desc: "While normal throw axes are a quarter of half size of your arm but these are the size of full on battle axe",
+desc: "while normal throwing axes are a quarter size of a regular axe but these are the size of a full on battle axe",
 icon: "L",
 range: 2,
 damage: {min:16, max:24}
@@ -60,7 +60,7 @@ type: Ranged,
 value: 26,
 desc: "A shotgun but longer",
 icon: "L",
-range: 3,
+range: 4,
 damage: {min:20, max:26},
 }
 {name: "Snake Lasso",
