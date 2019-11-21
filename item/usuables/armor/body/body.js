@@ -1,59 +1,59 @@
-console.log("Bowen.js linked");
-//Body Body list
-const COMPLETE_Body_BODY_LIST = [
+console.log("body.js linked");
+//Armor Armor list
+const COMPLETE_Armor_Armor_LIST = [
   {name: "Leather",
-  type: Body,
+  type: Armor,
   value: 5,
-  desc: "This body Body protects you from basic, low damage attacks",
+  desc: "This Armor Armor protects you from basic, low damage attacks",
   icon: "&",
   damageResist:.1
 },
   {name: "Chainmail",
-  type: Body,
+  type: Armor,
   value: 10,
-  desc: "A better suit of Body that protects you slightly more from attacks.",
+  desc: "A better suit of Armor that protects you slightly more from attacks.",
   icon: "&",
   damageResist:.2
   },
   {name: "Copper",
-  type: Body,
+  type: Armor,
   value: 15,
   desc: "This is a stronger upgrade and is better at resisting small weapona attacks",
   icon: "&",
   damageResist:.3
   },
   {name: "Bronze",
-  type: Body,
+  type: Armor,
   value: 20,
   desc: "The better version than the last one. What did you expect?",
   icon: "&",
   damageResist:.4
   },
   {name: "Iron",
-  type: Body,
+  type: Armor,
   value: 25,
   desc: "This protects you from medium-level attacks",
   icon: "&",
   damageResist:.5
   },
   {name: "Steel",
-  type: Body,
+  type: Armor,
   value: 30,
   desc: "A better upgrade that protects you from aggressive attacks",
   icon: "&",
   damageResist:.6
   },
   {name: "Silver",
-  type: Body,
+  type: Armor,
   value: 40,
   desc: "A better upgrade that protects you for heavy aggressive attacks",
   icon: "&",
   damageResist:.7
   },
   {name: "Platinum",
-  type: Body,
+  type: Armor,
   value: 50,
-  desc: "This is the best suit of Body on the market that you can buy/get",
+  desc: "This is the best suit of Armor on the market that you can buy/get",
   icon: "&",
   damageResist:.8
   }
@@ -61,6 +61,7 @@ const COMPLETE_Body_BODY_LIST = [
 
 class Body extends Armor {
   constructor(name, icon, value, desc, damageResist) {
+    super(name, icon, value, desc, damageResist);
     this._name = name;// the this keywodr means thet it is something the class owns
     this._icon = icon;
     this._value = value;
