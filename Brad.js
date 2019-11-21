@@ -80,3 +80,4 @@ set value(value) { this._value = value; }
 
 get icon() { return this._icon; }
 set icon(icon) { this._icon = icon; }
+}
