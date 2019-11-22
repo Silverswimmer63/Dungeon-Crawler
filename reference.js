@@ -72,7 +72,7 @@ class Armor extends Item {
 
 /*
 */
-const COMPLETE_POTION_LIST + [
+const COMPLETE_POTION_LIST = [
   {name:"Molotov Milk", class:Potion, value:20,
 desc:"I AM THE MILK MAN. MY MILK IS DELICOUS, SPECIAL DELEVERY TODAY",
 icon:"P", selfother:Other, damage:{min:1, mx:15},}
