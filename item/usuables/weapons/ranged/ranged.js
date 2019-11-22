@@ -41,7 +41,7 @@ this._range = range;
             }
 }
 
-class Weapon extends Item {
+class Ranged extends Weapons {
   constructor(name, icon, value, damage, desc, range) {
     super(name, icon, value, desc);
     this._type = Both;

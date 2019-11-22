@@ -1,5 +1,5 @@
 console.log("Bowen.js linked");
-//Body Body list
+// Body list
 const COMPLETE_Body_BODY_LIST = [
   {name: "Leather",
   type: Body,
