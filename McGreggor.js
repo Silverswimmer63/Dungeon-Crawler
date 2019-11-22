@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
 const COMPLETE_LOOT_LIST = [
 {name:"Crunched up energy drink",
 class: VendorTrash,
@@ -10,7 +5,6 @@ value: 2,
 desc: "A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction",
 icon:"C"},
 
-<<<<<<< HEAD
 {name:"Mysterious Arrow",
 class: VendorTrash,
 value: 100500006,
@@ -20,12 +14,6 @@ icon:"C"},
 {name:"elven wood dish",
 class: VendorTrash,
 value: 100,
-=======
-{name:"Mysterious Arrow", class: Collectible, value: 100500006,
-desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die", icon:"C"},
-
-{name:"elven wood dish", class: Collectible, value: 100,
->>>>>>> master
 desc:"Wait elves don't use wood for anything. What heresy is this?",
 icon:"C"},
 
@@ -82,43 +70,7 @@ class: VendorTrash,
 value: 100000000,
 desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
 icon:"C"}
-<<<<<<< HEAD
 ]
-
-
-
-class VendorTrash{
-  constructor(name, value, desc, icon){
-    this._name = name;
-    this._value = value;
-    this._desc = desc;
-    this._icon = desc;
-  }
-  get name(){
-    return this._name;
-  }
-  set name(name){
-    this._name = name;
-  }
-  get value(){
-    return this._value;
-  }
-  set value(value){
-    this._value = value;
-  }
-  get desc(){
-    return this._desc;
-  }
-  set desc(desc){
-    this._desc = desc;
-  }
-  get icon(){
-    return this._icon;
-  }
-  set icon(icon){
-    this._icon = icon;
-  }
-}
 
 
 const COMPLETE_POTION_LIST = [
@@ -140,6 +92,4 @@ heal:{min:2, mx:7}},
 {name:"Boingo oingo Botion", class:Potion, value:120,
 desc:"A weird rainbow colored concoction that gives of a scent of pure diabetes",icon:"P", selfother:Other,
 damage:{min:20, mx:45}},
-=======
->>>>>>> master
 ]
