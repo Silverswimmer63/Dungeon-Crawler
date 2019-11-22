@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
 const COMPLETE_LOOT_LIST = [
 {name:"Crunched up energy drink",
 class: Vendortrash,
@@ -10,17 +9,6 @@ icon:"C"},
 
 {name:"Mysterious Arrow", class: Collectible, value: 100500006,
 desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die", icon:"C"},
-=======
-const COMPLETE_LOOT_LIST + [
-{name:"Crunched up energy drink", class: VenderTrash, value:2,
-desc:"A smashed and abused can of Ketamine-infused energy. There are
-only droplets left but it is not enough to satisfy your crippling addiction",
-icon:"V"}
-
-{name:"Mysterious Arrow", class: Collectible, value: 100500006,
-desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers,
-or die", icon:"C"}
->>>>>>> 49a6bb4766bfdf02288c17222fd8e0b690186ee1
 
 {name:"elven wood dish", class: Collectible, value: 100,
 desc:"Wait elves don't use wood for anything. What heresy is this?",
@@ -52,7 +40,6 @@ value: 5000,
 desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
 icon:"C"}
 
-<<<<<<< HEAD
 {name:"toy knife",
 class: Vendortrash,
 value:12,
@@ -68,97 +55,4 @@ class: Collectible,
 value: 100000000,
 desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
 icon:"C"}
-=======
-{name:"toy knife",class: VenderTrash, value:12,
-desc: "A normal plastic toy knife. It does no damage yet somehow it was recalled because it could
-inspire hate or whatever", icon:"V"}
-
-{name:"Mike's Mouse's trophy", class:Endgame Collectible, vlaue:384107401847017409308758173587130870775014,
-desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of
-inbred human rat hybrids", icon:"C"}
-
-{name:"The Mona Lisa", class: Collectible, value: 100000000000,
-desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
-icon:"C"}
-
-
-
-class VenderTrash{
-  constructor(name, value, desc, icon){
-    this._name = name;
-    this._value = value;
-    this._desc = desc;
-    this._icon = desc;
-  }
-  get name(){
-    return this._name;
-  }
-  set name(){
-    this._name = name;
-  }
-  get value(){
-    return this._value;
-  }
-  set value(){
-    this._value = value;
-  }
-  get desc(){
-    return this._desc;
-  }
-  set desc(){
-    this._desc = desc;
-  }
-  get icon(){
-    return this._icon;
-  }
-  set icon(){
-    this._icon = icon;
-  }
-}
-]
-class Collectible{
-  constructor(name, value, dsec, icon){
-    this._name = name;
-    this._value = value;
-    this._desc = desc;
-    this._icon = icon;
-  }
-  get name(){
-    return this._name;
-  }
-  set name(){
-    this._name = name;
-  }
-  get name(){
-    return this._name;
-  }
-}
-
-
-const COMPLETE_POTION_LIST + [
-  {name:"Molotov Milk", class:Potion, value:20,
-desc:"I AM THE MILK MAN. MY MILK IS DELICOUS, SPECIAL DELEVERY TODAY",
-icon:"P", selfother:Other, damage:{min:1, mx:15},}
-
-{name:"lemon's aid", class:Potion, value:10,
-desc:"A type of soda made specifically for medical purposes not for fun, that means you Jimbo",
-icon:"P", selfother:Self, heal:{min:1, mx:20},}
-
-{name:"SS13 Cognac", class:Potion, value:100,
-desc:"A form a space beer created in space for the memory of all the brave spessmen and women who gave thier lives on
-space station thirteen, may their souls protect you", icon:"P", selfother:Self, heal:{min:30, mx:45},}
-
-{name:"Mon-star energy", class:Potion, value:2,
-desc:"That's right ladies and gentlemen, we sold out to give you some Zoomer juice", icon:"P", selfother:Self,
-heal:{min:2, mx:7},}
-
-{name:"Boingo oingo Botion", class:Potion, value:120,
-desc:"A weird rainbow colored concoction that gives of a scent of pure diabetes",icon:"P", selfother:Other,
-damage:{min:20, mx:45},}
-
-
-
-
-
->>>>>>> 49a6bb4766bfdf02288c17222fd8e0b690186ee1
 ]
