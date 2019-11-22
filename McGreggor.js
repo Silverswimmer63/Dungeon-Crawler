@@ -46,7 +46,7 @@ inspire hate or whatever", icon:"V"}
 desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of
 inbred human rat hybrids", icon:"C"}
 
-{name:"The Mona Lisa", class: Collectible, value: 100000000,
+{name:"The Mona Lisa", class: Collectible, value: 100000000000,
 desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
 icon:"C"}
 
@@ -105,7 +105,7 @@ class Collectible{
 
 
 const COMPLETE_POTION_LIST + [
-  {name:"Molotov Milk", class:Potion, value:72,
+  {name:"Molotov Milk", class:Potion, value:20,
 desc:"I AM THE MILK MAN. MY MILK IS DELICOUS, SPECIAL DELEVERY TODAY",
 icon:"P", selfother:Other, damage:{min:1, mx:15},}
 
@@ -117,6 +117,13 @@ icon:"P", selfother:Self, heal:{min:1, mx:20},}
 desc:"A form a space beer created in space for the memory of all the brave spessmen and women who gave thier lives on
 space station thirteen, may their souls protect you", icon:"P", selfother:Self, heal:{min:30, mx:45},}
 
+{name:"Mon-star energy", class:Potion, value:2,
+desc:"That's right ladies and gentlemen, we sold out to give you some Zoomer juice", icon:"P", selfother:Self,
+heal:{min:2, mx:7},}
+
+{name:"Boingo oingo Botion", class:Potion, value:120,
+desc:"A weird rainbow colored concoction that gives of a scent of pure diabetes",icon:"P", selfother:Other,
+damage:{min:20, mx:45},}
 
 
 
