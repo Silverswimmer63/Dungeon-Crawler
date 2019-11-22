@@ -73,7 +73,7 @@ class Armor extends Item {
 /*
 */
 const COMPLETE_POTION_LIST = [
-  {name:"Molotov Milk", class:Potion, value:20,
+{name:"Molotov Milk", class:Potion, value:20,
 desc:"I AM THE MILK MAN. MY MILK IS DELICOUS, SPECIAL DELEVERY TODAY",
 icon:"P", selfother:Other, damage:{min:1, mx:15},}
 
@@ -82,8 +82,7 @@ desc:"A type of soda made specifically for medical purposes not for fun, that me
 icon:"P", selfother:Self, heal:{min:1, mx:20},}
 
 {name:"SS13 Cognac", class:Potion, value:100,
-desc:"A form a space beer created in space for the memory of all the brave spessmen and women who gave thier lives on
-space station thirteen, may their souls protect you", icon:"P", selfother:Self, heal:{min:30, mx:45},}
+desc:"A form a space beer created in space for the memory of all the brave spessmen and women who gave thier lives on space station thirteen, may their souls protect you", icon:"P", selfother:Self, heal:{min:30, mx:45},}
 
 {name:"Mon-star energy", class:Potion, value:2,
 desc:"That's right ladies and gentlemen, we sold out to give you some Zoomer juice", icon:"P", selfother:Self,
