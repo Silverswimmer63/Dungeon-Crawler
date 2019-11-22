@@ -64,3 +64,6 @@ icon:"<",
   damageresist:.74,
 }
 ]
+
+
+  
