@@ -1,5 +1,5 @@
 class Melee extends Weapon {
-  constructor(name, icon, desc, value, type, damage){
-    super (name, icon, desc, value, type, damage)
+  constructor (name, icon, value, desc, damage){
+  super (name, icon, value, desc, damage);
   }
 }
