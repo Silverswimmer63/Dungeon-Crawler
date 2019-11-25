@@ -86,4 +86,9 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
   icon: "$",
   attackDam: 50
 },
+{name: "Steve Jobs", type: Space,
+hp: 160,
+desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
+icon: "$",
+attackDam: 80
 ]
