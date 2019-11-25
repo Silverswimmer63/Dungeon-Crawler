@@ -151,17 +151,17 @@ attackDam:{min:5, max:10},
 icon:"m",
 desc:"dark spirits that look like ghost emmos",
 type:noMythological
-}
-
-{name:"Azeban",
+},
+{
+  name:"Azeban",
 hp: 10,
 attackDam:{min:5, max:10},
 icon:"m",
 desc:"imagine rocket from guardians of the galaxy but as a poor theff",
 type:noMythological
-}
-
-{name:"Minitar",
+},
+{
+  name:"Minitar",
 hp: 70,
 attackDam:{min:20, max:40},
 icon:"M",
