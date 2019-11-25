@@ -1,5 +1,4 @@
 
-<<<<<<< Updated upstream
 class Ranged extends Weapon {
   constructor (name, icon, value, desc, damage, range){
   super (name, icon, value, desc, damage, range);
@@ -8,7 +7,6 @@ class Ranged extends Weapon {
 get range(){ return this._range; }
 set range(range){ this._range = range; }
 }
-=======
   get value(){return this._value; }
   set value(value) {this._value = value; }
 
@@ -52,4 +50,3 @@ class Weapon extends Item {
 
     get range(){return this._range; }
     set range(range) {this._range = range; }
->>>>>>> Stashed changes
