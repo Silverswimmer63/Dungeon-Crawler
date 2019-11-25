@@ -1,4 +1,4 @@
-const COMPLETE_HEAD_ARMOR_LIST = [
+const COMPLETE_Head_ARMOR_LIST = [
   { name: "Leather Hat",
     type: Head,
     value: 3,
@@ -54,5 +54,32 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     desc: "The best of the best",
     icon: "^",
     damageresist: .36
+  }
+]
+
+const COMPLETE_Cowboy_LIST = [
+  {
+    name: "Bandit",
+    type: Cowboy,
+    hp: 40,
+    desc: "",
+    icon: "",
+    attackDam: {max: 30, min:20},
+  },
+  {
+    name: "Drunk Man",
+    type: Cowboy,
+    hp: 40,
+    desc: "",
+    icon: "",
+    attackDam: {max: 30, min:20},
+  },
+  {
+    name: "Outlaw",
+    type: Cowboy,
+    hp: 40,
+    desc: "",
+    icon: "",
+    attackDam: {max: 30, min:20},
   }
 ]
