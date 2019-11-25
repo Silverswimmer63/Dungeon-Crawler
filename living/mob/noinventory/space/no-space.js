@@ -1,6 +1,7 @@
-class Nospace {
+class Nospace extends Living {
 constructor(name, type, hp, desc, icon, attackDam){
-  this._name = name;
+  super(name, type, hp, desc, icon, attackDam);
+/*  this._name = name;
   this._type = type;
   this._hp = hp; // all hp is 50
   this._desc = desc;
@@ -8,7 +9,7 @@ constructor(name, type, hp, desc, icon, attackDam){
   this._attackDam = attackDam // min: 35, max:45
  }
 
- /****************************** Getters & Setters ******************************/
+ /****************************** Getters & Setters ****************************
 
 get name() { return this.name; }
 set name(name) { this._name = name; }
@@ -27,7 +28,7 @@ set icon() { this._icon = icon; }
 
 get attackDam() { return this._attackDam; }
 set attackDam(attackDam) {this._attackDam = attackDam; }
-}
+} */
 
 const COMPLETE_Nospace_LIST = [
   {name: "Androids",
