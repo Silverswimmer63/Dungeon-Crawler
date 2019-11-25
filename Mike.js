@@ -136,6 +136,7 @@ range: 16,
 damage: {min:200, max:250}
 }
 ]
+const COMPLETE_MythologicalIN_LIST= [
 {name:"Gremlin",
 hp: 10,
 attackDam:{min:5, max:10},
@@ -159,3 +160,4 @@ icon:"m",
 desc:"imagine rocket from guardians of the galaxy but as a poor theff",
 type:noMythological
 }
+]
