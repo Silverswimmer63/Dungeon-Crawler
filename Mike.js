@@ -168,5 +168,11 @@ icon:"M",
 desc:"A big bull guy with a sharp axe you know the drill",
 type:Mythological
 }
-
+{name:"Areas",
+hp: 100,
+attackDam:{min:30, max:55},
+icon:"A",
+desc:"Hes always mad becaues he has daddy issues",
+type:Mythological
+}
 ]
