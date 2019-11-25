@@ -66,4 +66,53 @@ icon:"<",
 ]
 
 
-  
+const COMPLETE_MythologicalIN_LIST= [
+  {
+    name: "Gremlin",
+    type: Mythological,
+    hp: 10,
+    desc:"Creature that causes malfunctions",
+    icon:"M",
+  attackDam:min 5, max 10,
+  },
+   {
+      name: "Chinese guardian lion",
+      type: Mythological,
+      hp: 20,
+      desc:"Stone Lion",
+      icon:"M",
+    attackDam:min 5, max 10 ,
+    },
+    {
+      name: "Girimehkala",
+      type: Mythological,
+      hp: 20,
+      desc:"Elephant that has powers",
+      icon:"M",
+    attackDam:min 5, max 10,
+    },
+    {
+      name: "Cenetur",
+      type: Mythological,
+      hp: 20,
+      desc:"Half-man, half horse creatures.",
+      icon:"M",
+    attackDam: min 5, max 10,
+    },
+    {
+      name: "Lemures",
+      type: Mythological,
+      hp: 10,
+      desc:"Restless spirits of the dead",
+      icon:"M",
+    attackDam: min 5, max 10,
+    },
+    {
+      name: "Azakan",
+      type: Mythological,
+      hp: 10,
+      desc:"belonging to another world",
+      icon:"M",
+    attackDam: min 5, max 10,
+    },
+  ]
