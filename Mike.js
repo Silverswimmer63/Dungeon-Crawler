@@ -142,37 +142,34 @@ hp: 10,
 attackDam:{min:5, max:10},
 icon:"m",
 desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
-type: noMythological
-}
-
+type: noMythological,
+},
 {name:"lemures",
 hp:10,
 attackDam:{min:5, max:10},
 icon:"m",
 desc:"dark spirits that look like ghost emmos",
-type:noMythological
+type:noMythological,
 },
-{
-  name:"Azeban",
+{name:"Azeban",
 hp: 10,
 attackDam:{min:5, max:10},
 icon:"m",
 desc:"imagine rocket from guardians of the galaxy but as a poor theff",
-type:noMythological
+type:noMythological,
 },
-{
-  name:"Minitar",
+{name:"Minitar",
 hp: 70,
 attackDam:{min:20, max:40},
 icon:"M",
 desc:"He's a sweetheart if you get to know him",
-type:Mythological
-}
+type:noMythological,
+},
 {name:"Areas",
 hp: 100,
 attackDam:{min:30, max:54},
 icon:"A",
 desc:"He's always mad because he has daddy issues",
-type:Mythological
+type:noMythological,
 }
 ]
