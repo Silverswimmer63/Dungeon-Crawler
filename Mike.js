@@ -165,8 +165,14 @@ type:noMythological
 hp: 70,
 attackDam:{min:20, max:40},
 icon:"M",
-desc:"A big bull guy with a sharp axe you know the drill",
+desc:"He's a sweetheart if you get to know him",
 type:Mythological
 }
-
+{name:"Areas",
+hp: 100,
+attackDam:{min:30, max:54},
+icon:"A",
+desc:"He's always mad because he has daddy issues",
+type:Mythological
+}
 ]
