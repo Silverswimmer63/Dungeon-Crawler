@@ -70,25 +70,29 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
   hp: 60,
   desc: "All generic futuristic space video games have untamable robots, so why we do the same thing. These are deadly bois that are fun to fight.",
   icon: "$",
-  attackDam: 50
+  attackDam: 50,
+  drop: "Chainmail Armor"
 },
   {name: "Knife Roomba",
   type: Space,
   hp: 60,
   desc: "In this world, Roombas are tired of cleaning up things that humans are too lazy to do. Now these bloodthirsty are ready to spill your blood and then clean it up.",
   icon: "$",
-  attackDam: 50
+  attackDam: 50,
+  drop: "Copper Armor"
 },
   {name: "Self-Driving Cars",
   type: Space,
   hp: 60,
   desc: "That classic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
   icon: "$",
-  attackDam: 50
+  attackDam: 50,
+  drop: "Bronze Armor"
 },
-{name: "Steve Jobs", type: Space,
-hp: 160,
-desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
-icon: "$",
-attackDam: 80
+  {name: "Steve Jobs", type: Space,
+  hp: 160,
+  desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
+  icon: "$",
+  attackDam: 80
+  }
 ]
