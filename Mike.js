@@ -136,3 +136,26 @@ range: 16,
 damage: {min:200, max:250}
 }
 ]
+{name:"Gremlin",
+hp: 10,
+attackDam:{min:5, max:10},
+icon:"m",
+desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
+type: noMythological
+}
+
+{name:"lemures",
+hp:10,
+attackDam:{min:5, max:10},
+icon:"m",
+desc:"dark spirits that look like ghost emmos",
+type:noMythological
+}
+
+{name:"Azeban",
+hp: 10,
+attackDam:{min:5, max:10},
+icon:"m",
+desc:"imagine rocket from guardians of the galaxy but as a poor theff",
+type:noMythological
+}
