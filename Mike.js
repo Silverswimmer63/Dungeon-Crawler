@@ -170,7 +170,7 @@ type:Mythological
 }
 {name:"Areas",
 hp: 100,
-attackDam:{min:30, max:55},
+attackDam:{min:30, max:54},
 icon:"A",
 desc:"He's always mad because he has daddy issues",
 type:Mythological
