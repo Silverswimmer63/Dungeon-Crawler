@@ -160,4 +160,13 @@ icon:"m",
 desc:"imagine rocket from guardians of the galaxy but as a poor theff",
 type:noMythological
 }
+
+{name:"Minitar",
+hp: 70,
+attackDam:{min:20, max:40},
+icon:"M",
+desc:"A big bull guy with a sharp axe you know the drill",
+type:Mythological
+}
+
 ]
