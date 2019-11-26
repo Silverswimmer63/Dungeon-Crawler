@@ -63,7 +63,10 @@ Robots (60 HP)
 Knife Roomba (60 HP)
 Self-driving cars (60 HP)
 */
+<<<<<<< HEAD
 // Body list
+=======
+// Space Enemies
 const COMPLETE_INVENTORY_SPACE_LIST = [
   {name: "Robots",
   type: Space,
@@ -97,3 +100,4 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
   drop: "Silver Armor"
   }
 ]
+>>>>>>> c7d7456641526be184a49b64c4b4f90c8f8de708

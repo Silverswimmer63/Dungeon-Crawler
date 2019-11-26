@@ -1,8 +1,9 @@
-class Nospace extends Living {
+class Nospace extends Noinventory {
 constructor(name, type, hp, desc, icon, attackDam){
   super(name, type, hp, desc, icon, attackDam);
 }
 }
+<<<<<<< HEAD
 /*  this._name = name;
   this._type = type;
   this._hp = hp; // all hp is 50
@@ -31,6 +32,7 @@ set icon() { this._icon = icon; }
 get attackDam() { return this._attackDam; }
 set attackDam(attackDam) {this._attackDam = attackDam; }
 } */
+=======
 
 const COMPLETE_Nospace_LIST = [
   {name: "Androids",
@@ -65,3 +67,4 @@ const COMPLETE_Nospace_LIST = [
 }
 
 ]
+>>>>>>> c7d7456641526be184a49b64c4b4f90c8f8de708
