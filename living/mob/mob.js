@@ -1,6 +1,6 @@
-class Mob extends Living{
-  constructor(name, type, hp, desc, icon){
-    super(name, type, hp, desc, icon, attackDam)
+class Mob extends L{
+  constructor(name, type, hp, desc, icon, attackDam){
+    super(name, type, hp, desc, icon)
     this._attackDam = attackDam;
   }
   get attackDam(){ return this._attackDam; }
