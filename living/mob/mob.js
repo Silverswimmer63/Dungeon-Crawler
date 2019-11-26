@@ -5,3 +5,4 @@ class Mob extends Living{
   }
   get attackDam(){ return this._attackDam; }
   set attackDam(attackDam){ this._attackDam = attackDam; }
+}
