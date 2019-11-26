@@ -64,31 +64,3 @@ icon:"<",
   damageresist:.74,
 }
 ]
-
-
-const COMPLETE_MythologicalIN_LIST= [
-   {
-      name: "Chinese guardian lion",
-      type: Mythological,
-      hp: 20,
-      desc:"Stone Lion",
-      icon:"M",
-    attackDam: {min: 10, max: 15} ,
-    },
-    {
-      name: "Girimehkala",
-      type: Mythological,
-      hp: 20,
-      desc:"Elephant that has powers",
-      icon:"M",
-    attackDam: {min: 10, max: 15},
-    },
-    {
-      name: "Cenetur",
-      type: Mythological,
-      hp: 20,
-      desc:"Half-man, half horse creatures.",
-      icon:"M",
-    attackDam: {min: 10, max: 15},
-    },
-  ]

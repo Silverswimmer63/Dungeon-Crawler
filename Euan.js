@@ -56,30 +56,3 @@ const COMPLETE_Head_ARMOR_LIST = [
     damageresist: .36
   }
 ]
-
-const COMPLETE_Cowboy_LIST = [
-  {
-    name: "Bandit",
-    type: Cowboy,
-    hp: 40,
-    desc: "He wants to take all of you possessions: your money, your clothes, and your mouse",
-    icon: "T",
-    attackDam: {max: 30, min:20},
-  },
-  {
-    name: "Drunk Man",
-    type: Cowboy,
-    hp: 40,
-    desc: "He may be drunk but he can still kill you because the strength of drunk people is unmatched",
-    icon: "T",
-    attackDam: {max: 30, min:20},
-  },
-  {
-    name: "Outlaw",
-    type: Cowboy,
-    hp: 40,
-    desc: "Will do anything to get anything",
-    icon: "T",
-    attackDam: {max: 30, min:20},
-  }
-]
