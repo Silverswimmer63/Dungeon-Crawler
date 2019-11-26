@@ -63,4 +63,41 @@ Robots (60 HP)
 Knife Roomba (60 HP)
 Self-driving cars (60 HP)
 */
+<<<<<<< HEAD
 // Body list
+=======
+// Space Enemies
+const COMPLETE_INVENTORY_SPACE_LIST = [
+  {name: "Robots",
+  type: Space,
+  hp: 60,
+  desc: "All generic futuristic space video games have untamable robots, so why we do the same thing. These are deadly bois that are fun to fight.",
+  icon: "$",
+  attackDam: 50,
+  drop: "Chainmail Armor"
+},
+  {name: "Knife Roomba",
+  type: Space,
+  hp: 60,
+  desc: "In this world, Roombas are tired of cleaning up things that humans are too lazy to do. Now these bloodthirsty are ready to spill your blood and then clean it up.",
+  icon: "$",
+  attackDam: 50,
+  drop: "Copper Armor"
+},
+  {name: "Self-Driving Cars",
+  type: Space,
+  hp: 60,
+  desc: "That classic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
+  icon: "$",
+  attackDam: 50,
+  drop: "Bronze Armor"
+},
+  {name: "Steve Jobs", type: Space,
+  hp: 160,
+  desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
+  icon: "$",
+  attackDam: 80,
+  drop: "Silver Armor"
+  }
+]
+>>>>>>> c7d7456641526be184a49b64c4b4f90c8f8de708
