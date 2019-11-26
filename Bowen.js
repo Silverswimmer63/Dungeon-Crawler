@@ -63,7 +63,7 @@ Robots (60 HP)
 Knife Roomba (60 HP)
 Self-driving cars (60 HP)
 */
-// Body list
+// Space Enemies
 const COMPLETE_INVENTORY_SPACE_LIST = [
   {name: "Robots",
   type: Space,
