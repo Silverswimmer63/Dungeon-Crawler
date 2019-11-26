@@ -1,6 +1,8 @@
 class Nospace extends Living {
 constructor(name, type, hp, desc, icon, attackDam){
   super(name, type, hp, desc, icon, attackDam);
+}
+}
 /*  this._name = name;
   this._type = type;
   this._hp = hp; // all hp is 50

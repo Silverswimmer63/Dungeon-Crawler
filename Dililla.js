@@ -73,7 +73,7 @@ const COMPLETE_MythologicalIN_LIST= [
       hp: 20,
       desc:"Stone Lion",
       icon:"M",
-    attackDam:min 10, max 15 ,
+    attackDam: {min: 10, max: 15} ,
     },
     {
       name: "Girimehkala",
@@ -81,7 +81,7 @@ const COMPLETE_MythologicalIN_LIST= [
       hp: 20,
       desc:"Elephant that has powers",
       icon:"M",
-    attackDam:min 10, max 15,
+    attackDam: {min: 10, max: 15},
     },
     {
       name: "Cenetur",
@@ -89,6 +89,6 @@ const COMPLETE_MythologicalIN_LIST= [
       hp: 20,
       desc:"Half-man, half horse creatures.",
       icon:"M",
-    attackDam: min 10, max 15,
+    attackDam: {min: 10, max: 15},
     },
   ]
