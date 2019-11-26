@@ -6,6 +6,7 @@ const COMPLETE_MythologicalIN_LIST= [
     desc:"Stone Lion",
     icon:"M",
     attackDam: {min: 10, max: 15} ,
+    drop: "Leather Armor"
   },
   {
     name: "Girimehkala",
@@ -14,6 +15,7 @@ const COMPLETE_MythologicalIN_LIST= [
     desc:"Elephant that has powers",
     icon:"M",
     attackDam: {min: 10, max: 15},
+    drop: "Chainmail Armor"
   },
   {
     name: "Cenetur",
@@ -22,6 +24,7 @@ const COMPLETE_MythologicalIN_LIST= [
     desc:"Half-man, half horse creatures.",
     icon:"M",
     attackDam: {min: 10, max: 15},
+    drop: "Bronze Armor"
   },
 ]
 

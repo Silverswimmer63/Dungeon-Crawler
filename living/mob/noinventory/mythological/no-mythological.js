@@ -1,4 +1,4 @@
-class Nomythological extends Noinventory{
+class NoMythological extends Noinventory{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon, attackDam);
   }
