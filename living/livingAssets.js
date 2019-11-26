@@ -90,6 +90,43 @@ const COMPLETE_Cowboy_LIST = [
   }
 ]
 
+const COMPLETE_NoCowboy_LIST = [
+{name:"Kactis Karen",
+type:Nocowboy,
+hp:10,
+desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager, but youre also not imployed so she wants to kill you instead",
+icon:"M",
+attackDamage:15},
+
+{name:"snek",
+type:Nocowboy,
+hp:5,
+desc:"I hate sneks",
+icon:"M",
+attackDamage:10},
+
+{name:"drunken demolition specilist",
+type:Nocowboy,
+hp:15,
+desc:"GonNa Kill you aNa Keep kiLliN yoU and...WhAt?",
+icon:"M",
+attackDam:20},
+
+{name:"Angry cow",
+type:Nocowboy,
+hp:10,
+Desc:"(A series of angry moos that corilate unto one word)...Moo!",
+attackDam:25,
+icon:"M"},
+
+{name:"Bandit Bandito",
+type:Nocowboy,
+hp:25,
+desc:"Texas red's gonna whip your cream",
+attackDam:20,
+icon:"M"}
+
+]
 
 
   const COMPLETE_Inventory_SPACE_LIST = [
