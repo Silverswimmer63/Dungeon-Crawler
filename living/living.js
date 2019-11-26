@@ -1,11 +1,10 @@
 class Living {
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon){
     this._name = name;
     this._type = type;
     this._hp = hp;
     this._desc = desc;
     this._icon = icon;
-    this._attackDam = attackDam;
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }
@@ -21,7 +20,4 @@ class Living {
 
   get icon(){ return this._icon; }
   set icon(icon){ this._icon = icon; }
-
-  get attackDam(){ return this._attackDam; }
-  set attackDam(attackDam){ this._attackDam = attackDam; }
 }
