@@ -104,20 +104,39 @@ icon:"P", heal:{min:1, mx:25}}
 ]
 
 const COMPLETE_MOB_LIST = [
-{name:"Kactis Karen", class:Monster, hp:10,
-desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager,
-but youre also not imployed so she wants to kill you instead", icon:"M", attackDamage:15}
+{name:"Kactis Karen",
+class:Monster,
+hp:10,
+desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager, but youre also not imployed so she wants to kill you instead",
+icon:"M",
+attackDamage:15},
 
-{name:"snek", class:Monster, hp:5,
-desc:"I hate sneks", icon:"M", attackDamage:10}
+{name:"snek",
+class:Monster,
+hp:5,
+desc:"I hate sneks",
+icon:"M",
+attackDamage:10},
 
-{name:"drunken demolition specilist", class:Monster, hp:15,
-desc:"GonNa Kill you aNa Keep kiLliN yoU and...WhAt?", icon:"M", attackDam:20}
+{name:"drunken demolition specilist",
+class:Monster,
+hp:15,
+desc:"GonNa Kill you aNa Keep kiLliN yoU and...WhAt?",
+icon:"M",
+attackDam:20},
 
-{name:"Angry cow", class:Monstar, hp:10,
-Desc:"(A series of angry moos that corilate unto one word)...Moo!", attackDam:25, icon:"M"}
+{name:"Angry cow",
+class:Monstar,
+hp:10,
+Desc:"(A series of angry moos that corilate unto one word)...Moo!",
+attackDam:25,
+icon:"M"},
 
-{name:"Bandit Bandito", class:Monstar, hp:25,
-desc:"Texas red's gonna whip your cream", attackDam:20, icon:"M"}
+{name:"Bandit Bandito",
+class:Monstar,
+hp:25,
+desc:"Texas red's gonna whip your cream",
+attackDam:20,
+icon:"M"}
 
 ]
