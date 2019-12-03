@@ -507,7 +507,7 @@ const COMPLETE_POTION_LIST = [
     value:20,
     desc:"a basic bandaid with a lipstick smug and a message saying LOVE MOM... I love you mom",
     icon:"P",
-    heal: {min:1, max:20}
+    damage: {min:-1, max:-20}
   },
   {
     name: "Thoughts and prayers",
@@ -515,7 +515,7 @@ const COMPLETE_POTION_LIST = [
     value:15,
     desc:"while this tecnecly dose nothing it somehow bolsters your spirits and heals you... I would have prefured a heath kit",
     icon:"P",
-    heal:{min:5, max:5}
+    damage:{min:-5, max:-5}
   },
   {
     name: "Heath kit",
@@ -523,7 +523,7 @@ const COMPLETE_POTION_LIST = [
     value:50,
     desc:"a basic bandaid with a lipstick smug and a message saying LOVE MOM",
     icon:"P",
-    heal:{min:10, max:40}
+    damage:{min:-10, max:-40}
   },
   {
     name:"Molotov",
@@ -531,9 +531,9 @@ const COMPLETE_POTION_LIST = [
     value:20,
     desc:"you would think its cheap but these babys are made with premium botttles",
     icon:"P",
-    dot:{min:5, max:20},
-    terms: {min:5, max:10}
+    damage:{min:5, max:20},
   },
+  /*
   {
     name:"Defence potion",
     class:Potion,
@@ -549,6 +549,7 @@ const COMPLETE_POTION_LIST = [
     desc:"you become increadably strong at the experce of your literacy, you will forget how to read if you use this... but thats for nerds anyways",
     icon:"P",
   },
+  */
   {
     name:"Freeze potion",
     class:Potion,
@@ -565,6 +566,7 @@ const COMPLETE_POTION_LIST = [
     icon:"P",
     damage:{min:15, max:35}
   },
+  /*
   {
     name:"Gold potion",
     class:Potion,
@@ -574,6 +576,7 @@ const COMPLETE_POTION_LIST = [
     deffence:2.,
     attack:2.
   }
+  */
 ]
 
 var allItems = [];
