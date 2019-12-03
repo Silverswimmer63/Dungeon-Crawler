@@ -389,7 +389,7 @@ const COMPLETE_RANGED_LiST = [
     name: "Serrated Fedora",
     type: Ranged,
     value: 40,
-    desc: "For those reddit users who watched a little too much James Bond",
+    desc: "James bond intro starts blaring",
     icon: "L",
     range: 3,
     damage: {min:30, max:32}
