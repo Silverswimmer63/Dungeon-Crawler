@@ -226,16 +226,16 @@ heal:{min:10, max:40}
 {  name:"lightning",
   class:Potion,
   value:35,
-  desc:"Now I am become Death, the destroyer of worlds",
+  desc:"Now I am become Death, the destroyer of the 7/11 bathroom-homeless man in NYC",
   icon:"P",
   damage:{min:15, max:35}
 },
 {  name:"Gold potion",
   class:Potion,
   value:80,
-  desc:"",
+  desc:"makes everything better because being rich solves all your problems",
   icon:"P",
-  deffence:2,
-  attack:2
+  deffence:2.,
+  attack:2.
 }
 ]
