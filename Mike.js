@@ -233,7 +233,7 @@ heal:{min:10, max:40}
 {  name:"Gold potion",
   class:Potion,
   value:80,
-  desc:""
+  desc:"",
   icon:"P",
   deffence:2,
   attack:2
