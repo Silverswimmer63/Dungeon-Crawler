@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 const COMPLETE_LOOT_LiST = [
 {name: "Throwing stones",
 type: Ranged,
@@ -241,4 +239,3 @@ heal:{min:10, max:40}
   attack:2
 }
 ]
->>>>>>> Stashed changes
