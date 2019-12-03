@@ -42,7 +42,7 @@ class Item {
   toString(){
     var retString = this.name + "<br>";
     retString += this.desc + "<br>";
-    retString += "This looks like it is worth " + this.value + "<br>";
+    retString += "This looks like it is worth " + this.value + " gold.<br>";
     // TODO: add the type once we have it all figured out
     return retString;
   }

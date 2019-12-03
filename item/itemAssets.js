@@ -258,7 +258,7 @@ const COMPLETE_Melee_LIST = [
   }
 ]
 
-const COMPLETE_LOOT_LiST = [
+const COMPLETE_RANGED_LiST = [
   {
     name: "Throwing stones",
     type: Ranged,
@@ -575,3 +575,6 @@ const COMPLETE_POTION_LIST = [
     attack:2.
   }
 ]
+
+var allItems = [];
+allItems = allItems.concat(COMPLETE_Head_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_Melee_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
