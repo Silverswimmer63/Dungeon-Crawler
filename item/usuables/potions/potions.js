@@ -11,3 +11,15 @@ class Potion extends Item {
 
   }
 }
+/*
+function rollDice(numDice, numSides){
+var retVar = 0;
+var rollDice = 0;
+while (rollDice <= numDice) {
+  var thing = Math.floor(Math.random()*numSides)+1;
+  retVar += thing;
+  rollDice++;
+}
+return retVar
+}
+*/
