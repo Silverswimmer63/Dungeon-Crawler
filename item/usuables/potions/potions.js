@@ -8,6 +8,6 @@ class Potion extends Item {
 
 //returns a number between damage.min and damage.max
   attackDam(){
-
+    
   }
 }
