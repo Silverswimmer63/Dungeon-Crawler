@@ -108,7 +108,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp:10,
     desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager, but youre also not imployed so she wants to kill you instead",
     icon:"M",
-    attackDamage:15
+    attackDam: {min: 10, max: 20},
   },
   {
     name:"snek",
@@ -116,7 +116,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp:5,
     desc:"I hate sneks",
     icon:"M",
-    attackDamage:10
+    attackDam: {min: 10, max: 20},
   },
   {
     name:"drunken demolition specilist",
@@ -124,14 +124,14 @@ const COMPLETE_NoCowboy_LIST = [
     hp:15,
     desc:"GonNa Kill you aNa Keep kiLliN yoU and...WhAt?",
     icon:"M",
-    attackDam:20
+    attackDam: {min: 10, max: 20},
   },
   {
     name:"Angry cow",
     type:Nocowboy,
     hp:10,
     Desc:"(A series of angry moos that corilate unto one word)...Moo!",
-    attackDam:25,
+    attackDam: {min: 10, max: 20},
     icon:"M"
   },
   {
@@ -139,7 +139,7 @@ const COMPLETE_NoCowboy_LIST = [
     type:Nocowboy,
     hp:25,
     desc:"Texas red's gonna whip your cream",
-    attackDam:20,
+    attackDam: {min: 10, max: 20},
     icon:"M"
   }
 ]
@@ -151,7 +151,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp: 60,
     desc: "All generic futuristic space video games have untamable robots, so why we do the same thing. These are deadly bois that are fun to fight.",
     icon: "$",
-    attackDam: 50,
+    attackDam: {min: 40, max: 50},
     drop: "Chainmail Armor"
   },
   {
@@ -160,7 +160,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp: 60,
     desc: "In this world, Roombas are tired of cleaning up things that humans are too lazy to do. Now these bloodthirsty are ready to spill your blood and then clean it up.",
     icon: "$",
-    attackDam: 50,
+    attackDam: {min: 40, max: 50},
     drop: "Copper Armor"
   },
   {
@@ -169,7 +169,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp: 60,
     desc: "That classic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
     icon: "$",
-    attackDam: 50,
+    attackDam: {min: 40, max: 50},
     drop: "Bronze Armor"
   },
   {
@@ -177,7 +177,7 @@ const COMPLETE_NoCowboy_LIST = [
     hp: 160,
     desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
     icon: "$",
-    attackDam: 80,
+    attackDam: {min: 75, max: 80},
     drop: "Silver Armor"
     }
   ]
