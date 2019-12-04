@@ -420,7 +420,7 @@ const COMPLETE_LOOT_LIST = [
     class: VendorTrash,
     value: 2,
     desc: "A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"Mysterious Arrow",
@@ -434,11 +434,11 @@ const COMPLETE_LOOT_LIST = [
     class: VendorTrash,
     value: 100,
     desc:"Wait elves don't use wood for anything. What heresy is this?",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"Gomboi SP blue edition",
-    class: VendorTrash,
+    class: Collectible,
     value: 299,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
     icon:"C"
@@ -473,7 +473,7 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"The bee movie script",
-    class: VendorTrash,
+    class: Collectible,
     value: 5000,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
     icon:"C"
@@ -487,20 +487,30 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"Mike's Mouse's trophy",
-    class:VendorTrash,
+    class:Collectible,
     value: 1000,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
     icon:"C"
   },
   {
     name:"The Mona Lisa",
-    class: VendorTrash,
+    class: Collectible,
     value: 100000000,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
     icon:"C"
-  }
-<<<<<<< Updated upstream
+  },
+  {name:"H  O  N  K",
+ class: Collectible,
+ value:1002908,
+ desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
+ icon:"C"
+},
 ]
+toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc + this.class + " It can be considered to be some form of "
+  return retStr
+}
 const COMPLETE_POTION_LIST = [
   {
     name: "Bandaid",
@@ -578,12 +588,10 @@ const COMPLETE_POTION_LIST = [
     attack:2.
   }
   */
-]
-{ name:"H  O  N  K",
-class: Collectible,
-value:1002908,
-desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
-icon:"C"
-}
 
 ]
+toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc; + this.class + "it's a"
+  return retStr
+}
