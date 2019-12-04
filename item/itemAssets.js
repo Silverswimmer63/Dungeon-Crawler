@@ -236,7 +236,7 @@ const COMPLETE_Melee_LIST = [
     name: "Stick",
     type: Melee,
     value: 2,
-    desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt whe hit by.",
+    desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt when hit by.",
     damage: {min:8, max:12},
     icon:"/"
   },
@@ -258,7 +258,7 @@ const COMPLETE_Melee_LIST = [
   }
 ]
 
-const COMPLETE_RANGED_LiST = [
+const COMPLETE_LOOT_LiST = [
   {
     name: "Throwing stones",
     type: Ranged,
@@ -389,7 +389,7 @@ const COMPLETE_RANGED_LiST = [
     name: "Serrated Fedora",
     type: Ranged,
     value: 40,
-    desc: "James bond intro starts blaring",
+    desc: "For those reddit users who watched a little too much James Bond",
     icon: "L",
     range: 3,
     damage: {min:30, max:32}
@@ -499,6 +499,7 @@ const COMPLETE_LOOT_LIST = [
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
     icon:"C"
   }
+<<<<<<< Updated upstream
 ]
 const COMPLETE_POTION_LIST = [
   {
@@ -578,6 +579,13 @@ const COMPLETE_POTION_LIST = [
   }
   */
 ]
+=======
+{ name:"H  O  N  K",
+class: Collectible,
+value:1002908,
+desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
+icon:"C"
+}
+>>>>>>> Stashed changes
 
-var allItems = [];
-allItems = allItems.concat(COMPLETE_Head_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_Melee_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
+]
