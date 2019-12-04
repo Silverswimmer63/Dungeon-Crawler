@@ -4,10 +4,10 @@ class Mythological extends Inventory{
   }
   text(){
     var retString = "This is " + this.name + "<br>";
-    retString += "This guy is " + this.desc + "<br>";
-    retString += "He has " + this.hp + " HP.<br>";
-    retString += "His attack damage is " + this.attackDam + "<br>"
-    retString += "WHen you kill him, he drops " + this.drop + "<br>"
+    retString += "This monster is " + this.desc + "<br>";
+    retString += "The monster has " + this.hp + " HP.<br>";
+    retString += "The monster attack damage is " + this.attackDam + "<br>"
+    retString += "When you kill the monster, monster drops " + this.drop + "<br>"
     return retString;
  }
 }
