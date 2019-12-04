@@ -39,7 +39,7 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
-  toString(){
+  text(){
     var retString = this.name + "<br>";
     retString += this.desc + "<br>";
     retString += "This looks like it is worth " + this.value + " gold.<br>";

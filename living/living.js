@@ -3,6 +3,7 @@ class Living {
     this._name = name;
     this._type = type;
     this._hp = hp;
+    this._maxHp = hp;
     this._desc = desc;
     this._icon = icon;
   }
@@ -20,4 +21,6 @@ class Living {
 
   get icon(){ return this._icon; }
   set icon(icon){ this._icon = icon; }
+
+  get maxHp(){ return this._maxHp; }
 }
