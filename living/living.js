@@ -1,11 +1,12 @@
 class Living {
-  constructor(name, type, hp, desc, icon){
+  constructor(name, type, hp, desc, icon, range){
     this._name = name;
     this._type = type;
     this._hp = hp;
     this._maxHp = hp;
     this._desc = desc;
     this._icon = icon;
+    this._range = range;
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }
@@ -24,6 +25,9 @@ class Living {
 
   get maxHp(){ return this._maxHp; }
   set maxHp(maxHp){ this._maxHp = maxHp; }
+
+  get range(){ return this._range; }
+  set range(range){ this._range = range; }
 
   text(){
     var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
