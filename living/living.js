@@ -23,4 +23,12 @@ class Living {
   set icon(icon){ this._icon = icon; }
 
   get maxHp(){ return this._maxHp; }
+  set maxHp(maxHp){ this._maxHp = maxHp; }
+
+  text(){
+    var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
+    retString += " Oh look, it dropped a " + this.drop + "<br>";
+    return retString;
+  }
+
 }
