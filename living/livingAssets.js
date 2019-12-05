@@ -26,6 +26,22 @@ const COMPLETE_MythologicalIN_LIST= [
     attackDam: {min: 10, max: 15},
     drop: "Bronze Armor"
   },
+  {
+    name:"Minitar",
+    hp: 70,
+    attackDam:{min:20, max:40},
+    icon:"M",
+    desc:"He's a sweetheart if you get to know him",
+    type:NoMythological,
+  },
+  {
+    name:"Areas",
+    hp: 100,
+    attackDam:{min:30, max:54},
+    icon:"A",
+    desc:"He's always mad because he has daddy issues",
+    type:NoMythological
+  }
 ]
 
 const COMPLETE_No_MythologicalIN_LIST= [
@@ -51,22 +67,6 @@ const COMPLETE_No_MythologicalIN_LIST= [
     attackDam:{min:5, max:10},
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
-    type:NoMythological,
-  },
-  {
-    name:"Minitar",
-    hp: 70,
-    attackDam:{min:20, max:40},
-    icon:"M",
-    desc:"He's a sweetheart if you get to know him",
-    type:NoMythological,
-  },
-  {
-    name:"Areas",
-    hp: 100,
-    attackDam:{min:30, max:54},
-    icon:"A",
-    desc:"He's always mad because he has daddy issues",
     type:NoMythological,
   }
 ]
@@ -99,49 +99,51 @@ const COMPLETE_Cowboy_LIST = [
     attackDam: {max: 30, min:20},
     drop: "",
   }
+  {
+    name: "Sherif",
+    type: Cowboy,
+    hp: 100,
+    desc: "One day from retirment and his first day on the job",
+    icon: "T",
+    attackDam: {max: 30, min:20},
+    drop: "",
+  }
+  {
+    name: "Oil tycoon",
+    type: Cowboy,
+    hp: 130,
+    desc: "Big business can aford big guns.",
+    icon: "T",
+    attackDam: {max: 30, min:20},
+    drop: "",
+  }
 ]
 
 const COMPLETE_NoCowboy_LIST = [
   {
     name:"Kactis Karen",
     type:Nocowboy,
-    hp:10,
+    hp:30,
     desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager, but youre also not imployed so she wants to kill you instead",
     icon:"M",
-    attackDam: {min: 10, max: 20},
+    attackDam: {min: 15, max: 30},
   },
   {
     name:"snek",
     type:Nocowboy,
-    hp:5,
+    hp:30,
     desc:"I hate sneks",
     icon:"M",
-    attackDam: {min: 10, max: 20},
-  },
-  {
-    name:"drunken demolition specilist",
-    type:Nocowboy,
-    hp:15,
-    desc:"GonNa Kill you aNa Keep kiLliN yoU and...WhAt?",
-    icon:"M",
-    attackDam: {min: 10, max: 20},
+    attackDam: {min: 15, max: 30},
   },
   {
     name:"Angry cow",
     type:Nocowboy,
-    hp:10,
+    hp:30,
     Desc:"(A series of angry moos that corilate unto one word)...Moo!",
-    attackDam: {min: 10, max: 20},
+    attackDam: {min: 15, max: 30},
     icon:"M"
   },
-  {
-    name:"Bandit Bandito",
-    type:Nocowboy,
-    hp:25,
-    desc:"Texas red's gonna whip your cream",
-    attackDam: {min: 10, max: 20},
-    icon:"M"
-  }
 ]
 
   const COMPLETE_Inventory_SPACE_LIST = [
@@ -179,7 +181,15 @@ const COMPLETE_NoCowboy_LIST = [
     icon: "$",
     attackDam: {min: 75, max: 80},
     drop: "Silver Armor"
-    }
+  },
+  {
+    name: "Tech Support",
+    type: Nospace,
+    hp: 130,
+    desc: "Cannot actually help you, just keeps you on hold for an hour.",
+    icon: "$",
+    attackDam: {min: 35, max: 45},
+  }
   ]
 
   const COMPLETE_Nospace_LIST = [
@@ -207,12 +217,4 @@ const COMPLETE_NoCowboy_LIST = [
     icon: "$",
     attackDam: {min: 35, max: 45},
   },
-  {
-    name: "Tech Support",
-    type: Nospace,
-    hp: 130,
-    desc: "Cannot actually help you, just keeps you on hold for an hour.",
-    icon: "$",
-    attackDam: {min: 35, max: 45},
-  }
 ]
