@@ -11,6 +11,6 @@ class Weapon extends Item{
 
   text(){
     var retString = super.text();
-    return retString + " It is a weapon."
+    return retString;
   }
 }

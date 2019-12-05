@@ -258,7 +258,7 @@ const COMPLETE_Melee_LIST = [
   }
 ]
 
-const COMPLETE_LOOT_LiST = [
+const COMPLETE_Ranged_LiST = [
   {
     name: "Throwing stones",
     type: Ranged,
