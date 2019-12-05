@@ -31,6 +31,6 @@ class Living {
     return retString;
   }
   toString(){
-    return this.damage;
+    return this.desc;
   }
 }
