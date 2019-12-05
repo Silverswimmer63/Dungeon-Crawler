@@ -30,5 +30,7 @@ class Living {
     retString += " Oh look, it dropped a " + this.drop + "<br>";
     return retString;
   }
-
+  toString(){
+    return this.damage;
+  }
 }
