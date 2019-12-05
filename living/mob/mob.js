@@ -9,6 +9,10 @@ class Mob extends Living{
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
   }
+
+    get range(){ return this._range; }
+    set range(range){ this._range = range; }
+    
   takeDam(damage){
     this.hp = this.hp - damage;
     if (this.hp <= 0) {

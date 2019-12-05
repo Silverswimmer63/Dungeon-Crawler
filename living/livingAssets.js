@@ -127,7 +127,8 @@ const COMPLETE_Cowboy_LIST = [
   }
 ]
 
-const COMPLETE_NoCowboy_LIST = [
+const COMPLETE_NoCowboy_LIST = [  },
+
   {
     name:"Kactis Karen",
     type:Nocowboy,
@@ -150,7 +151,8 @@ const COMPLETE_NoCowboy_LIST = [
     type:Nocowboy,
     hp:30,
     Desc:"(A series of angry moos that corilate unto one word)...Moo!",
-    attackDam: {min: 15, max: 30},
+    attackDam: {min: 15, max: 30},  },
+
     icon:"M"
   },
 ]
