@@ -24,9 +24,11 @@ set attackDam(attackDam){ this._attackDam = attackDam; }
 get drop(){ return this._drop; }
 set drop(drop){ this._drop = drop; }
 text(){
-  var retString = this.name + "<br>";
+  var retString = retString += "oh no a " + this.name + " apears what are you gonna do?<br>";
   retString += this.desc + "<br>";
-  retString += "oh no a " + this.name + " apears what are you gonna do?<br>";
+  retString += "This boi has " + this.hp + " HP.<br>";
+  retString += "a measly " + this.attackDam + " damage.<br>"
+  retString += "He dropped " + this.drop + " you better pick it up!<br>"
   // TODO: add the type once we have it all figured out
   return retString;
 }
