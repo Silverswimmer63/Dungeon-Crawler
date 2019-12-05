@@ -6,8 +6,9 @@ class Ranged extends Weapon {
   }
   get range(){ return this._range; }
   set range(range){ this._range = range}
+
   text(){
     var retString = super.text();
-    return retstring + " Is a weapon.";
+    return retstring; 
   }
 }
