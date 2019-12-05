@@ -396,16 +396,16 @@ const COMPLETE_Ranged_LiST = [
   },
   {
     name: "Replica Mouse",
-    type: Ranged,
+    type: Both,
     value: 100,
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
     range: 10,
-    damage: {min:50, max:60}
+    damage: {min:40, max:60}
   },
   {
     name: "Mikes Controller",
-    type: Ranged,
+    type: Both,
     value: 99999999999999,
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
@@ -425,23 +425,23 @@ const COMPLETE_LOOT_LIST = [
   {
     name:"Mysterious Arrow",
     class: VendorTrash,
-    value: 100500006,
+    value: 15,
     desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"elven wood dish",
     class: VendorTrash,
-    value: 100,
+    value: 10,
     desc:"Wait elves don't use wood for anything. What heresy is this?",
     icon:"V"
   },
   {
     name:"Gomboi SP blue edition",
     class: Collectible,
-    value: 299,
+    value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"A copy of The Ancient Solitary Reign",
@@ -474,9 +474,9 @@ const COMPLETE_LOOT_LIST = [
   {
     name:"The bee movie script",
     class: Collectible,
-    value: 5000,
+    value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"toy knife",
@@ -488,22 +488,22 @@ const COMPLETE_LOOT_LIST = [
   {
     name:"Mike's Mouse's trophy",
     class:Collectible,
-    value: 1000,
+    value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
-    icon:"C"
+    icon:"V"
   },
   {
     name:"The Mona Lisa",
     class: Collectible,
-    value: 100000000,
+    value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
-    icon:"C"
+    icon:"V"
   },
   {name:"H  O  N  K",
  class: Collectible,
- value:1002908,
+ value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
- icon:"C"
+ icon:"V"
 },
 ]
 toString(){
