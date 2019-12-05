@@ -29,6 +29,11 @@ const COMPLETE_MythologicalIN_LIST= [
 ]
 
 const COMPLETE_No_MythologicalIN_LIST= [
+  text(){
+    var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
+    retString += " Oh look, it dropped a " + this.drop + "<br>";
+    return retString;
+  }
   {
     name:"Gremlin",
     hp: 10,
@@ -79,7 +84,7 @@ const COMPLETE_Cowboy_LIST = [
     desc: "He wants to take all of you possessions: your money, your clothes, and your mouse",
     icon: "T",
     attackDam: {max: 30, min:20},
-    drop: "",
+    drop: "Leather Armor",
   },
   {
     name: "Drunk Man",
@@ -88,7 +93,7 @@ const COMPLETE_Cowboy_LIST = [
     desc: "He may be drunk but he can still kill you because the strength of drunk people is unmatched",
     icon: "T",
     attackDam: {max: 30, min:20},
-    drop: "",
+    drop: "Chainmail Armor",
   },
   {
     name: "Outlaw",
@@ -97,7 +102,7 @@ const COMPLETE_Cowboy_LIST = [
     desc: "Will do anything to get anything",
     icon: "T",
     attackDam: {max: 30, min:20},
-    drop: "",
+    drop: "Bronze Armor",
   }
 ]
 
