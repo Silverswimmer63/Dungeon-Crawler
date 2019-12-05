@@ -40,11 +40,14 @@ class Item {
   set type(type){ this._type = type; }
 
   text(){
-    var retString = this.name + "<br>";
-    retString += this.desc + "<br>";
-    retString += "This looks like it is worth " + this.value + " gold.<br>";
-    // TODO: add the type once we have it all figured out
-    return retString;
-  }
+      var retString = this.name + "<br>";
+      reString += this.desc + "<br>";
+      retString += "This looks like it is worth " + this.value + " gold.<br>";
+      // TODO: add the type once we have it all figured out
+      return retString;
+    }
+  toString(){
+    return this.icon;
+    }
 }
 //hi
