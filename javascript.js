@@ -16,5 +16,8 @@ var foo = randomFoe();
 when you then type foo, you should have a random foe from the list you made.
 */
 function randomFoe() {
-  var index = 0;
+  var index = Utils.randMath(0, allMobs.length - 1);
+  var mon = allMobs[index];
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  return retMon;
 }
