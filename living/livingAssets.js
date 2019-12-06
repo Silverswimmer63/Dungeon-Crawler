@@ -225,6 +225,58 @@ const COMPLETE_NoCowboy_LIST = [
     range: 0,
   },
 ]
+const COMPLETE_Inventory_Boss_LIST = [
+  {
+    name: "Steve Jobs", type: Space,
+    hp: 160,
+    desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
+    icon: "$",
+    attackDam: {min: 75, max: 80},
+    drop: "Silver Armor"
+  },
+  {
+    name: "Tech Support",
+    type: Space,
+    hp: 130,
+    desc: "Cannot actually help you, just keeps you on hold for an hour.",
+    icon: "$",
+    attackDam: {min: 35, max: 45},
+  },
+  {
+    name: "Sherif",
+    type: Cowboy,
+    hp: 100,
+    desc: "One day from retirment and his first day on the job",
+    icon: "T",
+    attackDam: {max: 30, min:20},
+    drop: "",
+  },
+  {
+    name: "Oil tycoon",
+    type: Cowboy,
+    hp: 130,
+    desc: "Big business can aford big guns.",
+    icon: "T",
+    attackDam: {max: 30, min:20},
+    drop: "",
+  },
+  {
+    name:"Minitar",
+    hp: 70,
+    attackDam:{min:20, max:40},
+    icon:"M",
+    desc:"He's a sweetheart if you get to know him",
+    type:Mythological,
+  },
+  {
+    name:"Areas",
+    hp: 100,
+    attackDam:{min:30, max:54},
+    icon:"A",
+    desc:"He's always mad because he has daddy issues",
+    type:Mythological
+  }
+]
 //can you see this?
 /*
 text(){
