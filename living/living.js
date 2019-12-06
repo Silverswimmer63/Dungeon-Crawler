@@ -26,9 +26,8 @@ class Living {
   set maxHp(maxHp){ this._maxHp = maxHp; }
 
   text(){
-    var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
-    retString += " Oh look, it dropped a " + this.drop + "<br>";
-    return retString;
+
+    return this.desc + "<br>";
   }
   toString(){
     return this.desc;

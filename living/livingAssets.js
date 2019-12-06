@@ -25,7 +25,7 @@ const COMPLETE_MythologicalIN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15},
     drop: "Bronze Armor",
-    range:
+    range: 0,
   },
   {
     name:"Minitar",
@@ -46,11 +46,6 @@ const COMPLETE_MythologicalIN_LIST= [
 ]
 
 const COMPLETE_No_MythologicalIN_LIST= [
-  text(){
-    var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
-    retString += " Oh look, it dropped a " + this.drop + "<br>";
-    return retString;
-  }
   {
     name:"Gremlin",
     hp: 10,
@@ -66,7 +61,7 @@ const COMPLETE_No_MythologicalIN_LIST= [
     icon:"m",
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
-    range:
+    range: 0,
   },
   {
     name:"Azeban",
@@ -87,7 +82,7 @@ const COMPLETE_Cowboy_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "Leather Armor",
-    range:
+    range: 0,
   },
   {
     name: "Drunk Man",
@@ -136,7 +131,7 @@ const COMPLETE_NoCowboy_LIST = [  },
     desc:"She's come to take the kids,but you don't have kids so she wants to speak with you're manager, but youre also not imployed so she wants to kill you instead",
     icon:"M",
     attackDam: {min: 15, max: 30},
-    range:
+    range: 0,
   },
   {
     name:"snek",
@@ -211,7 +206,7 @@ const COMPLETE_NoCowboy_LIST = [  },
     desc: "Dudes that look like terminator, but not as buff.",
     icon: "$",
     attackDam: {min: 35, max:45},
-    range:
+    range: 0,
   },
   {
     name: "Rouge Alexa",
@@ -220,7 +215,7 @@ const COMPLETE_NoCowboy_LIST = [  },
     desc: "I knew that Alexa would become the supreme leaders someday.",
     icon: "$",
     attackDam: {min: 35, max:45},
-    range:
+    range: 0,
   },
   {
     name: "Cyber Bully",
@@ -229,7 +224,14 @@ const COMPLETE_NoCowboy_LIST = [  },
     desc: "I imagined him to be a lot bigger in person.",
     icon: "$",
     attackDam: {min: 35, max: 45},
-    range:
+    range: 0,
   },
 ]
 //can you see this?
+/*
+text(){
+  var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
+  retString += " Oh look, it dropped a " + this.drop + "<br>";
+  return retString;
+}
+*/
