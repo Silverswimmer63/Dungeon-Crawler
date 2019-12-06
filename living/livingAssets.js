@@ -235,3 +235,5 @@ text(){
   return retString;
 }
 */
+var allMobs = {};
+allMobs = allMobs.concat(COMPLETE_MythologicalIN_LIST, COMPLETE_No_MythologicalIN_LIST, COMPLETE_Cowboy_LIST, COMPLETE_NoCowboy_LIST, COMPLETE_Inventory_SPACE_LIST, COMPLETE_Nospace_LIST)
