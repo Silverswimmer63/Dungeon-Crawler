@@ -1,5 +1,0 @@
-function randomFoe() {
-  while(){
-    
-  }
-}

@@ -101,7 +101,7 @@ const COMPLETE_Cowboy_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "Bronze Armor",
-  }
+  },
   {
     name: "Sherif",
     type: Cowboy,
@@ -110,7 +110,7 @@ const COMPLETE_Cowboy_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "",
-  }
+  },
   {
     name: "Oil tycoon",
     type: Cowboy,
@@ -233,5 +233,6 @@ text(){
   return retString;
 }
 */
-var allMobs = {};
+
+var allMobs = [];
 allMobs = allMobs.concat(COMPLETE_MythologicalIN_LIST, COMPLETE_No_MythologicalIN_LIST, COMPLETE_Cowboy_LIST, COMPLETE_NoCowboy_LIST, COMPLETE_Inventory_SPACE_LIST, COMPLETE_Nospace_LIST)
