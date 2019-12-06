@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*
 Make a function called randomFoe();
 for now, make this in javascript.js
@@ -18,8 +16,5 @@ var foo = randomFoe();
 when you then type foo, you should have a random foe from the list you made.
 */
 function randomFoe() {
-  while(){
-
-  }
+  var index = 0;
 }
->>>>>>> 90b9e409e62af164109431fead41420202f09fa7
