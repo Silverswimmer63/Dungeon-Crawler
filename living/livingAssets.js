@@ -1,4 +1,4 @@
-const COMPLETE_MythologicalIN_LIST= [
+const COMPLETE_MYTHOLOGICAL_IN_LIST= [
   {
     name: "Chinese guardian lion",
     type: Mythological,
@@ -45,7 +45,7 @@ const COMPLETE_MythologicalIN_LIST= [
   }
 ]
 
-const COMPLETE_No_MythologicalIN_LIST= [
+const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Gremlin",
     hp: 10,
@@ -73,7 +73,7 @@ const COMPLETE_No_MythologicalIN_LIST= [
   }
 ]
 
-const COMPLETE_Cowboy_LIST = [
+const COMPLETE_COWBOY_LIST = [
   {
     name: "Bandit",
     type: Cowboy,
@@ -122,7 +122,7 @@ const COMPLETE_Cowboy_LIST = [
   }
 ]
 
-const COMPLETE_NoCowboy_LIST = [
+const COMPLETE_NO_COWBOY_LIST = [
   {
     name:"Kactis Karen",
     type:Nocowboy,
@@ -150,7 +150,7 @@ const COMPLETE_NoCowboy_LIST = [
   }
 ]
 
-  const COMPLETE_Inventory_SPACE_LIST = [
+const COMPLETE_INVENTORY_SPACE_LIST = [
   {
     name: "Robots",
     type: Space,
@@ -196,7 +196,7 @@ const COMPLETE_NoCowboy_LIST = [
   }
   ]
 
-  const COMPLETE_Nospace_LIST = [
+const COMPLETE_NO_SPACE_LIST = [
   {
     name: "Androids",
     type: Nospace,
@@ -225,7 +225,8 @@ const COMPLETE_NoCowboy_LIST = [
     range: 0,
   },
 ]
-const COMPLETE_Inventory_Boss_LIST = [
+
+const COMPLETE_INVENTORY_BOSS_LIST = [
   {
     name: "Steve Jobs", type: Space,
     hp: 160,
