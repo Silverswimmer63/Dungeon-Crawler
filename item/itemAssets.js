@@ -1,4 +1,4 @@
-const COMPLETE_Head_ARMOR_LIST = [
+const COMPLETE_HEAD_ARMOR_LIST = [
   { name: "Leather Hat",
     type: Head,
     value: 3,
@@ -191,7 +191,7 @@ const COMPLETE_ARMOR_LIST= [
   }
   ]
 
-const COMPLETE_Melee_LIST = [
+const COMPLETE_MELEE_LIST = [
   {
     name: "Fists",
     type: Melee,
@@ -258,7 +258,7 @@ const COMPLETE_Melee_LIST = [
   }
 ]
 
-const COMPLETE_Ranged_LiST = [
+const COMPLETE_RANGED_LiST = [
   {
     name: "Throwing stones",
     type: Ranged,
