@@ -258,7 +258,7 @@ const COMPLETE_MELEE_LIST = [
   }
 ]
 
-const COMPLETE_RANGED_LiST = [
+const COMPLETE_RANGED_LIST = [
   {
     name: "Throwing stones",
     type: Ranged,
