@@ -59,7 +59,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
 
 const COMPLETE_ARMOR_BODY_LIST = [
   {
-    name: "Leather",
+    name: "Leather Breastplate",
     type: Body,
     value: 5,
     desc: "The most basic level armor that all beginners should have. Moo-moo cows have died for this sole purpose of protecting you!",
@@ -67,7 +67,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.1
   },
   {
-    name: "Chainmail",
+    name: "Chainmail Breastplate",
     type: Body,
     value: 10,
     desc: "When we designed this unique piece of armor, we thought 'Why not copy Minecraft?'.' Oh yeah, this also protects you better than moo-moo cows, I guess",
@@ -75,7 +75,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.2
   },
   {
-    name: "Copper",
+    name: "Copper Breastplate",
     type: Body,
     value: 15,
     desc: "This was forged the fiery forges of Hephaestus. He's the God of fire and he's good at building stuff I guess. Note: No Hephaestusus was harmed in the process.",
@@ -83,7 +83,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.3
   },
   {
-    name: "Bronze",
+    name: "Bronze Breastplate",
     type: Body,
     value: 20,
     desc: "We have two words for you: Copper and Tin. The heavenly blend of these 2 metal elements gives you a more of a luxury to protect yourself. Now you can tell monsters to watch out.",
@@ -91,7 +91,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.4
   },
   {
-    name: "Iron",
+    name: "Iron Breastplate",
     type: Body,
     value: 25,
     desc: "Despite being the most common element on Earth, stronger opponents will cower in fear (at first but then attack you, but you're good since you're using iron. Right?)",
@@ -99,7 +99,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.5
   },
   {
-    name: "Steel",
+    name: "Steel Breastplate",
     type: Body,
     value: 30,
     desc: "Why use steel for swords and weapons when you can use it for armor. Being the capitalists, I mean, innovators that we are, we brought you the best of worlds: Iron and Carbon",
@@ -107,7 +107,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.6
   },
   {
-    name: "Silver",
+    name: "Silver Breastplate",
     type: Body,
     value: 40,
     desc: "Silver is good for trading. But it's also good for flexing on other opponenets your high status when you purchase this. Oh and it's good for defending too.",
@@ -115,7 +115,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     damageResist:.7
   },
   {
-    name: "Platinum",
+    name: "Platinum Breastplate",
     type: Body,
     value: 50,
     desc: "We are running out of ideas and metals to exploit so we settled on our last, exciting, better armor. Platinum brings you the highest form of comfort, protection, and durability. Hey kids, don't waste your money on the new iPhone 11. Spend it on this armor!",
