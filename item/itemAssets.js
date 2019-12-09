@@ -1,4 +1,4 @@
-const COMPLETE_Head_ARMOR_LIST = [
+const COMPLETE_HEAD_ARMOR_LIST = [
   { name: "Leather Hat",
     type: Head,
     value: 3,
@@ -191,7 +191,7 @@ const COMPLETE_ARMOR_LIST= [
   }
   ]
 
-const COMPLETE_Melee_LIST = [
+const COMPLETE_MELEE_LIST = [
   {
     name: "Fists",
     type: Melee,
@@ -258,7 +258,7 @@ const COMPLETE_Melee_LIST = [
   }
 ]
 
-const COMPLETE_Ranged_LiST = [
+const COMPLETE_RANGED_LIST = [
   {
     name: "Throwing stones",
     type: Ranged,
@@ -396,7 +396,7 @@ const COMPLETE_Ranged_LiST = [
   },
   {
     name: "Replica Mouse",
-    type: Both,
+    type: Ranged,
     value: 100,
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
@@ -405,7 +405,7 @@ const COMPLETE_Ranged_LiST = [
   },
   {
     name: "Mikes Controller",
-    type: Both,
+    type: Ranged,
     value: 99999999999999,
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
@@ -438,7 +438,7 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"Gomboi SP blue edition",
-    class: Collectible,
+    class: Item,
     value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
     icon:"V"
@@ -473,7 +473,7 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"The bee movie script",
-    class: Collectible,
+    class: Item,
     value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
     icon:"V"
@@ -487,20 +487,20 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"Mike's Mouse's trophy",
-    class:Collectible,
+    class:Item,
     value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
     icon:"V"
   },
   {
     name:"The Mona Lisa",
-    class: Collectible,
+    class: Item,
     value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
     icon:"V"
   },
   {name:"H  O  N  K",
- class: Collectible,
+ class: Item,
  value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
  icon:"V"
@@ -587,11 +587,5 @@ const COMPLETE_POTION_LIST = [
 
 ]
 
-toString(){
-  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-  retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-  return retStr
-}
-
 var allItems = [];
-allItems = allItems.concat(COMPLETE_Head_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_Melee_LIST, COMPLETE_Ranged_LiST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
+allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)

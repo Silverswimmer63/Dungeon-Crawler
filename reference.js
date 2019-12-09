@@ -91,3 +91,9 @@ heal:{min:2, mx:7},}
 {name:"Boingo oingo Botion", class:Potion, value:120,
 desc:"A weird rainbow colored concoction that gives of a scent of pure diabetes",icon:"P", selfother:Other,
 damage:{min:20, mx:45},}
+
+toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc; + this.class + "it's a"
+  return retStr
+}
