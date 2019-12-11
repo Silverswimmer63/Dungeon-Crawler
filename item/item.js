@@ -27,11 +27,11 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return this._icon; }
+  get icon(){ return "<span class='item'>" + this._icon + "</span>"; }//a singe character
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
-  set (desc){ this._desc = desc; }
+  set desc(desc){ this._desc = desc; }
 
   get value(){ return this._value; }
   set value(value){ this._value = value; }
@@ -46,8 +46,6 @@ class Item {
       // TODO: add the type once we have it all figured out
       return retString;
     }
-  toString(){
-    return this.icon;
-    }
+  toString(){ return this.icon;  }
 }
 //hi
