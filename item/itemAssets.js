@@ -641,11 +641,5 @@ const COMPLETE_POTION_LIST = [
 
 ]
 
-toString(){
-  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-  retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-  return retStr
-}
-
 var allItems = [];
 allItems = allItems.concat(COMPLETE_Head_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_Melee_LIST, COMPLETE_Ranged_LiST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
