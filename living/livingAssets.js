@@ -1,4 +1,4 @@
-const COMPLETE_MythologicalIN_LIST= [
+const COMPLETE_MYTHOLOGICALIN_LIST= [
   {
     name: "Chinese guardian lion",
     type: Mythological,
@@ -45,7 +45,7 @@ const COMPLETE_MythologicalIN_LIST= [
   }
 ]
 
-const COMPLETE_No_MythologicalIN_LIST= [
+const COMPLETE_NN_MYTHOLOGICALININ_LIST= [
   {
     name:"Gremlin",
     hp: 10,
@@ -73,7 +73,7 @@ const COMPLETE_No_MythologicalIN_LIST= [
   }
 ]
 
-const COMPLETE_Cowboy_LIST = [
+const COMPLETE_COWBOY_LIST = [
   {
     name: "Bandit",
     type: Cowboy,
@@ -122,7 +122,7 @@ const COMPLETE_Cowboy_LIST = [
   }
 ]
 
-const COMPLETE_NoCowboy_LIST = [
+const COMPLETE_NOCOWBOY_LIST = [
   {
     name:"Kactis Karen",
     type:Nocowboy,
@@ -150,7 +150,7 @@ const COMPLETE_NoCowboy_LIST = [
   }
 ]
 
-  const COMPLETE_Inventory_SPACE_LIST = [
+const COMPLETE_INVENTORY_SPACE_LIST = [
   {
     name: "Robots",
     type: Space,
@@ -196,7 +196,7 @@ const COMPLETE_NoCowboy_LIST = [
   }
   ]
 
-  const COMPLETE_Nospace_LIST = [
+const COMPLETE_NOSPACE_LIST = [
   {
     name: "Androids",
     type: Nospace,
@@ -225,7 +225,8 @@ const COMPLETE_NoCowboy_LIST = [
     range: 0,
   },
 ]
-const COMPLETE_Inventory_Boss_LIST = [
+
+const COMPLETE_INVENTORY_BOSS_LIST = [
   {
     name: "Steve Jobs", type: Space,
     hp: 160,
@@ -287,4 +288,4 @@ text(){
 */
 
 var allMobs = [];
-allMobs = allMobs.concat(COMPLETE_MythologicalIN_LIST, COMPLETE_No_MythologicalIN_LIST, COMPLETE_Cowboy_LIST, COMPLETE_NoCowboy_LIST, COMPLETE_Inventory_SPACE_LIST, COMPLETE_Nospace_LIST)
+allMobs = allMobs.concat(COMPLETE_MYTHOLOGICALIN_LIST, COMPLETE_NN_MYTHOLOGICALININ_LIST, COMPLETE_COWBOY_LIST, COMPLETE_NOCOWBOY_LIST, COMPLETE_INVENTORY_SPACE_LIST, COMPLETE_NOSPACE_LIST)

@@ -19,7 +19,8 @@ function randomFoe() {
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-  if (retMon instanceof Inventory) {  }
+  if (retMon instanceof Inventory) { retMon.add(randomItem()); }
+  else { var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam); }
   return retMon;
 }
 
@@ -37,7 +38,7 @@ function randomItem() {
   var item = allItems[index];
   if (item.type instanceof Armor) {  var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist); }
   if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range); }
-  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage);}
+  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage); }
   else { var retItem = new item.type(item.name, item.value, item.desc, item.icon); }
   return retItem;
 }
