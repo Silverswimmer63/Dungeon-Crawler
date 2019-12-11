@@ -27,7 +27,7 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return this._icon; }
+  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }

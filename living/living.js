@@ -19,7 +19,7 @@ class Living {
   get desc(){ return this._desc; }
   set desc(desc){ this._desc = desc; }
 
-  get icon(){ return this._icon; }
+  get icon(){ return "<spam class = 'mob'>" + this._icon + "</spam>"; }
   set icon(icon){ this._icon = icon; }
 
   get maxHp(){ return this._maxHp; }
