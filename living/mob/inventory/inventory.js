@@ -1,7 +1,6 @@
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, drop){
     super(name, type, hp, desc, icon, attackDam);
-
     this._inventory = [];
   }
   get inventory() { return this._inventory; }
@@ -13,15 +12,6 @@ class Inventory extends Mob{
     return this._inventory.splice(index, 1);
   }
 
-
- this._inventory = [];
-
-get inventory() { return this._inventory; }
-
- add(item){
-   this._inventory
-   inventory.push(item)
- }
 
 
 }

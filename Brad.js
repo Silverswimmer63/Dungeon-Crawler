@@ -13,7 +13,12 @@ because we will only want 1 return at the end, because that will make life easie
 @param - no parameters at this time.
 @return {object} this function will return an object of the correct class with the correct object information. */
 
-function randomItem(){}
+/*function randomItem(){
   var index = Utils.randMath(0, allItems.length - 1);
-  var itm = allItems[index];
-  var retItm = new itm.type(itm.)
+  var item = allItems[index];
+    if (item.type instanceof Armor) {var retitem = new item.type(item.name, item.value, item.desc, item.icon, item.type,item.damageresist);}
+    if (item.type instanceof Weapon) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.type,item.damage, item.range);}
+    if (item.type instanceof Potion) {var retitem = new item.type(item.name, item.value, item.desc, item.icon, item.type, item.damage);}
+      else { var retItem = new item.type(item.name, item.value, item.desc, item.icon);}
+  return retItem;
+}*/
