@@ -15,7 +15,3 @@ You will know this works if the following happens in console when you try to run
 var foo = randomFoe();
 when you then type foo, you should have a random foe from the list you made.
 */
-var list [
-  { <script type="text/javascript" src="living/livingAssets.js"></script>}
-  {}
-]
