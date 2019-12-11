@@ -88,9 +88,8 @@ Then use the correct method from class Inventory to get that item for the invent
       var index = Utils.randMath(0, allMobs.length - 1);
       var mon = allMobs[index];
       var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-      if (mon.type instanceof inventory) {
-        var retMon = randomItem();
-        last step add some monster inventory here
+      if (retMon instanceof Inventory) {
+        retMon.add(randomItem());//last step add some monster inventory here
       }
       else{
         var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
