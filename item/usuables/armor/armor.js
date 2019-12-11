@@ -10,4 +10,6 @@ class Armor extends Item {
     var retString = super.text();
     return "You see some armor on the ground.<br> It is " + retString + "It has a damage resist of " + this._damageresist;
   }
+  
+
 }

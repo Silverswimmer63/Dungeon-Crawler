@@ -15,9 +15,23 @@ You will know this works if the following happens in console when you try to run
 var foo = randomFoe();
 when you then type foo, you should have a random foe from the list you made.
 */
+
+function randomItem(){
+  var index = Utils.randMath(0, allItems.length -1);
+  var item = allItems[index];
+  if(item.type instanceof Armor){var retItem = new Item.type(item.name, item.value, item.desc, item.icon, item.damageresist);}
+  if(item.type instanceof Weapons){var retItem = new Item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range);}
+  if(item.type instanceof Potion){var retItem = new Item.type(item.name, item.value, item.desc, item.icon, item.damage);}
+  else{var retItem = new Item.type(item.name, item.value, item.desc, item.icon)}
+  return retItem;
+}
 function randomFoe() {
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
   return retMon;
 }
+/* 5 Update randomFoe() so that monsters with inventories have loot
+A. use instanceof to see IF the said monster's class inherits the inventory class.
+B. IF it does then once you have made the monster (but before you return it), use randomItem() to make an item. Then use the correct method from class Inventory to get that item for the inventory. */
+//TEST THIS
