@@ -2,8 +2,11 @@ class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon)
     this._alive = true;
-  }
-  get alive(){ return this._alive; };
+}
+  get icon(){ return "<span class='mob'>" + this._icon; + "</span>" }
+  set icon(icon){ this._icon = icon; }
+
+  get alive(){ return this._alive; }
   set alive(alive){ this._alive = true; }
 
   attackDam(){
