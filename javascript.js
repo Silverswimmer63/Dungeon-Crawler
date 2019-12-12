@@ -19,6 +19,8 @@ function randomFoe() {
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  if( retMon instanceof Inventory ) { retMon.add(randomItem()); }
+    else{ var retMon = new mon.type( mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam); }
   return retMon;
 }
 

@@ -5,9 +5,18 @@ class Inventory extends Mob{
   }
   get inventory() { return this._inventory; }
 
+/* add(item)
+ adds an object to the inventory
+ @param item {obj} obect that inherits from class item
+*/
   add(item){
    this._inventory.push(item);
   }
+
+  /* drop(index)
+   removes an item from the Inventory
+   @param index {int} index value of the item that needs to be removed
+  */
   drop(index){
     return this._inventory.splice(index, 1);
   }
