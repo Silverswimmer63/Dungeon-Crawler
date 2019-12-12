@@ -6,7 +6,9 @@ class Weapon extends Item{
 
   get damage() { return this._damage; }
   set damage(damage) { this._damage = damage; }
-
+  /*attackDam()
+  @return:a number between damage.min and damage.max
+  */
   attackDam(){ return Utils.randMath(this.damage.min, this.damage.max); }
 
   text(){

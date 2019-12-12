@@ -39,6 +39,7 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
+  /*User friendly function that returns text to the player*/
   text(){
       var retString = this.name + "<br>";
       reString += this.desc + "<br>";

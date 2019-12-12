@@ -5,7 +5,8 @@ class Armor extends Item {
   }
   get damageresist(){ return this._damageresist; }
   set damageresist(damageresist){ this._damageresist = damageresist; }
-
+  
+  /*User friendly function that returns text to the player*/
   text(){
     var retString = super.text();
     return "You see some armor on the ground.<br> It is " + retString + "It has a damage resist of " + this._damageresist;
