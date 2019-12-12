@@ -1,7 +1,7 @@
 class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon)
-    this._alive = true;
+    this._alive = true;//to tell if the enemy is alive ore dead
   }
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }

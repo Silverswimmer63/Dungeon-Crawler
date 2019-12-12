@@ -1,7 +1,7 @@
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, drop){
     super(name, type, hp, desc, icon, attackDam);
-    this._inventory = [];
+    this._inventory = [];//the inventory of the enemy
   }
   get inventory() { return this._inventory; }
 

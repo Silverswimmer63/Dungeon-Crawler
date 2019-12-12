@@ -10,7 +10,7 @@ The basic item class. Will be extended for other types of items.
 class Item {
   constructor(name, icon, desc, value, type="trash"){
     this._name = name;
-    this._icon = icon; // the singlr character that shows up on the map
+    this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
     this._value = value;
     this._type = type; // if the item is in a collection or trash

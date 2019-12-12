@@ -1,11 +1,11 @@
 class Living {
   constructor(name, type, hp, desc, icon){
     this._name = name;
-    this._type = type;
-    this._hp = hp;
-    this._maxHp = hp;
-    this._desc = desc;
-    this._icon = icon;
+    this._type = type;//if the creature is mythological, cowboy, or space
+    this._hp = hp;//the health of the enemy
+    this._maxHp = hp;//the maximum amout of hp an enemy can have
+    this._desc = desc;//description of the enemy
+    this._icon = icon;//the single character that shows up on the map
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }

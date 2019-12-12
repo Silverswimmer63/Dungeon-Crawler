@@ -1,7 +1,7 @@
 class Potion extends Item {
   constructor(name, icon, desc, value, type, damage){
     super(name, icon, desc, value, type);
-    this._damage = damage;
+    this._damage = damage;//gives a damage value
 
   }
   get damage(){ return this._damage; }
