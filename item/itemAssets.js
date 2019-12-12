@@ -258,7 +258,7 @@ const COMPLETE_MELEE_LIST = [
   }
 ]
 
-const COMPLETE_RANGED_LiST = [
+const COMPLETE_RANGED_LIST = [
   {
     name: "Throwing stones",
     type: Ranged,
@@ -396,7 +396,7 @@ const COMPLETE_RANGED_LiST = [
   },
   {
     name: "Replica Mouse",
-    type: range,
+    type: Ranged,
     value: 100,
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
@@ -405,7 +405,7 @@ const COMPLETE_RANGED_LiST = [
   },
   {
     name: "Mikes Controller",
-    type: range,
+    type: Ranged,
     value: 99999999999999,
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
@@ -587,11 +587,5 @@ const COMPLETE_POTION_LIST = [
 
 ]
 
-toString(){
-  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-  retStr += "It can be described as: " + this.desc; + this.type + "it's a"
-  return retStr
-}
-
 var allItems = [];
-allItems = allItems.concat(COMPLETE_Head_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_Melee_LIST, COMPLETE_Ranged_LiST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
+allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)

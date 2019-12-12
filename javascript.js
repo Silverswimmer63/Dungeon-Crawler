@@ -32,20 +32,20 @@ You should have 3 if statements for those if(???? instanceof ????) and an else s
  We will want an else statement at this time, because we will only want 1 return at the end, because that will make life easier down the line.
 @param - no parameters at this time.
 @return {object} this function will return an object of the correct class with the correct object information. */
+
 function randomItem() {
   var index = Utils.randMath(0, allItems.length - 1);
   var stuff = allItems[index];
-  if (stuff instanceof "weapons") {
-    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.val)
-  } else {
-    continue
-  } if (stuff instanceof "armor") {
-    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.val)
-  } else {
-    continue
-  } if (stuff instanceof "potions") {
-    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.val)
-  } else {
-    continue
+  if (stuff.type instanceof Melee) {
+    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, this.type, this.damage)
+  } if (stuff.type instanceof Ranged) {
+      var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, this.type, this.damage, this.range)
+  } if (stuff.type instanceof Armor) {
+    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, stuff.damageresist)
+  } if (stuff.type instanceof Potion) {
+    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, stuff.type, stuff.damage)
+  }else {
+    var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, this.type)
+  }
   return retStuff
 }
