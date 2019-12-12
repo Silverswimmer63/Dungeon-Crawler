@@ -59,7 +59,8 @@ make life easier down the line.
 @param - no parameters at this time.
 @return {object} this function will return an object of the correct class with the correct object information. */
 /*   TEST THIS  */
-/*
+/*/* 6 Update add(item)
+For reasons we will see soon, we will need to have this/* 
 function randomFoe() {
 var index = Utils.randMath(0, allMobs.length - 1);
 var mon = allMobs[index];
@@ -96,17 +97,20 @@ Then use the correct method from class Inventory to get that item for the invent
       }
       return retMon;
 }
-/* 6 Update Inventory.get(item)
-For reasons we will see soon, we will need to have this/* 6 Update Inventory.get(item)
-For reasons we will see soon, we will need to have this method be able to take individual items or take arrays of 1 or more items. So we must update .get(item)
-it should check to see IF the parameter (item) is a single object or an array./*
+/*6 Update add(item)
+For reasons we will see soon, we will need to have this method be able to take individual items or take arrays of 1 or more
+items. So we must update .get(item) it should check to see IF the parameter (item) is a single object or an array.
 BECAUSE EVERYTHING IS AN OBJECT in Javascript, it should check to see if it is an array.
 RESEARCH how to determine if something is an array in javascript
-IF (????? item == ?????) then it is an array. If this is the case, add it to the _inventory as multiple things. The _inventory is an array as well. The inventory may or may not have items on it already. The end product should be an array that only has items on it. We have talked about a lot of ways to do this.
+IF (????? item == ?????) then it is an array. If this is the case, add it to the _inventory as multiple things.
+The _inventory is an array as well. The inventory may or may not have items on it already. The end product should be an array
+that only has items on it. We have talked about a lot of ways to do this.
 */
 /*   TEST THIS  */
 
-  
+  function add(item){
+     this._inventory.push(item);
+    }
 
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array. This will take some explaining, so please read the rational below fully before the instructions.
@@ -138,7 +142,7 @@ E. when the target level (which is the level +1) is reached or exceeded but acce
 
 /* 8 Update randomFoe() so that it take a level. It should work exactly like randomItem() for this purpose.
 
-@param level {int}: the target level of the item/* 6 Update Inventory.get(item)
+@param level {int}: the target level of the item/* 6 Update add(item)
 For reasons we will see soon, we will need to have this method be able to take individual items or take arrays of 1 or more items. So we must update .get(item)
 it should check to see IF the parameter (item) is a single object or an array./*
 BECAUSE EVERYTHING IS AN OBJECT in Javascript, it should check to see if it is an array.

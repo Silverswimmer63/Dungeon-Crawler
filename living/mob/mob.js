@@ -1,7 +1,7 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
-    this._alive = true;
+    this._alive = true; // this sets the character/hero as alive
   }
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
