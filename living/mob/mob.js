@@ -6,13 +6,20 @@ class Mob extends Living{
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
 
+  get range(){ return this._range; }
+  set range(range){ this._range = range; }
+
+  /*attackDam()
+  @return {int} a number between damage.min and damage.max
+  */
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
   }
 
-    get range(){ return this._range; }
-    set range(range){ this._range = range; }
-
+  /*takeDam(damage)
+  receives the damage to the object and checks if it is dead
+  @param damage {int} a positive whole number
+  */
   takeDam(damage){
     this.hp = this.hp - damage;
     if (this.hp <= 0) {
@@ -20,6 +27,11 @@ class Mob extends Living{
       this.hp = 0;
     }
   }
+
+  /*text()
+  returns a user frendly line of text for output to the screen
+  @return {string} text for output to the screen
+  */
   text(){
     if (!alive){
       var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";

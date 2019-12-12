@@ -1,10 +1,3 @@
-/*
-{1.name:"Crunched up energy drink", //namem, should be a string
- 5.type: VenderTrash, //does this need to be a class? could be a boll or string
- 4.value:2, //should be a number
- 3.desc:"A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction", //shoud be a long string
- 2.icon:","} // should be a single item string
-*/
 
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
@@ -39,6 +32,10 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
+  /*text()
+  returns a user frendly line of text for output to the screen
+  @return {string} text for output to the screen
+  */
   text(){
       var retString = this.name + "<br>";
       reString += this.desc + "<br>";
