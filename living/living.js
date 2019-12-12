@@ -25,6 +25,10 @@ class Living {
   get maxHp(){ return this._maxHp; }
   set maxHp(maxHp){ this._maxHp = maxHp; }
 
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
+  */
   text(){
 
     return this.desc + "<br>";
