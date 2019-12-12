@@ -106,6 +106,8 @@ IF (????? item == ?????) then it is an array. If this is the case, add it to the
 */
 /*   TEST THIS  */
 
+  
+
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array. This will take some explaining, so please read the rational below fully before the instructions.
 What we are going to do in randomItem() is make it check the level that has been assigned to it, and then try to fill up the inventory with that combined level worth of stuff, + or - a little bit. We will want to program this ideally so that we often get worse loot, and only rarely get better loot. We will also want to cap off how much better the loot can be. The worse loot can "add up" to be the same level as the better loot or not, depending on the role of the random dye.

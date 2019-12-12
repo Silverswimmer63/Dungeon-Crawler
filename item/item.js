@@ -1,11 +1,3 @@
-/*
-{1.name:"Crunched up energy drink", //namem, should be a string
- 5.type: VenderTrash, //does this need to be a class? could be a boll or string
- 4.value:2, //should be a number
- 3.desc:"A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction", //shoud be a long string
- 2.icon:","} // should be a single item string
-*/
-
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
 @param name {string} the name of the item
@@ -16,11 +8,11 @@ The basic item class. Will be extended for other types of items.
 */
 class Item {
   constructor(name, icon, desc, value, type="trash"){
-    this._name = name;
-    this._icon = icon; // the singlr character that shows up on the map
+    this._name = name; //this shows the monsters' name.
+    this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
-    this._value = value;
-    this._type = type; // if the item is in a collection or trash
+    this._value = value; // this is how many gold coins you would need to pay for this item
+    this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (cvendor trash?) or potions. 
 
   }
   /**************************************** Getter and Setters *********************************/
@@ -39,6 +31,11 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
+  /*
+  text()
+  returns a user friendly line of text for output to the screen
+  @return {string} text for the output to the screen
+  */
   text(){
       var retString = this.name + "<br>";
       reString += this.desc + "<br>";
