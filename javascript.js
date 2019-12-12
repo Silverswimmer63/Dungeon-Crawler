@@ -24,10 +24,10 @@ function randomFoe() {
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-  if (retMon.type instanceof Inventory) {
+  if (retMon instanceof Inventory) {
     retMon.add(randomItem())
   } else {
-    retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
   }
   return retMon;
 }
