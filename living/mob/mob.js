@@ -3,6 +3,10 @@ class Mob extends Living{
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
   }
+  // name: this shows the monsters' name.
+  // icon: the single character that shows up on the map
+  // desc: the description of the item
+  // type: this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
 

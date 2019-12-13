@@ -12,7 +12,7 @@ class Item {
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
     this._value = value; // this is how many gold coins you would need to pay for this item
-    this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (cvendor trash?) or potions.
+    this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
 
   }
   /**************************************** Getter and Setters *********************************/
