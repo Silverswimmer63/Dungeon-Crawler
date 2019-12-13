@@ -1,3 +1,4 @@
+//Class Body is the class that specifies the body armour
 class Body extends Armor {
   constructor (name, icon, value, desc, damageresist){
   super (name, icon, value, desc, damageresist);

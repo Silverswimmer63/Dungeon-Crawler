@@ -1,3 +1,4 @@
+//Class Leg is the class that specifies the Leg armour
 class Leg extends Armor {
   constructor (name, icon, value, desc, damageresist){
   super (name, icon, value, desc, damageresist);

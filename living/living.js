@@ -1,3 +1,10 @@
+/*
+Class Living
+@param Name: is name of mob or enemy
+@param type: is type of the mob
+@param hp: health of the mob
+@param desc: description of the enemy/mob
+@param icon: is the icon of the enemy*/
 class Living {
   constructor(name, type, hp, desc, icon){
     this._name = name;

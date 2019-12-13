@@ -1,3 +1,4 @@
+//Class Head is the class that specifies the body armour
 class Head extends Armor {
   constructor (name, icon, value, desc, damageresist){
   super (name, icon, value, desc, damageresist);

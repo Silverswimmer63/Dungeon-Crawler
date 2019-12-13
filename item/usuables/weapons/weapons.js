@@ -1,3 +1,4 @@
+//Class Weapon makes the specifications for the Weapons
 class Weapon extends Item{
   constructor(name, icon, desc, value, type, damage){
     super(name, icon, desc, value, type)

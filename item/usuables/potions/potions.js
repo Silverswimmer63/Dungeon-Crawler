@@ -1,3 +1,4 @@
+//Class Potion makes the specifications for the potions
 class Potion extends Item {
   constructor(name, icon, desc, value, type, damage){
     super(name, icon, desc, value, type);

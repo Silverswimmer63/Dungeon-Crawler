@@ -1,4 +1,4 @@
-
+//Class Ranged makes the specifications for the Ranged Weapons
 class Ranged extends Weapon {
   constructor (name, icon, value, desc, damage, range){
   super (name, icon, value, desc, damage);
