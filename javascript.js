@@ -61,10 +61,17 @@ or 1 level 3 item (small chance)
 and so on.
 How can we do this?
 
-A. We will need to track the total level of things made until it reaches or exceeds a target. A quick solution to this would be to make the target = level, however, that would allow us to add infinite level 0 items. So our target should be the level + 1, and we should look at item at their level + 1
+A. We will need to track the total level of things made until it reaches or exceeds a target.
+A quick solution to this would be to make the target = level, however, that would allow us to add infinite level 0 items.
+So our target should be the level + 1, and we should look at item at their level + 1
 B. We will need to put all the existing code inside some sort of loop. What loop will be best for this? Why?
-C. Give it a chance to have less then perfect loot. For example, if they were level 2, they should have a 33.3333333333.... % chance to stop if they have only rolled 1 level 0 item, a 66.666666.... % chance of stopping at 1 level 1 item or 2 level 0 items, and so on. This should be done programmatically, using some math. To do this, we will have to track the current total of item levels of approved items, and the total + the most recently rolled item
-D. Also give it a chance to roll 1 level over. So if the current total is over the target by 1, give it a small..... say 10% chance to keep the most recently rolled total items. If this is not successful, then ignore the most recently rolled item, and roll again. If it is over by 2 or more, re-roll.
+C. Give it a chance to have less then perfect loot.
+For example, if they were level 2, they should have a 33.3333333333.... % chance to stop if they have only rolled 1 level 0 item, a 66.666666.... % chance of stopping at 1 level 1 item or 2 level 0 items, and so on.
+This should be done programmatically, using some math.
+To do this, we will have to track the current total of item levels of approved items, and the total + the most recently rolled item
+D. Also give it a chance to roll 1 level over.
+So if the current total is over the target by 1, give it a small..... say 10% chance to keep the most recently rolled total items.
+If this is not successful, then ignore the most recently rolled item, and roll again. If it is over by 2 or more, re-roll.
 E. when the target level (which is the level +1) is reached or exceeded but accepted, return the array of items.
 
 @param level {int}: the target level of the item
