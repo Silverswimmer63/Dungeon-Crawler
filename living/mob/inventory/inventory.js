@@ -11,12 +11,20 @@ class Inventory extends Mob{
 */
   add(item){
    this._inventory.push(item);
+   if ( Array.isArray(item) == true){
+     for (var i = 0; i < item.length; i++) {
+        this._inventory.push(item[i]);
+     }
+   }
+   else { this._inventory.push(item)}
+   
   }
 
   /* drop(index)
    removes an item from the Inventory
    @param index {int} index value of the item that needs to be removed
   */
+
   drop(index){
     return this._inventory.splice(index, 1);
   }

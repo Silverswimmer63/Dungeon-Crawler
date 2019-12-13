@@ -396,7 +396,7 @@ const COMPLETE_RANGED_LIST = [
   },
   {
     name: "Replica Mouse",
-    type: Both,
+    type: Ranged,
     value: 100,
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
@@ -405,7 +405,7 @@ const COMPLETE_RANGED_LIST = [
   },
   {
     name: "Mikes Controller",
-    type: Both,
+    type: Ranged,
     value: 99999999999999,
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
@@ -438,7 +438,7 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"Gomboi SP blue edition",
-    type: Collectible,
+    type: VendorTrash,
     value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
     icon:"V"
@@ -473,7 +473,7 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"The bee movie script",
-    type: Collectible,
+    type: VendorTrash,
     value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
     icon:"V"
@@ -487,20 +487,20 @@ const COMPLETE_LOOT_LIST = [
   },
   {
     name:"Mike's Mouse's trophy",
-    type:Collectible,
+    type:VendorTrash,
     value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
     icon:"V"
   },
   {
     name:"The Mona Lisa",
-    type: Collectible,
+    type: VendorTrash,
     value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
     icon:"V"
   },
   {name:"H  O  N  K",
- type: Collectible,
+ type: VendorTrash,
  value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
  icon:"V"
@@ -587,11 +587,6 @@ const COMPLETE_POTION_LIST = [
 
 ]
 
-toString(){
-  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-  retStr += "It can be described as: " + this.desc; + this.type + "it's a"
-  return retStr
-}
 
 var allItems = [];
 allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)

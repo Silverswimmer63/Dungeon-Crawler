@@ -2,6 +2,12 @@ class Mythological extends Inventory{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon, attackDam);
   }
+
+    /* text()
+    returns a user friendly line of text output to the screen
+    @return {string} text for output to the screen
+    */
+
   text(){
     var retString = super.text();
     return retString;
