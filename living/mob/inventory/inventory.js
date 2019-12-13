@@ -12,7 +12,14 @@ class Inventory extends Mob{
   @param {object} an object inherit from class item
   */
   add(item){
-   this._inventory.push(item);
+    if (Array.isArray(item) == true) {
+      for (var i = 0; i < item.length; i++) {
+       this._inventory.push(item[i]);
+    }
+  }
+  else{
+    this._inventory.push(item);
+  }
   }
 
   /*
