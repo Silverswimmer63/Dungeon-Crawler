@@ -1,23 +1,43 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
-    this._alive = true;
+    this._alive = true; // this sets the character/hero as alive
   }
+  // name: this shows the monsters' name.
+  // icon: the single character that shows up on the map
+  // desc: the description of the item
+  // type: this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
 
+<<<<<<< HEAD
   /*attackDam()
   @return {int} a number between damage.min and damage.max*/
+=======
+
+  /*
+  attackDam()
+  @returns {int} a number between damage.min and max
+  */
+>>>>>>> Bowen
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
   }
 
-    get range(){ return this._range; }
-    set range(range){ this._range = range; }
+  get range(){ return this._range; }
+  set range(range){ this._range = range; }
 
+
+<<<<<<< HEAD
   /*takeDam()
   receives the damage to the object
   @param damage {int} a positive number*/
+=======
+  /*
+  takeDam() receives the damage to the hp and checks to see if you are alive or not.
+  @param damage {int} a positive whole number
+  */
+>>>>>>> Bowen
   takeDam(damage){
     this.hp = this.hp - damage;
     if (this.hp <= 0) {
@@ -26,9 +46,17 @@ class Mob extends Living{
     }
   }
 
+<<<<<<< HEAD
   /*text()
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
+=======
+  /*
+  text()
+  returns a user friendly line of text for output to the screen
+  @return {string} text for the output to the screen
+  */
+>>>>>>> Bowen
   text(){
     if (!alive){
       var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
