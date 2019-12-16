@@ -1,12 +1,13 @@
 class Living {
   constructor(name, type, hp, desc, icon){
-    this._name = name; //this shows the monsters' name.
-    this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (cvendor trash?) or potions.
+    this._name = name; //this shows the monster's/item name.
+    this._type = type; // type: this determines what type of monster it is, either from space, cowboy, or mythological
     this._hp = hp; //this gives the life of the hero
     this._maxHp = hp; // this gives the maximum life for the hero
-    this._desc = desc; //the description of the item
+    this._desc = desc; //the description of the monster/item
     this._icon = icon; //the single character that shows up on the map
   }
+
   get name(){ return this._name; }
   set name(name){ this._name = name; }
 
@@ -35,5 +36,5 @@ class Living {
   }
   toString(){
     return this.desc;
+    }
   }
-}

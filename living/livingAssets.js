@@ -278,7 +278,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     type:Mythological
   }
 ]
-//can you see this?
+
 /*
 text(){
   var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";

@@ -1,12 +1,14 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
+  constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
   }
-  // name: this shows the monsters' name.
+  // name: this shows the monster's name.
+  // type: this determines what type of monster it is, either from space, cowboy, or mythological
+  // hp: the amount of the life it has.
+  // desc: the description of the monster
   // icon: the single character that shows up on the map
-  // desc: the description of the item
-  // type: this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
+  // attackDam: The amount of damage monsters can attack you with.
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
 
@@ -15,13 +17,10 @@ class Mob extends Living{
   attackDam()
   @returns {int} a number between damage.min and max
   */
-  attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
-  }
+  attackDam(){ return Utils.randMath(this.damage.min, this.damage.max); }
 
   get range(){ return this._range; }
   set range(range){ this._range = range; }
-
 
   /*
   takeDam() receives the damage to the hp and checks to see if you are alive or not.
@@ -49,5 +48,5 @@ class Mob extends Living{
     retString += " It does " + this.damage + " damage.<br>";
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
+    }
   }
-}
