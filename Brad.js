@@ -1,24 +1,20 @@
+/*1. Add a parameter _status to the parent class of all monsters. Set this to "none" by default.
+This will be "none" or it will be an object with the keys type, duration, damage
+(for example {type: "frozen", duration: 5, damage: {min: 3, max: 5}}
+2. Add a getter for status
+3. Change the method for monsters attacking to check if the status is not equal
+to none. If it is not, check to see if the status.type is frozen. If it is, then return 0;
+4. Go though the various item assets, and for anything that produces damage or
+healing add a key "type" to their damage object (right now it looks like {min: some number, max: some number}).
+type should be set to one of the following - "damage" (normal damage), "healing", "frozen", or "burning"
+5. if the type is "frozen" or "burning" add another key to the object, this key should be "duration"
+6. Do the same for all the monster assets.
 
-/* 4 Make the function randomItem() in javascript.js
-We have a randomFoe() function, randomItem() will look a lot like randomFoe()
-but will be for items. This item should use the unified loot variable to pick an
-item at random, take it's asset object, and turn that into an item of the appropriate
-class. This should work almost exactly like the randomFoe() class, but some of the
-keys will have to be changed for basic items. HOWEVER, for weapons, armor, and
-potions (And I think that is all?) there will be keys that are not present in
-simple items to deal with this, you will need to use instanceof in if statements.
-You should have 3 if statements for those if(???? instanceof ????) and an else statement,
-and make the object inside of the if statement. We will want an else statement at this time,
-because we will only want 1 return at the end, because that will make life easier down the line.
-@param - no parameters at this time.
-@return {object} this function will return an object of the correct class with the correct object information. */
-
-/*function randomItem(){
-  var index = Utils.randMath(0, allItems.length - 1);
-  var item = allItems[index];
-    if (item.type instanceof Armor) {var retitem = new item.type(item.name, item.value, item.desc, item.icon, item.type,item.damageresist);}
-    if (item.type instanceof Weapon) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.type,item.damage, item.range);}
-    if (item.type instanceof Potion) {var retitem = new item.type(item.name, item.value, item.desc, item.icon, item.type, item.damage);}
-      else { var retItem = new item.type(item.name, item.value, item.desc, item.icon);}
-  return retItem;
-}*/
+We will be working on making changes for all the parts of the monsters and items that need to be in
+place to add back in DoT and 2ndary effects to combat in the next few days.
+A. We will be changing how things give and take damage so that those are objects and can convey the
+type of damage and the duration, if need be
+B. We will start our update method for monsters, initially this will be used simply to count down any
+duration timers, (and apply any DoT damage) but will do more when we have more of a game.
+C. We will turn _status into an array, and will have to change attack method and update to support this
+(so yeah, we can have freezing & burning monsters all at the same time, fun) */

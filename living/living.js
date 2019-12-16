@@ -6,6 +6,7 @@ class Living {
     this._maxHp = hp;
     this._desc = desc;
     this._icon = icon;
+
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }
@@ -25,11 +26,14 @@ class Living {
   get maxHp(){ return this._maxHp; }
   set maxHp(maxHp){ this._maxHp = maxHp; }
 
+  get status(){ return this._status; }
+  set status(status){ this._status}
+
   /* text()
   returns a user friendly line of text output to the screen
   @return {string} text for output to the screen
   */
-  
+
   text(){
     return this.desc + "<br>";
   }

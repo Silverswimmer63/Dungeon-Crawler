@@ -1,8 +1,12 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon, attackDam, status){
     super(name, type, hp, desc, icon)
     this._alive = true;
+    this._status = none;
 }
+  get status(){ return this._status; }
+  set status(status){ this._status}
+
   get icon(){ return "<span class='mob'>" + this._icon; + "</span>" }
   set icon(icon){ this._icon = icon; }
 
@@ -17,7 +21,12 @@ class Mob extends Living{
   */
 
   attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
+    if (status != "none"){
+    if (status.type == "frozen") {
+      return 0;
+      }
+    }
+    else{ return Utils.randMath(this.damage.min, this.damage.max); }
   }
 
 /* takeDam()

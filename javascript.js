@@ -62,11 +62,12 @@ E. when the target level (which is the level +1) is reached or exceeded but acce
 @return {array} an array of objects of class Item or that inherit class Item
 */
 function randomItem(level){
-  var index = Utils.randMath(0, allItems.length - 1);
-  var item = allItems[index];
-    if (item.type instanceof Armor) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist);}
-    if (item.type instanceof Weapon) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range);}
-    if (item.type instanceof Potion) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage);}
-      else { var retItem = new item.type(item.name, item.value, item.desc, item.icon);}
+  let index = Utils.randMath(0, allItems.length - 1);
+  let item = allItems[index];
+  let level = [];
+    if (item.type instanceof Armor) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist);}
+    if (item.type instanceof Weapon) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range);}
+    if (item.type instanceof Potion) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage);}
+      else { let retItem = new item.type(item.name, item.value, item.desc, item.icon);}
   return retItem;
 }
