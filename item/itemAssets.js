@@ -197,7 +197,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 0,
     desc: "The only weapon a man needs",
-    damage: {min:2, max:5, type:"damage"},
+    damage: {min:2, max:5, type:"damage", duration:"5"},
     icon: "/"
   },
   {
@@ -205,7 +205,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 5,
     desc: "Just a littel pertection for the hands",
-    damage: {min:4, max:10, type:"damage"},
+    damage: {min:4, max:10, type:"damage", duration:"5"},
     icon:"/"
   },
   {
@@ -213,7 +213,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 50,
     desc: "A powerful weapon, used by those with great strength",
-    damage:{min:20, max:50, type:"bleeding"},
+    damage:{min:20, max:50, type:"bleeding", duration:"5"},
     icon: "/"
   },
   {
@@ -221,7 +221,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 14,
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
-    damage: {min:10, max:15, type:"bleeding"},
+    damage: {min:10, max:15, type:"bleeding", duration:"5"},
     icon:"/"
   },
   {
@@ -229,7 +229,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 34,
     desc: "A large blade, only those truely skilled have the ability to weild it properly",
-    damage: {min:25, max:40, type:"bleeding"},
+    damage: {min:25, max:40, type:"bleeding", duration:"5"},
     icon:"/"
   },
   {
@@ -253,7 +253,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 20,
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
-    damage: {min:10, max:24, type:"bleeding"},
+    damage: {min:10, max:24, type:"bleeding", duration:"5"},
     icon:"/"
   }
 ]
@@ -275,7 +275,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "whoshhhh................... BANG!",
     icon: "L",
     range: 6,
-    damage: {min:3, max:8, type:"fire"}
+    damage: {min:3, max:8, type:"fire", duration:"3"}
   },
   {
     name: "Greek Bow",
@@ -347,7 +347,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "A bag of gold tied to your hand kratos style",
     icon: "L",
     range: 4,
-    damage: {min:26, max:28, type:"fire"}
+    damage: {min:26, max:28, type:"fire", duration:"3"}
   },
   {
     name: "Laser Pointer",
@@ -356,7 +356,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Aim for the eye for maximum effect",
     icon: "L",
     range: 10,
-    damage: {min:28, max:34, type:"fire"}
+    damage: {min:28, max:34, type:"fire", duration:"3"}
   },
   {
     name: "Hacking Laptop",
@@ -374,7 +374,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Orginated from the body of a very mad man crawling around yelling about need a revive after being knocked down by a disgruntled man in a torn Nazi uniform",
     icon: "L",
     range: 6,
-    damage: {min:28, max:34, type:"fire"}
+    damage: {min:28, max:34, type:"fire", duration:"3"}
   },
   {
     name: "Fancy Future Rifle",
