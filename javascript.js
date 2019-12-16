@@ -33,15 +33,6 @@ You should have 3 if statements for those if(???? instanceof ????) and an else s
 We will want an else statement at this time, because we will only want 1 return at the end, because that will make life easier down the line.
 @param - no parameters at this time.
 @return {object} this function will return an object of the correct class with the correct object information. */
-function randomItem() {
-  var index = Utils.randMath(0, allItems.length - 1);
-  var item = allItems[index];
-  if (item.type instanceof Armor) {  var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist); }
-  if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range); }
-  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage); }
-  else { var retItem = new item.type(item.name, item.value, item.desc, item.icon); }
-  return retItem;
-}
 
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array. This will take some explaining, so please read the rational below fully before the instructions.
@@ -66,7 +57,8 @@ A quick solution to this would be to make the target = level, however, that woul
 So our target should be the level + 1, and we should look at item at their level + 1
 B. We will need to put all the existing code inside some sort of loop. What loop will be best for this? Why?
 C. Give it a chance to have less then perfect loot.
-For example, if they were level 2, they should have a 33.3333333333.... % chance to stop if they have only rolled 1 level 0 item, a 66.666666.... % chance of stopping at 1 level 1 item or 2 level 0 items, and so on.
+For example, if they were level 2, they should have a 33.3333333333.... % chance to stop if they have only rolled 1 level 0 item,
+a 66.666666.... % chance of stopping at 1 level 1 item or 2 level 0 items, and so on.
 This should be done programmatically, using some math.
 To do this, we will have to track the current total of item levels of approved items, and the total + the most recently rolled item
 D. Also give it a chance to roll 1 level over.
@@ -74,9 +66,23 @@ So if the current total is over the target by 1, give it a small..... say 10% ch
 If this is not successful, then ignore the most recently rolled item, and roll again. If it is over by 2 or more, re-roll.
 E. when the target level (which is the level +1) is reached or exceeded but accepted, return the array of items.
 
+*/
+/*randomItem(level)
+It will take the level of a monster and generate loot to fill the monsters inventory
+Lower level loot will generate more often than higher level loot
+Will be inside of a ________ loop
+If the roll is over by one level, it has a 10% chance to keep the loot
+if it doesnt fallwithin the 10%, the extra loot is just ignored
+When the target level is reached the array of the items is returned
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
-/*randomItem()
-
-*/
+function randomItem() {
+  var index = Utils.randMath(0, allItems.length - 1);
+  var item = allItems[index];
+  if (item.type instanceof Armor) {  var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist); }
+  if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range); }
+  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage); }
+  else { var retItem = new item.type(item.name, item.value, item.desc, item.icon); }
+  return retItem;
+}
