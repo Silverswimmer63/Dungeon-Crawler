@@ -31,7 +31,7 @@ class Item {
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
-  set (desc){ this._desc = desc; }
+  set desc(desc){ this._desc = desc; }
 
   get value(){ return this._value; }
   set value(value){ this._value = value; }
