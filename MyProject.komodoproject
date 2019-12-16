@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="bc02cb8b-6e22-453c-a524-a5d5f6432856" kpf_version="5" name="MyProject.komodoproject">
+<file id="1af6e7f6-d386-4585-99c0-dec749d9d9ee" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="assets.js" url="assets.js">
+</file>
+<file id="270fbda9-9387-4dda-b495-e78df5c74707" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="McGreggor.js" url="McGreggor.js">
+</file>
+<file id="4ebea1b1-c564-4b7d-961c-c2b6a7a2e5c4" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="weapon.js" url="weapon.js">
+</file>
+<file id="68e69dec-822f-4ffb-ba79-466a845480ae" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Bowen.js" url="Bowen.js">
+</file>
+<livefolder id="6efec585-d600-452b-8ede-9627ec75d544" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="item" url="item/">
+</livefolder>
+<file id="83c05784-395b-4b44-81fe-d0d9c794362a" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Mike.js" url="Mike.js">
+</file>
+<file id="90039daa-0d5b-4c1d-9105-cf7b2b464cbc" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="armor.js" url="armor.js">
+</file>
+<file id="bf5f0a67-f0e3-404e-91ac-f45010d90a76" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="index.html" url="index.html">
+</file>
+<file id="c0600cdb-1539-43ab-aa6e-540c23ec5586" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Brad.js" url="Brad.js">
+</file>
+<file id="dd17e4e0-defe-421a-ad4c-e66c2d16e922" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Dililla.js" url="Dililla.js">
+</file>
+<file id="dd1a0b31-83af-469d-a679-a91545b6b793" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="javascript.js" url="javascript.js">
+</file>
+<file id="e13d39c8-0c00-44b7-b066-2b939baac7cc" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Euan.js" url="Euan.js">
+</file>
+<file id="e96dd78f-a5f8-4c94-a933-817c233579a0" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="reference.js" url="reference.js">
+</file>
+<livefolder id="e97d8fb3-3ba4-4c8d-b7db-78d0adcd5abd" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="living" url="living/">
+</livefolder>
+<livefolder id="fd6d2ab2-09f9-446c-96fe-c3aa62a7e66b" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="utils" url="utils/">
+</livefolder>
+<preference-set idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" id="project" preftype="project">
+  <long id="prefs_version">1</long>
+</preference-set>
+</project>

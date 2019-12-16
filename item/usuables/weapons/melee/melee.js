@@ -8,27 +8,17 @@ is the basis for all melee weapons
 class Melee extends Weapon {
   constructor (name, icon, value, desc, damage){
   super (name, icon, value, desc, damage);
-  }
-
-<<<<<<< HEAD
-  /*text()
+    /*text()
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
-=======
-  // name: this shows the monsters' name.
-  // icon: the single character that shows up on the map
-  // desc: the description of the item
-  // value: the amount of gold pieces that you need to pay for an item.
-  // damage: The amount of damage the potion attack can deal on an enemy.
-
-  /*
-  text()
-  returns a user friendly line of text for output to the screen
-  @return {string} text for the output to the screen
-  */
->>>>>>> Bowen
   text(){
     var retString = super.text();
     return retstring + " Is a weapon.";
   }
+  toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc; + this.class + "it's a";
+  return retStr;
+}
+
 }

@@ -12,30 +12,20 @@ class Ranged extends Weapon {
     this._range = range;
   }
 
-  // name: this shows the monsters' name.
-  // icon: the single character that shows up on the map
-  // desc: the description of the item
-  // range: the distance a weapon can shoot at an enemy.
-  // value: the amount of gold pieces that you need to pay for an item.
-  // damage: The amount of damage the potion attack can deal on an enemy.
-
   get range(){ return this._range; }
   set range(range){ this._range = range}
 
-<<<<<<< HEAD
   /*text()
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
-=======
-
-  /*
-  text()
-  returns a user friendly line of text for output to the screen
-  @return {string} text for the output to the screen
-  */
->>>>>>> Bowen
   text(){
     var retString = super.text();
     return retstring;
   }
+  toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc; + this.class + "it's a";
+  return retStr;
+}
+
 }

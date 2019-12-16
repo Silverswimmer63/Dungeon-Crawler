@@ -1,3 +1,4 @@
+//Class Inventory is for mobs that have an inventory 
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, drop){
     super(name, type, hp, desc, icon, attackDam);
@@ -10,18 +11,9 @@ class Inventory extends Mob{
   // hp: the amount of the life it has.
   // attackDam: The amount of damage monsters can attack you with.
   get inventory() { return this._inventory; }
-<<<<<<< HEAD
-
   /*add(item)
   puts item in an inventory
   @param item {object} an object that inherits class item*/
-=======
-  /*
-  add(item)
-  puts an item in an Inventory
-  @param {object} an object inherit from class item
-  */
->>>>>>> Bowen
   add(item){
     if (Array.isArray(item) == true) {
       for (var i = 0; i < item.length; i++) {
@@ -31,20 +23,28 @@ class Inventory extends Mob{
   else{
     this._inventory.push(item);
   }
-<<<<<<< HEAD
-
-  /*drop(index)
-  removes an item from the inventory
-  @param index {int} index value of the item to be removed*/
-=======
   }
 
+  /*
+  add(item)
+  puts adn item in an inventory
+  @param {object} an object inherits from a class*/
+  
+  add(item){
+    if(Array.isArray(item) == true){
+      for(var i=0; i<item.length; i++){  
+        this._inventory.push(item[i]);
+      }
+    }
+    else{
+      this._inventory.push(item);
+    }
+  }
   /*
   drop(index)
   removes an item from an inventory
   @param index {int} index value for the item to be removed at
   */
->>>>>>> Bowen
   drop(index){
     return this._inventory.splice(index, 1);
   }

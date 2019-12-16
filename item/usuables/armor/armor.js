@@ -18,20 +18,15 @@ class Armor extends Item {
   
   get damageresist(){ return this._damageresist; }
   set damageresist(damageresist){ this._damageresist = damageresist; }
-
-<<<<<<< HEAD
-  /*text()
-  retturns a user friendly line of text for output to the screen
-  @return {string} text for output to the screen*/
-=======
   /*
   text()
   returns a user friendly line of text for output to the screen
   @return {string} text for the output to the screen
   */
->>>>>>> Bowen
   text(){
     var retString = super.text();
     return "You see some armor on the ground.<br> It is " + retString + "It has a damage resist of " + this._damageresist;
   }
+  
+
 }

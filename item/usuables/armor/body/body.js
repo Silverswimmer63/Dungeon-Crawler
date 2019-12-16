@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*Body Armor
 is armor the player or mobs can wear
 @param name {string} the name of the item
@@ -9,15 +8,11 @@ is armor the player or mobs can wear
 class Body extends Armor {
   constructor (name, icon, value, desc, damageresist){
     super (name, icon, value, desc, damageresist);
-=======
-  class Body extends Armor {
-    constructor (name, icon, value, desc, damageresist){
-    super (name, icon, value, desc, damageresist);
-    }
->>>>>>> Bowen
-  }
-  // name: this shows the monsters' name.
-  // icon: the single character that shows up on the map
-  // desc: the description of the item
-  // damageresist: The amount of protection a piece of armor can provide for the player.
-  // value: the amount of gold pieces that you need to pay for an item.
+  }  
+toString(){
+  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
+  retStr += "It can be described as: " + this.desc; + this.class + "it's a";
+  return retStr;
+}
+
+}

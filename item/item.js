@@ -19,7 +19,7 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return "<span class = 'item'>" + this._icon + "</span>"; }
+  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
@@ -31,17 +31,11 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
-<<<<<<< HEAD
-  /*text()
-  retturns a user friendly line of text for output to the screen
-  @return {string} text for output to the screen*/
-=======
   /*
   text()
   returns a user friendly line of text for output to the screen
   @return {string} text for the output to the screen
   */
->>>>>>> Bowen
   text(){
       var retString = this.name + "<br>";
       reString += this.desc + "<br>";
