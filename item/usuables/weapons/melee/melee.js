@@ -8,6 +8,7 @@ is the basis for all melee weapons
 class Melee extends Weapon {
   constructor (name, icon, value, desc, damage){
   super (name, icon, value, desc, damage);
+  }
     /*text()
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
@@ -20,5 +21,4 @@ class Melee extends Weapon {
   retStr += "It can be described as: " + this.desc; + this.class + "it's a";
   return retStr;
 }
-
 }

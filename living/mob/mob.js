@@ -12,11 +12,8 @@ class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
-  // name: this shows the monsters' name.
-  // icon: the single character that shows up on the map
-  // desc: the description of the item
-  // type: this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
-  get alive(){ return this._alive; };
+  }
+  get alive(){ return this._alive;}
   set alive(alive){ this._alive = true; }
   get range(){ return this._range; }
   set range(range){ this._range = range; }
@@ -26,16 +23,7 @@ class Mob extends Living{
 
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
-  }
-
-  get range(){ return this._range; }
-  set range(range){ this._range = range; }
-
-
-  /*takeDam()
-  receives the damage to the object
-  @param damage {int} a positive number*/
-  /*
+    }
   /*
    takeDam() receives the damage to the ghp and checks to see if you are alive or not
    @param damage {int} pos whole # 
