@@ -70,7 +70,7 @@ const COMPLETE_COWBOY_LIST = [
     hp: 40,
     desc: "He wants to take all of you possessions: your money, your clothes, and your mouse",
     icon: "T",
-    attackDam: {max: 30, min:20, status:"None"},
+    attackDam: {max: 30, min:20, status:"Bleeding",duration:5},
     drop: "Leather Armor",
     range: 0,
     Level: 1
@@ -217,7 +217,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     hp: 100,
     desc: "One day from retirment and his first day on the job",
     icon: "T",
-    attackDam: {max: 30, min:20, status:"None"},
+    attackDam: {max: 30, min:20, status:"Bleeding",duration:5},
     drop: "",
   },
   {
