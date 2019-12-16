@@ -237,7 +237,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 2,
     desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt when hit by.",
-    damage: {min:8, max:12, type: "bleeding"},
+    damage: {min:8, max:12, type: "healing"},
     icon:"/"
   },
   {

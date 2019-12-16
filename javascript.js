@@ -58,13 +58,24 @@ target by 1, give it a small..... say 10% chance to keep the most recently rolle
 total items. If this is not successful, then ignore the most recently rolled item, and roll again. If it is over by 2 or more, re-roll.
 E. when the target level (which is the level +1) is reached or exceeded but accepted, return the array of items.
 
+
+1.All mob levels should be +1 in order to not get infinite level 0 items.
+2.Certain leveled enemies can only receive certain leveled items in order to keep the game balanced.
+3.Bosses should have the highest percentage to drop the highest leveled loot.
+   ex: mob lvl 1 may have 20% to drop a lvl 2 item, but boss lvl 1 has a 50% chance to drop
+   lvl 2 items
+4.Create loop to use percentage for leveled loot drops.
+5.This percentage should allow the mobs to roll either one item of a higher level, or
+multiple items of a level lower or equal to that mob's level.
+6.when the item(s) has been rolled into the mob's inventory, and is !alive, then return the
+array of the items.
+
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
 function randomItem(level){
   let index = Utils.randMath(0, allItems.length - 1);
   let item = allItems[index];
-  let level = [];
     if (item.type instanceof Armor) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist);}
     if (item.type instanceof Weapon) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range);}
     if (item.type instanceof Potion) {let retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage);}
