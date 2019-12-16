@@ -11,6 +11,11 @@ class Mob extends Living{
   */
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
+    if (this._status !== 1) {
+      if (this._status == "frozen") {
+        return 0;
+      }
+    }
   }
 
     get range(){ return this._range; }
