@@ -213,7 +213,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 50,
     desc: "A powerful weapon, used by those with great strength",
-    damage:{min:20, max:50, type:"damage"},
+    damage:{min:20, max:50, type:"bleeding"},
     icon: "/"
   },
   {
@@ -221,7 +221,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 14,
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
-    damage: {min:10, max:15, type:"damage"},
+    damage: {min:10, max:15, type:"bleeding"},
     icon:"/"
   },
   {
@@ -229,7 +229,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 34,
     desc: "A large blade, only those truely skilled have the ability to weild it properly",
-    damage: {min:25, max:40, type:"damage"},
+    damage: {min:25, max:40, type:"bleeding"},
     icon:"/"
   },
   {
@@ -237,7 +237,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 2,
     desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt when hit by.",
-    damage: {min:8, max:12, type:"damage"},
+    damage: {min:8, max:12, type:"healing"},
     icon:"/"
   },
   {
@@ -253,7 +253,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 20,
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
-    damage: {min:10, max:24, type:"damage"},
+    damage: {min:10, max:24, type:"bleeding"},
     icon:"/"
   }
 ]
