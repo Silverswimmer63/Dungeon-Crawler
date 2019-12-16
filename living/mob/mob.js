@@ -2,12 +2,15 @@ class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon)
     this._alive = true;//to tell if the enemy is alive ore dead
+    this._status = ;
   }
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
 
   get range(){ return this._range; }
   set range(range){ this._range = range; }
+
+  get status(){ return this._status; }
 
   /*attackDam()
   @return {int} a number between damage.min and damage.max
@@ -27,6 +30,8 @@ class Mob extends Living{
       this.hp = 0;
     }
   }
+
+
 
   /*text()
   returns a user frendly line of text for output to the screen
