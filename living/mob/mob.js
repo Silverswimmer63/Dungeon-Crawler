@@ -22,11 +22,8 @@ class Mob extends Living{
   set status(status){ this._status = status; }
 
   attackDam(){
-    if (this.status != "none") {
-      if (status.type == "frozen") { return 0; }
-    }else {
-      return Utils.randMath(this.damage.min, this.damage.max);
-    }
+    if (status.type == "frozen") { return 0; }
+    else { return Utils.randMath(this.damage.min, this.damage.max); }
   }
 
   takeDam(damage){
