@@ -410,7 +410,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
     range: 16,
-    damage: {min:200, max:250, type:"frozen", dot:-1}//indefinaley frozen
+    damage: {min:200, max:250, type:"frozen", dot:99999999999999999999999999999999999999999999999999999}//indefinaley frozen
   }
 ]
 
