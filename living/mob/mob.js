@@ -15,10 +15,8 @@ class Mob extends Living{
   @return {int} a number between damage.min and damage.max
   */
   attackDam(){
-    if (true) {
-
-    }
-    return Utils.randMath(this.damage.min, this.damage.max);
+    if (status = frozen) { return 0; }
+    else { return Utils.randMath(this.damage.min, this.damage.max); }
   }
 
   /*takeDam(damage)
@@ -32,8 +30,6 @@ class Mob extends Living{
       this.hp = 0;
     }
   }
-
-
 
   /*text()
   returns a user frendly line of text for output to the screen
