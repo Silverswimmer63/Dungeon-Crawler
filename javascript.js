@@ -130,6 +130,12 @@
   and so on.
   How can we do this?
 
+  Bowen HW
+  randomItem(level)
+  takes your level at the moment and checks to see what items it should give you. Generally speaking, you should get worse loot in comparison to your level and get worse loot for the majority of the time and the good loot on a rare occasion. Also, to generate these loot, we will need a random die generator to randomly get a bad loot for the most part and good part occasionally.
+  @param {int.} a number ranging from 1-3
+  @return a random loot that is currently worse than your level and occasionally you will get a good loot.
+
   A. We will need to track the total level of things made until it reaches or exceeds a target. A quick solution to this would be
   to make the target = level, however, that would allow us to add infinite level 0 items. So our target should be the level + 1,
   and we should look at item at their level + 1

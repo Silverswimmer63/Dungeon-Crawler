@@ -1,5 +1,5 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon, attackDam, status = "none"){
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
   }
@@ -11,13 +11,32 @@ class Mob extends Living{
   // attackDam: The amount of damage monsters can attack you with.
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
+  get status(){ return this._status; };
+  set status(status){ return this._status }
 
 
+  /*
+  3. Change the method for monsters attacking to check if the status is not equal to none. If it is not, check to see if the status.type is frozen. If it is, then
+  return 0;
+  4. Go though the various item assets, and for anything that produces damage or healing add a key "type" to their damage object (right now it looks like {min: some
+  number, max: some number}). type should be set to one of the following - "damage" (normal damage), "healing", "frozen", or "burning"
+  5. if the type is "frozen" or "burning" add another key to the object, this key should be "duration"
+  6. Do the same for all the monster assets.
+  */
   /*
   attackDam()
   @returns {int} a number between damage.min and max
   */
-  attackDam(){ return Utils.randMath(this.damage.min, this.damage.max); }
+  attackDam(status){
+    if (status != "none") {
+    if (status.type == "frozen") {
+      return 0;
+      }
+    }
+    else{
+    return Utils.randMath(this.damage.min, this.damage.max);
+    }
+   }
 
   get range(){ return this._range; }
   set range(range){ this._range = range; }
