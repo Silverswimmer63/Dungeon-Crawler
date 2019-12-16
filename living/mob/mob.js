@@ -10,7 +10,7 @@ Class Mob
 */
 class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){
-    super(name, type, hp, desc, icon)
+    super(name, type, hp, desc, icon,status)
     this._alive = true;
   }
   get alive(){ return this._alive; };
@@ -31,6 +31,12 @@ class Mob extends Living{
    @return {int} 
     */
   takeDam(damage){
+    if(status !== none){
+      
+    }
+    else if(status == "frozen"){
+      return 0;
+    }
     this.hp = this.hp - damage;
     if (this.hp <= 0) {
       this.alive = false;
