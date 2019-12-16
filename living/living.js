@@ -6,6 +6,8 @@ class Living {
     this._maxHp = hp;//the maximum amout of hp an enemy can have
     this._desc = desc;//description of the enemy
     this._icon = icon;//the single character that shows up on the map
+    this._status = "none";
+
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }
@@ -24,6 +26,9 @@ class Living {
 
   get maxHp(){ return this._maxHp; }
   set maxHp(maxHp){ this._maxHp = maxHp; }
+
+  get status(){ return this._status; }
+  set status(status){ this._status = status; }
 
   /*text()
   returns a user frendly line of text for output to the screen
