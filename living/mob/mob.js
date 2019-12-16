@@ -7,20 +7,28 @@ base class for mobs
 @param type {string} the type of mob
 @param hp {int} the amount of hp a nob has*/
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
+  constructor(name, type, hp, desc, icon, attackDam, status="none"){
     super(name, type, hp, desc, icon)
     this._alive = true;
   }
   get alive(){ return this._alive; }
   get range(){ return this._range; }
   get mob(){ return "<span class='mob'>" + this._mob + "</span>"}
+  get status() { return this.status; }
 
   set alive(alive){ this._alive = true; }
   set range(range){ this._range = range; }
   set mob(mob){ this._mob = mob; }
+  set status(status){ this._status = status; }
 
   attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
+    if (this.status != "none") {
+      if (status.type == "frozen") {
+        return 0;
+      }
+    }else {
+      return Utils.randMath(this.damage.min, this.damage.max);
+    }
   }
 
   takeDam(damage){
