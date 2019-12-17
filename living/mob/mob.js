@@ -25,8 +25,16 @@ class Mob extends Living{
   if any mob has the type frozen then the return is 0
   else it returns a random min and max attack damage*/
   attackDam(){
-    if (status.type == "frozen") { return 0; }
-    else { return Utils.randMath(this.damage.min, this.damage.max); }
+    var retObj = {}
+    //if (status.type == "frozen") { return 0; }
+    if (this.duration) {
+      retObj = {damage: Utils.randMath(this.damage.min, this.damage.max), type: this.type, duration: this.duration};
+      return retObj
+    }
+    else {
+      retObj = {damage: Utils.randMath(this.damage.min, this.damage.max), type: this.type};
+      return retObj
+    }
   }
 
   /*takeDam
@@ -36,6 +44,11 @@ class Mob extends Living{
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;
+    }
+    if (this._status !== "none") {
+      if (this.type == "frozen") {
+        damage = damage*1.5
+      }
     }
   }
 
