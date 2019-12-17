@@ -13,7 +13,14 @@ class Item {
     this._desc = desc; // the description of the item
     this._value = value; // this is how many gold coins you would need to pay for this item
     this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
-
+// We added the keys burning, freezing, bleeding, healing, damage, duration, and type to the items.
+// burning: Makes the hero/character lose more hits/turns
+// freezing: Makes the hero/character lose hits/turns
+// bleeding: Makes the hero/character lose life/hp and lose hits/turns
+// healing: Restores the hp/life of the hero/character
+// damage: Makes the hero/character lose hp/life
+// duration: The number of hits the hero/character is missing out after being hit with either freezing, burning, and etc.
+// type: This is the kind of attack/damage done to a hero/character to make the game more interesting. For example: burning, freezing, and etc.
   }
   /**************************************** Getter and Setters *********************************/
   get name(){ return this._name; }

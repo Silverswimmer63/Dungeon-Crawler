@@ -129,13 +129,6 @@
   or 1 level 3 item (small chance)
   and so on.
   How can we do this?
-
-  Bowen HW
-  randomItem(level)
-  takes your level at the moment and checks to see what items it should give you. Generally speaking, you should get worse loot in comparison to your level and get worse loot for the majority of the time and the good loot on a rare occasion. Also, to generate these loot, we will need a random die generator to randomly get a bad loot for the most part and good part occasionally.
-  @param {int.} a number ranging from 1-3
-  @return {array} a random loot that is currently worse than your level and occasionally you will get a good loot.
-
   A. We will need to track the total level of things made until it reaches or exceeds a target. A quick solution to this would be
   to make the target = level, however, that would allow us to add infinite level 0 items. So our target should be the level + 1,
   and we should look at item at their level + 1
@@ -151,6 +144,21 @@
 
   @param level {int}: the target level of the item
   @return {array} an array of objects of class Item or that inherit class Item
+
+  Bowen HW
+  randomItem(level)
+  takes your level at the moment and checks to see what items it should give you. Generally speaking, you should get worse loot in comparison to your level and get worse loot for the majority of the time and the good loot on a rare occasion. Also, to generate these loot, we will need a random die generator to randomly get a bad loot for the most part and good part occasionally.
+  1.Make many if statements so that it can check the current state/level that the character/hero is in.
+  2.Track the total level of things made until it reaches or exceeds a point so make target = level + 1.
+  3.Put all the existing code inside a for loop since we already know the levels and it is definite.
+  4.Find a way to use the Utils random generator so that we can generte random items.
+  5.Find a way to track the current total items that is fitting to the level you are in and total + the most recent items rolled.
+  6.Make more if/else statements to check if the item is over the item. There should be a small percentage when it is acceptable to use generate and use a slightly
+  higher leveled item. If the item is way past what you are supposed to get, then continue/ignore the most recent roll. If its roll is over by 2 levels again, keep
+  rerolling the generator thing to find one that has a level item appropriate to your level.
+  7.When the item meets the target level, then return it.
+  @param {int.} a number ranging from 1-3
+  @return {array} a random loot that is currently worse than your level and occasionally you will get a good loot.
   */
 
   function randomItem(level){

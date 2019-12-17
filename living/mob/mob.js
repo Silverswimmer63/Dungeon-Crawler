@@ -9,6 +9,8 @@ class Mob extends Living{
   // desc: the description of the monster
   // icon: the single character that shows up on the map
   // attackDam: The amount of damage monsters can attack you with.
+  // status: To check and see your current situation.
+  // damage: Makes the hero/character lose hp/life
   get alive(){ return this._alive; };
   set alive(alive){ this._alive = true; }
   get status(){ return this._status; };
@@ -24,7 +26,8 @@ class Mob extends Living{
   6. Do the same for all the monster assets.
   */
   /*
-  attackDam()
+  attackDam() *Updated
+  Now it check specifically if the status is not none and frozen. If so, it will randomly generate a number.
   @returns {int} a number between damage.min and max
   */
   attackDam(status){
