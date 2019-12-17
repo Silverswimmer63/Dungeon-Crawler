@@ -30,15 +30,29 @@ class Mob extends Living{
   Now it check specifically if the status is not none and frozen. If so, it will randomly generate a number.
   @returns {int} a number between damage.min and max
   */
-  attackDam(status){
-    if (status != "none") {
-    if (status.type == "frozen") {
+  /*
+  Attack methods - should no longer return a number, should return an object
+IF the weapon/monsters damage property has a duration, then it should look like:
+{damage: *random damage number*, type: type, duration: duration}
+Else it should look like:
+{damage: *random damage number*, type: type}
+-----------------------------
+damage taking methods -
+Right now these expect to get a number and subtract that, and do some other things.
+Now it should expect an object of the type listed above.
+If there is a duration, then it should set the status of the monster to an object that looks roughly like: {type: "frozen", duration: 5, damage: 5}
+
+If the type is electric, & the monster has the status frozen, multiply the damage by 1.5
+*/
+  attackDam(){
+    if (this._status == "frozen") {
       return 0;
       }
+      if ("duration" in this.damage){
+      var dam = Utils.randMath(this.damage.min, this.damage.max);
+      return {damage:dam, type:this.damage.type, duration: this.damage.duration};
     }
-    else{
-    return Utils.randMath(this.damage.min, this.damage.max);
-    }
+    return {damage:dam, type:this.damage.type};
    }
 
   get range(){ return this._range; }
@@ -46,10 +60,14 @@ class Mob extends Living{
 
   /*
   takeDam() receives the damage to the hp and checks to see if you are alive or not.
-  @param damage {int} a positive whole number
+  @param damage {object} a positive whole number
   */
   takeDam(damage){
-    this.hp = this.hp - damage;
+    if ((damage.type == "electricity") && (this.status.type == "freezing")) {
+      this.hp = this.hp - Math.floor(damage.damage*1.5);
+    }else{
+      this.hp = this.hp - damage.damage;
+    }
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;

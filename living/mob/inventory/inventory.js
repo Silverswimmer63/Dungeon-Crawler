@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon, attackDam);
@@ -42,7 +41,6 @@ class Inventory extends Mob{
     return this._inventory.splice(index, 1);
     }
   }
-=======
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, drop){
     super(name, type, hp, desc, icon, attackDam);
@@ -80,4 +78,3 @@ class Inventory extends Mob{
     return this._inventory.splice(index, 1);
   }
 }
->>>>>>> Stashed changes

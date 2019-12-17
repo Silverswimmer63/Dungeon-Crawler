@@ -197,14 +197,14 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 0,
     desc: "The only weapon a man needs",
-    damage: {min:2, max:5, type: damage},
+    damage: {min:2, max:5, type: "damage"},
     icon: "/"
   {
     name: "Boxing Gloves",
     type: Melee,
     value: 5,
     desc: "Just a little protection for the hands",
-    damage: {min:4 ,max:10, type: damage},
+    damage: {min:4 ,max:10, type: "damage"},
     icon:"/"
   },
   {
@@ -212,7 +212,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 50,
     desc: "A powerful weapon, used by those with great strength",
-    damage:{min:20, max:50, type: bleeding, duration: 5 },
+    damage:{min:20, max:50, type: "bleeding", duration: 5 },
     icon: "/"
   },
   {
@@ -220,7 +220,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 14,
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
-    damage: {min:10, max:15, type: bleeding, duration: 5 },
+    damage: {min:10, max:15, type: "bleeding", duration: 5 },
     icon:"/"
   },
   {
@@ -228,7 +228,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 34,
     desc: "A large blade, only those truely skilled have the ability to wield it properly",
-    damage: {min:25, max:40, type: bleeding, duration: 5 },
+    damage: {min:25, max:40, type: "bleeding", duration: 5 },
     icon:"/"
   },
   {
@@ -236,7 +236,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 2,
     desc: "Just a normal stick, that you picked up off the floor, but it'll still hurt when hit by.",
-    damage: {min:8, max:12, type: healing},
+    damage: {min:8, max:12, type: "healing"},
     icon:"/"
   },
   {
@@ -244,7 +244,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 25,
     desc: "A massive, unwieldly weapon that only those with the mightiest strength can hold",
-    damage: {min:14, max:32, type: damage},
+    damage: {min:14, max:32, type: "damage"},
     icon:"/"
   },
   {
@@ -252,7 +252,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 20,
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
-    damage: {min:10, max:24, type: bleeding, duration: 5},
+    damage: {min:10, max:24, type: "bleeding", duration: 5},
     icon:"/"
   }
 ]
@@ -265,7 +265,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Just rocks... literaly just rocks",
     icon: "L",
     range: 4,
-    damage: {min:2, max:5, type: damage}
+    damage: {min:2, max:5, type: "damage"}
   },
   {
     name: "Fireworks",
@@ -274,7 +274,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "whoshhhh................... BANG!",
     icon: "L",
     range: 6,
-    damage: {min:3, max:8, type: burning, duration: 3 }
+    damage: {min:3, max:8, type: "burning", duration: 3 }
   },
   {
     name: "Greek Bow",
@@ -283,7 +283,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "It's problly at least 20 times older than you",
     icon: "L",
     range: 5,
-    damage: {min:6, max:8, type: damage}
+    damage: {min:6, max:8, type: "damage"}
   },
   {
     name: "Trained Falcon",
@@ -292,7 +292,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "I guess he likes you",
     icon: "L",
     range: 5,
-    damage: {min:5, max:6, type: damage}
+    damage: {min:5, max:6, type: "damage"}
   },
   {
     name: "Magnetic Rocks",
@@ -301,7 +301,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "There cool… fun to play with… hurts when someone throws them at you",
     icon: "L",
     range: 4,
-    damage: {min:3, max:6, type: damage}
+    damage: {min:3, max:6, type: "damage"}
   },
   {
     name: "Rusty Revolver",
@@ -310,7 +310,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Please just sell it, its unsafe to use every time you pull the trigger there a good chance you'll just blow your hand off",
     icon: "L",
     range: 6,
-    damage: {min:8, max:12, type: damage}
+    damage: {min:8, max:12, type: "damage"}
   },
   {
     name: "Throwing Axe",
@@ -319,7 +319,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "While normal throwing axes are a quarter size of a regular axe but these are the size of a full on battle axe",
     icon: "L",
     range: 2,
-    damage: {min:16, max:24, type: damage}
+    damage: {min:16, max:24, type: "damage"}
   },
   {
     name: "Shootgun",
@@ -328,7 +328,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "A shotgun but longer",
     icon: "L",
     range: 4,
-    damage: {min:20, max:26, type: damage},
+    damage: {min:20, max:26, type: "damage"},
   },
   {
     name: "Snake Lasso",
@@ -337,7 +337,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Unfortunately he's been defanged but he still has some bite",
     icon: "L",
     range: 5,
-    damage: {min:24, max:26, type: damage},
+    damage: {min:24, max:26, type: "damage"},
   },
   {
     name: "Money Bag",
@@ -346,7 +346,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "A bag of gold tied to your hand kratos style",
     icon: "L",
     range: 4,
-    damage: {min:26, max:28, type: burning, duration: 3 }
+    damage: {min:26, max:28, type: "burning", duration: 3 }
   },
   {
     name: "Laser Pointer",
@@ -355,7 +355,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Aim for the eye for maximum effect",
     icon: "L",
     range: 10,
-    damage: {min:28, max:34, type: burning, duration: 3 }
+    damage: {min:28, max:34, type: "burning", duration: 3 }
   },
   {
     name: "Hacking Laptop",
@@ -364,7 +364,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Smashing hands on keyboard... iM iN (use sunglasses for max effect)",
     icon: "L",
     range: 6,
-    damage: {min:30, max:32, type: electricity}
+    damage: {min:30, max:32, type: "electricity"}
   },
   {
     name: "Ray Gun",
@@ -373,7 +373,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "Orginated from the body of a very mad man crawling around yelling about need a revive after being knocked down by a disgruntled man in a torn Nazi uniform",
     icon: "L",
     range: 6,
-    damage: {min:28, max:34, type: burning}
+    damage: {min:28, max:34, type: "burning", duration: 3}
   },
   {
     name: "Fancy Future Rifle",
@@ -382,7 +382,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "This rifle is clearly just an AK-47 with a ton of RGB lighting everywhere",
     icon: "L",
     range: 8,
-    damage: {min:34, max:36, type: damage}
+    damage: {min:34, max:36, type: "damage"}
   },
   {
     name: "Serrated Fedora",
@@ -391,7 +391,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "For those reddit users who watched a little too much James Bond",
     icon: "L",
     range: 3,
-    damage: {min:30, max:32, type: healing}
+    damage: {min:30, max:32, type: "healing"}
   },
   {
     name: "Replica Mouse",
@@ -400,7 +400,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
     range: 10,
-    damage: {min:40, max:60, type: electricity}
+    damage: {min:40, max:60, type: "electricity"}
   },
   {
     name: "Mikes Controller",
@@ -409,7 +409,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
     range: 16,
-    damage: {min:200, max:250, type: freezing, duration: 4}
+    damage: {min:200, max:250, type: "freezing", duration: 4}
   }
 ]
 

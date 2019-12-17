@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
   /*
   Make a function called randomFoe();
   for now, make this in javascript.js
@@ -172,7 +171,6 @@
     else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
     return retItem;
 }
-=======
   /*
   Make a function called randomFoe();
   for now, make this in javascript.js
