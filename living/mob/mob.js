@@ -15,8 +15,13 @@ class Mob extends Living{
   @return {int} a number between damage.min and damage.max
   */
   attackDam(){
-    if (status = frozen) { return 0; }
-    else { return Utils.randMath(this.damage.min, this.damage.max); }
+    if (this.status == "frozen") { return 0; }
+    if ("duration" in this.damage){
+      var dam = Utils.randMath(this.damage.min, this.damage.max);
+      return {damage:dam, type:this.damage.type, this.damage.duration};
+      }
+    }
+    return {damage:dam, type:this.damage.type};
   }
 
   /*takeDam(damage)
@@ -24,7 +29,12 @@ class Mob extends Living{
   @param damage {int} a positive whole number
   */
   takeDam(damage){
-    this.hp = this.hp - damage;
+    if ((damage.type == "electric") && (this.status.type == "frozen")) {
+      this.hp = this.hp - Math.floor(damage*1.5);//damage is now an object
+    }
+    else {
+      this.hp = this.hp - damage.damage;
+    }
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;

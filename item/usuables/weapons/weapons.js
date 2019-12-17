@@ -10,7 +10,9 @@ class Weapon extends Item{
   /*attackDam()
   @return {int} a number between damage.min and damage.max
   */
-  attackDam(){ return Utils.randMath(this.damage.min, this.damage.max); }
+  attackDam(){
+    return Utils.randMath(this.damage.min, this.damage.max);
+  }
 
   /*text()
   returns a user frendly line of text for output to the screen
