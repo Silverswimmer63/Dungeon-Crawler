@@ -21,11 +21,16 @@ class Mob extends Living{
   set mob(mob){ this._mob = mob; }
   set status(status){ this._status = status; }
 
+  /*attackDam
+  if any mob has the type frozen then the return is 0
+  else it returns a random min and max attack damage*/
   attackDam(){
     if (status.type == "frozen") { return 0; }
     else { return Utils.randMath(this.damage.min, this.damage.max); }
   }
 
+  /*takeDam
+  gives the amount of hp and tells if the mob is dead*/
   takeDam(damage){
     this.hp = this.hp - damage;
     if (this.hp <= 0) {
