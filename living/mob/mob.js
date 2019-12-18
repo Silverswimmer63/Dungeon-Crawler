@@ -26,11 +26,6 @@ class Mob extends Living{
   6. Do the same for all the monster assets.
   */
   /*
-  attackDam() *Updated
-  Now it check specifically if the status is not none and frozen. If so, it will randomly generate a number.
-  @returns {int} a number between damage.min and max
-  */
-  /*
   Attack methods - should no longer return a number, should return an object
 IF the weapon/monsters damage property has a duration, then it should look like:
 {damage: *random damage number*, type: type, duration: duration}
@@ -44,13 +39,21 @@ If there is a duration, then it should set the status of the monster to an objec
 
 If the type is electric, & the monster has the status frozen, multiply the damage by 1.5
 */
+/*
+attackDam() *Updated
+This will check to see if the object in damage has the key 'duration'. If so, it will not only generate a random number
+between damage.min and damage.max, it will also add the key duration and what duration is. if there isn't a duration key
+then it will generate a random number and return the keys with damage and type within damage. Plus, it will check to see
+if the status is equal to frozen. If it is, then return 0.
+@returns {obj}
+*/
   attackDam(){
     if (this._status == "frozen") {
       return 0;
       }
       if ("duration" in this.damage){
       var dam = Utils.randMath(this.damage.min, this.damage.max);
-      return {damage:dam, type:this.damage.type, duration: this.damage.duration};
+      return {damage: dam, type: this.damage.type, duration: this.damage.duration};
     }
     return {damage:dam, type:this.damage.type};
    }
@@ -59,20 +62,31 @@ If the type is electric, & the monster has the status frozen, multiply the damag
   set range(range){ this._range = range; }
 
   /*
-  takeDam() receives the damage to the hp and checks to see if you are alive or not.
+  takeDam()
+  Receives the damage to the hp and checks to see if you are alive or not.
+  It also checks to see if the damage the hero/character is receiving is a combination of electricity and freezing attack. If it is,
+  then the damage will be multiplied by 1.5 and the hero/character's hp will lose the damage along with the extra damage when electricity
+  and freeze is combined. Furthermore, when the character dies, the hp will be reset to 0 so that it will give us any errors, like come
+  back to life. We can make sure it stays dead.
   @param damage {object} a positive whole number
+  @return {object} It will either return the keys damage, type, and duration, or return, the keys damage and type.
   */
   takeDam(damage){
-    if ((damage.type == "electricity") && (this.status.type == "freezing")) {
+      if ((damage.type == "electricity") && (this.status.type == "freezing")) {
       this.hp = this.hp - Math.floor(damage.damage*1.5);
-    }else{
+      }else{
       this.hp = this.hp - damage.damage;
+      }
+      if (this.hp <= 0) {
+        this.alive = false;
+        this.hp = 0;
+      }
+      if ("duration" in this.damage){
+        var dam = Utils.randMath(this.damage.min, this.damage.max);
+        return {damage: dam, type: this.damage.type, duration: this.damage.duration};
+      }
+    return {damage:dam, type:this.damage.type};
     }
-    if (this.hp <= 0) {
-      this.alive = false;
-      this.hp = 0;
-    }
-  }
 
   /*
   text()
