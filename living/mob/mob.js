@@ -40,15 +40,17 @@ class Mob extends Living{
   gives the amount of hp and tells if the mob is dead
   if the type is frozen then the damage is multiplied by 1.5*/
   takeDam(damage){
-    this.hp = this.hp - damage;
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;
     }
-    if (this._status !== "none") {
-      if (this.type == "frozen") {
-        damage = damage*1.5
-      }
+    if ((damage.type == "elctric")&&(this.status.type == "frozen")) {
+      this.hp = this.hp - Math.floor(damage*1.5);
+    }else {
+      this.hp = this.hp - damage;
+    }
+    if ("duration" in damage) {
+      this._status = damage;
     }
   }
 
