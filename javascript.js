@@ -84,16 +84,4 @@ function randomItem(level) {
       var retStuff = new stuff.type(stuff.name, stuff.desc, stuff.icon, stuff.value, this.type)
     }
   }
-  if (level == 0) {
-
-  }
-  if (level == 1) {
-
-  }
-  if (level == 2) {
-
-  }
-  if (level == 3) {
-
-  }
 }
