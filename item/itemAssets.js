@@ -5,6 +5,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     desc: "A simple hat for the early days",
     icon: "^",
     damageresist: .06,
+    
   },
   { name: "Chain Mail Helmet",
     type: Head,

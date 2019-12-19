@@ -1,5 +1,5 @@
 class Armor extends Item {
-  constructor (name, icon, value, desc, damageresist) {
+  constructor (name, icon, value, desc, damageresist, level) {
     super (name, icon, value, desc);
     this._damageresist = damageresist;
   }
@@ -8,7 +8,7 @@ class Armor extends Item {
   // desc: the description of the item
   // damageresist: The amount of protection a piece of armor can provide for the player.
   // value: the amount of gold pieces that you need to pay for an item.
-  
+
   get damageresist(){ return this._damageresist; }
   set damageresist(damageresist){ this._damageresist = damageresist; }
 

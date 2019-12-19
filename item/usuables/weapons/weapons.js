@@ -1,5 +1,5 @@
 class Weapon extends Item{
-  constructor(name, icon, desc, value, type, damage){
+  constructor(name, icon, desc, value, type, damage, level){
     super(name, icon, desc, value, type)
     this._damage = damage;
   }
