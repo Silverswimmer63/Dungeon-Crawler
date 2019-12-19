@@ -558,13 +558,14 @@ const COMPLETE_LOOT_LIST = [
     icon:"V",
     level:0,
   },
-  {name:"H  O  N  K",
- type: VendorTrash,
- value:12,
- desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
- icon:"V",
- level:0,
-},
+  {
+    name:"H  O  N  K",
+    type: VendorTrash,
+    value:12,
+    desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
+    icon:"V",
+    level:0,
+  },
 ]
 
 const COMPLETE_POTION_LIST = [
