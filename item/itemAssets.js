@@ -5,122 +5,138 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     desc: "A simple hat for the early days",
     icon: "^",
     damageresist: .06,
+    level: 0
   },
   { name: "Chain Mail Helmet",
     type: Head,
     value: 7,
     desc: "A strong but light armor that gives slight protection",
     icon: "^",
-    damageresist: .16
+    damageresist: .16,
+    level: 0
   },
   { name: "Copper Helmet",
     type: Head,
     value: 7,
     desc: "A good helmet that will serve you well",
     icon: "^",
-    damageresist: .26
+    damageresist: .26,
+    level: 0
   },
   { name: "Bronze Helmet",
     type: Head,
     value: 7,
     desc: "Better than Copper",
     icon: "^",
-    damageresist: .36
+    damageresist: .36,
+    level: 1
   },
   { name: "Iron Helmet",
     type: Head,
     value: 7,
     desc: "A good quality helmet that will protect your head from arrows",
     icon: "^",
-    damageresist: .46
+    damageresist: .46,
+    level: 1
   },
   { name: "Steel Helmet",
     type: Head,
     value: 7,
     desc: "Even better at not letting you die",
     icon: "^",
-    damageresist: .56
+    damageresist: .56,
+    level: 1
   },
   { name: "Silver Helmet",
     type: Head,
     value: 7,
     desc: "Almost the best",
     icon: "^",
-    damageresist: .36
+    damageresist: .36,
+    level: 2
   },
   { name: "Platinum Helmet",
     type: Head,
     value: 7,
     desc: "The best of the best",
     icon: "^",
-    damageresist: .36
+    damageresist: .36,
+    level: 2
   }
 ]
 
 const COMPLETE_ARMOR_BODY_LIST = [
   {
-    name: "Leather",
+    name: "Leather Breastplate",
     type: Body,
     value: 5,
     desc: "The most basic level armor that all beginners should have. Moo-moo cows have died for this sole purpose of protecting you!",
     icon: "&",
-    damageResist:.1
+    damageResist:.1,
+    level: 0
   },
   {
-    name: "Chainmail",
+    name: "Chainmail Breastplate",
     type: Body,
     value: 10,
     desc: "When we designed this unique piece of armor, we thought 'Why not copy Minecraft?'.' Oh yeah, this also protects you better than moo-moo cows, I guess",
     icon: "&",
-    damageResist:.2
+    damageResist:.2,
+    level: 0
   },
   {
-    name: "Copper",
+    name: "Copper Breastplate",
     type: Body,
     value: 15,
     desc: "This was forged the fiery forges of Hephaestus. He's the God of fire and he's good at building stuff I guess. Note: No Hephaestusus was harmed in the process.",
     icon: "&",
-    damageResist:.3
+    damageResist:.3,
+    level: 0
   },
   {
-    name: "Bronze",
+    name: "Bronze Breastplate",
     type: Body,
     value: 20,
     desc: "We have two words for you: Copper and Tin. The heavenly blend of these 2 metal elements gives you a more of a luxury to protect yourself. Now you can tell monsters to watch out.",
     icon: "&",
-    damageResist:.4
+    damageResist:.4,
+    level: 1
   },
   {
-    name: "Iron",
+    name: "Iron Breastplate",
     type: Body,
     value: 25,
     desc: "Despite being the most common element on Earth, stronger opponents will cower in fear (at first but then attack you, but you're good since you're using iron. Right?)",
     icon: "&",
-    damageResist:.5
+    damageResist:.5,
+    level: 1
   },
   {
-    name: "Steel",
+    name: "Steel Breastplate",
     type: Body,
     value: 30,
     desc: "Why use steel for swords and weapons when you can use it for armor. Being the capitalists, I mean, innovators that we are, we brought you the best of worlds: Iron and Carbon",
     icon: "&",
-    damageResist:.6
+    damageResist:.6,
+    level: 1
   },
   {
-    name: "Silver",
+    name: "Silver Breastplate",
     type: Body,
     value: 40,
     desc: "Silver is good for trading. But it's also good for flexing on other opponenets your high status when you purchase this. Oh and it's good for defending too.",
     icon: "&",
-    damageResist:.7
+    damageResist:.7,
+    level: 2
   },
   {
-    name: "Platinum",
+    name: "Platinum Breastplate",
     type: Body,
     value: 50,
     desc: "We are running out of ideas and metals to exploit so we settled on our last, exciting, better armor. Platinum brings you the highest form of comfort, protection, and durability. Hey kids, don't waste your money on the new iPhone 11. Spend it on this armor!",
     icon: "&",
-    damageResist:.8
+    damageResist:.8,
+    level: 2
   }
 ]
 
@@ -132,6 +148,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"Low damege protection",
     icon:"<",
     damageresist:.04 ,
+    level: 0
   },
   {
     name: "ChainMail Legs",
@@ -140,6 +157,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then Leather",
     icon:"<",
     damageresist:.14,
+    level: 0
   },
   {
     name: "Copper Legs",
@@ -148,6 +166,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then ChainMail",
     icon:"<",
     damageresist:.24,
+    level: 0
   },
   {
     name: "Bronze Legs",
@@ -156,6 +175,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then Copper",
     icon:"<",
     damageresist:.34,
+    level: 1
   },
   {
     name: "Iron Legs",
@@ -164,6 +184,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then Bronze",
     icon:"<",
     damageresist:.44,
+    level: 1
   },
   {
     name: "Steel Legs",
@@ -172,6 +193,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then Iron",
     icon:"<",
     damageresist:.54,
+    level: 1
   },
   {
     name: "Silver Legs",
@@ -180,6 +202,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"higher damege protection then Steel",
     icon:"<",
     damageresist:.64,
+    level: 2
   },
   {
     name: "Platinum Legs",
@@ -188,6 +211,7 @@ const COMPLETE_ARMOR_LIST= [
     desc:"Max damege protection",
     icon:"<",
     damageresist:.74,
+    level: 2
   }
   ]
 
@@ -197,64 +221,72 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 0,
     desc: "The only weapon a man needs",
-    damage: {min:2, max:5, type:"normal"},
-    icon: "/"
+    damage: {min:2, max:5,type:"normal"},
+    icon: "/",
+    level: 1
   },
   {
     name: "Boxing Gloves",
     type: Melee,
     value: 5,
     desc: "Just a littel pertection for the hands",
-    damage: {min:4 ,max:10, type:"normal"},
-    icon:"/"
+    damage: {min:4 ,max:10,type:"Normal"},
+    icon:"/",
+    level: 1
   },
   {
     name: "Axe",
     type: Melee,
     value: 50,
     desc: "A powerful weapon, used by those with great strength",
-    damage:{min:20, max:50, type:"bleeding", duration:5},
-    icon: "/"
+    damage:{min:20, max:50,type:"Bleeding",Duration:5},
+    icon: "/",
+    level: 2
   },
   {
     name: "Butcher Knife",
     type: Melee,
     value: 14,
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
-    damage: {min:10, max:15, type:"bleeding", duration:5},
-    icon:"/"
+    damage: {min:10, max:15,type:"Bleeding",Duration:5},
+    icon:"/",
+    level: 1
   },
   {
     name: "Broad Sword",
     type: Melee,
     value: 34,
     desc: "A large blade, only those truely skilled have the ability to weild it properly",
-    damage: {min:25, max:40, type:"bleeding", duration:5},
-    icon:"/"
+    damage: {min:25, max:40,type:"Bleeding",Duration:5},
+    icon:"/",
+    level: 2
   },
   {
     name: "Stick",
     type: Melee,
     value: 2,
-    desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt when hit by.",
-    damage: {min:8, max:12, type:"heal"},
-    icon:"/"
+    desc: "The Power of Trees Compel you(healing powers = yes).",
+    damage: {min:8, max:12,type:"Healing"},
+    icon:"/",
+    level: 0
   },
   {
     name: "Club",
     type: Melee,
     value: 25,
     desc: "A massive, unweildly weapon that only those with the mightiest strength can hold",
-    damage: {min:14, max:32, type:"normal"},
-    icon:"/"
+    damage: {min:14, max:32,type:"Normal"},
+    icon:"/",
+    level: 1
   },
   {
     name: "Short Sword",
     type: Melee,
     value: 20,
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
-    damage: {min:10, max:24, type:"bleeding", duration:5},
-    icon:"/"
+    damage: {min:10, max:24,type:"Bleeding",Duration:5},
+    icon:"/",
+    level: 1
   }
 ]
 
@@ -266,7 +298,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "Just rocks... literaly just rocks",
     icon: "L",
     range: 4,
-    damage: {min:2, max:5, type:"normal"}
+    damage: {min:2, max:5,type:"Normal"},
+    level: 0
   },
   {
     name: "Fireworks",
@@ -275,7 +308,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "whoshhhh................... BANG!",
     icon: "L",
     range: 6,
-    damage: {min:3, max:8, type:"fire", duration:3}
+    damage: {min:3, max:8,type:"Fire",Duration:3},
+    level: 0
   },
   {
     name: "Greek Bow",
@@ -284,7 +318,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "It's problly at least 20 times older than you",
     icon: "L",
     range: 5,
-    damage: {min:6, max:8, type:"bleeding", duration:5}
+    damage: {min:6, max:8,type:"Bleeding",Duration:5},
+    level: 0
   },
   {
     name: "Trained Falcon",
@@ -293,7 +328,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "I guess he likes you",
     icon: "L",
     range: 5,
-    damage: {min:5, max:6, type:"bleeding", duration:5}
+    damage: {min:5, max:6,type:"Bleeding",Duration:5},
+    level: 0
   },
   {
     name: "Magnetic Rocks",
@@ -302,7 +338,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "There cool… fun to play with… hurts when someone throws them at you",
     icon: "L",
     range: 4,
-    damage: {min:3, max:6, type:"normal"}
+    damage: {min:3, max:6,type:"Normal"},
+    level: 0
   },
   {
     name: "Rusty Revolver",
@@ -311,16 +348,18 @@ const COMPLETE_RANGED_LIST = [
     desc: "Please just sell it, its unsafe to use every time you pull the trigger there a good chance you'll just blow your hand off",
     icon: "L",
     range: 6,
-    damage: {min:8, max:12, type:"normal"}
+    damage: {min:8, max:12,type:"Normal"},
+    level: 1
   },
   {
     name: "Throwing Axe",
     type: Ranged,
     value: 24,
-    desc: "while normal throwing axes are a quarter size of a regular axe, these are the size of a full on battle axe",
+    desc: "while normal throwing axes are a quarter size of a regular axe but these are the size of a full on battle axe",
     icon: "L",
     range: 2,
-    damage: {min:16, max:24, type:"bleeding", duration:5}
+    damage: {min:16, max:24,type:"Bleeding",Duration:5},
+    level: 1
   },
   {
     name: "Shootgun",
@@ -329,7 +368,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "A shotgun but longer",
     icon: "L",
     range: 4,
-    damage: {min:20, max:26, type:"normal"},
+    damage: {min:20, max:26,type:"Normal"},
+    level: 1
   },
   {
     name: "Snake Lasso",
@@ -338,7 +378,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "Unfortunately he's been defanged but he still has some bite",
     icon: "L",
     range: 5,
-    damage: {min:24, max:26, type:"normal"},
+    damage: {min:24, max:26,type:"Normal"},
+    level: 1
   },
   {
     name: "Money Bag",
@@ -347,7 +388,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "A bag of gold tied to your hand kratos style",
     icon: "L",
     range: 4,
-    damage: {min:26, max:28, type:"fire", duration:3}
+    damage: {min:26, max:28,type:"Fire",Duration:3},
+    level: 1
   },
   {
     name: "Laser Pointer",
@@ -356,7 +398,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "Aim for the eye for maximum effect",
     icon: "L",
     range: 10,
-    damage: {min:28, max:34, type:"fire", duration:3}
+    damage: {min:28, max:34,type:"Fire",Duration:3},
+    level: 2
   },
   {
     name: "Hacking Laptop",
@@ -365,7 +408,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "Smashing hands on keyboard... iM iN (use sunglasses for max effect)",
     icon: "L",
     range: 6,
-    damage: {min:30, max:32, type:"electricity"}
+    damage: {min:30, max:32,type:"Electricity"},
+    level: 2
   },
   {
     name: "Ray Gun",
@@ -374,7 +418,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "Orginated from the body of a very mad man crawling around yelling about need a revive after being knocked down by a disgruntled man in a torn Nazi uniform",
     icon: "L",
     range: 6,
-    damage: {min:28, max:34, type:"fire", duration:3}
+    damage: {min:28, max:34,type:"Fire",Duration:3},
+    level: 2
   },
   {
     name: "Fancy Future Rifle",
@@ -383,7 +428,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "This rifle is clearly just an AK-47 with a ton of RGB lighting everywhere",
     icon: "L",
     range: 8,
-    damage: {min:34, max:36, type:"normal"}
+    damage: {min:34, max:36,type:"Normal"},
+    level: 2
   },
   {
     name: "Serrated Fedora",
@@ -392,7 +438,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "For those reddit users who watched a little too much James Bond",
     icon: "L",
     range: 3,
-    damage: {min:30, max:32, type:"heal"}
+    damage: {min:30, max:32,type:"Healing"},
+    level: 2
   },
   {
     name: "Replica Mouse",
@@ -401,7 +448,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
     range: 10,
-    damage: {min:40, max:60, type:"electricity"}
+    damage: {min:40, max:60,type:"Electricity"}
   },
   {
     name: "Mikes Controller",
@@ -410,7 +457,7 @@ const COMPLETE_RANGED_LIST = [
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
     range: 16,
-    damage: {min:200, max:250, type:"frozen", duration:99999999999999999999999999999999999999999999999999999}//indefinaley frozen
+    damage: {min:200, max:250,type:"Frozen",Duration:4}
   }
 ]
 
@@ -420,90 +467,103 @@ const COMPLETE_LOOT_LIST = [
     type: VendorTrash,
     value: 2,
     desc: "A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"Mysterious Arrow",
     type: VendorTrash,
     value: 15,
     desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"elven wood dish",
     type: VendorTrash,
     value: 10,
     desc:"Wait elves don't use wood for anything. What heresy is this?",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"Gomboi SP blue edition",
-    type: Item,
+    type: VendorTrash,
     value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"A copy of The Ancient Solitary Reign",
     type: VendorTrash,
     value: 15,
     desc:"A comprehensive guide to the Mating/Breeding habits of Owls disguised as a young adult novel",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"Shopkeeper's fanfiction",
     type: VendorTrash,
     value: 29,
     desc:"A copy of one of the shopkeeper's fanfiction. It is filled with bad grammer, metaphors,and a weird substance",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"TekWar",
     type: VendorTrash,
     value: 20,
     desc:"A Copy of TekWar by CapStone: the pinnicle of entertainment software",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"dung",
     type: VendorTrash,
     value: 1,
     desc:"What do you think it is?",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"The bee movie script",
-    type: Item,
+    type: VendorTrash,
     value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"toy knife",
     type: VendorTrash,
     value: 12,
     desc: "A normal plastic toy knife. It does no damage yet somehow it was recalled because it could inspire hate or whatever",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"Mike's Mouse's trophy",
-    type:Item,
+    type:VendorTrash,
     value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {
     name:"The Mona Lisa",
-    type: Item,
+    type: VendorTrash,
     value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
-    icon:"V"
+    icon:"V",
+    level:0,
   },
   {name:"H  O  N  K",
- type: Item,
+ type: VendorTrash,
  value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
- icon:"V"
+ icon:"V",
+ level:0,
 },
 ]
 
@@ -514,7 +574,8 @@ const COMPLETE_POTION_LIST = [
     value:20,
     desc:"a basic bandaid with a lipstick smug and a message saying LOVE MOM... I love you mom",
     icon:"P",
-    damage: {min:1, max:20, type:"heal"}
+    damage: {min:1, max:20, type:"heal"},
+    level: 1
   },
   {
     name: "Thoughts and prayers",
@@ -522,7 +583,9 @@ const COMPLETE_POTION_LIST = [
     value:15,
     desc:"while this tecnecly dose nothing it somehow bolsters your spirits and heals you... I would have prefured a heath kit",
     icon:"P",
-    damage:{min:5, max:5, type:"heal"}
+    damage:{min:5, max:5, type:"heal"},
+    level: 0
+
   },
   {
     name: "Heath kit",
@@ -530,7 +593,8 @@ const COMPLETE_POTION_LIST = [
     value:50,
     desc:"a basic bandaid with a lipstick smug and a message saying LOVE MOM",
     icon:"P",
-    damage:{min:10, max:40, type:"heal"}
+    damage:{min:10, max:40, type:"heal"},
+    level: 2
   },
   {
     name:"Molotov",
@@ -538,7 +602,8 @@ const COMPLETE_POTION_LIST = [
     value:20,
     desc:"you would think its cheap but these babys are made with premium botttles",
     icon:"P",
-    damage:{min:5, max:20, type:"fire", duration:"3"},
+    damage:{min:5, max:20, type:"fire"},
+    level: 1
   },
   /*
   {
@@ -563,7 +628,8 @@ const COMPLETE_POTION_LIST = [
     value:35,
     desc:"Yo, VIP, let's kick it! Ice ice baby Ice ice baby All right stop Collaborate and listen Ice is back with my brand new invention Something grabs a hold of me tightly Then I flow that a harpoon daily and nightly Will it ever stop? Yo, I don't know Turn off the lights and I'll glow To the extreme, I rock a mic like a vandal Light up a stage and wax a chump like a candle Dance Bum rush the speaker that booms I'm killin' your brain like a poisonous mushroom Deadly, when I play a dope melody Anything less that the best is a felony Love it or leave it You better gain way You better hit bull's eye The kid don't play If there was a problem Yo, I'll solve it Check out the hook while my DJ revolves it Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Now that the party is jumping With the bass kicked in, the fingers are pumpin' Quick to the point, to the point no faking I'm cooking MC's like a pound of bacon Burning them if they're not quick and nimble I go crazy when I hear a cymbal And a hi hat with a souped up tempo I'm on a roll and it's time to go solo Rollin in my 5.0 With my ragtop down so my hair can blow The girlies on standby Waving just to say hi Did you stop? No, I just drove by Kept on pursuing to the next stop I busted a left and I'm heading to the next block That block was dead Yo so I continued to a1a Beachfront Ave Girls were hot wearing less than bikinis Rock man lovers driving Lamborghini Jealous 'cause I'm out getting mine Shay with a gauge and Vanilla with a nine Ready for the chumps on the wall The chumps are acting ill because they're so full of eight balls Gunshots ranged out like a bell I grabbed my nine All I heard were shells Fallin' on the concrete real fast Jumped in my car, slammed on the gas Bumper to bumper the avenue's packed I'm tryin' to get away before the jackers jack Police on the scene You know what I mean They passed me up, confronted all the dope fiends If there was a problem Yo, I'll solve it Check out the hook while my DJ revolves it Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Take heed, 'cause I'm a lyrical poet Miami's on the scene just in case you didn't know it My town, that created all the bass sound Enough to shake and kick holes in the ground 'Cause my style's like a chemical spill Feasible rhymes that you can vision and feel Conducted and formed This is a hell of a concept We make it hype and you want to step with this Shay plays on the fade, slice it like a ninja Cut like a razor blade so fast Other DJ's say, damn If my rhyme was a drug I'd sell it by the gram Keep my composure when it's time to get loose Magnetized by the mic while I kick my juice If there was a problem Yo, I'll solve it! Check out the hook while my DJ revolves it Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Ice ice baby Vanilla Yo man, let's get out of here Word to your mother Ice ice baby Too cold Ice ice baby Too cold too cold Ice ice baby Too cold too cold Ice ice baby Too cold too cold",
     icon:"P",
-    freeze: {min:3, max:5, type:"ice", duration:"4"}
+    freeze: {min:3, max:5, type:"Frozen"},
+    level: 2
   },
   {
     name:"lightning",
@@ -571,7 +637,8 @@ const COMPLETE_POTION_LIST = [
     value:35,
     desc:"Now I am become Death, the destroyer of the 7/11 bathroom-homeless man in NYC",
     icon:"P",
-    damage:{min:15, max:35, type:"electricity"}
+    damage:{min:15, max:35, type:"Electricity"},
+    level: 1
   },
   /*
   {
@@ -586,6 +653,5 @@ const COMPLETE_POTION_LIST = [
   */
 
 ]
-
 var allItems = [];
 allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
