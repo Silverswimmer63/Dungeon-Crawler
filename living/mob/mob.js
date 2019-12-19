@@ -29,11 +29,16 @@ class Mob extends Living{
   @param damage {int} a positive whole number
   */
   takeDam(damage){
+    /*if there is a duration, then it should set the status of the monster to an
+    object that looks roughly like: {type: "frozen", duraion: 5, damage: 5}*/
     if ((damage.type == "electric") && (this.status.type == "frozen")) {
       this.hp = this.hp - Math.floor(damage*1.5);//damage is now an object
     }
     else {
       this.hp = this.hp - damage.damage;
+    }
+    if ("duration" in damage) {
+      this._status = damage;
     }
     if (this.hp <= 0) {
       this.alive = false;
