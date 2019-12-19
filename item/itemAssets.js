@@ -199,6 +199,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "The only weapon a man needs",
     damage: {min:2, max:5, type: "damage"},
     icon: "/"
+  },
   {
     name: "Boxing Gloves",
     type: Melee,

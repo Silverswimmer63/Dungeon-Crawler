@@ -97,17 +97,6 @@
         }
         return retMon;
   }
-  /*6 Update add(item)
-  For reasons we will see soon, we will need to have this method be able to take individual items or take arrays of 1 or more
-  items. So we must update add(item) it should check to see IF the parameter (item) is a single object or an array.
-  BECAUSE EVERYTHING IS AN OBJECT in Javascript, it should check to see if it is an array.
-  RESEARCH how to determine if something is an array in javascript
-  IF (????? item == ?????) then it is an array. If this is the case, add it to the _inventory as multiple things.
-  The _inventory is an array as well. The inventory may or may not have items on it already. The end product should be an array
-  that only has items on it. We have talked about a lot of ways to do this.
-  */
-  /*   TEST THIS  */
-
 
   /* 7 Update randomItem()
   randomItem() will now take a parameter and return an array. This will take some explaining, so please read the rational below fully before the instructions.
@@ -125,7 +114,7 @@
   1-3 level 0 items
   1 level 1 item and 1 level 1
   2 level 1 items (small chance)
-  1 level 2 item
+  1 level 2 item>>>>>>> Stashed changes
   or 1 level 3 item (small chance)
   and so on.
   How can we do this?
@@ -150,8 +139,8 @@
   takes your level at the moment and checks to see what items it should give you. Generally speaking, you should get worse loot in comparison to your level and get worse loot for the majority of the time and the good loot on a rare occasion. Also, to generate these loot, we will need a random die generator to randomly get a bad loot for the most part and good part occasionally.
   1.Make many if statements so that it can check the current state/level that the character/hero is in.
   2.Track the total level of things made until it reaches or exceeds a point so make target = level + 1.
-  3.Put all the existing code inside a for loop since we already know the levels and it is definite.
-  4.Find a way to use the Utils random generator so that we can generte random items.
+  3.Put all the existing code inside a while loop
+  4.Find a way to use the Utils random generator so that we can generate random items.
   5.Find a way to track the current total items that is fitting to the level you are in and total + the most recent items rolled.
   6.Make more if/else statements to check if the item is over the item. There should be a small percentage when it is acceptable to use generate and use a slightly
   higher leveled item. If the item is way past what you are supposed to get, then continue/ignore the most recent roll. If its roll is over by 2 levels again, keep
@@ -168,6 +157,9 @@
     if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
     if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
     if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+    if (true) {
+
+    }
     else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
     return retItem;
 }
@@ -314,15 +306,38 @@
   @param {int.} a number ranging from 1-3
   @return {array} a random loot that is currently worse than your level and occasionally you will get a good loot.
   */
+  function _makeItem(){
+      var index = Utils.randMath(0, allItems.length - 1);
+      var item = allItems[index];
+      if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
+      if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
+      if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+      if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+      else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
+      return retItem;
+  }
 
   function randomItem(level){
-    var index = Utils.randMath(0, allItems.length - 1);
-    var item = allItems[index];
-    if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
-    if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
-    if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-    if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-    else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
-    return retItem;
+    var max = level + 1;
+    var retArray = [];
+    if (Math.random() <= .1) { max = level +2; }
+    var retitem = undefined;
+    while (true) {
+      var remainder = max;
+      if (retArray.length != 0) {
+          for (var i = 0; i < retArray.length; i++) {
+              remainder - (retArray[i].level + 1);
+          }
+      }
+      if (remainder = 0) { return retArray; }
+      if (Utils.randMath(0, max) > remainder) { return retArray; }
+      var goodItem = false;
+      while (!goodItem) {
+        var item = this._makeItem();
+      if (item.level + 1 <= remainder) {
+        retArray.push(item);
+        goodItem = true;
+        }
+      }
+    }
   }
->>>>>>> Stashed changes
