@@ -8,12 +8,13 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value, type="trash"){
+  constructor(name, icon, desc, value, level, type="trash"){
     this._name = name;
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
     this._value = value;
     this._type = type; // if the item is in a collection or trash
+    this._level = level;//gives the item a level
 
   }
   /**************************************** Getter and Setters *********************************/
@@ -31,6 +32,9 @@ class Item {
 
   get type(){ return this._type; }
   set type(type){ this._type = type; }
+
+  get level(){ return this._level; }
+  set level(level){ this._level = level; }
 
   /*text()
   returns a user frendly line of text for output to the screen

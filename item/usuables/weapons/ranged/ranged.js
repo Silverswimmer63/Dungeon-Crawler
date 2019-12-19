@@ -1,7 +1,7 @@
 
 class Ranged extends Weapon {
-  constructor (name, icon, value, desc, damage, range){
-  super (name, icon, value, desc, damage);
+  constructor (name, icon, value, desc, damage, level, range){
+  super (name, icon, value, desc, damage, level);
     this._range = range;//Creates a range value that is how far the weapon can shoot
   }
   get range(){ return this._range; }
