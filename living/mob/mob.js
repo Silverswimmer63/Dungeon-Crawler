@@ -18,8 +18,7 @@ class Mob extends Living{
     if (this.status == "frozen") { return 0; }
     if ("duration" in this.damage){
       var dam = Utils.randMath(this.damage.min, this.damage.max);
-      return {damage:dam, type:this.damage.type, this.damage.duration};
-      }
+      return {damage:dam, type:this.damage.type, duration:this.damage.duration};
     }
     return {damage:dam, type:this.damage.type};
   }
@@ -33,8 +32,7 @@ class Mob extends Living{
     object that looks roughly like: {type: "frozen", duraion: 5, damage: 5}*/
     if ((damage.type == "electric") && (this.status.type == "frozen")) {
       this.hp = this.hp - Math.floor(damage*1.5);//damage is now an object
-    }
-    else {
+    }else {
       this.hp = this.hp - damage.damage;
     }
     if ("duration" in damage) {
