@@ -9,34 +9,42 @@ Class Mob
 @param attackDam {int}: the damage that the enemy/mob does
 */
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
+  constructor(name, type, hp, desc, icon, attackDam, status,level){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
+        this._status = status;
+        this._level = level;
   }
   get alive(){ return this._alive;}
   set alive(alive){ this._alive = true; }
   get range(){ return this._range; }
   set range(range){ this._range = range; }
+  get status(){return this._status;}
+  set status(status){this._status = status;}
+  get level(){return this._level;}
+  set level(level){this._level = level;}
 
   /*attackDam()
-  @return {int} a number between damage.min and damage.max*/
-
-  attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
+  @return {int} a number between damage.min and damage.max
+  */
+  attackDamage(){
+          return Utils.randMath(this.damage.min,this.damage.max);
     }
   /*
    takeDam() receives the damage to the ghp and checks to see if you are alive or not
-   @param damage {int} pos whole # 
+   @param damage {object}  status, type, duration, damage#
    @return {int} 
     */
   takeDam(damage){
-    if(status !== none){
-      
+    if((damage.type == "electric")&&(this.status.type == "frozen")){
+          this.hp = this.hp - Math.floor(damage.damage*1.5);
+
+    }else{
+          this.hp = this.hp - damage.damage;
     }
-    else if(status == "frozen"){
-      return 0;
+    if("duration" in damage){
+      this._status = damage;
     }
-    this.hp = this.hp - damage;
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;

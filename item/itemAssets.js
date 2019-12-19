@@ -448,7 +448,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
     range: 10,
-    damage: {min:40, max:60,type:"Electricity"}
+    damage: {min:40, max:60,type:"Electricity"},
+    level:1
   },
   {
     name: "Mikes Controller",
@@ -457,7 +458,8 @@ const COMPLETE_RANGED_LIST = [
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
     range: 16,
-    damage: {min:200, max:250,type:"Frozen",Duration:4}
+    damage: {min:200, max:250,type:"Frozen",Duration:4},
+    level: 2
   }
 ]
 

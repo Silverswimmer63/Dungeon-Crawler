@@ -6,14 +6,13 @@ Class Living
 @param desc: description of the enemy/mob
 @param icon: is the icon of the enemy*/
 class Living {
-  constructor(name, type, hp, desc, icon, status){
+  constructor(name, type, hp, desc, icon){
     this._name = name;
     this._type = type;
     this._hp = hp;
     this._maxHp = hp;
     this._desc = desc;
     this._icon = icon;
-    this._status = status;
   }
   get name(){ return this._name; }
   set name(name){ this._name = name; }
@@ -33,8 +32,6 @@ class Living {
   get maxHp(){ return this._maxHp; }
   set maxHp(maxHp){ this._maxHp = maxHp; }
 
-  get status(){return this._status;}
-  set status(status){this._status = status;}
     /*
   text()
   returns a user friendly line of text for output to the screen

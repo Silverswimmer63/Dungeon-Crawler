@@ -8,7 +8,7 @@ the basis for all weapons, splits to ranged and melee
 @param damage {int} the value of damage a weapon does*/
 class Weapon extends Item{
   constructor(name, icon, desc, value, type, damage){
-    super(name, icon, desc, value, type)
+    super(name, icon, desc, value, status)
     this._damage = damage;
   }
 

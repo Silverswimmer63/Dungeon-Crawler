@@ -1,26 +1,52 @@
 
-function randomItem(){
-    var index = Utils.randMath(0, allItems.length - 1);
-    var item = allItems[index];
-    if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
-    if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
-    if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-    if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-    else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
-    return retItem;
+function _makeItem(){
+   var index = Utils.randMath(0, allItems.length - 1);
+   var item = allItems[index];
+   if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
+   if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
+   if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+   if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+   else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
+   return retItem;
 }
-  function randomFoe() {
+  function randomItem(level){
+    var max = level +1;
+    var retAry = [];
+    if(Math.rand <= 0.1){max = level +2;}
+      while(true){
+         var remains = max;
+        if(retAry.length != 0){
+          for(var i = 0; i < retAry.length;i++){
+           retemains - (retAry[i].level+1);
+          }
+        }
+        
+        if(remains == 0){return retAry;}
+        if(Utils.randMath(0,max) > remains){return retAry}
+         var goodItem = false;
+          while(!goodItem){
+            var item = this._makeItem();
+        
+              if(item.level+1 <= max){
+                retAry.push(item);
+                goodItem = true;
+              }
+          }
+      }
+  }
+function randomFoe() {
       var index = Utils.randMath(0, allMobs.length - 1);
-      var mon = allMobs[index];
+     var mon = allMobs[index];
       var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
       if (retMon instanceof Inventory) {
         retMon.add(randomItem());//last step add some monster inventory here
       }
-      else{
+  else{
         var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
       }
       return retMon;
 }
+
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array.
 This will take some explaining, so please read the rational below fully before the instructions.
@@ -54,29 +80,43 @@ E. when the target level (which is the level +1) is reached or exceeded but acce
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
+/*
+function randomItem(lvl) {
+    var index = Utils.randMath(0, allItems.length - 1);
+    var item = allItems[index];
+    var low = [];
+    var medium = [];
+    var high = [];
+    var dispo = [];
+    for(i=0;i<allItems.length;i++){
+      if(allItems[i].level == lvl){
+        medium.push(allItems[i]);
+      }
+      else if(allItems[i].level == lvl+1){
+        low.push(allItems[i]);
+      }
+      else if(allItems[i].level == Math.abs(lvl-1)){
+        high.push(allItems[i]);
+      }
+      else{
+        dispo.push(allItems[i]);
+      }
+    }
+    console.log(low);
+    console.log(medium);
+    console.log(high);
+    var lowRand = Utils.randMath(0, low.length-1);
+    var medRand = Utils.randMath(0, medium.length-1);
+    var highRand = Utils.randMath(0, high.length-1);
+    var lowItem = low[lowRand];
+    var medItem = medium[medRand];
+    
+    if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
+    if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
+    if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+    if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+    else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
+    return retItem;
+  }
 
-/* 8 Update randomFoe() so that it take a level. It should work exactly like randomItem() for this purpose.
-
-@param level {int}: the target level of the item
-@return {array} an array of objects of class Mob or that inherit class Mob
-*/
-/* method be able to take individual items or take arrays of 1 or more items. So we must update .get(item)
-@return {array} an array of objects of class Mob or that inherit class Mob
-it should check to see IF the parameter (item) is a single object or an array./*
-BECAUSE EVERYTHING IS AN OBJECT in Javascript, it should check to see if it is an array.
-RESEARCH how to determine if something is an array in javascript
-IF (????? item == ?????) then it is an array. If this is the case, add it to the _inventory as multiple things. The _inventory is an array as well. The inventory may or may not have items on it already. The end product should be an array that only has items on it. We have talked about a lot of ways to do this.
-*/
-/*   TEST THIS  */
-/*function randomItem(level) {
-  var index = Utils.randMath(0, allItems.length - 1);
-  var item = allItems[index];
-  var chance = {high:55,medium:35, low:10};
-  var randIdent = Utils.randMath(0,100);
-  if (item.type instanceof Armor) {  var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist); }
-  if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range); }
-  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage); }
-  else { var retItem = new item.type(item.name, item.value, item.desc, item.icon); }
-  return retItem;
-}
 */
