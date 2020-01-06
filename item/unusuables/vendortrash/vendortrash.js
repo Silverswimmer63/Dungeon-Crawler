@@ -6,7 +6,7 @@ trash items
 @param value {number} the value of the item
 @param type {string} either the name of the collection the item belings to or trash*/
 class VendorTrash extends Item {
-  constructor(name, icon, desc, value, type){
-    super(name, icon, desc, value, type);
+  constructor(name, icon, desc, value, type, level){
+    super(name, icon, desc, value, type, level);
   }
 }

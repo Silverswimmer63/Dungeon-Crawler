@@ -66,3 +66,14 @@ function randomItem(level) {
     }
   }
 }
+
+function _makeItem(){
+   var index = Utils.randMath(0, allItems.length - 1);
+   var item = allItems[index];
+   if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist, item.level) }//inherits off; Armor will check all o them. INHERITANCE
+   if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range, item.level) }
+   if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level) }
+   if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level) }
+   else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.level) }
+   return retItem;
+}
