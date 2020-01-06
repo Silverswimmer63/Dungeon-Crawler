@@ -221,7 +221,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 0,
     desc: "The only weapon a man needs",
-    damage: {min:2, max:5,type:"normal"},
+    damage: {min:2, max:5,type:"Normal"},
     icon: "/",
     level: 1
   },
@@ -469,90 +469,103 @@ const COMPLETE_LOOT_LIST = [
     type: VendorTrash,
     value: 2,
     desc: "A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Mysterious Arrow",
     type: VendorTrash,
     value: 15,
     desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"elven wood dish",
     type: VendorTrash,
     value: 10,
     desc:"Wait elves don't use wood for anything. What heresy is this?",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Gomboi SP blue edition",
     type: VendorTrash,
     value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"A copy of The Ancient Solitary Reign",
     type: VendorTrash,
     value: 15,
     desc:"A comprehensive guide to the Mating/Breeding habits of Owls disguised as a young adult novel",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Shopkeeper's fanfiction",
     type: VendorTrash,
     value: 29,
     desc:"A copy of one of the shopkeeper's fanfiction. It is filled with bad grammer, metaphors,and a weird substance",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"TekWar",
     type: VendorTrash,
     value: 20,
     desc:"A Copy of TekWar by CapStone: the pinnicle of entertainment software",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"dung",
     type: VendorTrash,
     value: 1,
     desc:"What do you think it is?",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"The bee movie script",
     type: VendorTrash,
     value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"toy knife",
     type: VendorTrash,
     value: 12,
     desc: "A normal plastic toy knife. It does no damage yet somehow it was recalled because it could inspire hate or whatever",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Mike's Mouse's trophy",
     type:VendorTrash,
     value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"The Mona Lisa",
     type: VendorTrash,
     value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {name:"H  O  N  K",
  type: VendorTrash,
  value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
- icon:"V"
+ icon:"V",
+ level:0
 },
 ]
 
