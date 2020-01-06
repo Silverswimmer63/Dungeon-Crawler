@@ -72,7 +72,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 5,
     desc: "The most basic level armor that all beginners should have. Moo-moo cows have died for this sole purpose of protecting you!",
     icon: "&",
-    damageResist:0.1,
+    damageresist:0.1,
     level: 0
   },
   {
@@ -81,7 +81,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 10,
     desc: "When we designed this unique piece of armor, we thought 'Why not copy Minecraft?'.' Oh yeah, this also protects you better than moo-moo cows, I guess",
     icon: "&",
-    damageResist:0.2,
+    damageresist:0.2,
     level: 0
   },
   {
@@ -90,7 +90,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 15,
     desc: "This was forged the fiery forges of Hephaestus. He's the God of fire and he's good at building stuff I guess. Note: No Hephaestusus was harmed in the process.",
     icon: "&",
-    damageResist:0.3,
+    damageresist:0.3,
     level: 0
   },
   {
@@ -99,7 +99,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 20,
     desc: "We have two words for you: Copper and Tin. The heavenly blend of these 2 metal elements gives you a more of a luxury to protect yourself. Now you can tell monsters to watch out.",
     icon: "&",
-    damageResist:0.4,
+    damageresist:0.4,
     level: 1
   },
   {
@@ -108,7 +108,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 25,
     desc: "Despite being the most common element on Earth, stronger opponents will cower in fear (at first but then attack you, but you're good since you're using iron. Right?)",
     icon: "&",
-    damageResist:0.5,
+    damageresist:0.5,
     level: 1
   },
   {
@@ -117,7 +117,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 30,
     desc: "Why use steel for swords and weapons when you can use it for armor. Being the capitalists, I mean, innovators that we are, we brought you the best of worlds: Iron and Carbon",
     icon: "&",
-    damageResist:0.6,
+    damageresist:0.6,
     level: 1
   },
   {
@@ -126,7 +126,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 40,
     desc: "Silver is good for trading. But it's also good for flexing on other opponenets your high status when you purchase this. Oh and it's good for defending too.",
     icon: "&",
-    damageResist:0.7,
+    damageresist:0.7,
     level: 2
   },
   {
@@ -135,7 +135,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 50,
     desc: "We are running out of ideas and metals to exploit so we settled on our last, exciting, better armor. Platinum brings you the highest form of comfort, protection, and durability. Hey kids, don't waste your money on the new iPhone 11. Spend it on this armor!",
     icon: "&",
-    damageResist:0.8,
+    damageresist:0.8,
     level: 2
   }
 ]
@@ -221,7 +221,7 @@ const COMPLETE_MELEE_LIST = [
     type: Melee,
     value: 0,
     desc: "The only weapon a man needs",
-    damage: {min:2, max:5,type:"normal"},
+    damage: {min:2, max:5,type:"Normal"},
     icon: "/",
     level: 1
   },
@@ -469,90 +469,103 @@ const COMPLETE_LOOT_LIST = [
     type: VendorTrash,
     value: 2,
     desc: "A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Mysterious Arrow",
     type: VendorTrash,
     value: 15,
     desc:"Legends say that if you pierce yourself with the Arrow you will achive God-like Powers, or die",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"elven wood dish",
     type: VendorTrash,
     value: 10,
     desc:"Wait elves don't use wood for anything. What heresy is this?",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Gomboi SP blue edition",
     type: VendorTrash,
     value: 20,
     desc:"It all started 53 years ago, back when I was a fully grown little boy",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"A copy of The Ancient Solitary Reign",
     type: VendorTrash,
     value: 15,
     desc:"A comprehensive guide to the Mating/Breeding habits of Owls disguised as a young adult novel",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Shopkeeper's fanfiction",
     type: VendorTrash,
     value: 29,
     desc:"A copy of one of the shopkeeper's fanfiction. It is filled with bad grammer, metaphors,and a weird substance",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"TekWar",
     type: VendorTrash,
     value: 20,
     desc:"A Copy of TekWar by CapStone: the pinnicle of entertainment software",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"dung",
     type: VendorTrash,
     value: 1,
     desc:"What do you think it is?",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"The bee movie script",
     type: VendorTrash,
     value: 50,
     desc: "Yellow Black Yellow Black Yellow Black Yellow Black Ooh Black and Yellow let's shake it up a bit",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"toy knife",
     type: VendorTrash,
     value: 12,
     desc: "A normal plastic toy knife. It does no damage yet somehow it was recalled because it could inspire hate or whatever",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"Mike's Mouse's trophy",
     type:VendorTrash,
     value: 100,
     desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {
     name:"The Mona Lisa",
     type: VendorTrash,
     value: 30,
     desc:"The first time I saw her with hands on her knee HOW SHOULD I SAY THIS, I had a B@#&!)",
-    icon:"V"
+    icon:"V",
+    level:0
   },
   {name:"H  O  N  K",
  type: VendorTrash,
  value:12,
  desc:"The Honk-Mother sees all, May the Admin Gods Show mercy",
- icon:"V"
+ icon:"V",
+ level:0
 },
 ]
 
@@ -644,9 +657,3 @@ const COMPLETE_POTION_LIST = [
 ]
 var allItems = [];
 allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
-<<<<<<< Updated upstream
-
-
-
-=======
->>>>>>> Stashed changes

@@ -92,13 +92,13 @@ function _makeItem(){
            remains - (retAry[i].level+1);
           }
         }
-        
+
         if(remains == 0){return retAry;}
         if(Utils.randMath(0,max) > remains){return retAry}
          var goodItem = false;
           while(goodItem == false){
             var item = this._makeItem();
-        
+
               if(item.level+1 <= max){
                 retAry.push(item);
                 goodItem = true;
@@ -261,13 +261,13 @@ function randomFoe(level) {
            remains - (retAry[i].level+1);
           }
         }
-        
+
         if(remains == 0){return retAry;}
         if(Utils.randMath(0,max) > remains){return retAry;}
          var goodMon = false;
           while(goodMon == false){
             var mons = this._makeItem();
-        
+
               if(item.level+1 <= max){
                 retAry.push(mons);
                 goodMon = true;
@@ -341,7 +341,7 @@ function randomItem(lvl) {
     var highRand = Utils.randMath(0, high.length-1);
     var lowItem = low[lowRand];
     var medItem = medium[medRand];
-    
+
     if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
     if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
     if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }

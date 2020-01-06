@@ -6,8 +6,8 @@ is armor the player or mobs can wear
 @param value {int} the value of the item
 @param damageresist {int} the value of resistance armor can take*/
 class Head extends Armor {
-  constructor (name, icon, value, desc, damageresist){
-    super (name, icon, value, desc, damageresist);
+  constructor (name, type, value, icon, desc, damageresist, level){
+    super (name, type, value, icon, desc, damageresist, level);
   }
 toString(){
   var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
