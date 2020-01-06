@@ -1,5 +1,5 @@
 class Body extends Armor {
-  constructor (name, icon, value, desc, damageresist){
-  super (name, icon, value, desc, damageresist);
+  constructor (name, icon, value, desc, damageresist, level){
+  super (name, icon, value, desc, damageresist, level);
   }
 }

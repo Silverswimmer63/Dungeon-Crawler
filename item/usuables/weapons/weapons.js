@@ -1,6 +1,6 @@
 class Weapon extends Item{
-  constructor(name, icon, desc, value, type, damage){
-    super(name, icon, desc, value, type)
+  constructor(name, icon, desc, value, type, damage, level){
+    super(name, icon, desc, value, type, level)
     this._damage = damage;
   }
 
@@ -17,7 +17,7 @@ class Weapon extends Item{
   returns a user friendly line of text output to the screen
   @return {string} text for output to the screen
   */
-  
+
   text(){
     var retString = super.text();
     return retString;

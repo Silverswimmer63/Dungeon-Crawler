@@ -17,25 +17,34 @@ class Mob extends Living{
   set range(range){ this._range = range; }
 
   /*  attackDam()
+  takes the monters damages and durations
   @return {int} a number between damage.min and damage.max
   */
 
   attackDam(){
-    if()
-    if (status != "none"){
     if (status.type == "frozen") {
       return 0;
       }
+      if( "duration" in this.damage){
+        var dam = Utils.ranMath(this.damage.mon, this.damage.min);
+        return {damage:dam, type:this.damage.type, duration:this.damage.duration};
     }
-    else{ return Utils.randMath(this.damage.min, this.damage.max); }
+    return {damage:dam, type:this.damage.type};
   }
 
 /* takeDam()
 receives the damage to the object and checks if it is alive
-@param damage {int} a positive number
+@param damage {} a positive number
 */
   takeDam(damage){
-    this.hp = this.hp - damage;
+    if ((damage.type == "electricity")&&(this.status.type == "frozen")) {
+      this.hp = this.hp - Math.floor(damage.damage*1.5);
+    }else {
+      this.hp = this.hp - damage.damage;
+    }
+    if ("duration" in damage) {
+      this._status = damage;
+    }
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;
