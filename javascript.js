@@ -2,29 +2,29 @@
 function _makeItem(){
    var index = Utils.randMath(0, allItems.length - 1);
    var item = allItems[index];
-   if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
-   if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
-   if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-   if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-   else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
+   if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist, item.level) }//inherits off; Armor will check all o them. INHERITANCE
+   if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range, item.level) }
+   if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level) }
+   if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level) }
+   else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.level) }
    return retItem;
 }
   function randomItem(level){
     var max = level +1;
     var retAry = [];
-    if(Math.rand <= 0.1){max = level +2;}
+    if(Math.random(0.1) <= 0.1){max = level +2;}
       while(true){
          var remains = max;
         if(retAry.length != 0){
           for(var i = 0; i < retAry.length;i++){
-           retemains - (retAry[i].level+1);
+           remains - (retAry[i].level+1);
           }
         }
         
         if(remains == 0){return retAry;}
         if(Utils.randMath(0,max) > remains){return retAry}
          var goodItem = false;
-          while(!goodItem){
+          while(goodItem == false){
             var item = this._makeItem();
         
               if(item.level+1 <= max){
@@ -34,7 +34,12 @@ function _makeItem(){
           }
       }
   }
-function randomFoe() {
+  /* 8 Update randomFoe() so that it take a level. It should work exactly like randomItem() for this purpose.
+@param level {int}: the target level of the item
+@return {array} an array of objects of class Mob or that inherit class Mob
+*/
+
+function randomFoe(level) {
       var index = Utils.randMath(0, allMobs.length - 1);
      var mon = allMobs[index];
       var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
@@ -44,7 +49,31 @@ function randomFoe() {
   else{
         var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
       }
-      return retMon;
+          var max = level +1;
+    var retAry = [];
+    if(Math.random(0,1) <= 0.1){max = level +2;}
+      while(true){
+         var remains = max;
+        if(retAry.length != 0){
+          for(var i = 0; i < retAry.length;i++){
+           remains - (retAry[i].level+1);
+          }
+        }
+        
+        if(remains == 0){return retAry;}
+        if(Utils.randMath(0,max) > remains){return retAry;}
+         var goodMon = false;
+          while(goodMon == false){
+            var mons = this._makeItem();
+        
+              if(item.level+1 <= max){
+                retAry.push(mons);
+                goodMon = true;
+              }
+          }
+      }
+
+      return retAry;
 }
 
 /* 7 Update randomItem()

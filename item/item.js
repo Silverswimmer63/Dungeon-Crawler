@@ -7,7 +7,7 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value,status = "None", type="trash", level){
+  constructor(name, icon, desc, value,level,status = "None", type="trash"){
     this._name = name; //this shows the monsters' name.
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
