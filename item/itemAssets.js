@@ -644,6 +644,9 @@ const COMPLETE_POTION_LIST = [
 ]
 var allItems = [];
 allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
