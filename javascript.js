@@ -74,6 +74,7 @@
 function _makeItem(){
    var index = Utils.randMath(0, allItems.length - 1);
    var item = allItems[index];
+   var retItem = undefined;
    if (item.type == Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level) }
    else if (item.type == Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range, item.level) }
    else if ((item.type == Head)||(item.type == Body)||(item.type == Leg)) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist, item.level) }//inherits off; Armor will check all o them. INHERITANCE
