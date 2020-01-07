@@ -9,31 +9,16 @@ class Melee extends Weapon {
   constructor (name, icon, value, desc, damage, level){
   super (name, icon, value, desc, damage, level);
   }
-<<<<<<< HEAD
-
-  /*text()
-  returns a user frendly line of text for output to the screen
-  @return {string} text for output to the screen
-  */
-=======
     /*text()
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
->>>>>>> master
   text(){
     var retString = super.text();
     return retstring + " Is a weapon.";
   }
   toString(){
-<<<<<<< HEAD
-    var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-    retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-    return retStr
-  }
-=======
   var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
   retStr += "It can be described as: " + this.desc; + this.class + "it's a";
   return retStr;
->>>>>>> master
 }
 }

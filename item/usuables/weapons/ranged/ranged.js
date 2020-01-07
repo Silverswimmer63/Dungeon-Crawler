@@ -16,25 +16,11 @@ class Ranged extends Weapon {
   set range(range){ this._range = range}
 
   /*text()
-<<<<<<< HEAD
-  returns a user frendly line of text for output to the screen
-  @return {string} text for output to the screen
-  */
-  text(){
-    var retString = super.text();
-    return retstring;
-  }
-  toString(){
-    var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-    retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-    return retStr
-=======
   retturns a user friendly line of text for output to the screen
   @return {string} text for output to the screen*/
   text(){
     var retString = super.text();
     return retstring;
->>>>>>> master
   }
   toString(){
   var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";

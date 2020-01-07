@@ -14,20 +14,6 @@ class Weapon extends Item{
 
   get damage() { return this._damage; }
   set damage(damage) { this._damage = damage; }
-<<<<<<< HEAD
-
-  /*attackDam()
-  @return {int} a number between damage.min and damage.max
-  */
-  attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
-  }
-
-  /*text()
-  returns a user frendly line of text for output to the screen
-  @return {string} text for output to the screen
-  */
-=======
   /*attackDam()
   @return {int} a number between damage.min and damage.max*/
   attackDam(){ return Utils.randMath(this.damage.min, this.damage.max); }
@@ -37,7 +23,6 @@ text()
 returns a user friendly line of text for output to the screen
 @return {string} text for the output to the screen
 */
->>>>>>> master
   text(){
     var retString = super.text();
     return retString;
