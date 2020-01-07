@@ -548,7 +548,7 @@ const COMPLETE_LOOT_LIST = [
     name:"Mike's Mouse's trophy",
     type:VendorTrash,
     value: 100,
-    desc:"You did it! you seduced a giant frackin raconsole.log("Bowen.js linked");t, we hope you to have a long married life with lots of inbred human rat hybrids",
+    desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
     icon:"V",
     level:0
   },
