@@ -154,8 +154,8 @@ var retItem= new item.type(item.name, item.desc, item.value, item.icon, item.dam
 else{ var retItem = new item.type(item.name, item.desc, item.value, item.icon)
 }
   return retItem;
+ }
 }
-
 function randomItem(level) {
    var max = level+1
    var retAry = [];

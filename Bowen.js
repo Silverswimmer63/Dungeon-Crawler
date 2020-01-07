@@ -3,3 +3,4 @@ console.log("Bowen.js linked");
 
       return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  
