@@ -5,16 +5,16 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Stone Lion",
     icon:"M",
-    attackDam: {min: 10, max: 15} ,
+    attackDam: {min: 10, max: 15, types:"damage"} ,
     drop: "Leather Armor"
-  },
+  },/*added the types damage*/
   {
     name: "Girimehkala",
     type: Mythological,
     hp: 20,
     desc:"Elephant that has powers",
     icon:"M",
-    attackDam: {min: 10, max: 15},
+    attackDam: {min: 10, max: 15, types:"damage"},
     drop: "Chainmail Armor"
   },
   {
@@ -23,14 +23,14 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Half-man, half horse creatures.",
     icon:"M",
-    attackDam: {min: 10, max: 15},
+    attackDam: {min: 10, max: 15, types:"damage"},
     drop: "Bronze Armor",
     range: 0,
   },
   {
     name:"Minitar",
     hp: 70,
-    attackDam:{min:20, max:40},
+    attackDam:{min:20, max:40, types:"damage"},
     icon:"M",
     desc:"He's a sweetheart if you get to know him",
     type:NoMythological,
@@ -38,7 +38,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Areas",
     hp: 100,
-    attackDam:{min:30, max:54},
+    attackDam:{min:30, max:54, types:"damage"},
     icon:"A",
     desc:"He's always mad because he has daddy issues",
     type:NoMythological
@@ -49,7 +49,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Gremlin",
     hp: 10,
-    attackDam:{min:5, max:10},
+    attackDam:{min:5, max:10, types:"damage"},
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
@@ -57,7 +57,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"lemures",
     hp:10,
-    attackDam:{min:5, max:10},
+    attackDam:{min:5, max:10, types:"damage"},
     icon:"m",
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
@@ -66,7 +66,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Azeban",
     hp: 10,
-    attackDam:{min:5, max:10},
+    attackDam:{min:5, max:10, types:"damage"},
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
@@ -288,4 +288,4 @@ text(){
 */
 
 var allMobs = [];
-allMobs = allMobs.concat(COMPLETE_MythologicalIN_LIST, COMPLETE_No_MythologicalIN_LIST, COMPLETE_Cowboy_LIST, COMPLETE_NoCowboy_LIST, COMPLETE_Inventory_SPACE_LIST, COMPLETE_Nospace_LIST)
+allMobs = allMobs.concat(COMPLETE_MYTHOLOGICAL_IN_LIST, COMPLETE_NO_MYTHOLOGICAL_IN_LIST, COMPLETE_COWBOY_LIST, COMPLETE_NO_COWBOY_LIST, COMPLETE_INVENTORY_SPACE_LIST, COMPLETE_NO_SPACE_LIST, COMPLETE_INVENTORY_BOSS_LIST)
