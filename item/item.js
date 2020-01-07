@@ -27,7 +27,7 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return this._icon; }
+  get icon(){ return "<span class='item'>" + this._icon; + "</span>";}
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
@@ -38,6 +38,12 @@ class Item {
 
   get type(){ return this._type; }
   set type(type){ this._type = type; }
+
+  get level(){ return this._level; }
+  set level(level){ this._level = level; }
+  /*text() returns a user frendly line of text for output of the screen
+  @return {strind} text for output of screen
+  */
 
   text(){
       var retString = this.name + "<br>";

@@ -2,10 +2,7 @@ class Mythological extends Inventory{
   constructor(name, type, hp, desc, icon, attackDam){
     super(name, type, hp, desc, icon, attackDam);
   }
-  text(){
-    var retString = super.text();
-    return retString;
-  }
+s
   /*text(){
     var retString = "This is " + this.name + "<br>";
     retString += "This monster is " + this.desc + "<br>";

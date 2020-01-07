@@ -63,8 +63,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     damageresist: .36,
     level: 2
   }
-]
-
+];
 const COMPLETE_ARMOR_BODY_LIST = [
   {
     name: "Leather Breastplate",
@@ -223,7 +222,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "The only weapon a man needs",
     damage: {min:2, max:5},
     icon: "/",
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Boxing Gloves",
@@ -232,7 +232,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "Just a littel pertection for the hands",
     damage: {min:4 ,max:10},
     icon:"/",
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Axe",
@@ -241,7 +242,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "A powerful weapon, used by those with great strength",
     damage:{min:20, max:50},
     icon: "/",
-    level: 2
+    level: 2,
+    status: bleed
   },
   {
     name: "Butcher Knife",
@@ -250,7 +252,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
     damage: {min:10, max:15},
     icon:"/",
-    level: 1
+    level: 1,
+    status: bleed
   },
   {
     name: "Broad Sword",
@@ -259,7 +262,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "A large blade, only those truely skilled have the ability to weild it properly",
     damage: {min:25, max:40},
     icon:"/",
-    level: 2
+    level: 2,
+    status: bleed
   },
   {
     name: "Stick",
@@ -268,7 +272,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "Just a normal stick , that you picked up off the floor, but it'll still hurt when hit by.",
     damage: {min:8, max:12},
     icon:"/",
-    level: 0
+    level: 0,
+    status: none
   },
   {
     name: "Club",
@@ -277,7 +282,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "A massive, unweildly weapon that only those with the mightiest strength can hold",
     damage: {min:14, max:32},
     icon:"/",
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Short Sword",
@@ -286,7 +292,8 @@ const COMPLETE_MELEE_LIST = [
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
     damage: {min:10, max:24},
     icon:"/",
-    level: 1
+    level: 1,
+    status: bleed
   }
 ]
 
@@ -299,7 +306,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 4,
     damage: {min:2, max:5},
-    level: 0
+    level: 0,
+    status: none
   },
   {
     name: "Fireworks",
@@ -309,7 +317,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 6,
     damage: {min:3, max:8},
-    level: 0
+    level: 0,
+    status: fire
   },
   {
     name: "Greek Bow",
@@ -319,7 +328,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 5,
     damage: {min:6, max:8},
-    level: 0
+    level: 0,
+    status: bleed
   },
   {
     name: "Trained Falcon",
@@ -329,7 +339,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 5,
     damage: {min:5, max:6},
-    level: 0
+    level: 0,
+    status: bleed
   },
   {
     name: "Magnetic Rocks",
@@ -339,7 +350,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 4,
     damage: {min:3, max:6},
-    level: 0
+    level: 0,
+    status: none
   },
   {
     name: "Rusty Revolver",
@@ -349,7 +361,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 6,
     damage: {min:8, max:12},
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Throwing Axe",
@@ -359,7 +372,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 2,
     damage: {min:16, max:24},
-    level: 1
+    level: 1,
+    status: bleed
   },
   {
     name: "Shootgun",
@@ -369,7 +383,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 4,
     damage: {min:20, max:26},
-    level: 1
+    level: 1,
+    status: bleed
   },
   {
     name: "Snake Lasso",
@@ -379,7 +394,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 5,
     damage: {min:24, max:26},
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Money Bag",
@@ -389,7 +405,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 4,
     damage: {min:26, max:28},
-    level: 1
+    level: 1,
+    status: none
   },
   {
     name: "Laser Pointer",
@@ -399,7 +416,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 10,
     damage: {min:28, max:34},
-    level: 2
+    level: 2,
+    status: fire
   },
   {
     name: "Hacking Laptop",
@@ -409,7 +427,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 6,
     damage: {min:30, max:32},
-    level: 2
+    level: 2,
+    status: lighning
   },
   {
     name: "Ray Gun",
@@ -419,7 +438,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 6,
     damage: {min:28, max:34},
-    level: 2
+    level: 2,
+    status: lightning
   },
   {
     name: "Fancy Future Rifle",
@@ -429,7 +449,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 8,
     damage: {min:34, max:36},
-    level: 2
+    level: 2,
+    status: none
   },
   {
     name: "Serrated Fedora",
@@ -439,7 +460,8 @@ const COMPLETE_RANGED_LiST = [
     icon: "L",
     range: 3,
     damage: {min:30, max:32},
-    level: 2
+    level: 2,
+    status: heal
   },
   {
     name: "Replica Mouse",
@@ -448,7 +470,8 @@ const COMPLETE_RANGED_LiST = [
     desc: "A replica of A fabled mouse one that shakes the strongest, boldest, and bravest men to the core. this is but a recreation of mikes computer mouse",
     icon: "L",
     range: 10,
-    damage: {min:40, max:60}
+    damage: {min:40, max:60},
+    status: lig
   },
   {
     name: "Mikes Controller",
@@ -457,7 +480,8 @@ const COMPLETE_RANGED_LiST = [
     desc: "The only thing powerful enough to even give you a chance at killing the beast",
     icon: "C",
     range: 16,
-    damage: {min:200, max:250}
+    damage: {min:200, max:250},
+    status: none
   }
 ]
 

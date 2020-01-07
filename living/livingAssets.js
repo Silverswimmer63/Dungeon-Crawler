@@ -7,7 +7,8 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15} ,
     drop: "Leather Armor",
-    Level: 0
+    Level: 0,
+    status: none
   },
   {
     name: "Girimehkala",
@@ -17,7 +18,8 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15},
     drop: "Chainmail Armor",
-    Level: 0
+    Level: 0,
+    status: none
   },
   {
     name: "Cenetur",
@@ -28,7 +30,8 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     attackDam: {min: 10, max: 15},
     drop: "Bronze Armor",
     range: 0,
-    Level: 0
+    Level: 0,
+    status: none
   }
 ]
 
@@ -40,7 +43,8 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
-    Level: 0
+    Level: 0,
+    status: none
   },
   {
     name:"lemures",
@@ -50,7 +54,8 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
     range: 0,
-    Level: 0
+    Level: 0,
+    status: none
   },
   {
     name:"Azeban",
@@ -59,7 +64,8 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
-    Level: 0
+    Level: 0,
+    status: none
   }
 ]
 
@@ -73,7 +79,8 @@ const COMPLETE_COWBOY_LIST = [
     attackDam: {max: 30, min:20},
     drop: "Leather Armor",
     range: 0,
-    Level: 1
+    Level: 1,
+    status: none
   },
   {
     name: "Drunk Man",
@@ -83,7 +90,8 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "Chainmail Armor",
-    Level: 1
+    Level: 1,
+    status: none
   },
   {
     name: "Outlaw",
@@ -93,7 +101,8 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "Bronze Armor",
-    Level: 1
+    Level: 1,
+    status: none
   }
 ]
 
@@ -106,7 +115,8 @@ const COMPLETE_NO_COWBOY_LIST = [
     icon:"M",
     attackDam: {min: 15, max: 30},
     range: 0,
-    Level: 1
+    Level: 1,
+    status: none
   },
   {
     name:"snek",
@@ -115,7 +125,8 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"I hate sneks",
     icon:"M",
     attackDam: {min: 15, max: 30},
-    Level: 1
+    Level: 1,
+    status: none
   },
   {
     name:"Angry cow",
@@ -124,7 +135,8 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"(A series of angry moos that corilate unto one word)...Moo!",
     attackDam: {min: 15, max: 30},
     icon:"M",
-    Level: 1
+    Level: 1,
+    status: none
   }
 ]
 
@@ -137,7 +149,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50},
     drop: "Chainmail Armor",
-    Level: 2
+    Level: 2,
+    status: none
   },
   {
     name: "Knife Roomba",
@@ -147,7 +160,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50},
     drop: "Copper Armor",
-    Level: 2
+    Level: 2,
+    status: none
   },
   {
     name: "Self-Driving Cars",
@@ -157,7 +171,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50},
     drop: "Bronze Armor",
-    Level: 2
+    Level: 2,
+    status: none
   }
   ]
 
@@ -170,7 +185,8 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45},
     range: 0,
-    Level: 2
+    Level: 2,
+    status: none
   },
   {
     name: "Rouge Alexa",
@@ -180,7 +196,8 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45},
     range: 0,
-    Level: 2
+    Level: 2,
+    status: none
   },
   {
     name: "Cyber Bully",
@@ -190,7 +207,8 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max: 45},
     range: 0,
-    Level: 2
+    Level: 2,
+    status: none
   },
 ]
 
@@ -201,7 +219,8 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
     icon: "$",
     attackDam: {min: 75, max: 80},
-    drop: "Silver Armor"
+    drop: "Silver Armor",
+    status: none
   },
   {
     name: "Tech Support",
@@ -209,7 +228,8 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     hp: 130,
     desc: "Cannot actually help you, just keeps you on hold for an hour.",
     icon: "$",
-    attackDam: {min: 35, max: 45}
+    attackDam: {min: 35, max: 45},
+    status: none
   },
   {
     name: "Sherif",
@@ -219,6 +239,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "",
+    status: none
   },
   {
     name: "Oil tycoon",
@@ -228,6 +249,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20},
     drop: "",
+    status: none
   },
   {
     name:"Minitar",
@@ -236,6 +258,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     icon:"M",
     desc:"He's a sweetheart if you get to know him",
     type:Mythological,
+    status: none
   },
   {
     name:"Areas",
@@ -243,7 +266,8 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     attackDam:{min:30, max:54},
     icon:"A",
     desc:"He's always mad because he has daddy issues",
-    type:Mythological
+    type:Mythological,
+    status: none
   }
 ]
 //can you see this?

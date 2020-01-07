@@ -33,3 +33,13 @@ class Living {
     return this.desc;
   }
 }
+
+var obj = {
+  log: ['', '', ''],
+  get latest() {
+    if (this.log.length == 0) {
+      return undefined;
+    }
+    return this.log[this.log.length - 1];
+  }
+}
