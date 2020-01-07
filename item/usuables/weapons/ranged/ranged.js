@@ -7,15 +7,9 @@ is the basis for all melee weapons
 @param damage {int} the value of damage a weapon does
 @param range {int} the value of the range of a weapon*/
 class Ranged extends Weapon {
-<<<<<<< HEAD
-  constructor (name, icon, value, desc, damage, level, range){
-  super (name, icon, value, desc, damage, level);
-    this._range = range;//Creates a range value that is how far the weapon can shoot
-=======
   constructor (name, icon, desc, value, type, damage, range, level){
   super (name, icon, desc, value, type, damage, level);
     this._range = range;
->>>>>>> master
   }
 
   get range(){ return this._range; }

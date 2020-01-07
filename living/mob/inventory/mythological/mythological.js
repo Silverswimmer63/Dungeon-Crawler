@@ -17,10 +17,5 @@ class Mythological extends Inventory{
   text(){
     var retString = super.text();
     return retString;
-<<<<<<< HEAD
- }
-
-=======
   }
->>>>>>> master
 }

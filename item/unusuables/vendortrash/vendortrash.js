@@ -2,14 +2,6 @@
 class VendorTrash extends Item {
   constructor(name, icon, desc, value, type, level){
     super(name, icon, desc, value, type, level);
-<<<<<<< HEAD
-  }
-  toString(){
-    var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-    retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-    return retStr
-=======
->>>>>>> master
   }
 }
 // name: this shows the monsters' name.

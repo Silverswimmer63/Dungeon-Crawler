@@ -1,4 +1,4 @@
-//Class Inventory is for mobs that have an inventory 
+//Class Inventory is for mobs that have an inventory
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, drop){
     super(name, type, hp, desc, icon, attackDam);
@@ -25,18 +25,6 @@ class Inventory extends Mob{
   }
   }
 
-<<<<<<< HEAD
-  /*
-  add(item)
-  puts adn item in an inventory
-  @param {object} an object inherits from a class*/
-
-  add(item){
-    if(Array.isArray(item) == true){
-      for(var i=0; i<item.length; i++){
-        this._inventory.push(item[i]);
-      }
-=======
   /*add(item)
   puts a item in a Inventory
   @param item {object an object it inherents from class item
@@ -55,7 +43,6 @@ the _inventory as multiple things. The _inventory is an array as well. The inven
   add(item){
     if (Array.isArray(item)) {
       this._inventory.push(item);
->>>>>>> master
     }
     else{
       this._inventory.push(item);

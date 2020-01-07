@@ -21,26 +21,6 @@ class Mob extends Living{
   /*attackDam()
   @return {int} a number between damage.min and damage.max*/
 
-<<<<<<< HEAD
-  get range(){ return this._range; }
-  set range(range){ this._range = range; }
-
-
-  /*attackDam()
-  @return {int} a number between damage.min and damage.max
-  */
-  attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
-    }
-  /*
-   takeDam() receives the damage to the ghp and checks to see if you are alive or not
-   @param damage {int} pos whole #
-   @return {int}
-    */
-  takeDam(damage){
-    if(status !== none){
-
-=======
   /* attackDam()
   @return {int} a number between damage.min and damage.max
   */
@@ -69,7 +49,6 @@ class Mob extends Living{
       this.hp = this.hp - Math.floor(damage.damage*1.5);
     }else {
       this.hp = this.hp - damage;
->>>>>>> master
     }
     if ("duration" in damage) {
       this._status = damage;
