@@ -6,12 +6,19 @@ is the basis for all melee weapons
 @param value {int} the value of the item
 @param damage {int} the value of damage a weapon does*/
 class Melee extends Weapon {
+<<<<<<< HEAD
   constructor (name, icon, value, desc, damage, level){
   super (name, icon, value, desc, damage, level);
+=======
+  constructor (name, icon, desc, value, type, damage, level){
+  super (name, icon, desc, value, type, damage, level);
+>>>>>>> master
   }
-    /*text()
-  retturns a user friendly line of text for output to the screen
-  @return {string} text for output to the screen*/
+
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
+  */
   text(){
     var retString = super.text();
     return retstring + " Is a weapon.";
