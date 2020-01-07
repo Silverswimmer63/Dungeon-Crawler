@@ -85,22 +85,21 @@ function _makeItem(){
   function randomItem(level){
     var max = level +1;
     var retAry = [];
-    if(Math.random(0.1) <= 0.1){max = level +2;}
+    if(Math.random() <= 0.2){max = level +2;}
+    var remains = max;
       while(true){
-         var remains = max;
         if(retAry.length != 0){
           for(var i = 0; i < retAry.length;i++){
-           remains - (retAry[i].level+1);
+           remains -= (retAry[i].level+1);
           }
         }
 
         if(remains == 0){return retAry;}
         if(Utils.randMath(0,max) > remains){return retAry}
          var goodItem = false;
-          while(goodItem == false){
+          while(!goodItem == false){
             var item = this._makeItem();
-
-              if(item.level+1 <= max){
+              if(item.level+1 <= remains){
                 retAry.push(item);
                 goodItem = true;
               }
