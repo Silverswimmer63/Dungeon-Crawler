@@ -47,12 +47,12 @@ function randomItem(level) {
   var max = level + 1;
   var retArr = [];
   if (Math.random() <= .2){max = level + 2}
+  var rem = max;
   while (true) {
-    var rem = max;
-    if (retArr != 0) {
+    if (retArr.length != 0) {
       var item = makeItem();
       for (var i = 0; i < retArr.length; i++) {
-        rem - (retArr[i].level + 1);
+        rem -= (retArr[i].level + 1);
       }
       if (rem == 0) {return retArr}
       if (Utils.randomMath(0,max) > rem) {return retArr}
