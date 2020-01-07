@@ -40,7 +40,7 @@ class Living {
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen
   */
-  text(){
+
 
   text(){
     return this.desc + "<br>";
