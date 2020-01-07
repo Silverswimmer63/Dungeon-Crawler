@@ -1,7 +1,7 @@
 /*VendorTrash*/
 class VendorTrash extends Item {
-  constructor(name, icon, desc, value, type){
-    super(name, icon, desc, value, type);
+  constructor(name, icon, desc, value, type, level){
+    super(name, icon, desc, value, type, level);
   }
 }
 // name: this shows the monsters' name.

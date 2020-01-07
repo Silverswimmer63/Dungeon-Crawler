@@ -1,3 +1,4 @@
+
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
 @param name {string} the name of the item
@@ -7,12 +8,13 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value, type="trash"){
-    this._name = name; //this shows the monsters' name.
+  constructor(name, icon, desc, value, type="trash", level){
+    this._name = name;
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
-    this._value = value; // this is how many gold coins you would need to pay for this item
-    this._type = type; // this determines what kind the item is. For example, you can see if it is armor, weapon, (vendor trash?) or potions.
+    this._value = value;
+    this._type = type; // if the item is in a collection or trash
+    this._level = level;// a integer for the level
 
   }
   /**************************************** Getter and Setters *********************************/
@@ -23,7 +25,7 @@ class Item {
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
-  set (desc){ this._desc = desc; }
+  set desc(desc){ this._desc = desc; }
 
   get value(){ return this._value; }
   set value(value){ this._value = value; }
@@ -31,10 +33,12 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
-  /*
-  text()
-  returns a user friendly line of text for output to the screen
-  @return {string} text for the output to the screen
+  get level(){return this._level; }
+  set level(level){this._level = level; }
+
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
   */
   text(){
       var retString = this.name + "<br>";
