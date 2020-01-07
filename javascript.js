@@ -165,7 +165,7 @@ while (true) {
    var remains = max;
 if (retAry.length!= 0) {
  for (var i = 0; i < retAry.length; i++) {
-  remains = (retAry(i).level+1);
+  remains -= (retAry(i).level+1);
    var item = this._makeItem();
   }
 if (remains == 0){return retAry;}
