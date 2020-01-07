@@ -1,5 +1,5 @@
 class Armor extends Item {
-  constructor (name, icon, value, desc, damageresist, level) {
+  constructor (name, type, value, desc, icon, damageresist, level) {
     super (name, icon, value, desc, level);
     this._damageresist = damageresist;
   }

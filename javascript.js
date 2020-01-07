@@ -111,9 +111,9 @@ array of the items.
 function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
-    if (item.type instanceof Armor) {var retItem = new item.type(item.name, item.value, item.desc, item.icon,item.damageresist);}
-    if (item.type instanceof Weapon) {var retItem = new item.type(item.name, item.value, item.desc, item.icon,item.damage, item.range);}
-    if (item.type instanceof Potion) {var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage);}
+     if (item.type instanceof Armor) {var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist, item.level);}
+    else if (item.type instanceof Weapon) {var retItem = new item.type(item.name, item.type, item.value, item.desc, item.damage, item.icon, item.range, item.level);}
+    else if (item.type instanceof Potion) {var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.level);}
       else { var retItem = new item.type(item.name, item.value, item.desc, item.icon);}
   return retItem;
 }
@@ -122,12 +122,12 @@ function _makeItem(){
 function randomItem(level){
   let max = level+1;
   let retArray = [];
-  if (Math.random() <= .1) {max = level +2; }
+  if (Math.random() <= .2) {max = level +2; }
+  var remains = max;
   while (true) {
-    var remains = max;
     if (retArray.length != 0) {
       for (var i = 0; i < retArray.length; i++) {
-        remains - (retArray[i].level+1);
+        remains -= (retArray[i].level+1);
       }
       if (remains == 0) {return retArray;}
       if (Utils.randMath(0,max) > remains) {return retArray;}
