@@ -1,3 +1,8 @@
+/*
+_makeItem()
+randomly generates an item from melee, ranged, armor, potion
+@return retItem {object}
+*/
 function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
@@ -32,6 +37,12 @@ function _makeFoe(){
   return retMon;
 }
 
+/*
+randomItem()
+
+@param {integer}
+@return {array}
+*/
 function randomItem(level){
   var max = level+1;
   var retAry = [];
