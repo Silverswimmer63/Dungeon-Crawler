@@ -110,10 +110,10 @@ When the target level is reached the array of the items is returned
 function _makeItem() {
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
-  if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damageresist); }
-  if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage, item.range); }
-  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.damage); }
-  else { var retItem = new item.type(item.name, item.value, item.desc, item.icon); }
+  if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.icon, item.value, item.desc, item.level, item.damageresist); }
+  if (item.type instanceof Weapon) { var retItem = new item.type(item.name, item.icon, item.value, item.type, item.level, item.damage); }
+  if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.icon, item.desc, item.value, item.level, item.damage); }
+  else { var retItem = new item.type(item.name, item.value, item.desc, item.icon, item.level); }
   return retItem;
 }
 

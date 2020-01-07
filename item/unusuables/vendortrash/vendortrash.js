@@ -1,6 +1,6 @@
 class VendorTrash extends Item {
-  constructor(name, icon, desc, value, type){
-    super(name, icon, desc, value, type);
+  constructor(name, icon, desc, value, type, level){
+    super(name, icon, desc, value, type, level);
   }
   toString(){
     var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
