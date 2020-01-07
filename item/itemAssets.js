@@ -4,7 +4,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 3,
     desc: "A simple hat for the early days",
     icon: "^",
-    damageresist:  0.06,
+    damageresist: 0.06,
     level: 0
   },
   { name: "Chain Mail Helmet",
@@ -12,7 +12,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "A strong but light armor that gives slight protection",
     icon: "^",
-    damageresist:  0.16,
+    damageresist: 0.16,
     level: 0
   },
   { name: "Copper Helmet",
@@ -20,7 +20,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "A good helmet that will serve you well",
     icon: "^",
-    damageresist:  0.26,
+    damageresist: 0.26,
     level: 0
   },
   { name: "Bronze Helmet",
@@ -28,7 +28,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "Better than Copper",
     icon: "^",
-    damageresist:  0.36,
+    damageresist: 0.36,
     level: 1
   },
   { name: "Iron Helmet",
@@ -36,7 +36,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "A good quality helmet that will protect your head from arrows",
     icon: "^",
-    damageresist:  0.46,
+    damageresist: 0.46,
     level: 1
   },
   { name: "Steel Helmet",
@@ -44,7 +44,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "Even better at not letting you die",
     icon: "^",
-    damageresist:  0.56,
+    damageresist: 0.56,
     level: 1
   },
   { name: "Silver Helmet",
@@ -52,7 +52,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "Almost the best",
     icon: "^",
-    damageresist:  0.36,
+    damageresist: 0.36,
     level: 2
   },
   { name: "Platinum Helmet",
@@ -60,7 +60,7 @@ const COMPLETE_HEAD_ARMOR_LIST = [
     value: 7,
     desc: "The best of the best",
     icon: "^",
-    damageresist:  0.36,
+    damageresist: 0.36,
     level: 2
   }
 ]
@@ -72,7 +72,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 5,
     desc: "The most basic level armor that all beginners should have. Moo-moo cows have died for this sole purpose of protecting you!",
     icon: "&",
-    damageresist: 0.1,
+    damageresist:0.1,
     level: 0
   },
   {
@@ -81,7 +81,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 10,
     desc: "When we designed this unique piece of armor, we thought 'Why not copy Minecraft?'.' Oh yeah, this also protects you better than moo-moo cows, I guess",
     icon: "&",
-    damageresist: 0.2,
+    damageresist:0.2,
     level: 0
   },
   {
@@ -90,7 +90,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 15,
     desc: "This was forged the fiery forges of Hephaestus. He's the God of fire and he's good at building stuff I guess. Note: No Hephaestusus was harmed in the process.",
     icon: "&",
-    damageresist: 0.3,
+    damageresist:0.3,
     level: 0
   },
   {
@@ -99,7 +99,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 20,
     desc: "We have two words for you: Copper and Tin. The heavenly blend of these 2 metal elements gives you a more of a luxury to protect yourself. Now you can tell monsters to watch out.",
     icon: "&",
-    damageresist:  0.4,
+    damageresist:0.4,
     level: 1
   },
   {
@@ -108,7 +108,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 25,
     desc: "Despite being the most common element on Earth, stronger opponents will cower in fear (at first but then attack you, but you're good since you're using iron. Right?)",
     icon: "&",
-    damageresist: 0.5,
+    damageresist:0.5,
     level: 1
   },
   {
@@ -117,7 +117,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 30,
     desc: "Why use steel for swords and weapons when you can use it for armor. Being the capitalists, I mean, innovators that we are, we brought you the best of worlds: Iron and Carbon",
     icon: "&",
-    damageresist: 0.6,
+    damageresist:0.6,
     level: 1
   },
   {
@@ -126,7 +126,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 40,
     desc: "Silver is good for trading. But it's also good for flexing on other opponenets your high status when you purchase this. Oh and it's good for defending too.",
     icon: "&",
-    damageresist: 0.7,
+    damageresist:0.7,
     level: 2
   },
   {
@@ -135,7 +135,7 @@ const COMPLETE_ARMOR_BODY_LIST = [
     value: 50,
     desc: "We are running out of ideas and metals to exploit so we settled on our last, exciting, better armor. Platinum brings you the highest form of comfort, protection, and durability. Hey kids, don't waste your money on the new iPhone 11. Spend it on this armor!",
     icon: "&",
-    damageresist: 0.8,
+    damageresist:0.8,
     level: 2
   }
 ]
@@ -147,7 +147,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 2,
     desc:"Low damege protection",
     icon:"<",
-    damageresist: 0.04 ,
+    damageresist:0.04 ,
     level: 0
   },
   {
@@ -156,7 +156,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 5,
     desc:"higher damege protection then Leather",
     icon:"<",
-    damageresist: 0.14,
+    damageresist:0.14,
     level: 0
   },
   {
@@ -165,7 +165,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 10,
     desc:"higher damege protection then ChainMail",
     icon:"<",
-    damageresist: 0.24,
+    damageresist:0.24,
     level: 0
   },
   {
@@ -174,7 +174,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 15,
     desc:"higher damege protection then Copper",
     icon:"<",
-    damageresist: 0.34,
+    damageresist:0.34,
     level: 1
   },
   {
@@ -183,7 +183,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 20,
     desc:"higher damege protection then Bronze",
     icon:"<",
-    damageresist: 0.44,
+    damageresist:0.44,
     level: 1
   },
   {
@@ -192,7 +192,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 25,
     desc:"higher damege protection then Iron",
     icon:"<",
-    damageresist: 0.54,
+    damageresist:0.54,
     level: 1
   },
   {
@@ -201,7 +201,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 33,
     desc:"higher damege protection then Steel",
     icon:"<",
-    damageresist: 0.64,
+    damageresist:0.64,
     level: 2
   },
   {
@@ -210,7 +210,7 @@ const COMPLETE_ARMOR_LIST= [
     value: 42,
     desc:"Max damege protection",
     icon:"<",
-    damageresist: 0.74,
+    damageresist:0.74,
     level: 2
   }
   ]
@@ -548,7 +548,7 @@ const COMPLETE_LOOT_LIST = [
     name:"Mike's Mouse's trophy",
     type:VendorTrash,
     value: 100,
-    desc:"You did it! you seduced a giant frackin rat, we hope you to have a long married life with lots of inbred human rat hybrids",
+    desc:"You did it! you seduced a giant frackin raconsole.log("Bowen.js linked");t, we hope you to have a long married life with lots of inbred human rat hybrids",
     icon:"V",
     level:0
   },

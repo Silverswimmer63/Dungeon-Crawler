@@ -9,9 +9,11 @@ class Melee extends Weapon {
   constructor (name, type, value, desc, icon, damage, level){
   super (name, type, value, desc, icon, damage, level);
   }
-    /*text()
-  retturns a user friendly line of text for output to the screen
-  @return {string} text for output to the screen*/
+
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
+  */
   text(){
     var retString = super.text();
     return retstring + " Is a weapon.";

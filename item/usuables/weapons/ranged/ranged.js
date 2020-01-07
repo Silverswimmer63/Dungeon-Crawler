@@ -16,8 +16,9 @@ class Ranged extends Weapon {
   set range(range){ this._range = range}
 
   /*text()
-  retturns a user friendly line of text for output to the screen
-  @return {string} text for output to the screen*/
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
+  */
   text(){
     var retString = super.text();
     return retstring;
