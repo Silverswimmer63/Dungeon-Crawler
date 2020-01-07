@@ -10,10 +10,14 @@ class Mob extends Living{
   @return {int} a number between damage.min and damage.max
   */
   attackDam(){
-    return Utils.randMath(this.damage.min, this.damage.max);
       if (this._status == "frozen") {
         return 0;
       }
+      if ("duration" in this.damage) {
+        var dam = Utils.randMath(this.damage.min, this.damage.max);
+        return {damage:dam, type:this.damage.type, duration:this.damage.duration};
+      }
+      return {damage:dam, type:this.damage.type};
   }
 
     get range(){ return this._range; }
@@ -24,7 +28,16 @@ class Mob extends Living{
   @param damage {int} a positive number
   */
   takeDam(damage){
-    this.hp = this.hp - damage;
+  /*  If there is a duration, then it should set the status of the monster to an
+    object that looks roughly like: {type: "frozen", duration: 5, damage: 5}*/
+    if ((damage.type == "electric")&&(this.status.type == "frozen")) {
+      this.hp = this.hp - Math.floor(damage.damage*1.5);
+    }else {
+      this.hp = this.hp - damage;
+    }
+    if ("duration" in damage) {
+      this._status = damage;
+    }
     if (this.hp <= 0) {
       this.alive = false;
       this.hp = 0;

@@ -1,11 +1,11 @@
 class Armor extends Item {
-  constructor (name, icon, value, desc, damageresist) {
-    super (name, icon, value, desc);
+  constructor (name, icon, desc, value, type, damageresist, level) {
+    super (name, icon, desc, value, type, level);
     this._damageresist = damageresist;
   }
   get damageresist(){ return this._damageresist; }
   set damageresist(damageresist){ this._damageresist = damageresist; }
-  
+
   /*text()
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen

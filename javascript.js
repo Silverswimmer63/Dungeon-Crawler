@@ -21,7 +21,7 @@ A. use instanceof to see IF the said monster's class inherits the inventory clas
 B. IF it does then once you have made the monster (but before you return it), use
 randomItem() to make an item. Then use the correct method from class Inventory to
 get that item for the inventory. */
-function randomFoe() {
+function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
@@ -31,6 +31,13 @@ function randomFoe() {
     var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
   }
   return retMon;
+}
+
+function randomFoe(level) {
+  var max = level+1;
+  if (this.inventory instanceof this._makeFoe()) {
+
+  }
 }
 /* 4 Make the function randomItem() in javascript.js
 We have a randomFoe() function, randomItem() will look a lot like randomFoe()
@@ -99,20 +106,76 @@ accepted, return the array of items.
 @return {array} an array of objects of class Item or that inherit class Item
 */
 
-function randomItem(){
+
+
+/*
+this is just the update for the randomItem function
+function randomItem(level){
+  while(something = true){
+  all the existing code goes here;
+  }
+  var max = level +1; this is just to test if it hit max
+  var smallChance = 1/3; this is so i can have a small chance of getting items
+  var bigChance = 2/3; this is so i can have a big chance of getting items
+
+  <----- these if are just to check the level so i can choose the chance ----->
+  if (level == 0) {
+
+  }
+  if (level == 1) {
+
+  }
+  if (level == 2)
+
+  }
+  if (level == 3) {
+
+  }
+*/
+//name, icon, desc, value, type="trash", level
+ function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
   var retItem = undefined;
-  if (item.type instanceof Weapon) {
-    retItem = new item.type(item.name,item.type,item.value,item.desc,item.damage,item.icon);
+  if ((item.type == Melee)||(item.type == Ranged)) {
+    if (item.type == Ranged) {
+      retItem = new item.type(item.name,item.icon,item.desc,item.value,item.type,item.damage, item.range, item.level);
+    }else {
+      retItem = new item.type(item.name,item.icon,item.desc,item.value,item.type,item.damage,item.level);
+    }
   }
-  if (item.type instanceof Armor) {
-    retItem = new item.type(item.name,item.type,item.value,item.desc,item.icon,item.damageresist);
+  else if ((item.type == Head)||(item.type == Body)||(item.type == Leg)) {
+    retItem = new item.type(item.name,item.icon,item.desc,item.value,item.type,item.damageresist,item.level);
   }
-  if (item.type instanceof Potion) {
-    retItem = new item.type(item.name,item.type,item.value,item.desc,item.icon,item.damage);
+  else if (item.type == Potion) {
+    retItem = new item.type(item.name,item.icon,item.desc,item.value,item.type,item.damage,item.level);
   }else {
-    retItem = new item.type(item.name,item.icon,item.des,item.value);
+    retItem = new item.type(item.name,item.icon,item.desc,item.value,item.type,item.level);
   }
   return retItem;
+}
+
+function randomItem(level){
+  var max = level+1;
+  var retAry = [];
+  if (Math.random() <= .2) {max = level +2;}
+  var remains = max;
+  while (true) {
+    if (retAry.length != 0) {
+      for (var i = 0; i < retAry.length; i++) {
+        remains -= (retAry[i].level+1);
+      }
+      if (remains == 0) {return retAry;}
+      if (Utils.randMath(0,max) > remains){return retAry;}
+      console.log(remains);
+    }
+    var goodItem = false;
+    while (!goodItem) {
+      var item = this._makeItem();
+      if (item.level+1 <= remains) {
+        retAry.push(item);
+        goodItem = true;
+      }
+    }
+  }
 }
