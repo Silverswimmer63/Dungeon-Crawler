@@ -5,7 +5,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Stone Lion",
     icon:"M",
-    attackDam: {min: 10, max: 15, type: "damage"} ,
+    attackDam: {min: 10, max: 15, type:"damage"} ,
     drop: "Leather Armor",
     Level: 0
   },
@@ -15,7 +15,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Elephant that has powers",
     icon:"M",
-    attackDam: {min: 10, max: 15, type: "damage"},
+    attackDam: {min: 10, max: 15, type:"damage"},
     drop: "Chainmail Armor",
     Level: 0
   },
@@ -25,7 +25,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Half-man, half horse creatures.",
     icon:"M",
-    attackDam: {min: 10, max: 15, type: "damage"},
+    attackDam: {min: 10, max: 15,type:"damage"},
     drop: "Bronze Armor",
     range: 0,
     Level: 0
@@ -36,7 +36,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Gremlin",
     hp: 10,
-    attackDam:{min:5, max:10, type: "damage"},
+    attackDam:{min:5, max:10, type:"damage"},
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
@@ -45,7 +45,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"lemures",
     hp:10,
-    attackDam:{min:5, max:10, type: "damage"},
+    attackDam:{min:5, max:10, type:"damage"},
     icon:"m",
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
@@ -55,7 +55,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
   {
     name:"Azeban",
     hp: 10,
-    attackDam:{min:5, max:10, type: "damage"},
+    attackDam:{min:5, max:10, type:"damage"},
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
@@ -70,7 +70,7 @@ const COMPLETE_COWBOY_LIST = [
     hp: 40,
     desc: "He wants to take all of you possessions: your money, your clothes, and your mouse",
     icon: "T",
-    attackDam: {max: 30, min:20, type: "damage"},
+    attackDam: {max: 30, min:20, type:"damage"},
     drop: "Leather Armor",
     range: 0,
     Level: 1
@@ -114,7 +114,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     hp:30,
     desc:"I hate sneks",
     icon:"M",
-    attackDam: {min: 15, max: 30, type:"damage"},
+    attackDam: {min: 15, max: 30,type:"damage"},
     Level: 1
   },
   {
@@ -168,7 +168,7 @@ const COMPLETE_NO_SPACE_LIST = [
     hp: 50,
     desc: "Dudes that look like terminator, but not as buff.",
     icon: "$",
-    attackDam: {min: 35, max:45, type:"bleeding"},
+    attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
     Level: 2
   },
@@ -232,7 +232,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
   {
     name:"Minitar",
     hp: 70,
-    attackDam:{min:20, max:40, type: "damage"},
+    attackDam:{min:20, max:40, type:"damage"},
     icon:"M",
     desc:"He's a sweetheart if you get to know him",
     type:Mythological,
@@ -247,13 +247,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
   }
 ]
 //can you see this?
-/*
-text(){
-  var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
-  retString += " Oh look, it dropped a " + this.drop + "<br>";
-  return retString;
-}
-*/
+
 
 var allMobs = [];
 allMobs = allMobs.concat(COMPLETE_MYTHOLOGICAL_IN_LIST, COMPLETE_NO_MYTHOLOGICAL_IN_LIST, COMPLETE_COWBOY_LIST, COMPLETE_NO_COWBOY_LIST, COMPLETE_INVENTORY_SPACE_LIST, COMPLETE_NO_SPACE_LIST)

@@ -335,7 +335,7 @@ const COMPLETE_RANGED_LIST = [
     name: "Magnetic Rocks",
     type: Ranged,
     value: 8,
-    desc: "There cool… fun to play with… hurts when someone throws them at you",
+    desc: "There cool... fun to play with... hurts when someone throws them at you",
     icon: "L",
     range: 4,
     damage: {min:3, max:6,type:"Normal"},

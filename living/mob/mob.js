@@ -1,46 +1,54 @@
+
+/*
+Class Mob
+@param Name {str}: is name of mob or enemy
+@param type {str}: is type of the mob
+@param hp {int}: health of the mob
+@param desc {str}: description of the enemy/mob
+@param icon {str}: is the icon of the enemy
+@param attackDam {int}: the damage that the enemy/mob does
+*/
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam, status){
+  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
-    this._alive = true;
-    this._status = none;
-}
-  get status(){ return this._status; }
-
-
-  get icon(){ return "<span class='mob'>" + this._icon; + "</span>" }
-  set icon(icon){ this._icon = icon; }
-
-  get alive(){ return this._alive; }
+    this._alive = true; // this sets the character/hero as alive
+  }
+  get alive(){ return this._alive;}
   set alive(alive){ this._alive = true; }
-
   get range(){ return this._range; }
   set range(range){ this._range = range; }
 
-  /*  attackDam()
-  takes the monters damages and durations
+  /*attackDam()
+  @return {int} a number between damage.min and damage.max*/
+
+  /* attackDam()
   @return {int} a number between damage.min and damage.max
   */
-
   attackDam(){
-    if (status.type == "frozen") {
-      return 0;
+      if (this._status == "frozen") {
+        return 0;
       }
-      if( "duration" in this.damage){
-        var dam = Utils.ranMath(this.damage.mon, this.damage.min);
+      if ("duration" in this.damage) {
+        var dam = Utils.randMath(this.damage.min, this.damage.max);
         return {damage:dam, type:this.damage.type, duration:this.damage.duration};
-    }
-    return {damage:dam, type:this.damage.type};
+      }
+      return {damage:dam, type:this.damage.type};
   }
 
-/* takeDam()
-receives the damage to the object and checks if it is alive
-@param damage {} a positive number
-*/
+    get range(){ return this._range; }
+    set range(range){ this._range = range; }
+
+  /*takeDam(damage)
+  recieves the damage to the object and checks if it is dead
+  @param damage {int} a positive number
+  */
   takeDam(damage){
-    if ((damage.type == "electricity")&&(this.status.type == "frozen")) {
+  /*  If there is a duration, then it should set the status of the monster to an
+    object that looks roughly like: {type: "frozen", duration: 5, damage: 5}*/
+    if ((damage.type == "electric")&&(this.status.type == "frozen")) {
       this.hp = this.hp - Math.floor(damage.damage*1.5);
     }else {
-      this.hp = this.hp - damage.damage;
+      this.hp = this.hp - damage;
     }
     if ("duration" in damage) {
       this._status = damage;
@@ -51,11 +59,10 @@ receives the damage to the object and checks if it is alive
     }
   }
 
-  /* text()
-  returns a user friendly line of text output to the screen
-  @return {string} text for output to the screen
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
   */
-
   text(){
     if (!alive){
       var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";

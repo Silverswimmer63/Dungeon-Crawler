@@ -1,10 +1,3 @@
-/*
-{1.name:"Crunched up energy drink", //namem, should be a string
- 5.type: VenderTrash, //does this need to be a class? could be a boll or string
- 4.value:2, //should be a number
- 3.desc:"A smashed and abused can of Ketamine-infused energy. There are only droplets left but it is not enough to satisfy your crippling addiction", //shoud be a long string
- 2.icon:","} // should be a single item string
-*/
 
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
@@ -15,24 +8,24 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, type, value, desc, icon, level){
+  constructor(name, icon, desc, value, type="trash", level){
     this._name = name;
-    this._icon = icon; // the singlr character that shows up on the map
+    this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
     this._value = value;
     this._type = type; // if the item is in a collection or trash
-    this._level = level;
+    this._level = level;// a integer for the level
 
   }
   /*********************** Getter and Setters *****************************/
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return "<span class='item'>" + this._icon + "</span>"; } // a single character
+  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
-  set (desc){ this._desc = desc; }
+  set desc(desc){ this._desc = desc; }
 
   get value(){ return this._value; }
   set value(value){ this._value = value; }
@@ -40,12 +33,12 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
-  get level(){ return this._level; }
-  set level(level){ this._level = level; }
+  get level(){return this._level; }
+  set level(level){this._level = level; }
 
-  /* text()
-  returns a user friendly line of text output to the screen
-  @return {string} text for output to the screen
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
   */
   text(){
       var retString = this.name + "<br>";
