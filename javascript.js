@@ -2,7 +2,8 @@ console.log(Kade.js linked);
 /*
 _makeItem()
 randomly generates an item from melee, ranged, armor, potion
-@return retItem {object}
+checks to see if the item is melee, ranged, armor, or potions and then the keys are changed accordingly for each different class.
+@return retItem {object} Gives the keys and the values for the randomly generated class item.
 */
 function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
@@ -26,6 +27,12 @@ function _makeItem(){
   return retItem;
 }
 
+/*
+_makeFoe()
+randomly generates monsters
+assigns keys and values to the monster
+@retMon {obkect} Returns the keys and values for the randomly generated monsters
+*/
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
@@ -40,9 +47,10 @@ function _makeFoe(){
 
 /*
 randomItem()
-
-@param {integer}
-@return {array}
+Checks your assigned level and gives back the appropriate leveled items for the hero.
+Based on chance, you will rarely get level items higher than what you are and most of the time your level item or lower.
+@param {integer} Gives the number of 0, 1, and 2.
+@return {array} Returns the items for the associated levels
 */
 function randomItem(level){
   var max = level+1;
