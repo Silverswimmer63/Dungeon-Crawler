@@ -46,6 +46,6 @@ class Living {
     return this.desc + "<br>";
   }
   toString(){
-    return this.desc;
+    return this.icon;
   }
 }

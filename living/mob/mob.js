@@ -12,11 +12,14 @@ class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
     this._alive = true; // this sets the character/hero as alive
+        this._icon = icon;
   }
   get alive(){ return this._alive;}
   set alive(alive){ this._alive = true; }
   get range(){ return this._range; }
   set range(range){ this._range = range; }
+  get icon(){ return "<spam class = 'mob'>" + this._icon + "</spam>"; }
+  set icon(icon){ this._icon = icon; }
 
   /*attackDam()
   @return {int} a number between damage.min and damage.max*/
@@ -72,5 +75,8 @@ class Mob extends Living{
     retString += " It does " + this.damage + " damage.<br>";
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
+  }
+  toString(){
+    return "<span style=\"color:red\">" + this.icon +"</span>";
   }
 }

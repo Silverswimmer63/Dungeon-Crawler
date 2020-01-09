@@ -4,7 +4,9 @@ is the basis of all types of armor
 @param icon {string} the single character that shows up on the map
 @param desc {string} the description of the item
 @param value {int} the value of the item
-@param damageresist {int} the value of resistance armor can take*/
+@param damageresist {int} the value of resistance armor can take
+@param level {int} the level of the item
+*/
 class Armor extends Item {
   constructor (name, icon, desc, value, type, damageresist, level) {
     super (name, icon, desc, value, type, level);
