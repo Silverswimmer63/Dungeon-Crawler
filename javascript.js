@@ -14,8 +14,6 @@
     return retItem;
 }*/
 
-
-
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array.
 This will take some explaining, so please read the rational below fully before the instructions.
@@ -90,9 +88,6 @@ but will be for items. This item should use the unified loot variable to pick an
 the correct object information. */
 //TEST THIS
 
-
-
-
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array. This will take some
  explaining, so please read the rational below fully before the instructions.
@@ -140,8 +135,6 @@ accepted, return the array of items.
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
-
-
 
 /*
 this is just the update for the randomItem function
