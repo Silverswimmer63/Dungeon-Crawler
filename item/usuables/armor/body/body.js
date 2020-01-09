@@ -6,7 +6,7 @@ is armor the player or mobs can wear
 @param value {int} the value of the item
 @param damageresist {int} the value of resistance armor can take*/
 class Body extends Armor {
-  constructor (name, icon, value, desc, damageresist, level){
-  super (name, icon, value, desc, damageresist, level);
+  constructor (name, icon, desc, value, type, damageresist, level){
+  super (name, icon, desc, value, type, damageresist, level);
   }
 }

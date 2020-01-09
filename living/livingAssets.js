@@ -6,7 +6,8 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     desc:"Stone Lion",
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"} ,
-    drop: "Leather Armor"
+    drop: "Leather Armor",
+    Level: 0
   },
   {
     name: "Girimehkala",
@@ -15,7 +16,8 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     desc:"Elephant that has powers",
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"},
-    drop: "Chainmail Armor"
+    drop: "Chainmail Armor",
+    Level: 0
   },
   {
     name: "Cenetur",
@@ -23,25 +25,10 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     hp: 20,
     desc:"Half-man, half horse creatures.",
     icon:"M",
-    attackDam: {min: 10, max: 15, type:"damage"},
+    attackDam: {min: 10, max: 15,type:"damage"},
     drop: "Bronze Armor",
     range: 0,
-  },
-  {
-    name:"Minitar",
-    hp: 70,
-    attackDam:{min:20, max:40, type:"damage"},
-    icon:"M",
-    desc:"He's a sweetheart if you get to know him",
-    type:NoMythological,
-  },
-  {
-    name:"Areas",
-    hp: 100,
-    attackDam:{min:30, max:54, type:"damage"},
-    icon:"A",
-    desc:"He's always mad because he has daddy issues",
-    type:NoMythological
+    Level: 0
   }
 ]
 
@@ -53,6 +40,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
+    Level: 0
   },
   {
     name:"lemures",
@@ -62,6 +50,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
     range: 0,
+    Level: 0
   },
   {
     name:"Azeban",
@@ -70,6 +59,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
+    Level: 0
   }
 ]
 
@@ -83,6 +73,7 @@ const COMPLETE_COWBOY_LIST = [
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Leather Armor",
     range: 0,
+    Level: 1
   },
   {
     name: "Drunk Man",
@@ -92,6 +83,7 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Chainmail Armor",
+    Level: 1
   },
   {
     name: "Outlaw",
@@ -101,24 +93,7 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Bronze Armor",
-  },
-  {
-    name: "Sherif",
-    type: Cowboy,
-    hp: 100,
-    desc: "One day from retirment and his first day on the job",
-    icon: "T",
-    attackDam: {max: 30, min:20, type:"damage"},
-    drop: "",
-  },
-  {
-    name: "Oil tycoon",
-    type: Cowboy,
-    hp: 130,
-    desc: "Big business can aford big guns.",
-    icon: "T",
-    attackDam: {max: 30, min:20, type:"damage"},
-    drop: "",
+    Level: 1
   }
 ]
 
@@ -131,6 +106,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     icon:"M",
     attackDam: {min: 15, max: 30, type:"damage"},
     range: 0,
+    Level: 1
   },
   {
     name:"snek",
@@ -138,7 +114,8 @@ const COMPLETE_NO_COWBOY_LIST = [
     hp:30,
     desc:"I hate sneks",
     icon:"M",
-    attackDam: {min: 15, max: 30, type:"damage"},
+    attackDam: {min: 15, max: 30,type:"damage"},
+    Level: 1
   },
   {
     name:"Angry cow",
@@ -146,7 +123,8 @@ const COMPLETE_NO_COWBOY_LIST = [
     hp:30,
     desc:"(A series of angry moos that corilate unto one word)...Moo!",
     attackDam: {min: 15, max: 30, type:"damage"},
-    icon:"M"
+    icon:"M",
+    Level: 1
   }
 ]
 
@@ -158,7 +136,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     desc: "All generic futuristic space video games have untamable robots, so why we do the same thing. These are deadly bois that are fun to fight.",
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
-    drop: "Chainmail Armor"
+    drop: "Chainmail Armor",
+    Level: 2
   },
   {
     name: "Knife Roomba",
@@ -167,7 +146,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     desc: "In this world, Roombas are tired of cleaning up things that humans are too lazy to do. Now these bloodthirsty are ready to spill your blood and then clean it up.",
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
-    drop: "Copper Armor"
+    drop: "Copper Armor",
+    Level: 2
   },
   {
     name: "Self-Driving Cars",
@@ -176,23 +156,8 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     desc: "That classic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
-    drop: "Bronze Armor"
-  },
-  {
-    name: "Steve Jobs", type: Space,
-    hp: 160,
-    desc: "Our beloved iPhone and Windows creator is bringing back something more than a new line of the same iPhone and Windows tech support: vengeance and an unquenchable thirst for blood. But mostly vengeance since you're not buying his insanely high priced iPhones or install the Windows 10 when we clearly ask you to update and restart your computer without closing the computer.",
-    icon: "$",
-    attackDam: {min: 75, max: 80, type:"damage"},
-    drop: "Silver Armor"
-  },
-  {
-    name: "Tech Support",
-    type: Nospace,
-    hp: 130,
-    desc: "Cannot actually help you, just keeps you on hold for an hour.",
-    icon: "$",
-    attackDam: {min: 35, max: 45, type:"damage"},
+    drop: "Bronze Armor",
+    Level: 2
   }
   ]
 
@@ -205,6 +170,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
+    Level: 2
   },
   {
     name: "Rouge Alexa",
@@ -214,6 +180,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
+    Level: 2
   },
   {
     name: "Cyber Bully",
@@ -223,6 +190,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max: 45, type:"damage"},
     range: 0,
+    Level: 2
   },
 ]
 
@@ -241,7 +209,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     hp: 130,
     desc: "Cannot actually help you, just keeps you on hold for an hour.",
     icon: "$",
-    attackDam: {min: 35, max: 45, type:"damage"},
+    attackDam: {min: 35, max: 45, type:"damage"}
   },
   {
     name: "Sherif",
@@ -279,13 +247,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
   }
 ]
 //can you see this?
-/*
-text(){
-  var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
-  retString += " Oh look, it dropped a " + this.drop + "<br>";
-  return retString;
-}
-*/
+
 
 var allMobs = [];
-allMobs = allMobs.concat(COMPLETE_MYTHOLOGICAL_IN_LIST, COMPLETE_NO_MYTHOLOGICAL_IN_LIST, COMPLETE_COWBOY_LIST, COMPLETE_NO_COWBOY_LIST, COMPLETE_INVENTORY_SPACE_LIST, COMPLETE_NO_SPACE_LIST, COMPLETE_INVENTORY_BOSS_LIST)
+allMobs = allMobs.concat(COMPLETE_MYTHOLOGICAL_IN_LIST, COMPLETE_NO_MYTHOLOGICAL_IN_LIST, COMPLETE_COWBOY_LIST, COMPLETE_NO_COWBOY_LIST, COMPLETE_INVENTORY_SPACE_LIST, COMPLETE_NO_SPACE_LIST)

@@ -1,59 +1,68 @@
-/*Mob
-base class for mobs
-@param name {string} the name of the item
-@param icon {string} the singlr character that shows up on the map
-@param desc {string} the description of the item
-@param attackDam {int} the value of damage a cowboy does
-@param type {string} the type of mob
-@param hp {int} the amount of hp a nob has*/
+
+/*
+Class Mob
+@param Name {str}: is name of mob or enemy
+@param type {str}: is type of the mob
+@param hp {int}: health of the mob
+@param desc {str}: description of the enemy/mob
+@param icon {str}: is the icon of the enemy
+@param attackDam {int}: the damage that the enemy/mob does
+*/
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam, status="none"){
+  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
     super(name, type, hp, desc, icon)
-    this._alive = true;
+    this._alive = true; // this sets the character/hero as alive
   }
-  get alive(){ return this._alive; }
-  get range(){ return this._range; }
-  get mob(){ return "<span class='mob'>" + this._mob + "</span>"}
-  get status() { return this.status; }
-
+  get alive(){ return this._alive;}
   set alive(alive){ this._alive = true; }
+  get range(){ return this._range; }
   set range(range){ this._range = range; }
-  set mob(mob){ this._mob = mob; }
-  set status(status){ this._status = status; }
 
-  /*attackDam
-  returns an object with damage and type or duration if is included*/
+  /*attackDam()
+  @return {int} a number between damage.min and damage.max*/
+
+  /* attackDam()
+  @return {int} a number between damage.min and damage.max
+  */
   attackDam(){
-    var retObj = {}
-    //if (status.type == "frozen") { return 0; }
-    if (this.duration) {
-      retObj = {damage: Utils.randMath(this.damage.min, this.damage.max), type: this.type, duration: this.duration};
-      return retObj
-    }
-    else {
-      retObj = {damage: Utils.randMath(this.damage.min, this.damage.max), type: this.type};
-      return retObj
-    }
+      if (this._status == "frozen") {
+        return 0;
+      }
+      if ("duration" in this.damage) {
+        var dam = Utils.randMath(this.damage.min, this.damage.max);
+        return {damage:dam, type:this.damage.type, duration:this.damage.duration};
+      }
+      return {damage:dam, type:this.damage.type};
   }
 
-  /*takeDam
-  gives the amount of hp and tells if the mob is dead
-  if the type is frozen then the damage is multiplied by 1.5*/
+    get range(){ return this._range; }
+    set range(range){ this._range = range; }
+
+  /*takeDam(damage)
+  recieves the damage to the object and checks if it is dead
+  @param damage {int} a positive number
+  */
   takeDam(damage){
-    if (this.hp <= 0) {
-      this.alive = false;
-      this.hp = 0;
-    }
-    if ((damage.type == "elctric")&&(this.status.type == "frozen")) {
-      this.hp = this.hp - Math.floor(damage*1.5);
+  /*  If there is a duration, then it should set the status of the monster to an
+    object that looks roughly like: {type: "frozen", duration: 5, damage: 5}*/
+    if ((damage.type == "electric")&&(this.status.type == "frozen")) {
+      this.hp = this.hp - Math.floor(damage.damage*1.5);
     }else {
       this.hp = this.hp - damage;
     }
     if ("duration" in damage) {
       this._status = damage;
     }
+    if (this.hp <= 0) {
+      this.alive = false;
+      this.hp = 0;
+    }
   }
 
+  /*text()
+  retruns a user friendly line of text for output
+  @return {string} text for output ot the screen
+  */
   text(){
     if (!alive){
       var retString = "Looks like a dead " + this.name + " Its HP is 0 now.<br>";
