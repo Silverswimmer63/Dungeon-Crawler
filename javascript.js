@@ -1,26 +1,21 @@
 
-function randomItem(){
+/*function randomItem(){
     var index = Utils.randMath(0, allItems.length - 1);
     var item = allItems[index];
-    if (item.type instanceof Armor) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all o them. INHERITANCE
-    if (item.type instanceof Ranged) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }
-    if (item.type instanceof Melee) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
-    if (item.type instanceof Potion) { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }
+    if (item.type instanceof Armor)
+    { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damageresist) }//inherits off; Armor will check all of them. INHERITANCE
+    if (item.type instanceof Ranged)
+    { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage, item.range) }//Inherits off of the ranged file, ranged checks them
+    if (item.type instanceof Melee)
+    { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }//Inherits off of Melee, Melee checks all of the constructors
+    if (item.type instanceof Potion)
+    { var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon, item.damage) }//Inherits off of Potions, Potions checks all of the constructors
     else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
     return retItem;
-}
-  function randomFoe() {
-      var index = Utils.randMath(0, allMobs.length - 1);
-      var mon = allMobs[index];
-      var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-      if (retMon instanceof Inventory) {
-        retMon.add(randomItem());//last step add some monster inventory here
-      }
-      else{
-        var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-      }
-      return retMon;
-}
+}*/
+
+
+
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array.
 This will take some explaining, so please read the rational below fully before the instructions.
@@ -113,7 +108,8 @@ it should be able to have 1 or 2 level 0 items
 or 1level 2 item (small chance)
 but never a level 3
 For example - if the param level = 2 -
-It should be able to have-
+It should be able to have>>>>>>> master
+-
 1-3 level 0 items
 1 level 1 item and 1 level 1
 2 level 1 items (small chance)
