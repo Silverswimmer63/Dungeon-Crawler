@@ -47,6 +47,6 @@ class Item {
       // TODO: add the type once we have it all figured out
       return retString;
     }
-  toString(){ return "<span style=\"purple\">" + this.icon + "</span>"; }
+  toString(){ return "<span style=\"color:purple\">" + this.icon + "</span>"; }
 }
 //hi

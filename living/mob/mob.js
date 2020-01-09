@@ -73,4 +73,6 @@ class Mob extends Living{
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
   }
+  
+  toString(){ return "<span style=\"color:red\">" + this.icon + "</span>"; }
 }
