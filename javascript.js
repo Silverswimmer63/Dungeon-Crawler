@@ -1,3 +1,4 @@
+console.log(Kade.js linked);
 /*
 _makeItem()
 randomly generates an item from melee, ranged, armor, potion
