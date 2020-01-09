@@ -1,4 +1,5 @@
-
+/*
+*/
 function randomItem(){
     var index = Utils.randMath(0, allItems.length - 1);
     var item = allItems[index];
@@ -9,18 +10,7 @@ function randomItem(){
     else{ var retItem = new item.type(item.name, item.type, item.value, item.desc, item.icon) }
     return retItem;
 }
-  function randomFoe() {
-      var index = Utils.randMath(0, allMobs.length - 1);
-      var mon = allMobs[index];
-      var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-      if (retMon instanceof Inventory) {
-        retMon.add(randomItem());//last step add some monster inventory here
-      }
-      else{
-        var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
-      }
-      return retMon;
-}
+
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array.
 This will take some explaining, so please read the rational below fully before the instructions.
@@ -95,9 +85,6 @@ but will be for items. This item should use the unified loot variable to pick an
 the correct object information. */
 //TEST THIS
 
-
-
-
 /* 7 Update randomItem()
 randomItem() will now take a parameter and return an array. This will take some
  explaining, so please read the rational below fully before the instructions.
@@ -144,8 +131,6 @@ accepted, return the array of items.
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
-
-
 
 /*
 this is just the update for the randomItem function
