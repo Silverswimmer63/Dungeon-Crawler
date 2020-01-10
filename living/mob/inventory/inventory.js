@@ -2,7 +2,7 @@
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, attackDam, level);
-    this._inventory = [];//the inventory of the enemy
+    this._inventory = [];
   }
   // name: this shows the monsters' name.
   // icon: the single character that shows up on the map
