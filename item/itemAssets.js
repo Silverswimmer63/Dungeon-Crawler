@@ -223,7 +223,7 @@ const COMPLETE_MELEE_LIST = [
     damage: {min:2, max:5,type:"Normal"},
     icon: "/",
     level: 1,
-    status: none
+    status: None,
   },
   {
     name: "Boxing Gloves",

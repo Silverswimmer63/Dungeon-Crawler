@@ -48,7 +48,7 @@ class Item {
       return retString;
     }
   toString(){
-    return this.icon;
+    return "<span style=\"purple\">"+ this.icon +"</span";
     }
 }
 //hi
