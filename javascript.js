@@ -1,10 +1,31 @@
+
+
+/*_makeFoe()
+it uses allMobs[index] to pick a foe and then
+retturns all of the things a monster needs in a
+return statement wich is a object.
+@ return object of a random foe */
+function _makeFoe(){
+  var index = Utils.randMath(0, allMobs.length - 1);
+  var mon = allMobs[index];
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
+  if (retMon instanceof Inventory) {
+  retMon.add(randomItem(mon.level));
+  }else {
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
+  }
+  return retMon;
+}
+
 /*
-_makeItem()
-randomly generates an item from melee, ranged, armor, potion
-checks to see if the item is melee, ranged, armor, or potions and then the keys are changed accordingly for each different class.
-@return retItem {object} Gives the keys and the values for the randomly generated class item.
+this is just the update for the randomItem function
+_makeItem
+it takes allitems[index] and creates a random item depending on
+if its ranged or meelee or armor like head or legs and then it
+creates them using retItem and depending on what it is and creates the item
+@ return object determined on what item it is
 */
-function _makeItem(){
+ function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
   var retItem = undefined;
@@ -27,31 +48,13 @@ function _makeItem(){
 }
 
 /*
-_makeFoe()
-randomly generates monsters
-assigns keys and values to the monster
-@retMon {obkect} Returns the keys and values for the randomly generated monsters
+randomItem(level)
+takes the level and uses it to determine how many items
+will be used on the players level and how
+many items dtermined on the items level.
+@param {int} a number between 0 and 3
 */
-function _makeFoe(){
-  var index = Utils.randMath(0, allMobs.length - 1);
-  var mon = allMobs[index];
-  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
-  if (retMon instanceof Inventory) {
-    retMon.add(randomItem(mon.level));
-  }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
-  }
-  return retMon;
-}
-
-/*
-randomItem()
-Checks your assigned level and gives back the appropriate leveled items for the hero.
-Based on chance, you will rarely get level items higher than what you are and most of the time your level item or lower.
-@param {integer} Gives the number of 0, 1, and 2.
-@return {array} Returns the items for the associated levels
-*/
-function randomThings(level, type){
+function randomSomthing(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -63,15 +66,14 @@ function randomThings(level, type){
       }
       if (remains == 0) {return retAry;}
       if (Utils.randMath(0,max) > remains){return retAry;}
-      console.log(remains);
     }
     var goodItem = false;
     while (!goodItem) {
-      if (type = "item") {
-        var item = this._makeItem();
-      }else {
-        var item = this._makeFoe();
-      }
+      if (type == "item") {
+      var item = this._makeItem();
+    }else {
+      var item = this._makeFoe();
+    }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
@@ -80,10 +82,10 @@ function randomThings(level, type){
   }
 }
 
-function randomItem(level){
-  return randomThings(level, "item")
-}
+  function randomFoe(level){
+    return randomSomthing(level, "foe")
+  }
 
-function randomFoe(level){
-  return randomThings(level, "foe")
-}
+  function randomItem(level){
+    return randomSomthing(level, "item")
+  }

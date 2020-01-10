@@ -54,6 +54,7 @@ class Item {
       return retString;
     }
   toString(){
-    return "<span style=\"color: purple\">" + this.icon+ "</span>";//changes the color; items are now purple
+    return "<span style=\"color:purple\">"+ this.icon +"</span>";
     }
-  }
+}
+//hi
