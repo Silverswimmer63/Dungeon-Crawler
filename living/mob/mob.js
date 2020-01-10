@@ -73,4 +73,5 @@ class Mob extends Living{
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
   }
+  toString
 }

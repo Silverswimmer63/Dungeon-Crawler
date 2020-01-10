@@ -7,7 +7,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"} ,
     drop: "Leather Armor",
-    Level: 0
+    level: 0
   },
   {
     name: "Girimehkala",
@@ -17,7 +17,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"},
     drop: "Chainmail Armor",
-    Level: 0
+    level: 0
   },
   {
     name: "Cenetur",
@@ -28,7 +28,7 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     attackDam: {min: 10, max: 15,type:"damage"},
     drop: "Bronze Armor",
     range: 0,
-    Level: 0
+    level: 0
   }
 ]
 
@@ -40,7 +40,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
-    Level: 0
+    level: 0
   },
   {
     name:"lemures",
@@ -50,7 +50,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
     range: 0,
-    Level: 0
+    level: 0
   },
   {
     name:"Azeban",
@@ -59,7 +59,7 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
-    Level: 0
+    level: 0
   }
 ]
 
@@ -73,7 +73,7 @@ const COMPLETE_COWBOY_LIST = [
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Leather Armor",
     range: 0,
-    Level: 1
+    level: 1
   },
   {
     name: "Drunk Man",
@@ -83,7 +83,7 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Chainmail Armor",
-    Level: 1
+    level: 1
   },
   {
     name: "Outlaw",
@@ -93,7 +93,7 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Bronze Armor",
-    Level: 1
+    level: 1
   }
 ]
 
@@ -106,7 +106,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     icon:"M",
     attackDam: {min: 15, max: 30, type:"damage"},
     range: 0,
-    Level: 1
+    level: 1
   },
   {
     name:"snek",
@@ -115,7 +115,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"I hate sneks",
     icon:"M",
     attackDam: {min: 15, max: 30,type:"damage"},
-    Level: 1
+    level: 1
   },
   {
     name:"Angry cow",
@@ -124,7 +124,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"(A series of angry moos that corilate unto one word)...Moo!",
     attackDam: {min: 15, max: 30, type:"damage"},
     icon:"M",
-    Level: 1
+    level: 1
   }
 ]
 
@@ -137,7 +137,7 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Chainmail Armor",
-    Level: 2
+    level: 2
   },
   {
     name: "Knife Roomba",
@@ -147,7 +147,7 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Copper Armor",
-    Level: 2
+    level: 2
   },
   {
     name: "Self-Driving Cars",
@@ -157,7 +157,7 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Bronze Armor",
-    Level: 2
+    level: 2
   }
   ]
 
@@ -170,7 +170,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
-    Level: 2
+    level: 2
   },
   {
     name: "Rouge Alexa",
@@ -180,7 +180,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
-    Level: 2
+    level: 2
   },
   {
     name: "Cyber Bully",
@@ -190,7 +190,7 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max: 45, type:"damage"},
     range: 0,
-    Level: 2
+    level: 2
   },
 ]
 
