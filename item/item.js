@@ -8,7 +8,7 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value, type="trash", level){
+  constructor(name, type, value, desc, icon, level){
     this._name = name;
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
@@ -54,6 +54,6 @@ class Item {
       return retString;
     }
   toString(){
-    return this.icon;
+    return "<span style=\"color: purple\">" + this.icon+ "</span>";//changes the color; items are now purple
     }
-}
+  }

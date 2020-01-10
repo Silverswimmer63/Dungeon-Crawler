@@ -1,4 +1,3 @@
-console.log(Kade.js linked);
 /*
 _makeItem()
 randomly generates an item from melee, ranged, armor, potion
@@ -38,7 +37,7 @@ function _makeFoe(){
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
   if (retMon instanceof Inventory) {
-    retMon.add(randomItem());
+    retMon.add(randomItem(mon.level));
   }else {
     var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
   }
