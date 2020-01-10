@@ -1,13 +1,16 @@
-/*
- _makeFoe() is a helper function for randomFoe(level)
-@returns {object} and object of a monster with its stats
- */
+
+
+/*_makeFoe()
+it uses allMobs[index] to pick a foe and then
+retturns all of the things a monster needs in a
+return statement wich is a object.
+@ return object of a random foe */
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
   var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   if (retMon instanceof Inventory) {
-    retMon.add(randomItem());
+  retMon.add(randomItem(mon.level));
   }else {
     var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   }
@@ -15,9 +18,12 @@ function _makeFoe(){
 }
 
 /*
-@function _makeItem()
-is a helper function for _makeItem()
-@returns {Object} an object of an item's stats and know abouts
+this is just the update for the randomItem function
+_makeItem
+it takes allitems[index] and creates a random item depending on
+if its ranged or meelee or armor like head or legs and then it
+creates them using retItem and depending on what it is and creates the item
+@ return object determined on what item it is
 */
  function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
@@ -40,12 +46,15 @@ is a helper function for _makeItem()
   }
   return retItem;
 }
+
 /*
-randomItem(level) is a function that returns one or more items with the help of _makeItem()
-@param {Integer} level is the set level used for the items/base level
-@returns {object} (an) object(s) of item(s) <with their stats and know abouts>
+randomItem(level)
+takes the level and uses it to determine how many items
+will be used on the players level and how
+many items dtermined on the items level.
+@param {int} a number between 0 and 3
 */
-function randomThings(level, type){
+function randomSomthing(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -57,15 +66,14 @@ function randomThings(level, type){
       }
       if (remains == 0) {return retAry;}
       if (Utils.randMath(0,max) > remains){return retAry;}
-      console.log(remains);
     }
     var goodItem = false;
     while (!goodItem) {
       if (type == "item") {
-        var item = this._makeItem();
-      }else {
-        var item = this._makeFoe();
-      }
+      var item = this._makeItem();
+    }else {
+      var item = this._makeFoe();
+    }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
@@ -74,9 +82,10 @@ function randomThings(level, type){
   }
 }
 
-function randomItem(level){
-  return randomThings(level, "item");
-}
-function randomFoe(level){
-  return randomThings(level, "foe");
-}
+  function randomFoe(level){
+    return randomSomthing(level, "foe")
+  }
+
+  function randomItem(level){
+    return randomSomthing(level, "item")
+  }

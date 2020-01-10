@@ -9,21 +9,16 @@ Class Mob
 @param attackDam {int}: the damage that the enemy/mob does
 */
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam, level){ //also the attackDam lets makes a random value for the attack damage
+  constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, level)
-    this._alive = true; // this sets the character/hero as alive
+    this._alive = true;
     this._level = level;
   }
-  get alive(){ return this._alive;}
+  get alive(){ return this._alive; };
   set alive(alive){ this._alive = alive; }
-  get range(){ return this._range; }
-  set range(range){ this._range = range; }
-  get level(){ return this._level; }
-  set lecel(level){ this._level = level;}
 
-  /*attackDam()
-  @return {int} a number between damage.min and damage.max*/
-
+  get level(){ return this._level; };
+  set level(level){ this._level = level; }
   /* attackDam()
   @return {int} a number between damage.min and damage.max
   */
@@ -75,5 +70,9 @@ class Mob extends Living{
     retString += " It does " + this.damage + " damage.<br>";
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
+  }
+
+  toString(){
+    return "<span style=\"color:red\">"+ this.icon +"</span>"
   }
 }
