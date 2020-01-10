@@ -2,14 +2,14 @@
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
 @param name {string} the name of the item
-@param icon {string} the singlr character that shows up on the map
+@param icon {string} the single character that shows up on the map
 @param desc {string} the description of the item
 @param value {number} the value of the item
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
   constructor(name, type, value, desc, icon, level){
-  constructor(name, icon, desc, value, type="trash", level)
+
     this._name = name;
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
@@ -43,14 +43,14 @@ class Item {
   /* text()
   returns a user friendly line of text output to the screen
   @return {string} text for output to the screen
-=======
+
   get level(){return this._level; }
   set level(level){this._level = level; }
 
   /*text()
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen
->>>>>>> master
+
   */
   text(){
       var retString = this.name + "<br>";
@@ -59,5 +59,7 @@ class Item {
       // TODO: add the type once we have it all figured out
       return retString;
     }
-  toString(){ return this.icon; }
+  toString(){
+    return "<span style=\"color:purple\">"+this.icon +"</span>"; 
+  }
 }

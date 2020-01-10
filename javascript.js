@@ -48,29 +48,28 @@ E. when the target level (which is the level +1) is reached or exceeded but acce
 @return {array} an array of objects of class Item or that inherit class Item
 */
 
-/* 5 Update randomFoe() so that monsters with inventories have loot
-A. use instanceof to see IF the said monster's class inherits the inventory class.
-B. IF it does then once you have made the monster (but before you return it), use
-randomItem() to make an item. Then use the correct method from class Inventory to
-get that item for the inventory. */
+
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
-  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   if (retMon instanceof Inventory) {
-    retMon.add(randomItem());
+   retMon.add(randomItem(mon.level));
+
   }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mom.level);
   }
   return retMon;
 }
 
-function randomFoe(level) {
+/*function randomFoe(level) {
   var max = level+1;
   if (this.inventory instanceof this._makeFoe()) {
 
   }
 }
+*/
+
 /* 4 Make the function randomItem() in javascript.js
 We have a randomFoe() function, randomItem() will look a lot like randomFoe()
 but will be for items. This item should use the unified loot variable to pick an
@@ -183,7 +182,7 @@ function randomItem(level){
   return retItem;
 }
 
-function randomItem(level){
+function randomStuff(level){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -195,15 +194,26 @@ function randomItem(level){
       }
       if (remains == 0) {return retAry;}
       if (Utils.randMath(0,max) > remains){return retAry;}
-      console.log(remains);
     }
     var goodItem = false;
     while (!goodItem) {
+      if(type == "item"){
       var item = this._makeItem();
+    }else {
+      var item = this._makeFoe();
+    }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
       }
     }
   }
+}
+
+function randomItem(level){
+  return randomStuff(level, "item")
+}
+
+function randomFoe(level){
+  return randomStuff(level, "foe")
 }
