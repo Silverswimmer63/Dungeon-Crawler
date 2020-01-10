@@ -1,11 +1,14 @@
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){
-    super(name, type, hp, desc, icon)
+  constructor(name, type, hp, desc, icon, attackDam, level){
+    super(name, type, hp, desc, icon, level)
     this._alive = true;
+    this._level = level;
   }
   get alive(){ return this._alive; };
-  set alive(alive){ this._alive = true; }
+  set alive(alive){ this._alive = alive; }
 
+  get level(){ return this._level; };
+  set level(level){ this._level = level; }
   /* attackDam()
   @return {int} a number between damage.min and damage.max
   */

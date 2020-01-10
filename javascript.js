@@ -8,11 +8,11 @@ return statement wich is a object.
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
-  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   if (retMon instanceof Inventory) {
   retMon.add(randomItem(mon.level));
   }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   }
   return retMon;
 }
@@ -55,7 +55,7 @@ will be used on the players level and how
 many items dtermined on the items level.
 @param {int} a number between 0 and 3
 */
-function randomItem(level){
+function randomSomthing(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -70,7 +70,11 @@ function randomItem(level){
     }
     var goodItem = false;
     while (!goodItem) {
+      if (type == "item") {
       var item = this._makeItem();
+    }else {
+      var item = this._makeFoe();
+    }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
@@ -78,3 +82,11 @@ function randomItem(level){
     }
   }
 }
+
+  function randomFoe(level){
+    return randomSomthing(level, "foe")
+  }
+
+  function randomItem(level){
+    return randomSomthing(level, "item")
+  }
