@@ -35,7 +35,6 @@ class Living {
 
   get status(){return this._status;}
   set status(status){return this._status}
-
   /*text()
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen

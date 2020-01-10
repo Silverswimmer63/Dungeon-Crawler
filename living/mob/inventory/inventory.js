@@ -1,7 +1,7 @@
 //Class Inventory is for mobs that have an inventory 
 class Inventory extends Mob{
-  constructor(name, type, hp, desc, icon, attackDam, drop){
-    super(name, type, hp, desc, icon, attackDam);
+  constructor(name, type, hp, desc, icon, attackDam, drop, level){
+    super(name, type, hp, desc, icon, attackDam, level);
     this._inventory = [];
   }
   // name: this shows the monsters' name.

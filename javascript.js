@@ -51,7 +51,7 @@ randomItem(level) is a function that returns one or more items with the help of 
 @param level {Integer}: is the set level used for the items/base level
 @returns retAray {array}: (an) object(s) of item(s) <with their stats and know abouts>
 */
-function randomItem(level){
+function randomStuff(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -67,11 +67,19 @@ function randomItem(level){
     }
     var goodItem = false;
     while (!goodItem) {
+     if((type = "item")){
       var item = this._makeItem();
+     }else{ var item = this._makeFoe();}
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
       }
     }
   }
+}
+function randomItem(level,type = "item"){
+ return randomStuff(level,type)
+}
+function randomFoe(level,type = "enemy"){
+ return randomStuff(level,type)
 }
