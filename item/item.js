@@ -21,7 +21,7 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
+  get icon(){ return this._icon; }
   set icon(icon){ this._icon = icon; }
 
   get desc(){ return this._desc; }
@@ -48,7 +48,7 @@ class Item {
       return retString;
     }
   toString(){
-    return "<span style=\"color:purple\">" + this.icon +"</span>";
+    return "<span style=\"color:purple\">"+ this.icon +"</span>";
     }
 }
 //hi

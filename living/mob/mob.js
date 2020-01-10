@@ -1,32 +1,14 @@
-
-/*
-Class Mob
-@param Name {str}: is name of mob or enemy
-@param type {str}: is type of the mob
-@param hp {int}: health of the mob
-@param desc {str}: description of the enemy/mob
-@param icon {str}: is the icon of the enemy
-@param attackDam {int}: the damage that the enemy/mob does
-*/
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam, level){ //also the attackDam lets makes a random value for the attack damage
+  constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, level)
-    this._alive = true; // this sets the character/hero as alive
-        this._icon = icon;
-            this._level = level;
+    this._alive = true;
+    this._level = level;
   }
-  get alive(){ return this._alive;}
-  set alive(alive){ this._alive = true; }
-  get range(){ return this._range; }
-  set range(range){ this._range = range; }
-  get icon(){ return "<spam class = 'mob'>" + this._icon + "</spam>"; }
-  set icon(icon){ this._icon = icon; }
+  get alive(){ return this._alive; };
+  set alive(alive){ this._alive = alive; }
 
-  get level(){return this._level}
-  set level(level){return this._level = level}
-  /*attackDam()
-  @return {int} a number between damage.min and damage.max*/
-
+  get level(){ return this._level; };
+  set level(level){ this._level = level; }
   /* attackDam()
   @return {int} a number between damage.min and damage.max
   */
@@ -79,7 +61,8 @@ class Mob extends Living{
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
   }
+
   toString(){
-    return "<span style=\"color:red\">" + this.icon +"</span>";
+    return "<span style=\"color:red\">"+ this.icon +"</span>"
   }
 }
