@@ -57,7 +57,7 @@ function _makeFoe(){
    retMon.add(randomItem(mon.level));
 
   }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mom.level);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   }
   return retMon;
 }
@@ -182,7 +182,7 @@ function randomItem(level){
   return retItem;
 }
 
-function randomStuff(level){
+function randomStuff(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
