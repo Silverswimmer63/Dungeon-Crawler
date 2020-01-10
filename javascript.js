@@ -14,15 +14,9 @@ function _makeFoe(){
   return retMon;
 }
 
-//function randomFoe(level) {
-//  var max = level+1;
-//  if (this.inventory instanceof this._makeFoe()) {
-//
-//  }
-//}
 /*
 @function _makeItem()
-is a helper function for randItem()
+is a helper function for _makeItem()
 @returns {Object} an object of an item's stats and know abouts
 */
  function _makeItem(){
@@ -46,12 +40,12 @@ is a helper function for randItem()
   }
   return retItem;
 }
-/*              
+/*
 randomItem(level) is a function that returns one or more items with the help of _makeItem()
-@param level {Integer}: is the set level used for the items/base level
-@returns retAray {array}: (an) object(s) of item(s) <with their stats and know abouts>
+@param {Integer} level is the set level used for the items/base level
+@returns {object} (an) object(s) of item(s) <with their stats and know abouts>
 */
-function randomStuff(level, type){
+function randomItem(level){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
