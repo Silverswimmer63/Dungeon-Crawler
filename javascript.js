@@ -47,7 +47,6 @@ E. when the target level (which is the level +1) is reached or exceeded but acce
 @param level {int}: the target level of the item
 @return {array} an array of objects of class Item or that inherit class Item
 */
-
 /* 5 Update randomFoe() so that monsters with inventories have loot
 A. use instanceof to see IF the said monster's class inherits the inventory class.
 B. IF it does then once you have made the monster (but before you return it), use
