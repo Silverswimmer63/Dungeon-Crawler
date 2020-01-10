@@ -9,14 +9,15 @@ Class Mob
 @param attackDam {int}: the damage that the enemy/mob does
 */
 class Mob extends Living{
-  constructor(name, type, hp, desc, icon, attackDam){ //also the attackDam lets makes a random value for the attack damage
-    super(name, type, hp, desc, icon)
+  constructor(name, type, hp, desc, icon, attackDam, level){ //also the attackDam lets makes a random value for the attack damage
+    super(name, type, hp, desc, icon, level)
     this._alive = true; // this sets the character/hero as alive
+    this._level = level;
   }
   get alive(){ return this._alive;}
-  set alive(alive){ this._alive = true; }
-  get range(){ return this._range; }
-  set range(range){ this._range = range; }
+  set alive(alive){ this._alive = alive; }
+  get level(){ return this._level; }
+  set level(range){ this._level = level; }
 
   /*attackDam()
   @return {int} a number between damage.min and damage.max*/
@@ -73,6 +74,10 @@ class Mob extends Living{
     retString += " Watchout! It has " + this.hp + "helth.<br>"
     return retString;
   }
+  toString(){
+    return this.icon;
+    return "<span style=\color:"purple\">"+this.icon +"/span>";
+    }
 }
 /*
 1. Add a parameter_status to the parent class of all monsters. Set this to "none" by default.
