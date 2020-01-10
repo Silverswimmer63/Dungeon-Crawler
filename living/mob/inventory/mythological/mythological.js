@@ -6,8 +6,8 @@
   // hp: the amount of the life it has.
   // attackDam: The amount of damage monsters can attack you with.
 class Mythological extends Inventory{
-  constructor(name, type, hp, desc, icon, attackDam){
-    super(name, type, hp, desc, icon, attackDam);
+  constructor(name, type, hp, desc, icon, attackDam,level){
+    super(name, type, hp, desc, icon, attackDam,level);
   }
 
   /*text()

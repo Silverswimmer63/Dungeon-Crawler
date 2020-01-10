@@ -56,7 +56,7 @@ function randomFoe(level) {
 }
 //returns a random item that totals up
 //@param level the items add up a number between 1-3
-function randomItem(level){
+function randomStuff(level,type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -72,11 +72,20 @@ function randomItem(level){
     }
     var goodItem = false;
     while (!goodItem) {
+      if (type == "item") {
       var item = this._makeItem();
+    }else{ var item = this._makeFoe();}
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
       }
     }
   }
+}
+
+function randomItem(level){
+  return randomStuff(level,"item")
+}
+function randomFoe(level){
+  return randomStuff(level,"foe")
 }
