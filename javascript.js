@@ -35,11 +35,11 @@ assigns keys and values to the monster
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
-  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   if (retMon instanceof Inventory) {
     retMon.add(randomItem(mon.level));
   }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   }
   return retMon;
 }
@@ -51,7 +51,7 @@ Based on chance, you will rarely get level items higher than what you are and mo
 @param {integer} Gives the number of 0, 1, and 2.
 @return {array} Returns the items for the associated levels
 */
-function randomItem(level){
+function randomThings(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -67,11 +67,23 @@ function randomItem(level){
     }
     var goodItem = false;
     while (!goodItem) {
-      var item = this._makeItem();
+      if (type = "item") {
+        var item = this._makeItem();
+      }else {
+        var item = this._makeFoe();
+      }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
       }
     }
   }
+}
+
+function randomItem(level){
+  return randomThings(level, "item")
+}
+
+function randomFoe(level){
+  return randomThings(level, "foe")
 }

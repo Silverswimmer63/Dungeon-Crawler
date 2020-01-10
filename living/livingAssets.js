@@ -115,7 +115,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"I hate sneks",
     icon:"M",
     attackDam: {min: 15, max: 30,type:"damage"},
-    Level: 1
+    level: 1
   },
   {
     name:"Angry cow",
