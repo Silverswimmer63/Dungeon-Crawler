@@ -5,21 +5,15 @@
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
-  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+  var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   if (retMon instanceof Inventory) {
     retMon.add(randomItem());
   }else {
-    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam);
+    var retMon = new mon.type(mon.name, mon.type, mon.hp, mon.desc, mon.icon, mon.attackDam, mon.level);
   }
   return retMon;
 }
 
-function randomFoe(level) {
-  var max = level+1;
-  if (this.inventory instanceof this._makeFoe()) {
-
-  }
-}
 /*
 @function _makeItem()
 is a helper function for _makeItem()
@@ -51,7 +45,7 @@ randomItem(level) is a function that returns one or more items with the help of 
 @param {Integer} level is the set level used for the items/base level
 @returns {object} (an) object(s) of item(s) <with their stats and know abouts>
 */
-function randomItem(level){
+function randomThings(level, type){
   var max = level+1;
   var retAry = [];
   if (Math.random() <= .2) {max = level +2;}
@@ -67,11 +61,22 @@ function randomItem(level){
     }
     var goodItem = false;
     while (!goodItem) {
-      var item = this._makeItem();
+      if (type == "item") {
+        var item = this._makeItem();
+      }else {
+        var item = this._makeFoe();
+      }
       if (item.level+1 <= remains) {
         retAry.push(item);
         goodItem = true;
       }
     }
   }
+}
+
+function randomItem(level){
+  return randomThings(level, "item");
+}
+function randomFoe(level){
+  return randomThings(level, "foe");
 }

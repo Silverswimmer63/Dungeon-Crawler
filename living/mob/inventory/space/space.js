@@ -1,7 +1,7 @@
 //Class Space is for the specification of the Space with an inventory
 class Space extends Inventory{
-  constructor(name, type, hp, desc, icon, attackDam){
-    super(name, type, hp, desc, icon, attackDam);
+  constructor(name, type, hp, desc, icon, attackDam, level){
+    super(name, type, hp, desc, icon, attackDam, level);
   }
 }
 // name: this shows the monsters' name.
