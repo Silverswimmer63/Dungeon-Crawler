@@ -9,9 +9,9 @@ Class map
 This class is used to create and generate display of two dimwnsional maps.
 @param height(int): height if the map(map y cord)*/
 class Map{
-  constructor(with, height){
-    this._width = width;
-    this._height = height;
+  constructor(width, height){
+    this._width = Utils.intCheck(width);
+    this._height =  Utils.intCheck(height);
     this._fill = "#";
     this._map = {};
   }
