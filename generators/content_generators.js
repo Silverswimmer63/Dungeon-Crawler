@@ -1,10 +1,9 @@
-
-
 /*_makeFoe()
 it uses allMobs[index] to pick a foe and then
 retturns all of the things a monster needs in a
 return statement wich is a object.
 @ return object of a random foe */
+
 function _makeFoe(){
   var index = Utils.randMath(0, allMobs.length - 1);
   var mon = allMobs[index];
@@ -25,6 +24,7 @@ if its ranged or meelee or armor like head or legs and then it
 creates them using retItem and depending on what it is and creates the item
 @ return object determined on what item it is
 */
+
  function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];
@@ -54,6 +54,7 @@ will be used on the players level and how
 many items dtermined on the items level.
 @param {int} a number between 0 and 3
 */
+
 function randomSomthing(level, type){
   var max = level+1;
   var retAry = [];
@@ -82,10 +83,10 @@ function randomSomthing(level, type){
   }
 }
 
-  function randomFoe(level){
+function randomFoe(level){
     return randomSomthing(level, "foe")
   }
 
-  function randomItem(level){
+function randomItem(level){
     return randomSomthing(level, "item")
   }
