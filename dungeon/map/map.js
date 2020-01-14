@@ -6,16 +6,16 @@ this class is used to create and generate displays of 2 dimensional maps.
 */
 class Map{
   constructor(width, height){
-    this._width = Utils.intCheck(width);
-    this._heigth = Utils.intCheck(height);
+    this._width = Utils.intCheck(width, "Map constructor");
+    this._height = Utils.intCheck(height, "Map constructor");
     this._fill = "#";
-    this.map = this._generateMap();
+    this._map = this._generateMap();
   }
 
   get width(){ return this._width; }
-  get heigth(){ return this._heigth; }
-  get fill(){ return this.fill; }
-  get map(){ return this.map; }
+  get height(){ return this._height; }
+  get fill(){ return this._fill; }
+  get map(){ return this._map; }
 
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
@@ -37,6 +37,19 @@ class Map{
       }
     }
     return map;
+  }
+
+  /* _drawBorder()
+  Makes a border top or bottom for the map. This border will be in the general
+  design of +---------------+
+  @return {string} a string border
+  */
+  _drawBorder(){
+    var retStr = "+";
+    for (var i = 0; i < this.width; i++) {
+      retStr += "-";
+    }
+    return retStr + "+";
   }
 
 }

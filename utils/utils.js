@@ -8,7 +8,7 @@ class Utils {
     if(min >= max){
       throw new Error("Min must always be less than max in " + call +".")
     }
-    //return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
     /* intCheck(item, call="Utils.intCheck.js")
     Checks to see if "item" is an integer. Throws a custom error if not.
