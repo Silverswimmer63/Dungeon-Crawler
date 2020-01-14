@@ -31,7 +31,8 @@ static intCheck(item, call="Utils.initCheck.js") {
   }
  }
 
-/*1. Check min and max to make sure they are integers. As you've not done this before, I will give you an exact example of how this should look -
+/*1. Check min and max to make sure they are integers. As you've not done this before, I will give you an exact
+ example of how this should look -
 min = this.intCheck(min, "Utils.randMath");
 What is going on here is that it will, by default, set min to min. however, if min is not an integer, it will stop everything and throw the error "The method Utils.randMath expected an integer and received (whatever you gave it)", letting us know that we've broken something simply by giving the method something other then a number (like a coordinate)
 do the same as above with max
@@ -58,4 +59,32 @@ if (min >= max) {
 }
 return Math.Floor(Math.random() *(max - min + 1)) + min;
 }
+
+/* objCheck(item, call="Utils.objCheck")
+@param item: {mixed} an item to be checked if is an object
+@param call: {string} the Class/function/method where the check occured
+@retun {mixed} returns the item unless it is not an object
+*/
+static objCheck(item, call="Utils.objCheck"){
+if ((typeof item == "object")&& (item != null )) {
+  return item;
+}  else {
+  throw new Error("The method " + call + " expected an integer and received " + item + ".");
+}
+ }
+}
+/* keyCheck(item, key, call= Utils.keyCheck)
+Performs two actions - 1 checks to see if item is an object. Throws an error
+if not, reporting it from location call. 2 checks to see if the object has
+the key or keys given in the second param. The second param is check to be an
+array or not, if not an array, it is made into a single item array so that it
+can use the same code order. If the object does not, it throws an error.
+@param item: {mixed} an item to be checked if it is an object
+@param key: {mixed} a string or array of strings to be checked as keys in item
+@param call: {string} the Class/function/method where the check occured
+@retun {mixed} returns the item if object with key(s)
+*/
+static keyCheck(item, key, call= Utils.keyCheck){
+  objCheck(item, null= " " );
+  
 }
