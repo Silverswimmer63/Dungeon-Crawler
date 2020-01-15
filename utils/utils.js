@@ -72,7 +72,7 @@ if ((typeof item == "object")&& (item != null )) {
   throw new Error("The method " + call + " expected an integer and received " + item + ".");
 }
  }
-}
+
 /* keyCheck(item, key, call= Utils.keyCheck)
 Performs two actions - 1 checks to see if item is an object. Throws an error
 if not, reporting it from location call. 2 checks to see if the object has
@@ -84,7 +84,34 @@ can use the same code order. If the object does not, it throws an error.
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item if object with key(s)
 */
-static keyCheck(item, key, call= Utils.keyCheck){
-  objCheck(item, null= " " );
-  
+static keyCheck(item, key, call= "Utils.keyCheck"){
+this.objCheck(item, call);
+if (!Array,isArray(key)) {
+  key = [key];
+}
+var badKey= [];
+  for (var i = 0; i < key.length; i++) {
+if (!(key[i] in item)) {
+  badKey.push(key[i]);
+}
+  }
+  if (badKey.length == 0) {
+    return item;
+  }
+  var errStr = "The method" + call + "expected an object with the key(s)";
+  for (var i = 0; i < key.length; i++) {
+    errStr += key[i];
+    if ((badKey.length > 0 ) && (i < key.length -1)){
+      errStr += ",";
+    }
+    errStr += ". Its is missing key(s)";
+  for (var i = 0; i < badKey.length; i++) {
+    errStr += badKey[i];
+    if ((badKey.length > 0)&& (i < badKey.length - 1)) {
+      errStr += ", ";
+    }
+  }
+    throw new Error(errStr + ".");
+    }
+  }
 }
