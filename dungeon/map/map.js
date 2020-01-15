@@ -8,7 +8,7 @@ class Map{
   constructor(width, height){
     this._width = Utils.intCheck(width, "Map constructor");
     this._height = Utils.intCheck(height, "Map constructor");
-    this._fill = "#";
+    this._fill = Cell;
     this._map = this._generateMap();
   }
   /*add setters.
@@ -42,6 +42,18 @@ class Map{
     }
     return retMap += this._drawBorder();
   }
+  /*Then we will update the map to have a setter for map, this will use the two
+  functions above to make sure that the setter is given an object with the keys
+  width and height, and use it to make a new map. After checking the values as well
+  */
+  set map(dimensions){
+    Utils.keyCheck(dimensions, ["width", "height"], "Map.map");
+    Utils.intCheck(dimensions.width, "Map.map");
+    Utils.intCheck(dimensions.heigth, "Map.map");
+    this._width = dimensions.width;
+    this._heigth = dimensions.height;
+    this._map = this._generateMap();
+  }
 
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
@@ -59,7 +71,7 @@ class Map{
       map[key] = {};
       for (var j = 1; j <= this.width; j++) {
         var key2 = "x" + j;
-        map[key][key2] = this.fill;
+        map[key][key2] = new this.fill;
       }
     }
     return map;

@@ -5,7 +5,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if(min >= max){
+    if (min >= max){
       throw new Error("Min must always be less than max in " + call +".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -47,7 +47,39 @@ class Utils {
   @param call: {string} the Class/function/method where the check occured
   @retun {mixed} returns the item if object with key(s)
   */
-  static keyCheck(item, key, call= Utils.keyCheck){
-    
+  static keyCheck(item, key, call= "Utils.keyCheck"){
+    this.objCheck(item, call);
+    if (!Array.isArray(key)) {
+      key = [key];
+    }
+    var badKey = [];
+    for (var i = 0; i < key.length; i++) {
+      if ((!key[i] in item)) {
+        badKey.push(key[i]);
+      }
+    }
+    if (badKey.length == 0) {
+      return item;
+    }
+    var errStr = "The method " + call + "exepected an object with the key(s) ";
+    for (var i = 0; i < key.length; i++) {
+      errStr += key[i];
+      if ((key.length > 0) && (i < key.length -1)) {
+        errStr += ", ";
+      }
+    }
+    errStr += "it is missing the key(s)";
+    for (var i = 0; i < badKey.length; i++) {
+      errStr += badKey[i];
+      if ((badKey.length > 0) && (i < badKey.length -1)) {
+        errStr += ", ";
+      }
+    }
+    throw new Error(errStr + ".");
   }
+
+
+
+
+
 }
