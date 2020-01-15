@@ -44,7 +44,7 @@ class Utils{
    if ((typeof item == "object") && !( item == null)){
      return item;
    }else {
-       throw new Error("The method " + call + " expected an integer and received " + item + ".");
+       throw new Error("The method " + call + " expected an object and received " + item + ".");
   }
  }
 
@@ -60,8 +60,36 @@ can use the same code order. If the object does not, it throws an error.
 @retun {mixed} returns the item if object with key(s)
 */
 
-static keyCheck(item, key, call= Utils.keyCheck){
-  
+static keyCheck(item, key, call= "Utils.keyCheck"){
+  this.objCheck(item, call);
+  if (!Array.isArray(key)) {
+    key = [key];
+  }
+  var badKey = [];
+  for (var i = 0; i < key.length; i++) {
+    if (!(key[i] in item)) {
+      badKey.push(key[i]);
+    }
+
+  }
+  if (badKey.length == 0) {
+    return item;
+  }
+  var errStr = "The method " + call + " expected an object with the key(s) ";
+  for (var i = 0; i < key.length; i++) {
+    errStr += key[i];
+    if ((key.length > 0)&&(i < key.length - 1)) {
+      errStr += ", ";
+    }
+  }
+  errStr += ". It is missing the key(s) ";
+  for (var i = 0; i < badKey.length; i++) {
+    errStr += badKey[i];
+    if ((badKey.length > 0)&&(badKey.length - 1)) {
+      errStr += ", ";
+    }
+  }
+  throw new Error(errStr + ".")
 }
 
 }
