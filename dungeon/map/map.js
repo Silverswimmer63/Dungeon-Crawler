@@ -30,6 +30,7 @@ class Map{
   get width(){ return this._width; }
   get height(){ return this._height; }
   get fill(){ return this._fill; }
+  set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill")}
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
