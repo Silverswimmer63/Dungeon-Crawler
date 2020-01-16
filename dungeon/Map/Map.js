@@ -7,7 +7,7 @@ class Map{
   constructor(width, height){
     this._width = Utils.intCheck(width, "Map constructor");
     this._height =  Utils.intCheck(height, "Map constructor");
-    this._fill = new Cell;
+    this._fill = Cell;
     this._map =  this._generateMap();
   }
   /*add setters.
