@@ -34,7 +34,7 @@ or we will get errors. Remake the this._map.*/
   }
 
   get fill(){return this._fill;}
-  set fill(fill){this._fill = this.fill}
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
 
   get map(){
     var retMap = "";
