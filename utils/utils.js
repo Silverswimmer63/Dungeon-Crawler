@@ -63,12 +63,34 @@ Number.isInteger()
   @param call: {string} the Class/function/method where the check occured
   @retun {mixed} returns the item if object with key(s)
   */
-  static keyCheck(item, key, call= Utils.keyCheck){
-    objCheck(item, call="Utils.objCheck")
-    if (item == "") {
-      for (var i = 0; i < array.length; i++) {
-
-      }
+  static keyCheck(item, key, call= "Utils.keyCheck"){
+    this.objCheck(item, call)
+    if (!Array.isArray(key)) {
+      key= [key];
     }
+    var badKey = [];
+      for (var i = 0; i < key.length; i++) {
+        if (!(key[i] in item)) {
+          badKey.push(key[i]);
+        }
+      }
+      if (badKey.length == 0) {
+        return item;
+      }
+      var errStr = "The method " + call + " expected an object with the key(s) ";
+      for (var i = 0; i < key.length; i++) {
+        errStr += key[i];
+        if ((key.length > 0) && (i < key.length - 1)) {
+          errStr += ", ";
+        }
+      }
+      errStr += ". It is missing the key(s) ";
+      for (var i = 0; i < badKey.length; i++) {
+        errStr += badKey[i];
+        if ((badKey.length > 0) && (i < badKey.length - 1)) {
+          errStr += ", ";
+        }
+      }
+      throw new Error(errStr + ".")
   }
 }

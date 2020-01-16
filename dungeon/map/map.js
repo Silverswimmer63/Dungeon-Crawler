@@ -9,7 +9,7 @@ class Map{
   constructor(width,height){
     this._width = Utils.intCheck(width, "Map constructor")
     this._height = Utils.intCheck(height, "Map constructor");
-    this._fill = "#";
+    this._fill = Cell;
     this._map = this._generateMap();
   }
 /*3. add setters.
@@ -44,16 +44,14 @@ setters we have used. They will need to do the following -
 
     return retMap += this._drawBorder();
   }
-
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
+  set map(dimensions){
+    Utils.keyCheck(dimensions, ["width"], ["height"], "Map.map")
+    Utils.intCheck(dimensions.width, "Map.map")
+    Utils.intCheck(dimensions.height, "Map.map")
+    this._width = dimensions.width;
+    this._height = dimensions.height;
+    this._map = this._generateMap();
+  }
 
   _generateMap(){
     var map = {};
@@ -62,10 +60,10 @@ the inner objects will be the individual cells of the map.
       map[key] = {};
       for (var j = 1; j <= this.width; j++) {
         var key2 = "x"+j;
-        map[key][key2] = this.fill;
+        map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
