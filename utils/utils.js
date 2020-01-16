@@ -28,10 +28,15 @@ class Utils {
   }
 
   static keyCheck(item, key, call="Utils.keyCheck.js"){
-    objCheck();
-    
+    this.objCheck(item, call);
+    if (!Array.isArray(key)) {
+      key = [key]
+    }
+    var badKey = [];
     for (var i = 0; i < key.length; i++) {
-
+      if (!(key[i] in item)) {
+        badKey.push(key[i]);
+      }
     }
   }
 
