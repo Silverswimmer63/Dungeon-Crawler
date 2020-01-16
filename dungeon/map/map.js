@@ -7,38 +7,60 @@ class Map
   */
 class Map{
   constructor(width,height){
-    this._width = Utils.intCheck(width, "Map constructor");
-    this._height = Utils.intCheck(height, "Map constructor");
-    this._fill = "#";
+    this._width = Utils.intCheck(width, "map constructor");
+    this._height = Utils.intCheck(height, "map constructor");
+    this._fill = new Cell;
     this._map = this._generateMap();
   }
-  //getters
-  get width(){ return this._width; }
-  get height(){ return this._height; }
-  get fill(){ return this._fill; }
+  /*3. add setters.
+The setters for this function for width and height can be added now. However,
+these will need to be a little more complex than with other setters we have used.
+ They will need to do the following -
+1. Check for value inputted being an int, and giving the correct error message
+ if it is not.
+2. now that the map has a new width or height, we have to remake it from scratch
+or we will get errors. Remake the this._map.*/
+
+  get width(){return this._width;}
+  set width(width){
+    this._width = Utils.intCheck(width, "Map.width");
+    this._map = this._generateMap();
+  }
+
+  get height(){return this._height;}
+  set height(height){
+    this._height = Utils.intCheck(height, "Map.height")
+    this._map = this._generateMap();
+  }
+
+  get fill(){return this._fill;}
+  set fill(fill){this._fill = this.fill}
+
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
     for (var i = 1; i <= this.height; i++) {
       retMap += "|";
       for (var j = 1; j <= this.width; j++) {
-        retMap += "" + this._map["y"+i]["x"+j];
+        retMap += this._map["y"+i]["x"+j];
       }
       retMap += "|<br>";
     }
     return retMap += this._drawBorder();
   }
-
-  //setters
-  set width(width){
-    this._width = Utils.intCheck(width, "Map.width");
+/*
+Then we will update the map to have a setter for map, this will use the two
+ functions above to make sure that the setter is given an object with the keys
+  width and height, and use it to make a new map. After checking the values as well
+  */
+  set map(dimensions){
+    Utils.keyCheck(dimensions,["width", "height"], "Map.map");
+    Utils.intCheck(dimensions.width,"Map.map");
+    Utils.intCheck(dimensions.height,"Map.map");
+    this._width = dimensions.width;
+    this._height = dimensions.height;
     this._map = this._generateMap();
   }
-  set height(height){
-    this._height = Utils.intCheck(height, "Map.height");
-    this._map = this._generateMap();
-  }
-
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
@@ -70,8 +92,10 @@ the inner objects will be the individual cells of the map.
   _drawBorder(){
     var retStr = "+";
     for (var i = 0; i < this.width; i++) {
-      retStr + "-";
+      retStr += "-";
     }
     return retStr + "+";
   }
+
+
 }
