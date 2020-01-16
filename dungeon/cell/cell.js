@@ -48,21 +48,29 @@ class Cell {
 
   get occupied(){return this._occupied}
   set occupied(occupied){
-    var mob = false;
-    var nonMob = false;
-    for (var i = 0; i < this._occupied.length; i++) {
-      if (this._occupied[i] instanceof Mob) {mob = true;}// this is setting our trackers
-      if (this._occupied[i] instanceof Nonmob) {nonMob = true;}
-    }
-    // Asumes single item
-    if (nonMob == true && occupied instanceof Nonmob) {
-      throw new Error("Cell.occupied - cell already had a nonmob and was given" + occupied.name)
-    }else if (mob == true && occupied instanceof Mob) {
-      throw new Error("Cell.occupied - cell already had a mob and was given" + occupied.name)
-    }else {
-      this._occupied.push(occupied);
+    for (var i = 0; i < occupied.length; i++) {
+      if (!Array.isArray(occupied)) {
+        occupied = [occupied];
+      }
+      if (occupied.length > 2) {
+        throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
+      }
+      var mob = false;
+      var nonMob = false;
+      for (var i = 0; i < this._occupied.length; i++) {
+        if (this._occupied[i] instanceof Mob) {mob = true;}// this is setting our trackers
+        if (this._occupied[i] instanceof Nonmob) {nonMob = true;}
+      }
+      // Asumes single item
+      if (nonMob == true && occupied[i] instanceof Nonmob) {
+        throw new Error("Cell.occupied - cell already had a nonmob and was given" + occupied.name)
+      }else if (mob == true && occupied[i] instanceof Mob) {
+        throw new Error("Cell.occupied - cell already had a mob and was given" + occupied.name)
+      }else {
+        this._occupied.push(occupied[i]);
     }
   }
+}
 
   toString(){
     return this._image;
