@@ -48,13 +48,18 @@ class Cell {
 
   get occupied(){return this._occupied}
   set occupied(occupied){
+    if (!Array.isArray(occupied)) {
+      occupied = [occupied];
+    }
+    if (occupied.length > 2) {
+      throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
+    }
     for (var i = 0; i < occupied.length; i++) {
-      if (!Array.isArray(occupied)) {
-        occupied = [occupied];
+      if (!(occupied[i] instanceof Living)) {
+        throw new Error("Cell.occupied expects at most one mob and one not mon and was given " + occupied[i] + ".")
       }
-      if (occupied.length > 2) {
-        throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
-      }
+    }
+    for (var i = 0; i < occupied.length; i++) {
       var mob = false;
       var nonMob = false;
       for (var i = 0; i < this._occupied.length; i++) {
