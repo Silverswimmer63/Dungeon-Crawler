@@ -10,7 +10,7 @@ class Cell {
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
   }
-
+  //getters and setters
   get image(){return this._image}
   set image(image){this._image = this.image}
 
@@ -47,16 +47,65 @@ class Cell {
   }
 
   get occupied(){return this._occupied}
-  set occupied(occupied){
+  set occupied(occupied){ this._ocHandler(occupied, "Cell.occupied") }
+  //external methods
+  /*add(thing)
+  add will be used to update the cell when we do update cycles for the game
+  this will be used to take care of monsters moving in and out of the cell,
+  and loot drops or discards being added to the cell. wil make sure that the
+  param thing is one of the 3 appropriate classes.
+  @param thing {mixed}: the thing or things to be added to the cell
+  */
+  add(thing){
+    // determines if it is an object or array
+    var bad = true;
+    if (thing instanceof Item) {
+      thing = [thing];
+      bad = false;
+    }
+    if (thing instanceof Living) {
+      this._ocHandler(thing, "Cell.add");
+      bad = false;
+    }
+    if (Array.isArray(thing)) {
+      for (var i = 0; i < thing.length; i++) {
+        if (!(thing[i] instanceof Item)) {
+          // if its an array, check to see if all are living or all are objects
+          // if anything is not an item, throw an error
+        throw new Error("Cell.add atempted to add nonItem(s) and item(s) at the same time");
+        }
+      }
+      bad = false;
+      this._inventory = this._inventory.concat(thing);
+    }
+    if (bad == true) { throw new Error("Cell.add recieved illegal item"); }
+    // track which one it is
+    //send to correct function
+  }
+  //Internal methods
+  /*_ocHandler(occupied, call="Cell._ocHandler")
+  this will do all the interiar work for set occupied
+  @param {mixed} occupied an object or array of objects
+  @param {string} call where to toss error messages
+  */
+  _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
       occupied = [occupied];
     }
     if (occupied.length > 2) {
-      throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
+      throw new Error(call + " expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
     }
     for (var i = 0; i < occupied.length; i++) {
       if (!(occupied[i] instanceof Living)) {
-        throw new Error("Cell.occupied expects at most one mob and one not mon and was given " + occupied[i] + ".")
+        throw new Error(call + " expects at most one mob and one not mon and was given " + occupied[i] + ".")
+      }
+    }
+    if (occupied.length == 2) {
+      if ((occupied[0] instanceof Mob) && (occupied[1] instanceof Mob)) {
+        throw new Error(call + " was sent 2 " + "Mob" + "s and can only take 1.");
+      }
+      if ((occupied[0] instanceof Nonmob) && (occupied[1] instanceof Nonmob)) {
+        throw new Error(call + " was sent 2 " + "Nonmob" + "s and can only take 1.");
       }
     }
     for (var i = 0; i < occupied.length; i++) {
@@ -69,15 +118,16 @@ class Cell {
       // Asumes single item
 
       if (nonMob == true && occupied[i] instanceof Nonmob) {
-        throw new Error("Cell.occupied - cell already had a nonmob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name)
       }else if (mob == true && occupied[i] instanceof Mob) {
-        throw new Error("Cell.occupied - cell already had a mob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a mob and was given " + occupied[i].name)
       }else {
         this._occupied.push(occupied[i]);
+      }
     }
   }
-}
 
+  //toString and over overwrites
   toString(){
     return this._image;
   }
