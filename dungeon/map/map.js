@@ -6,18 +6,13 @@ class Map
  @param height {int}: height of the map(max y cord)
   */
 class Map{
-  constructor(width,height){
+  constructor(width, height, fill){
     this._width = Utils.intCheck(width, "Map constructor")
     this._height = Utils.intCheck(height, "Map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
   }
-/*3. add setters.
-The setters for this function for width and height can be added now. However, these will need to be a little more complex than with other
-setters we have used. They will need to do the following -
-1. Check for value inputted being an int, and giving the correct error message if it is not.
-2. now that the map has a new width or height, we have to remake it from scratch or we will get errors. Remake the this._map.
-*/
+
   set width(width){
     this._width = Utils.intCheck(width, "Map.width");
     this._map = this._generateMap();
@@ -30,6 +25,7 @@ setters we have used. They will need to do the following -
   get height(){return this._height;}
 
   get fill(){return this._fill;}
+  set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill") }
 
   get map(){
     var retMap = "";
