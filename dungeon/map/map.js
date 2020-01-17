@@ -8,7 +8,7 @@ class Map{
   constructor(width, height){
     this._width = Utils.intCheck(width), "Map constructor";
     this._height = Utils.intCheck(height), "Map constructor";
-    this._fill = new Cell;
+    this._fill = Cell;
     this._map = this._generateMap();
   }
 /*
@@ -80,7 +80,7 @@ the inner objects will be the individual cells of the map.
      map[key] = {};
      for (var j = 1; j < this.width+1; j++) {
        var key2 = "x"+j;
-       map[key][key2] = this.fill;
+       map[key][key2] = new this.fill;
      }
    }
    return map;
