@@ -10,7 +10,7 @@ class Cell {
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
   }
-
+  //getters and setters
   get image(){return this._image}
   set image(image){this._image = this.image}
 
@@ -47,16 +47,51 @@ class Cell {
   }
 
   get occupied(){return this._occupied}
-  set occupied(occupied){
+  set occupied(occupied){this._ocHandlerf(occupied, call + "")}
+
+  //external
+  /*add()thing
+  add will be used to udate the cell when we do update
+  cycles for the game.
+  this will be used to take care of monsters moving in and out of the cell
+  and loot drops or discards being added to the cell. will make sure
+  that the param thing is one of the 3 appropriate classes.
+  @param thing {mixed}: the thing or things to be added to cell
+  */
+  add(thing){
+    //determine if it is a object or Array
+
+    // if it is a array check to see if all are living or all are objects
+    // if anything isnt a item pitch a fit(throw a error)
+
+    // track which one it is
+    // send the correct function.  
+  }
+
+  //internal methods
+  /*_ocHandler(occupied, call="_ocHandler")
+  this to will do all of the interior work for set occupied.
+  @param occupied {mixed} an objec or array of objects
+  @param {string} call where toss error messeage
+  */
+  _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
       occupied = [occupied];
     }
     if (occupied.length > 2) {
-      throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
+      throw new Error(call + " expects at most one mob and one nonmob and was given the Array of length " + occupied.length + ".")
     }
     for (var i = 0; i < occupied.length; i++) {
       if (!(occupied[i] instanceof Living)) {
-        throw new Error("Cell.occupied expects at most one mob and one not mon and was given " + occupied[i] + ".")
+        throw new Error(call + " expects at most one mob and one not mon and was given " + occupied[i] + ".")
+      }
+    }
+    if (occupied.length == 2) {
+      if ((occupied[0] instanceof Mob) && (occupied[1] instanceof Mob)) {
+        throw new Error(" Cell.occupied was sent 2 mob(s) and can only take 1.")
+      }
+      if ((occupied[0] instanceof Nonmob) && (occupied[1] instanceof Nonmob)) {
+        throw new Error(" Cell.occupied was sent 2 Nonmob(s) and can only take 1.")
       }
     }
     for (var i = 0; i < occupied.length; i++) {
@@ -69,15 +104,16 @@ class Cell {
       // Asumes single item
 
       if (nonMob == true && occupied[i] instanceof Nonmob) {
-        throw new Error("Cell.occupied - cell already had a nonmob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name)
       }else if (mob == true && occupied[i] instanceof Mob) {
-        throw new Error("Cell.occupied - cell already had a mob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a mob and was given " + occupied[i].name)
       }else {
         this._occupied.push(occupied[i]);
+      }
     }
   }
-}
 
+  //toString and other overwrights
   toString(){
     return this._image;
   }
