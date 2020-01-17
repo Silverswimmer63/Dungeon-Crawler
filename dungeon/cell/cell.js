@@ -19,17 +19,11 @@ class Cell{
       return ths._open;
     }
   }
-  /*the setter for type should do the following:
-in addition to setting the type - it should do the following-
-If the type is being set to wall or border it should set _open to false
-if the type is being set to room or hall it should set _open to true
-If the type is ANYTHING else it should toss its own error "Cell.type
-expected one of the following: wall, hall, border, or room and got" + type */
-/*add a setter for inventory that does the following:
-if inventory is empty, allows you to set the inventory
-if inventory is not empty then have the following error:
-"Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory."*/
-set image(image){this._image = this.image}
+  get inventory(){return this._inventory}
+  get occupied(){return this._occupied}
+
+  //setters
+  set image(image){this._image = this.image}
   set type(type){
     if (type == "wall"|| type == "border") {
       this._type = type;
@@ -50,7 +44,50 @@ set image(image){this._image = this.image}
       throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
     }
   }
+}
+/*  for the occupied setter-
+if there is a nonmob in the cell do not allow another nonmob
+if there is a mob in the cell do not allow annother mob
+if we try to add things we cant, throw an error that reads
+"Cell.occupied - cell already had a mob/nonmob and was given" + thing*/
+
+  set occupied(occupied){
+    for (var i = 0; i < occupied.length; i++) {
+      if (!Array.isArray(thing)){thing = [thing]}; {
+        occupied = [occupied];
+      }
+      if (occupied.length > 2) {
+        throw new Error("Cell.occupied expects at most one mob and one nonmob and was given the Arrsy of length" + occupied.length + ".");
+      }
+      for (var i = 0; i < occupied.length; i++) {
+    if (!(occupied[i] instanceof Living)) {
+      throw new Error ("cell.occupied expects at most one mob and one nonmob and was given the Arrsy of length" + occupied[i]);
+    }
+    if (occupied.length == 2) {
+      if((occupied[0] instanceof Mob)&&(occupied[1] instanceof Mob)){
+        throw new Error ("Cell.occupied was sent 2 " <mob/nonmob> "s and can only take 1.");
+      }
+      if ((occupied[0]instanceof Nonmob)&&(occupied[1] instanceof Nonmob)){
+        throw new Error("Cell.occupied was sent 2 " <mob/nonmob> "s and can only take 1.");
+      }
+      }
+    var mob = false;
+    var nonMob = false;
+    for (var i = 0; i < this._occupied.length; i++) {
+      if (this._occupied[j] instanceof Mob) {mob = true}
+      if (this._occupied[j] instanceof Nonmob) {nonMob = true}
+    }
+      if (nonMob == true && occupied[j] instanceof Nonmob) {
+      throw new Error("Cell.occupied - cell already had a nonmob and was given" + occupied.name);
+    }
+    else if (mob == true && occupied[j] instanceof Nonmob) {
+      throw new Error("Cell.occupied - cell already had a mob and was given" + occupied.name);
+    }else {
+  this._occupied.push(occupied[j]);
+    }
+   }
+  }
+}  
   toString(){
     return this._image;
   }
-}
