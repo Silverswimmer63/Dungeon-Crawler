@@ -1,3 +1,13 @@
+
+/*
+Class Mob
+@param Name {str}: is name of mob or enemy
+@param type {str}: is type of the mob
+@param hp {int}: health of the mob
+@param desc {str}: description of the enemy/mob
+@param icon {str}: is the icon of the enemy
+@param attackDam {int}: the damage that the enemy/mob does
+*/
 class Mob extends Living{
   constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, level)

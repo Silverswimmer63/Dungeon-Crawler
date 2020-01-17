@@ -1,3 +1,11 @@
+/*Weapon
+the basis for all weapons, splits to ranged and melee
+@param name {string} the name of the item
+@param icon {string} the singlr character that shows up on the map
+@param desc {string} the description of the item
+@param value {int} the value of the item
+@param type {string} either the name of the collection the item belings to or trash
+@param damage {int} the value of damage a weapon does*/
 class Weapon extends Item{
   constructor(name, icon, desc, value, type, damage, level){
     super(name, icon, desc, value, type, level)

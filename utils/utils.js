@@ -98,3 +98,11 @@ can use the same code order. If the object does not, it throws an error.
   }
 
 }
+
+
+static intCheck(item, call="Utils.intCheck.js"){
+    if(Number.isInteger(item)){return item;}
+      else{throw new Error( "The method " + call + "and recived " + item + "." )}
+
+    }
+ }
