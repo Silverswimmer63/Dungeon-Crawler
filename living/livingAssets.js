@@ -7,8 +7,12 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"} ,
     drop: "Leather Armor",
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   },
   {
     name: "Girimehkala",
@@ -18,8 +22,12 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     icon:"M",
     attackDam: {min: 10, max: 15, type:"damage"},
     drop: "Chainmail Armor",
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   },
   {
     name: "Cenetur",
@@ -30,8 +38,12 @@ const COMPLETE_MYTHOLOGICAL_IN_LIST= [
     attackDam: {min: 10, max: 15,type:"damage"},
     drop: "Bronze Armor",
     range: 0,
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   }
 ]
 
@@ -43,8 +55,12 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc: "little green monsters as common as rats in the city honestly mostly just an annoyance more than anything",
     type: NoMythological,
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   },
   {
     name:"lemures",
@@ -54,8 +70,12 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     desc:"dark spirits that look like ghost emmos",
     type:NoMythological,
     range: 0,
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   },
   {
     name:"Azeban",
@@ -64,8 +84,12 @@ const COMPLETE_NO_MYTHOLOGICAL_IN_LIST= [
     icon:"m",
     desc:"imagine rocket from guardians of the galaxy but as a poor theff",
     type:NoMythological,
+<<<<<<< HEAD
     Level: 0,
     status: none
+=======
+    level: 0
+>>>>>>> JAKE
   }
 ]
 
@@ -79,8 +103,12 @@ const COMPLETE_COWBOY_LIST = [
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Leather Armor",
     range: 0,
+<<<<<<< HEAD
     Level: 1,
     status: none
+=======
+    level: 1
+>>>>>>> JAKE
   },
   {
     name: "Drunk Man",
@@ -90,8 +118,12 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Chainmail Armor",
+<<<<<<< HEAD
     Level: 1,
     status: none
+=======
+    level: 1
+>>>>>>> JAKE
   },
   {
     name: "Outlaw",
@@ -101,8 +133,12 @@ const COMPLETE_COWBOY_LIST = [
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
     drop: "Bronze Armor",
+<<<<<<< HEAD
     Level: 1,
     status: none
+=======
+    level: 1
+>>>>>>> JAKE
   }
 ]
 
@@ -115,8 +151,12 @@ const COMPLETE_NO_COWBOY_LIST = [
     icon:"M",
     attackDam: {min: 15, max: 30, type:"damage"},
     range: 0,
+<<<<<<< HEAD
     Level: 1,
     status: none
+=======
+    level: 1
+>>>>>>> JAKE
   },
   {
     name:"snek",
@@ -125,7 +165,7 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"I hate sneks",
     icon:"M",
     attackDam: {min: 15, max: 30,type:"damage"},
-    Level: 1
+    level: 1
   },
   {
     name:"Angry cow",
@@ -134,8 +174,12 @@ const COMPLETE_NO_COWBOY_LIST = [
     desc:"(A series of angry moos that corilate unto one word)...Moo!",
     attackDam: {min: 15, max: 30, type:"damage"},
     icon:"M",
+<<<<<<< HEAD
     Level: 1,
     status: none
+=======
+    level: 1
+>>>>>>> JAKE
   }
 ]
 
@@ -148,8 +192,12 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Chainmail Armor",
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   },
   {
     name: "Knife Roomba",
@@ -159,8 +207,12 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Copper Armor",
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   },
   {
     name: "Self-Driving Cars",
@@ -170,8 +222,12 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Bronze Armor",
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   }
   ]
 
@@ -184,8 +240,12 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   },
   {
     name: "Rouge Alexa",
@@ -195,8 +255,12 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max:45, type:"damage"},
     range: 0,
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   },
   {
     name: "Cyber Bully",
@@ -206,8 +270,12 @@ const COMPLETE_NO_SPACE_LIST = [
     icon: "$",
     attackDam: {min: 35, max: 45, type:"damage"},
     range: 0,
+<<<<<<< HEAD
     Level: 2,
     status: none
+=======
+    level: 2
+>>>>>>> JAKE
   },
 ]
 
