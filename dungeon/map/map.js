@@ -9,7 +9,7 @@ class Map{
   constructor(width,height){
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
-    this._fill = new Cell;
+    this._fill = Cell;
     this._map = this._generateMap();
   }
   /*3. add setters.
@@ -34,7 +34,7 @@ or we will get errors. Remake the this._map.*/
   }
 
   get fill(){return this._fill;}
-  set fill(fill){this._fill = this.fill}
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
 
   get map(){
     var retMap = "";
@@ -78,7 +78,7 @@ the inner objects will be the individual cells of the map.
       map[key] = {};
       for (var j = 1; j <= this.width; j++) {
         var key2 = "x"+j;
-        map[key][key2] = this.fill;
+        map[key][key2] = new this.fill;
       }
     }
     return map;//yay
