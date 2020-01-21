@@ -5,6 +5,9 @@ class Map{
     this._fill = new Cell;
     this._map ={this._generateMap()};
   }
+  get fill{}{return this._fill;}
+  get fill(fill){this._fill = Utils.keyCheck(this.fill,"image","Map.fill")
+}
   /*
   3. add setters.
 The setters for this function for width and height can be added now. However,
