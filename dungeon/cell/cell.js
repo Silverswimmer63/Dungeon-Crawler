@@ -81,9 +81,9 @@ This will do all of the interior work for set occupied.
         }
       }
       //assumes singe item
-      if (nonMob == true && occupied[i] instanceof Nonmob) {
+      if ((nonMob == true) && (occupied[i] instanceof Nonmob)) {
         throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name + ".");
-      }else if (mob == true && occupied[i] instanceof Mob) {
+      }else if ((mob == true) && (occupied[i] instanceof Mob)) {
         throw new Error(call + " - cell already had a mob and was given " + occupied[i].name + ".");
       }else {
         this._occupied.push(occupied[i]);
