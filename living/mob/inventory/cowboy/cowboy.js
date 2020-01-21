@@ -1,12 +1,7 @@
 //Class Cowboy is for the specification of the cowboys with an inventory
 class Cowboy extends Inventory{
-<<<<<<< HEAD
-  constructor(name, type, hp, desc, icon, attackDam){
-    super(name, type, hp, desc, icon, attackDam);
-=======
   constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, attackDam, level);
->>>>>>> JAKE
   }
 }
 // name: this shows the monsters' name.
