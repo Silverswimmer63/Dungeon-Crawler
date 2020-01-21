@@ -102,10 +102,10 @@ class Cell {
     }
     if (occupied.length == 2) {
       if ((occupied[0] instanceof Mob) && (occupied[1] instanceof Mob)) {
-        throw new Error(call + " was sent 2 " + "Mob" + "s and can only take 1.");
+        throw new Error(" Cell.occupied was sent 2 mob(s) and can only take 1.")
       }
       if ((occupied[0] instanceof Nonmob) && (occupied[1] instanceof Nonmob)) {
-        throw new Error(call + " was sent 2 " + "Nonmob" + "s and can only take 1.");
+        throw new Error(" Cell.occupied was sent 2 Nonmob(s) and can only take 1.")
       }
     }
     for (var i = 0; i < occupied.length; i++) {
@@ -127,7 +127,7 @@ class Cell {
     }
   }
 
-  //toString and over overwrites
+  //toString and other overwrights
   toString(){
     return this._image;
   }
