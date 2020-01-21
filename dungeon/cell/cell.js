@@ -87,14 +87,36 @@ if we try to add things we cant, throw an error that reads
     }
    }
   }
-}
+
 set occupied(occupied){this._ocHandler(occupied, "Cell.occupied");}
+
 /*ocHandler(occupied, call ="Cell.ocHandler")
 This will do all of the interior work for set occupied,
 @param{mixed}occupied an objects*/
-add(occupied){
+add(thing){
   //deternime if its is an object or and array.
+  var bad = true
+  if (thing instanceof Item) {
+    thing = [thing];
+    bad = false
+  }
+  if (thing instanceof Living) {
+    this._ocHandler(thing,"Cell.add");
+        bad = false
+  }
+if (Array.isArray(thing)) {
+  for (var i = 0; i < thing.length; i++) {
+  if (!(thing[i] instanceof Item)) {
+    throw new Error("Cell.add attempted to add nonItem and item(s)at the same time");
+  }
+ }
+     bad = false
+ this._inventory = this._inventory.concat(thing);
+ if (bad == true) {
 
+ }
+}
+}
   // if it is an array check to see if all are living or all an objects
   //add tracker flags, toss an error iv both are hit
   // if anything isnt an item pitch a fit (throw an error)
