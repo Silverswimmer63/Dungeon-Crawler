@@ -31,7 +31,7 @@ class Map{
     this._map= this._generateMap();}
     set height(height){this._height = Utils.intCheck(height, "Map.height");
     this._map= this._generateMap();}
-    set fill(fill){this._fill = fill;}
+    set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
 set map(dimentions){
  Utils.keyCheck(dimentions, ["width", "height"], "Map.map");
  Utils.intCheck(dimentions.width, "Map.map");

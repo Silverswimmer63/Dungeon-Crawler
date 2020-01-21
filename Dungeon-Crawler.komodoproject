@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
-<project id="bc02cb8b-6e22-453c-a524-a5d5f6432856" kpf_version="5" name="MyProject.komodoproject">
+<project id="bc02cb8b-6e22-453c-a524-a5d5f6432856" kpf_version="5" name="Dungeon-Crawler.komodoproject">
 <file id="19b926d6-43ce-4811-9c3b-2087037a7016" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="head.js" url="item/usuables/armor/head/head.js">
 </file>
 <file id="1af6e7f6-d386-4585-99c0-dec749d9d9ee" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="assets.js" url="assets.js">
