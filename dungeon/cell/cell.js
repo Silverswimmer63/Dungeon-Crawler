@@ -1,4 +1,4 @@
-/*class Cell is a individual space on the grid.
+/*class cell is a individual space on the grid.
 It can be open or closed and it can contain items
 or mobs or the player.
 */
@@ -23,7 +23,7 @@ class Cell {
       this._open = true;
       this._type = type;
     }else {
-      throw new Error("Cell.type expected one of the following: wall, hall, border, or room and got " + type + ".");
+      throw new Error("Cell.type exptrueected one of the following: wall, hall, border, or room and got " + type + ".");
     }
   }
 
@@ -34,7 +34,7 @@ class Cell {
       return this._open;
     }
   }
-
+  set open(open){ throw new Error("Open status should only be set by the cell type"); }
   get inventory(){return this._inventory}
   set inventory(inventory){
     if (inventory.length == 0) {
