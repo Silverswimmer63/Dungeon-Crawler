@@ -1,5 +1,5 @@
 class Utils {
-/*randMath
+  /*randMath
 @param max {int}: the max you can have
 @param min {int} the min you can have ;
 */
@@ -12,7 +12,7 @@ class Utils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-/*
+  /*
   1. In Utils.js
 Make a new static method called intCheck(item, call) Here is the documentation for initCheck
 /* intCheck(item, call="Utils.intCheck.js")
@@ -32,7 +32,6 @@ Number.isInteger()
 
 6. Test this method.
 */
-
   static intCheck(item, call="Utils.intCheck.js"){
     if (Number.isInteger(item)) {return item}
     else {
@@ -45,7 +44,6 @@ Number.isInteger()
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item unless it is not an object
 */
-
   static objCheck(item, call="Utils.objCheck"){
     if (( item != null)&&(typeof item == "object")) {
       return item;
@@ -65,7 +63,6 @@ can use the same code order. If the object does not, it throws an error.
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item if object with key(s)
 */
-
   static keyCheck(item, key, call= "Utils.keyCheck"){
     this.objCheck(item, call);
     if (!Array.isArray(key)) {
@@ -95,6 +92,25 @@ can use the same code order. If the object does not, it throws an error.
       }
     }
     throw new Error(errStr+".")
+  }
+
+  /* listCheck(item, list, call)
+  helper function to check to see if an item is on the list given to it.
+  If it is not, it throws an error of the form
+  call + "expected one of the following: " +<list items>+ " and got " + type + "."
+  @param item: {mixed} the thing to be checked
+  @param list: {array} an array of things to check the item against
+  @param call: {text} where to call the error from
+  @return {mixed} The item if no error is thrown
+  */
+  static listCheck(item, list, call="Utils.listCheck"){
+    for (var i = 0; i < list.length; i++) {
+      if (item == list[i]) {
+        return item;
+      }else {
+        throw new Error(call + "expected one of the following: " + list + " and got " + type + ".")
+      }
+    }
   }
 
 }

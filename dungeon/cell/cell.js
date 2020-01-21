@@ -28,12 +28,10 @@ class Cell {
   }
 
   get open(){
-    if (this._occupied.length>0) {
-      return false;
-    }else {
-      return this._open;
-    }
+    if (this._occupied.length>0) { return false; }
+    else { return this._open; }
   }
+  set open(open){ throw new Error("Open status should only be set by the cell.")}
 
   get inventory(){return this._inventory}
   set inventory(inventory){
