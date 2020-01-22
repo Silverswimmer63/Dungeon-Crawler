@@ -20,16 +20,13 @@ Checks to see if "item" is an integer. Throws a custom error if not.
 @param item: {mixed} an item to be check if is an integer
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item unless it is not an integer
-
 2. look up how to make a custom error message in javaScript
 catch and throw error
 3. look up how to check to see if something is an integer in javaScript
 Number.isInteger()
 4. In intCheck(item, call) check to see if the item is an integer. If so, return it.
-
 5. If the item is not an integer, then throw your new Error. The text of this error should be :
 "The method " + call + " expected an integer and received " + item + ".";
-
 6. Test this method.
 */
 
@@ -96,7 +93,4 @@ can use the same code order. If the object does not, it throws an error.
     }
     throw new Error(errStr+".")
   }
-
-}
-
 }
