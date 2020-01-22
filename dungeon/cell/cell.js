@@ -8,22 +8,19 @@ class Cell{
     this._type = "wall";//wall, hall, rooms, border: a wall but a tag
     this._open = false;//if the cell allows movement
     this._inventory = [];//item is the cell
-    this._occupied = null;// fro living in the cell
+    this._occupied = [];// fro living in the cell
   }
   //getters and setters
   get image(){return this._image}
   set image(image){this._image = this.image}
+
+  get type(){return this._type}
   set type(type){
-    if (type == "wall"|| type == "border") {
+    Utils.listCheck(type, ["Wall","border","room","hall","Cell.type"])
       this._type = type;
       this._open = false;
-    }else  if (type == "room"|| type == "hall") {
-      this._type = type;
-      this._open = true;
-    }else {
-      throw new Error ("Cell.type expected one of the following: wall, hall, border, or room and got" + type + ".");
-    }
   }
+
   set inventory(inventory){
     if (this.inventory == 0) {
       this._inventory =inventory;

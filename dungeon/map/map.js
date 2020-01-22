@@ -20,6 +20,7 @@ set width(width){
   this._width = Utils.intCheck(width, "Map.width");
   this._map =  this._generateMap();
 }
+
 set height(height){
   this._height = Utils.intCheck(width, "Map.height");
   this._map =  this._generateMap();
