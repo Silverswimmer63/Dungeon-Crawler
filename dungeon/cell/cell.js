@@ -16,15 +16,9 @@ class Cell {
 
   get type(){return this._type}
   set type(type){
-    if (type == "wall" || type == "border") {
-      this._open = false;
-      this._type = type;
-    }else if (type == "room" || type == "hall") {
-      this._open = true;
-      this._type = type;
-    }else {
-      throw new Error("Cell.type expected one of the following: wall, hall, border, or room and got " + type + ".");
-    }
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type")
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
   }
 
   get open(){
@@ -47,6 +41,7 @@ class Cell {
   get occupied(){return this._occupied}
   set occupied(occupied){ this._ocHandler(occupied, "Cell.occupied") }
   //external methods
+
   /*add(thing)
   add will be used to update the cell when we do update cycles for the game
   this will be used to take care of monsters moving in and out of the cell,
@@ -80,6 +75,41 @@ class Cell {
     // track which one it is
     //send to correct function
   }
+
+  /* remove(index)
+  remove will either remove the item from the cell inventory that exist at index
+  or if index = "mob" it will remove the monster
+  @param index {mixed}: either the index value of the item or the word "mob"
+  @return {object}: the item or mob
+  */
+  remove(index){
+    if (index == "mob") {
+      //go through occupied and find if there is a mob, use instanceof
+      //if we find something, we want to slice/splice it out
+      //return it
+      var num = NaN;
+      for (var i = 0; i < this.occupied.length; i++) {
+        if (this.occupied[i] instanceof Mob) {
+          num = i;
+        }
+      }
+      console.log(i);
+      if (num == NaN) {
+        throw new Error("Cell.remove atempted to remove a mob that does not exist.")
+      }
+      return this.occupied.splice(num,1);
+    }
+    if (Number.isInteger(index)) {
+      //if we find something, we want to slice/splice it out
+      //return it
+      if ((this.inventory.length == 0) || (index >= this.inventory.length)) {
+        throw new Error("Cell.remove atempted to remove an item that does not exist.")
+      }
+      return this.inventory.splice(index,1);
+    }
+    throw new Error("Cell.remove expected a number or Mob and recieved " + index + ".")
+  }
+
   //Internal methods
   /*_ocHandler(occupied, call="Cell._ocHandler")
   this will do all the interiar work for set occupied
