@@ -87,14 +87,13 @@ class Cell {
       //go through occupied and find if there is a mob, use instanceof
       //if we find something, we want to slice/splice it out
       //return it
-      var num = NaN;
+      var num = undefined;
       for (var i = 0; i < this.occupied.length; i++) {
         if (this.occupied[i] instanceof Mob) {
           num = i;
         }
       }
-      console.log(i);
-      if (num == NaN) {
+      if (num == undefined) {
         throw new Error("Cell.remove atempted to remove a mob that does not exist.")
       }
       return this.occupied.splice(num,1);

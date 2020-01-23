@@ -31,7 +31,6 @@ class Utils {
 
   6. Test this method.
 */
-
   static intCheck(item, call="Utils.intCheck.js"){
     if (Number.isInteger(item)) {return item}
     else {
@@ -108,4 +107,33 @@ can use the same code order. If the object does not, it throws an error.
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
 
+  /*randCoord(xMin, xMax, yMin, yMax)
+  This function will produce an object with the keys of x and y, with values
+  betweem xMin - xMax for the x key, & yMin and yMax for the y key
+  @param xMin {int}: a number between 1 and xMax
+  @param xMax {int}: a number greater than xMin
+  @param yMin {int}: a number between 1 and yMax
+  @param yMax {int}: a number greater than yMin
+  @return {obj}: An obj with x & y keys
+*/
+  static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
+    var retObj = {};
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
+    return retObj;
+  }
+
+  /*randRoom(width, height, roomMin, roomMax)
+  Returns an array of 4 coordinate objects
+  the lower x should be between 1 and the width of the map - min width of the room
+  the higher x should be between the lower x + min and the lower x + max
+  the lower y should be between 1 and the height of the map - min height of the room
+  the higher y should be between the lower y + min and the lower y + max
+  */
+  static randRoom(width, height, roomMin, roomMax){
+    var tpLeft = {x:this.randMAth(1,height-)};
+    var tpRight = {};
+    var btLeft = {};
+    var btRight = {};
+  }
 }
