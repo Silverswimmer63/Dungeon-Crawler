@@ -17,6 +17,11 @@ get open(){if (this._occupied.length > 0) {return false;}else {return this._open
 get inventory(){ return this.inventory;}
 get ocupied(){return this.ocupied}
 set image(image){this._image = this.image}
+type = Utils.listCheck(type,["wall","border","room","hall"], "cell.type");
+this._type = type;
+if (type == "wall" || type == "border") {
+  this._open = ["room", "hall"].includes(type);
+}
 /*
 for the occupied setter-
 if there is a nonmob in the cell do not allow another nonmob
@@ -61,6 +66,36 @@ add(thing){
     this._ocHandler
   }
 }
+/* remove(index)
+remove will either remove the item from the cell inventory that exist at index
+or if index = "mob" it will remove the monster
+@param index {mixed}: either the index value of the item or the word "mob"
+@return {object}: the item or mob
+*/
+remove(idex){
+  if (index == "mob") {
+    //go through ocupied and find if there is a mob, useinstanceof. if we find something,, we want to slice or splice it out then return
+num = i;
+  for (var i = 0; i < this.ocupied.length; i++) {
+    if (this.ocupied[i] instanceof Mob; {
+      varmnum = i;
+    }
+  }
+if (num == NaN) {
+  throw new Error("Cell.remove attempted to remove a mob that does not exist.")
+}
+}
+  return this.ocupied.splice();
+  }
+  if (Number.isInterger(index)){
+    if ((this.inventory.length == 0)||(index >= this.inventory.length)){
+      throw new Error ("Cell.remove attempted to remove a Item that does not exist")
+    }
+return this.inventory.splice(index,1);
+}
+throw new Error ("Cell.remove expected a number or mob and recive " + index + " .")
+}
+
 /*
 add a setter for inventory that does the following:
 if inventory is empty, allows you to set the inventory
@@ -93,3 +128,5 @@ this._type = type;
     return this._image;
   }
 }
+
+set open(open){throw new Error("Open status should be set by the cell type")}
