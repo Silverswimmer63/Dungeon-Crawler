@@ -16,15 +16,9 @@ class Cell {
 
   get type(){return this._type}
   set type(type){
-    if (type == "wall" || type == "border") {
-      this._open = false;
-      this._type = type;
-    }else if (type == "room" || type == "hall") {
-      this._open = true;
-      this._type = type;
-    }else {
-      throw new Error("Cell.type expected one of the following: wall, hall, border, or room and got " + type + ".");
-    }
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
   }
 
   get open(){
@@ -35,8 +29,6 @@ class Cell {
     }
   }
   set open(open){throw new Error("Open status should only be set by the cell type.")}
-
-
 
   get inventory(){return this._inventory}
   set inventory(inventory){
@@ -90,6 +82,35 @@ class Cell {
     // send the correct function.
   }
 
+  /* remove(index)
+  remove will either remove the item from the cell inventory that exist at index
+  or if index = "mob" it will remove the monster
+  @param index {mixed}: either the index value of the item or the word "mob"
+  @return {object}: the item or mob
+  */
+
+
+  remove(index){
+    if(index == "mob"){
+      var num = NaN;
+      for (var i = 0; i < this.occupied.length; i++) {
+        if (this.occupied[i] instanceof Mob) {
+          num = i;
+        }
+      }
+      if (num == NaN) {
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
+      }
+      return this.occupied.splice(num,1);
+    }
+    if (Number.isInteger(index)) {
+      if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+        throw new Error("Cell.remove attempted to remove a Item that does not exist.")
+      }
+      return this.inventory.splice(index,1);
+    }
+    throw new Error("Cell.remove expected a number or mob and received " + index +".")
+  }
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.
