@@ -85,10 +85,7 @@ can use the same code order. If the object does not, it throws an error.
   @return {mixed} The item if no error is thrown
   */
   static listCheck(item, list, call = "Utils.listCheck"){
-    for (var i = 0; i < list.length; i++) {
-      if (item == list[i]) {
-        return item;
-      } else{ throw new Error(call + "expected one of the following: " + list + " and got " + item + ".");}
-    }
+      if (list.includes(item)) { return item; }
+      throw new Error(call + "expected one of the following: " + list + " and got " + item + ".");
   }
 }
