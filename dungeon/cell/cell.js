@@ -88,13 +88,13 @@ class Cell {
   */
   remove(index){
     if(index == "mob"){
-      var num = NaN;
+      var num = undefined;
       for (var i = 0; i < this.occupied.length; i++) {
           if (this.occupied[i] instanceof Mob) {
             num = i;
         }
       }
-      if (num == NaN) {
+      if (num == undefined) {
         throw new Error("Cell.remove attempted to remove a Mob that did not exist")
       }
       return this.occupied.splice(num, 1)
