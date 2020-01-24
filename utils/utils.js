@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -62,7 +62,7 @@ can use the same code order. If the object does not, it throws an error.
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item if object with key(s)
 */
-  static keyCheck(item, key, call= "Utils.keyCheck"){
+  static keyCheck(item, key, call="Utils.keyCheck"){
     this.objCheck(item, call);
     if (!Array.isArray(key)) {
       key = [key];
@@ -129,11 +129,33 @@ can use the same code order. If the object does not, it throws an error.
   the higher x should be between the lower x + min and the lower x + max
   the lower y should be between 1 and the height of the map - min height of the room
   the higher y should be between the lower y + min and the lower y + max
+  static randRoom(width, height, roomMin, roomMax){
+  var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+  var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+  return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
+  }
+  */
+  /*randRoom(width, height, roomMin, roomMax)
+  returns an array of coordinate objects for a square room
   */
   static randRoom(width, height, roomMin, roomMax){
-    var tpLeft = {x:this.randMAth(1,height-)};
-    var tpRight = {};
-    var btLeft = {};
-    var btRight = {};
-  }
+    roomMin -= 1;
+    roomMax -= 1;
+    var start = this.randCoord(1,width-roomMin,1,height-roomMin);
+    var stop = this.randCoord(start.x+roomMin,Math.min(start.x+roomMax,width),start.y+roomMin,Math.min(start.y+roomMax,height));
+    //make an array to return
+    //for every line:
+      //find the values of the other coord(if x above then y here and vise versa)
+      //put them into an object with the keys {x:numA y: numB}
+      //put objects on the array
+      //return an array of objects
+      var retArr = [];
+      for (var i = start.x; i <= stop.x; i++) {
+        for (var j = start.y; j <= stop.y; j++) {
+          var obj = {x:i,y:j};
+          retArr.push(obj);
+        }
+      }
+      return retArr;
+    }
 }
