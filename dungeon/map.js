@@ -9,7 +9,7 @@ class Map{
         this._width = Utils.intCheck(width);
         this._height = Utils.intCheck(height);
         this._fill = new Cell();
-        this._map= this._generateMap();
+        this._map = this._generateMap();
     }
     get width(){return this._width;}
     get height(){return this._height;}
@@ -23,23 +23,27 @@ class Map{
        retMap += "" + this._map["y "+i]["x "+j];
       }
       retMap += "|" + "<br>";
-}
+     }
      return retMap += this._drawBorder();
     }
     
     set width(width){this._width = Utils.intCheck(width, "Map.width");
-    this._map= this._generateMap();}
-    set height(height){this._height = Utils.intCheck(height, "Map.height");
-    this._map= this._generateMap();}
+     this._map= this._generateMap();
+    }
+    set height(height){
+     this._height = Utils.intCheck(height, "Map.height");
+     this._map= this._generateMap();
+    }
     set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
-set map(dimentions){
- Utils.keyCheck(dimentions, ["width", "height"], "Map.map");
- Utils.intCheck(dimentions.width, "Map.map");
- Utils.intCheck(dimentions.height, "Map.map");
- this._width = dimentions.width;
- this._height = dimentions.height;
- this._map= this._generateMap();
-}
+    set map(dimentions){
+     Utils.keyCheck(dimentions, ["width", "height"], "Map.map");
+     Utils.intCheck(dimentions.width, "Map.map");
+     Utils.intCheck(dimentions.height, "Map.map");
+     this._width = dimentions.width;
+     this._height = dimentions.height;
+     this._map= this._generateMap();
+    }
+    set open(open){throw new Error("open status should only be set by cell");}
 /*
 _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
