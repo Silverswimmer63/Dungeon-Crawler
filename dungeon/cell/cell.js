@@ -16,9 +16,9 @@ class Cell {
 
   get type(){return this._type;}
   set type(type){
-    type = Utils.listCheck(type, ["wall", "border", "room", "hall"], "Cell.type");
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
     this._type = type;
-    this._open = ["room", "hall"].includes(type)
+    this._open = ["room","hall"].includes(type);
   }
 
   get open(){
@@ -28,6 +28,7 @@ class Cell {
       return this._open;
     }
   }
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
 
   get inventory(){return this._inventory}
   set inventory(inventory){
@@ -86,28 +87,27 @@ class Cell {
   @param index {mixed}: either the index value of the item or the word "mob"
   @return {object}: the item or mob
   */
-    remove(index){
-      if(index == "mob"){
+  remove(index){
+    if(index == "mob"){
       var num = NaN;
-        for(var i = 0; i < this._occupied.length; i++){
-          if(this._occupied[i] instanceof Mob){
-            num = i;
-          }
+      for (var i = 0; i < this.occupied.length; i++) {
+        if (this.occupied[i] instanceof Mob) {
+          num = i;
         }
-        if(num == NaN){throw new Error("Cell.remove attempted to remove a mob that does not exist");}
-        return this._occupied.splice(num,1);
       }
-      if(Number.isInteger(index)){
-        if((this.inventory.length == 0) || (index >= this.inventory.length)){
-          throw new Error("Cell.remove attempted to remove a Item that does not exist.");
-        }
-        return this.inventory.splice(index,1);
+      if (num == NaN) {
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
       }
-      else{
-        //throw an error
-        throw new Error("Cell.remove expected a number or Mob and receieved " + index +".");
-      }
+      return this.occupied.splice(num,1);
     }
+    if (Number.isInteger(index)) {
+      if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+        throw new Error("Cell.remove attempted to remove a Item that does not exist.")
+      }
+      return this.inventory.splice(index,1);
+    }
+    throw new Error("Cell.remove expected a number or mob and received " + index +".")
+  }
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.
