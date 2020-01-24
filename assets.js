@@ -34,6 +34,3 @@ class Ranged {
   }
 }
 */
-const COMPLETE_LOOT_LIST = [
-  
-]

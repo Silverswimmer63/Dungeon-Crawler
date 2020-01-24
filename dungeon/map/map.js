@@ -81,7 +81,7 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
@@ -94,8 +94,6 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.width; i++) {
       retStr += "-";
     }
-    return retStr + "+";
+    return retStr += "+";
   }
-
-
 }

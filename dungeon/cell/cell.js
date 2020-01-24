@@ -1,4 +1,4 @@
-/*class Cell is a individual space on the grid.
+/*class cell is a individual space on the grid.
 It can be open or closed and it can contain items
 or mobs or the player.
 */
@@ -16,9 +16,9 @@ class Cell {
 
   get type(){return this._type;}
   set type(type){
-    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    type = Utils.listCheck(type, ["wall", "room", "border", "hall"], "Cell.type");
     this._type = type;
-    this._open = ["room","hall"].includes(type);
+    this._open = ["room", "hall"].includes(type);
   }
 
   get open(){
@@ -28,8 +28,7 @@ class Cell {
       return this._open;
     }
   }
-  set open(open){throw new Error("Open status should only be set by the cell type.")}
-
+  set open(open){ throw new Error("Open status should only be set by the cell type"); }
   get inventory(){return this._inventory}
   set inventory(inventory){
     if (inventory.length == 0) {
@@ -108,6 +107,7 @@ class Cell {
     }
     throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
+
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.
