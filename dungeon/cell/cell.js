@@ -16,17 +16,11 @@ class Cell {
  set image(image){this._image = this.image}
 
  get type(){return this._type}
- set type(type){
-   if (type == "wall" || type == "border") {
-     this._open = false;
-     this._type = type;
-   }else if (type == "room" || type == "hall") {
-     this._open = true;
-     this._type = type;
-   }else {
-     throw new Error("Cell.type expected one of the following: wall, hall, border, or room and got " + type + ".");
-   }
- }
+ set type(type,["wall","border","room","hall"]){
+   this._type = type;
+   this._type = type;
+   this._open = ["room","hall"].includes(type);
+}
 
  get open(){
    if (this._occupied.length>0) {
@@ -35,6 +29,10 @@ class Cell {
      return this._open;
    }
  }
+ set open(open){throw new Error("Open should only be set by the cell you idiot face butt head");}
+
+//toString and other overwrites
+
 
  get inventory(){return this._inventory}
  set inventory(inventory){
@@ -46,7 +44,6 @@ class Cell {
      throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
    }
  }
-
  get occupied(){return this._occupied}
 
  //add(thing)
@@ -56,19 +53,32 @@ class Cell {
  //@param will make sure the param thing will be the apprate class
 
  add(thing){
+   var bad = true;
+   if (thing instanceof Item){
+     thing = [thing];
+   }
+   if (thing instanceof Living) {
+     this._ocHandler(thing,"Cell.add")
+     bad = false;
+   }
    //determain if it is an object or an array
    if(Array.isArray(thing)){
      for (var i = 0; i < thing.length; i++) {
+       bad = false;
        if (!(thing[i] instanceof Item)){
+         bad = false;
          //if its an array check to see if all are living or all are objects
          //add tracker flags, toss an error if both  ARE HIT.
          throw new Error("Cell.add attempted to add living(s) and item(s) at the same time");
        }
      }
+     this._inventory = this._inventory.concat(thing);
    }
 
    //track which
-
+   if(bad == true){
+     throw new Erorr ("bad item dumb")
+   }
  }
 
 
@@ -101,7 +111,7 @@ class Cell {
      }
      // Asumes single item
 
-     if (nonMob == true && occupied[i] instanceof Nonmob) {
+     if ((nonMob == true) && (occupied[i] instanceof Nonmob)) {
        throw new Error("Cell.occupied - cell already had a nonmob and was given " + occupied[i].name)
      }else if (mob == true && occupied[i] instanceof Mob) {
        throw new Error("Cell.occupied - cell already had a mob and was given " + occupied[i].name)
@@ -117,6 +127,23 @@ class Cell {
 
    }
  }
+ remove(index){
+   if(index == "mob"){
+     var num = undefined;
+     for (var i = 0; i < this._occupied.length; i++) {
+       if(this.occupied[i] instanceof Mob){
+       num = i;
+     }
+   }
+   if(num == undefined){throw new Error "Cell.add attempted to remove a mob that does not exist"}
+   return this.occupied.splice(index,1);
+   if(Number.isInteger(index)){
+     return this.inventory.splice(index,1);
+   }
+   if((this.inventory.length == 0)||(index >= this.inventory.length)){throw new Erorr ("Nah B")}
+   throw new Error("cell.remove exspected a number or Mob and recived" + index +".")
+   }
+ }i
 }
 //toString and other overwrites
  toString(){

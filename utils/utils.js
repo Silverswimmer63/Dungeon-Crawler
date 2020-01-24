@@ -105,4 +105,46 @@ static intCheck(item, call="Utils.intCheck.js"){
       else{throw new Error( "The method " + call + "and recived " + item + "." )}
 
     }
+    /* listCheck(item, list, call)
+    helper function to check to see if an item is on the list given to it.
+    If it is not, it throws an error of the form
+    call + "expected one of the following: " +<list items>+ " and got " + type + "."
+    @param item: {mixed} the thing to be checked
+    @param list: {array} an array of things to check the item against
+    @param call: {text} where to call the error from
+    @return {mixed} The item if no error is thrown
+    */
+
+    static listCheck(item,list,call="Utils.list"){
+        if(list.includes(item)){
+          call + "expected one of the following: " + list + " and got " + item + ".";
+        }
+      }
+      //this function witll produce objects  with the keys of x AND Y   WITH VALUES BETWEEN XMIN-XMAX
+      //
+
+      static randCoord(xMin, xMax, yMin, yMax,call="Utils.randCoord"){
+        var retObj = {};
+        retObj.x = this.randMath(xMin,xMax);
+        retObj.y = this.randMath(yMin,yMax);
+        return retObj;
+      }
+
+      /* r  andRoom(width, height, roomMin, roomMax)
+Returns an array of 4 coordinate objects
+*/
+  static randRoom(width, height, roomMin, roomMax){
+    var retArr = []
+    var topL = this.randCoord(1,width-roomMin);
+    var topR = topL
+    var botL =
+    var botR = this.randCoord(1,height-roomMin)
+    retArr.push(topL,topR,botL,botR)
+    return retArr;
+  }
+
+
+
+
+      }
  }
