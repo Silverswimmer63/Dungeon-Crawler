@@ -88,4 +88,18 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
     if (list.includes(item)) {return item;}
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
-}
+  /* randCoord(xMin, xMax, yMin, yMax)
+This function will produce an object with the keys of x and y, with values
+betweem xMin - xMax for the x key, & yMin and yMax for the y key
+@param xMin {int}: a number between 1 and xMax
+@param xMax {int}: a number greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
+*/
+  /* randRoom(width, height, roomMin, roomMax)
+Returns an array of 4 coordinate objects
+*/
+  static randRoom(width,height, roomMin,roomMax){
+    }
+  }
