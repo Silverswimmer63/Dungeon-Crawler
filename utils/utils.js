@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -109,6 +109,48 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
   static listCheck(item, list, call="Utils.listCheck"){
     if (list.includes(item)) {return item;}
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
+  }
+
+  /* randCoord(xMin, xMax, yMin, yMax)
+This function will produce an object with the keys of x and y, with values
+betweem xMin - xMax for the x key, & yMin and yMax for the y key
+@param xMin {int}: a number between 1 and xMax
+@param xMax {int}: a number greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
+*/
+  static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
+    var retObj = {};
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
+    return retObj;
+  }
+/*
+  the lower x should be between 1 and the width of the map - min width of the room
+  the higher x should be between the lower x + min and the lower x + max
+
+  the lower y should be between 1 and the height of the map - min height of the room
+  the higher y should be between the lower y + min and the lower y + max*/
+
+  /* randRoom(width, height, roomMin, roomMax)
+Returns an array of coordinate objects for a square room.
+*/
+  static randRoom(width, height, roomMin, roomMax){
+    roomMin -= 1;
+    roomMax -= 1;
+      var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+      var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+      var tpright = {x:btright.x,y:tpleft.y};
+      var btleft = {x:tpleft.x,y:btright.y};
+      var retAry = [];
+      for (var i = tpleft.x; i <= btright.x; i++) {
+      for (var j = tpleft.y; j <= btright.y; j++) {
+        var obj = {x:i,y:j};
+        retAry.push(obj);
+      }
+    }
+    return retAry;
   }
 
 }
