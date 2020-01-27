@@ -55,7 +55,6 @@ class Cell {
   */
   add(thing){
     var bad = true;
-    //determine if it is a object or Array
     if (thing instanceof Item) {
       thing = [thing];
       bad = false;
