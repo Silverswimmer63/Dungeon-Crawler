@@ -26,7 +26,7 @@ class Utils {
 */
 
   static objCheck(item, call="Utils.objCheck"){
-    if (( item != null)&&(typeof item == "object")) {
+    if ((item != null)&&(typeof item == "object")) {
       return item;
     }else {
       throw new Error("The method " + call + " expected an object and received " + item + ".");
@@ -68,7 +68,7 @@ can use the same code order. If the object does not, it throws an error.
     }
     errStr += ". It is missing the key(s) ";
     for (var i = 0; i < badKey.length; i++) {
-      errStr += badKey[i];
+      errStr += badKey[i];  .6 Add the arrayCheck to the setter for rooms
       if ((badKey.length > 0)&&(i < badKey.length - 1)) {
         errStr += ", ";
       }
@@ -81,7 +81,7 @@ can use the same code order. If the object does not, it throws an error.
   call + "expected one of the following: " +<list items>+ " and got " + type + "."
   @param item: {mixed} the thing to be checked
   @param list: {array} an array of things to check the item against
-  @param call: {text} where to call the error from
+  @param call: {text} where to call the error from  .6 Add the arrayCheck to the setter for rooms
   @return {mixed} The item if no error is thrown
   */
   static listCheck(item, list, call = "Utils.listCheck"){
@@ -108,7 +108,7 @@ can use the same code order. If the object does not, it throws an error.
 Returns an array of 4 coordinate objects
 */
 
-  static randRoom(width, height, rMin-1, rMax-1){
+  static randRoom(width, height, rMin, rMax){
     var retArray = [];
     var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
     var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(start.y + rMax, height));
@@ -119,13 +119,14 @@ Returns an array of 4 coordinate objects
     }
     return retArray;
     }
-
-
-    // make an array to return
-    // for every line(x or y):
-    //find the values of the other coord(if x above then y here and vice versa)
-    //put them into an object with they keys {x: numA y:numB}
-    //put objects on the array
-    // return array of objects
+    /*
+    .5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
+    */
+    static arrayCheck(item, call="Utils.arrayCheck"){
+      if ((item != null)&&(Array.isArray(item)) {
+        return item;
+      }else {
+        throw new Error("The method " + call + " expected an array and received " + item + ".");
+      }
+    }
   }
-}

@@ -11,6 +11,9 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
+    this._rooms = [];
+    this._roomMin = 3;
+    this._roomMax = 8;
   }
   /*3. add setters.
 The setters for this function for width and height can be added now. However,
@@ -96,4 +99,23 @@ the inner objects will be the individual cells of the map.
     }
     return retStr += "+";
   }
+  /*
+  .7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not, then check to see if each item in the
+  intended item is also an array make the call this time "Map.rooms - individual room"
+  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects with the keys X and Y
+  */
+
+  get rooms(){ return this._rooms = []; }
+  set rooms(rooms){
+    this._rooms = Utils.arrayCheck(rooms, "Map.rooms");
+    if (rooms = [];) {
+
+    }
+  }
+
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
+
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 }
