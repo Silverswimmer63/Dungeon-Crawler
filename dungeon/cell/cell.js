@@ -16,16 +16,10 @@ class Cell {
 
   get type(){return this._type}
   set type(type){
-    if (type == "wall" || type == "border") {
-      this._open = false;
-      this._type = type;
-    }else if (type == "room" || type == "hall") {
-      this._open = true;
-      this._type = type;
-    }else {
-      throw new Error("Cell.type expected one of the following: wall, hall, border, or room and got " + type + ".");
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
     }
-  }
 
   get open(){
     if (this._occupied.length>0) {
@@ -136,11 +130,44 @@ class Cell {
   toString(){
     return this._image;
   }
-}
-
-}
 
 
-// toString and other overwrites
-toString(){return this._image;}
+
+
+
+
+
+/* remove(index)
+remove will either remove the item from the cell inventory that exist at index
+or if index = "mob" it will remove the monster
+@param index {mixed}: either the index value of the item or the word "mob"
+@return {object}: the item or mob
+*/
+
+remove(index){
+  if (index == "Mob") {
+    //go through occupied and find if there is a mob, use instanceof
+    //if we find something, we want to splice/slice it out
+    //return it
+    var num = undefined;
+    for (var i = 0; i < this.occupied.length; i++) {
+      if (this.occupied[i] instanceof Mob) {
+        num = i;
+      }
+    }
+    if (num == undefined) {
+      throw new Error("Cell.remove attempted to remove a Mob that does not exist")
+    }
+    return this.occupied[num].splice(num,1);
+  }
+  if (Number.isInteger(index)) {
+    if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+      throw new Error("Cell.remove attempted to remove an Item that does not exist")
+    }
+    return this.inventory.splice(index,1);
+    }
+    throw new Error("Cell.remove expected a number or Mob and received " + index +".")
+  }
+
+
 }

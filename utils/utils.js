@@ -93,4 +93,46 @@ can use the same code order. If the object does not, it throws an error.
     }
     throw new Error(errStr+".")
   }
+
+  /* listCheck(item, list, call)
+  helper function to check to see if an item is on the list given to it.
+  If it is not, it throws an error of the form
+  call + "expected one of the following: " +<list items>+ " and got " + type + "."
+  @param item: {mixed} the thing to be checked
+  @param list: {array} an array of things to check the item against
+  @param call: {text} where to call the error from
+  @return {mixed} The item if no error is thrown
+  */
+
+  static listCheck(item, list, call="Utils.listCheck"){
+    if (item.includes(item)) {return item;}
+    throw new Error(call + "expected pme of th following" + list + " and got" + type + ".")
+
+    }
+
+/*randCoord(xMin, xMax, yMin, yMax)
+this function will produce an object with the keys of x and y with values between
+xMin-xMax for the x key, and yMin-yMax for the y key
+@param xMin {int}: a num between 1 and xMax
+@param xMax {int}: a num greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
+*/
+  static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
+    let retObj = {};
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
+    return retObj;
+  }
+
+/* randRoom(width, height, roomMin, roomMax)
+Returns an array of 4 coordinate objects
+*/
+
+  static randRoom(width, height, roomMin, roomMax){
+    
+}
+
+
 }
