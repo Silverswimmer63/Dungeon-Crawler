@@ -100,22 +100,32 @@ can use the same code order. If the object does not, it throws an error.
   */
   static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
-    retObj.x = this.randMath(xMin, xMax, call);
-    retObj.y = this.randMath(yMin, yMax, call);
+    retObj.x = this.randMath(xMin, xMax);
+    retObj.y = this.randMath(yMin, yMax);
     return retObj;
   }
 /* randRoom(width, height, roomMin, roomMax)
 Returns an array of 4 coordinate objects
 */
 
-  static randRoom(width, height, roomMin, roomMax){
+  static randRoom(width, height, rMin-1, rMax-1){
     var retArray = [];
-    var topL = this.ranCoord(1, width-roomMin);
-    var topR = roomMax - topL;
-    var bottomL = roomMax - bottomR;
-    var bottomR = this.ranCoord(1, height-roomMax);
-    retArray.push(topL, topR, bottomL, bottomR)
+    var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
+    var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(start.y + rMax, height));
+    for (var i = start.x; i <= stop.x; i++) {
+      for (var j = start.y; j <= stop.y; j++) {
+        retArray.push({x: i, y: j})
+      }
+    }
     return retArray;
-  }
+    }
 
+
+    // make an array to return
+    // for every line(x or y):
+    //find the values of the other coord(if x above then y here and vice versa)
+    //put them into an object with they keys {x: numA y:numB}
+    //put objects on the array
+    // return array of objects
+  }
 }
