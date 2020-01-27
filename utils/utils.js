@@ -149,13 +149,14 @@ can use the same code order. If the object does not, it throws an error.
       //put them into an object with the keys {x:numA y: numB}
       //put objects on the array
       //return an array of objects
-      var retArr = [];
-      for (var i = start.x; i <= stop.x; i++) {
-        for (var j = start.y; j <= stop.y; j++) {
-          var obj = {x:i,y:j};
-          retArr.push(obj);
-        }
+    var retArr = [];
+    for (var i = start.x; i <= stop.x; i++) {
+      for (var j = start.y; j <= stop.y; j++) {
+        var obj = {x:i,y:j};
+        retArr.push(obj);
       }
-      return retArr;
     }
+    return retArr;
+  }
+  
 }
