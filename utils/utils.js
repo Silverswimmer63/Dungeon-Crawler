@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -109,5 +109,35 @@ can use the same code order. If the object does not, it throws an error.
        if (list.includes(item)) {return item;
         throw new Error(call + "expected one of the following: " +list+ " and got " + type + ".")
   }
-  
+
+}
+
+/* randCoord(xMin, xMax, yMin, yMax)
+This function will produce an object with the keys of x and y, with values
+betweem xMin - xMax for the x key, & yMin and yMax for the y key
+@param xMin {int}: a number between 1 and xMax
+@param xMax {int}: a number greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
+*/
+static randRoom(width, height, rMin, rMax){
+  var retArray = [];
+var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
+var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(star.y + rMax, height));
+for (var i = start.x ; i <= stop.x ; i++) {
+
+for (var j = start.y; j <= stop.y ; j++) {
+
+}
+}
+/*return [tl,{x:bR.x, y:tL.y},{x:tL.x, y:bR.y},bR]*/
+
+// make an array to return
+// for every line(x or y):
+//find the values of the other coord(if x above then y here and vice versa)
+//put them into an object with they keys {x: numA y:numB}
+//put objects on the array
+// return array of objects
+}
 }

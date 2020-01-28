@@ -1,4 +1,3 @@
-
 /*
 Class map
 This class is used to create and generate display of two dimwnsional maps.
@@ -9,6 +8,9 @@ class Map{
     this._height =  Utils.intCheck(height, "Map constructor");
     this._fill = Cell;
     this._map =  this._generateMap();
+    this._rooms =  [];
+    this._roomMax = 8;
+    this._roomMin = 3;
   }
   /*add setters.
 The setters for this function for width and height can be added now. However, these will need
@@ -16,6 +18,15 @@ to be a little more complex than with other setters we have used. They will need
 1. Check for value inputted being an int, and giving the correct error message if it is not.
 2. now that the map has a new width or height, we have to remake it from scratch or we will get errors. Remake the this._map.
 */
+get rooms(){ return this._rooms = [];}
+set rooms(rooms){this._rooms =Utils.arrayCheck(rooms, "Map.rooms");}
+
+get roomMax(){ return this._roomMax;}
+set roomMax(roomMax){ this._roomMax = Utils.arrayCheck(roomMax, "Map.roomMax");}
+
+get roomMin(){ return this._roomMin;}
+set roomMin(roomMin){ this._roomMin = Utils.arrayCheck(roomMin, "Map.roomMin");}
+
 set width(width){
   this._width = Utils.intCheck(width, "Map.width");
   this._map =  this._generateMap();
@@ -67,10 +78,10 @@ the inner objects will be the individual cells of the map.
     var map = {};
 for (var i = 1; i <= this._height; i++) {
   var key = "y"+i;
-  obj[key] ={};
+  map[key] ={};
   for (var j = 1; j <= this._width; j++) {
     var key2 = "x"+j;
-    map[key][key2] = this.fill;
+    map[key][key2] = new this.fill;
    }
   }
   return map; //yay
@@ -88,7 +99,6 @@ design of +---------------+
    }
    return retStr +"+";
  }
-}
 /*2. Now we will change the map getter to display the map as the user will see it
 (we won't need to use the getter to access the raw map, as we can do that within the class and for debugging with the _map prop.
 get map should return a string of the map. This string should start with the upper border,
@@ -101,3 +111,24 @@ these will need to be a little more complex than with other setters we have used
 1. Check for value inputted being an int, and giving the correct error message if it is not.
 2. now that the map has a new width or height, we have to remake it from scratch or we will get errors. Remake the this._map.
 */
+/*.1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
+.2 Add a getter for rooms that returns the array in rooms
+.3 Add a setter for rooms
+.4 Add properties for map for max and min room size, make these 3 and 8 by default. Make getters and setters,
+have the setters check to see if the value is an int in the setter.
+.5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
+.6 Add the arrayCheck to the setter for rooms
+.7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not, then check to
+see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
+.8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
+ with the keys X and Y*/
+/*_rooms(){
+  var rooms = {};
+  get rooms (){return this._rooms;}
+   set rooms(rooms){
+     this._rooms = Utils.keyCheck();
+
+   }
+ }*/
+
+}
