@@ -54,13 +54,17 @@ or we will get errors. Remake the this._map.*/
 
   get rooms(){return this._rooms;}
   set rooms(rooms){
-    if (this._rooms.length == 0) {
-      this._rooms = Utils.arrayCheck(this._rooms,"Map.rooms");
+      Utils.arrayCheck(rooms,"Map.rooms");
+    if (rooms.length == 0) {
+      this._rooms = rooms;
     }else {
-      for (var i = 0; i < this._rooms.length; i++) {
-        Utils.arrayCheck(this._rooms[i],"Map.rooms - individual room");
-        for (var j = 0; j < this._rooms[i].length; j++) {
-          Utils.keyCheck(this.rooms[j],[x,y],"Map.rooms");
+      for (var i = 0; i < rooms.length; i++) {
+        Utils.arrayCheck(rooms[i],"Map.rooms - individual room");
+          if (rooms[i].length == 0) {
+            throw new Error("In Map.rooms: One or more room arrays is empty.")
+          }
+        for (var j = 0; j < rooms[i].length; j++) {
+          Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
         }
       }
     }
@@ -70,7 +74,7 @@ or we will get errors. Remake the this._map.*/
   set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
 
   get roomMax(){return this._roomMax;}
-  set roomMax(roomMin){this._roomMax = Utils.intCheck(this.roomMax);}
+  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
 /*
 Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
