@@ -20,16 +20,13 @@ Checks to see if "item" is an integer. Throws a custom error if not.
 @param item: {mixed} an item to be check if is an integer
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item unless it is not an integer
-
 2. look up how to make a custom error message in javaScript
 catch and throw error
 3. look up how to check to see if something is an integer in javaScript
 Number.isInteger()
 4. In intCheck(item, call) check to see if the item is an integer. If so, return it.
-
 5. If the item is not an integer, then throw your new Error. The text of this error should be :
 "The method " + call + " expected an integer and received " + item + ".";
-
 6. Test this method.
 */
 
@@ -96,36 +93,6 @@ can use the same code order. If the object does not, it throws an error.
     }
     throw new Error(errStr+".")
   }
-  /* listCheck(item, list, call)
-  helper function to check to see if an item is on the list given to it.
-  If it is not, it throws an error of the form
-  call + "expected one of the following: " +<list items>+ " and got " + type + "."
-  @param item: {mixed} the thing to be checked
-  @param list: {array} an array of things to check the item against
-  @param call: {text} where to call the error from
-  @return {mixed} The item if no error is thrown
-  */
-  static listCheck(item, list, call= "Utils.listCheck"){
-       if (list.includes(item)) {return item;
-        throw new Error(call + "expected one of the following: " +list+ " and got " + type + ".")
-  }
-
-}
-
-/* randCoord(xMin, xMax, yMin, yMax)
-This function will produce an object with the keys of x and y, with values
-betweem xMin - xMax for the x key, & yMin and yMax for the y key
-@param xMin {int}: a number between 1 and xMax
-@param xMax {int}: a number greater than xMin
-@param yMin {int}: a number between 1 and yMax
-@param yMax {int}: a number greater than yMin
-@return {obj}: An obj with x & y keys
-*/
-static randRoom(width, height, rMin, rMax){
-  var retArray = [];
-var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
-var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(star.y + rMax, height));
-for (var i = start.x ; i <= stop.x ; i++) {
 
   /* listCheck(item, list, call)
 helper function to check to see if an item is on the list given to it.
@@ -159,7 +126,6 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
 /*
   the lower x should be between 1 and the width of the map - min width of the room
   the higher x should be between the lower x + min and the lower x + max
-
   the lower y should be between 1 and the height of the map - min height of the room
   the higher y should be between the lower y + min and the lower y + max*/
 
