@@ -16,7 +16,7 @@ class Cell {
 
   get type(){return this._type}
   set type(type){
-    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type")
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
   }
@@ -25,7 +25,7 @@ class Cell {
     if (this._occupied.length>0) { return false; }
     else { return this._open; }
   }
-  set open(open){ throw new Error("Open status should only be set by the cell.")}
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
 
   get inventory(){return this._inventory}
   set inventory(inventory){
@@ -39,8 +39,7 @@ class Cell {
   }
 
   get occupied(){return this._occupied}
-  set occupied(occupied){ this._ocHandler(occupied, "Cell.occupied") }
-  //external methods
+  set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
 
   /*add(thing)
   add will be used to update the cell when we do update cycles for the game
@@ -50,30 +49,31 @@ class Cell {
   @param thing {mixed}: the thing or things to be added to the cell
   */
   add(thing){
-    // determines if it is an object or array
     var bad = true;
     if (thing instanceof Item) {
       thing = [thing];
       bad = false;
     }
     if (thing instanceof Living) {
-      this._ocHandler(thing, "Cell.add");
+      this._ocHandler(thing,"Cell.add")
       bad = false;
     }
     if (Array.isArray(thing)) {
       for (var i = 0; i < thing.length; i++) {
         if (!(thing[i] instanceof Item)) {
-          // if its an array, check to see if all are living or all are objects
-          // if anything is not an item, throw an error
-        throw new Error("Cell.add atempted to add nonItem(s) and item(s) at the same time");
+          // if it is a array check to see if all are living or all are objects
+          // if anything isnt a item pitch a fit(throw a error)
+          throw new Error("Cell.add attempted to add nonItem(s) and item(s) at the same time")
         }
       }
       bad = false;
       this._inventory = this._inventory.concat(thing);
     }
-    if (bad == true) { throw new Error("Cell.add recieved illegal item"); }
+    if (bad == true) {
+      throw new Error("Cell.add recieved illegal item")
+    }
     // track which one it is
-    //send to correct function
+    // send the correct function.
   }
 
   /* remove(index)
@@ -82,11 +82,10 @@ class Cell {
   @param index {mixed}: either the index value of the item or the word "mob"
   @return {object}: the item or mob
   */
+
+
   remove(index){
-    if (index == "mob") {
-      //go through occupied and find if there is a mob, use instanceof
-      //if we find something, we want to slice/splice it out
-      //return it
+    if(index == "mob"){
       var num = undefined;
       for (var i = 0; i < this.occupied.length; i++) {
         if (this.occupied[i] instanceof Mob) {
@@ -94,26 +93,23 @@ class Cell {
         }
       }
       if (num == undefined) {
-        throw new Error("Cell.remove atempted to remove a mob that does not exist.")
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
       }
       return this.occupied.splice(num,1);
     }
     if (Number.isInteger(index)) {
-      //if we find something, we want to slice/splice it out
-      //return it
-      if ((this.inventory.length == 0) || (index >= this.inventory.length)) {
-        throw new Error("Cell.remove atempted to remove an item that does not exist.")
+      if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+        throw new Error("Cell.remove attempted to remove a Item that does not exist.")
       }
       return this.inventory.splice(index,1);
     }
-    throw new Error("Cell.remove expected a number or Mob and recieved " + index + ".")
+    throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
-
-  //Internal methods
-  /*_ocHandler(occupied, call="Cell._ocHandler")
-  this will do all the interiar work for set occupied
-  @param {mixed} occupied an object or array of objects
-  @param {string} call where to toss error messages
+  //internal methods
+  /*_ocHandler(occupied, call="_ocHandler")
+  this to will do all of the interior work for set occupied.
+  @param occupied {mixed} an objec or array of objects
+  @param {string} call where toss error messeage
   */
   _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
@@ -144,9 +140,9 @@ class Cell {
       }
       // Asumes single item
 
-      if (nonMob == true && occupied[i] instanceof Nonmob) {
+      if ((nonMob == true) && (occupied[i] instanceof Nonmob)) {
         throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name)
-      }else if (mob == true && occupied[i] instanceof Mob) {
+      }else if ((mob == true) && (occupied[i] instanceof Mob)) {
         throw new Error(call + " - cell already had a mob and was given " + occupied[i].name)
       }else {
         this._occupied.push(occupied[i]);

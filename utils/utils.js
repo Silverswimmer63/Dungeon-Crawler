@@ -93,28 +93,28 @@ can use the same code order. If the object does not, it throws an error.
     throw new Error(errStr+".")
   }
 
-  /*listCheck(item, list, call)
-  helper function to check to see if an item is on the list given to it.
-  If it is not, it throws an error of the form
-  call + "expected one of the following: " +<list items>+ " and got " + type + "."
-  @param item: {mixed} the thing to be checked
-  @param list: {array} an array of things to check the item against
-  @param call: {text} where to call the error from
-  @return {mixed} The item if no error is thrown
+  /* listCheck(item, list, call)
+helper function to check to see if an item is on the list given to it.
+If it is not, it throws an error of the form
+call + "expected one of the following: " +<list items>+ " and got " + type + "."
+@param item: {mixed} the thing to be checked
+@param list: {array} an array of things to check the item against
+@param call: {text} where to call the error from
+@return {mixed} The item if no error is thrown
 */
   static listCheck(item, list, call="Utils.listCheck"){
-    if (list.includes(item)) { return item; }
+    if (list.includes(item)) {return item;}
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
 
-  /*randCoord(xMin, xMax, yMin, yMax)
-  This function will produce an object with the keys of x and y, with values
-  betweem xMin - xMax for the x key, & yMin and yMax for the y key
-  @param xMin {int}: a number between 1 and xMax
-  @param xMax {int}: a number greater than xMin
-  @param yMin {int}: a number between 1 and yMax
-  @param yMax {int}: a number greater than yMin
-  @return {obj}: An obj with x & y keys
+  /* randCoord(xMin, xMax, yMin, yMax)
+This function will produce an object with the keys of x and y, with values
+betweem xMin - xMax for the x key, & yMin and yMax for the y key
+@param xMin {int}: a number between 1 and xMax
+@param xMax {int}: a number greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
 */
   static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
     var retObj = {};
@@ -122,47 +122,31 @@ can use the same code order. If the object does not, it throws an error.
     retObj.y = this.randMath(yMin, yMax, call);
     return retObj;
   }
-
-  /*randRoom(width, height, roomMin, roomMax)
-  Returns an array of 4 coordinate objects
+/*
   the lower x should be between 1 and the width of the map - min width of the room
   the higher x should be between the lower x + min and the lower x + max
+
   the lower y should be between 1 and the height of the map - min height of the room
-  the higher y should be between the lower y + min and the lower y + max
-  static randRoom(width, height, roomMin, roomMax){
-  var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
-  var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
-  return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
-  }
-*/
-  /*randRoom(width, height, roomMin, roomMax)
-  returns an array of coordinate objects for a square room
+  the higher y should be between the lower y + min and the lower y + max*/
+
+  /* randRoom(width, height, roomMin, roomMax)
+Returns an array of coordinate objects for a square room.
 */
   static randRoom(width, height, roomMin, roomMax){
     roomMin -= 1;
     roomMax -= 1;
-    var start = this.randCoord(1,width-roomMin,1,height-roomMin);
-    var stop = this.randCoord(start.x+roomMin,Math.min(start.x+roomMax,width),start.y+roomMin,Math.min(start.y+roomMax,height));
-    //make an array to return
-    //for every line:
-      //find the values of the other coord(if x above then y here and vise versa)
-      //put them into an object with the keys {x:numA y: numB}
-      //put objects on the array
-      //return an array of objects
-    var retArr = [];
-    for (var i = start.x; i <= stop.x; i++) {
-      for (var j = start.y; j <= stop.y; j++) {
+      var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+      var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+      var tpright = {x:btright.x,y:tpleft.y};
+      var btleft = {x:tpleft.x,y:btright.y};
+      var retAry = [];
+      for (var i = tpleft.x; i <= btright.x; i++) {
+      for (var j = tpleft.y; j <= btright.y; j++) {
         var obj = {x:i,y:j};
-        retArr.push(obj);
+        retAry.push(obj);
       }
     }
-    return retArr;
+    return retAry;
   }
 
-  static arrayCheck(item, call="Utils.arrayCheck"){
-    //use isArray
-    if (Array.isArray(item)){ return item; }
-    throw new Error(call + " expected and array and received " + item)
-  }
-  
 }

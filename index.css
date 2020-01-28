@@ -1,3 +1,4 @@
+
 body {
 background-color: #f0f0f2;
 margin: 0;
@@ -38,6 +39,11 @@ background-color: #99b433;
 
 .controls{
 float: left;
+}
+
+.buttonRow{
+width: 40%;
+margin: 0 auto;
 }
 
 .buttonRow{
