@@ -134,10 +134,10 @@ can use the same code order. If the object does not, it throws an error.
   var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
   return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
   }
-  */
+*/
   /*randRoom(width, height, roomMin, roomMax)
   returns an array of coordinate objects for a square room
-  */
+*/
   static randRoom(width, height, roomMin, roomMax){
     roomMin -= 1;
     roomMax -= 1;
@@ -162,7 +162,7 @@ can use the same code order. If the object does not, it throws an error.
   static arrayCheck(item, call="Utils.arrayCheck"){
     //use isArray
     if (Array.isArray(item)){ return item; }
-    throw new Error(call + "expected and array and received " + item)
+    throw new Error(call + " expected and array and received " + item)
   }
   
 }
