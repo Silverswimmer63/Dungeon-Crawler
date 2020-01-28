@@ -16,10 +16,19 @@ class Cell{
 
   get type(){return this._type}
   set type(type){
-    Utils.listCheck(type, ["Wall","border","room","hall","Cell.type"])
-      this._type = type;
-      this._open = false;["room","hall"].includes(type);
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
   }
+
+  get open(){
+    if (this._occupied.length>0) {
+      return false;
+    }else {
+      return this._open;
+    }
+  }
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
 
   set inventory(inventory){
     if (this.inventory == 0) {
@@ -51,7 +60,6 @@ if we try to add things we cant, throw an error that reads
   */
   add(thing){
     var bad = true;
-    //determine if it is a object or Array
     if (thing instanceof Item) {
       thing = [thing];
       bad = false;
@@ -85,50 +93,28 @@ if we try to add things we cant, throw an error that reads
   @return {object}: the item or mob
   */
 
-remove(index){
-  if(index =="mob"){
-   var num = undefined;
-    for (var i = 0; i < this.occupied.length; i++) {
 
-      if (this.occupied[i] instanceof Mob) {
-        num = i;
+  remove(index){
+    if(index == "mob"){
+      var num = undefined;
+      for (var i = 0; i < this.occupied.length; i++) {
+        if (this.occupied[i] instanceof Mob) {
+          num = i;
+        }
       }
+      if (num == undefined) {
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
+      }
+      return this.occupied.splice(num,1);
     }
-    if (num = undefined) {
-      throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
+    if (Number.isInteger(index)) {
+      if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+        throw new Error("Cell.remove attempted to remove a Item that does not exist.")
+      }
+      return this.inventory.splice(index,1);
     }
-    return this.occupied.splice(num,1);
+    throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
-  if (Number.isInteger(index)) {
-    if ((this.inventory == 0)||(index >= this.inventory.length)) {
-      throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
-    }
-   return this.inventory.splice(index,1);
-  }
-  throw new Error("Cell.remove expected a number or Mob and received " + index +".");
-}
-  /*if (index =="mob") {
-    // go through occupied and find if there is a mob, use instanceof
-    // if we find something
-    //return it
-    for (var i = 0; i < .length; i++) {
-    if (index[i] instanceof Mob){
-    index.splice([i]);
-    }
-   }
-    return index;
-  }
-  if (Number.isInteger(index)) {
-    for (var i = 0; i < index.length; i++) {
-    if (index[i] instanceof Mob) {
-    index.splice(i);
-    }
-  }
-  return index;
-}else {
-  throw new Error("")
- }
-} */
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.

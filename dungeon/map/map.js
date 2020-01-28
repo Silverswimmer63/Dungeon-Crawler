@@ -7,10 +7,10 @@ class Map{
     this._width = Utils.intCheck(width, "Map constructor");
     this._height =  Utils.intCheck(height, "Map constructor");
     this._fill = Cell;
-    this._map =  this._generateMap();
-    this._rooms =  [];
-    this._roomMax = 8;
+    this._map = this._generateMap();
+    this._rooms = [];
     this._roomMin = 3;
+    this._roomMax = 8;
   }
   /*add setters.
 The setters for this function for width and height can be added now. However, these will need
@@ -49,7 +49,40 @@ set height(height){
     for (var j = 1; i < this.width; j++) {
       retMap += ""+ this._map ["y"+i]["x"+j];
     }
-    retMap += "|<br>";
+    return retMap += this._drawBorder();
+  }
+
+  get rooms(){return this._rooms;}
+  set rooms(rooms){
+    if (this._rooms.length == 0) {
+      this._rooms = Utils.arrayCheck(this._rooms,"Map.rooms");
+    }else {
+      for (var i = 0; i < this._rooms.length; i++) {
+        Utils.arrayCheck(this._rooms[i],"Map.rooms - individual room");
+        for (var j = 0; j < this._rooms[i].length; j++) {
+          Utils.keyCheck(this.rooms[j],[x,y],"Map.rooms");
+        }
+      }
+    }
+  }
+
+  get roomMin(){return this._roomMin;}
+  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
+
+  get roomMax(){return this._roomMax;}
+  set roomMax(roomMin){this._roomMax = Utils.intCheck(this.roomMax);}
+/*
+Then we will update the map to have a setter for map, this will use the two
+ functions above to make sure that the setter is given an object with the keys
+  width and height, and use it to make a new map. After checking the values as well
+  */
+  set map(dimensions){
+    Utils.keyCheck(dimensions,["width", "height"], "Map.map");
+    Utils.intCheck(dimensions.width,"Map.map");
+    Utils.intCheck(dimensions.height,"Map.map");
+    this._width = dimensions.width;
+    this._height = dimensions.height;
+    this._map = this._generateMap();
   }
   return retMap += this._drawBorder();
 }
