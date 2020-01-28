@@ -158,5 +158,11 @@ can use the same code order. If the object does not, it throws an error.
     }
     return retArr;
   }
+
+  static arrayCheck(item, call="Utils.arrayCheck"){
+    //use isArray
+    if (Array.isArray(item)){ return item; }
+    throw new Error(call + "expected and array and received " + item)
+  }
   
 }

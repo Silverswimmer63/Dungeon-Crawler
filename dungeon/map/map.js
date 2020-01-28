@@ -11,6 +11,9 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
+    this._rooms = [];
+    this._max = 8;
+    this._min = 3;
   }
   /*3. add setters.
 The setters for this function for width and height can be added now. However,
@@ -33,9 +36,8 @@ or we will get errors. Remake the this._map.*/
     this._map = this._generateMap();
   }
 
-  get width(){ return this._width; }
-  get height(){ return this._height; }
   get fill(){ return this._fill; }
+
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
@@ -48,9 +50,8 @@ or we will get errors. Remake the this._map.*/
     }
     return retMap += this._drawBorder();
   }
-/*
-Then we will update the map to have a setter for map, this will use the two
- functions above to make sure that the setter is given an object with the keys
+  /*Then we will update the map to have a setter for map, this will use the two
+  functions above to make sure that the setter is given an object with the keys
   width and height, and use it to make a new map. After checking the values as well
   */
   set map(dimensions){
@@ -60,6 +61,19 @@ Then we will update the map to have a setter for map, this will use the two
     this._width = dimensions.width;
     this._height = dimensions.height;
     this._map = this._generateMap();
+  }
+
+  get rooms(){ return this._rooms;}
+  set rooms(rooms){ this._rooms = []}
+
+  get max(){ return this._max; }
+  set max(max){
+    Utils.intCheck(max, "Map.max")
+  }
+
+  get min(){ return this._min; }
+  set min(min){
+    Utils.intCheck(min, "Map.min")
   }
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
