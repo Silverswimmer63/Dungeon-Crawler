@@ -53,7 +53,7 @@ or we will get errors. Remake the this._map.*/
   /*Then we will update the map to have a setter for map, this will use the two
   functions above to make sure that the setter is given an object with the keys
   width and height, and use it to make a new map. After checking the values as well
-  */
+*/
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -64,7 +64,10 @@ or we will get errors. Remake the this._map.*/
   }
 
   get rooms(){ return this._rooms;}
-  set rooms(rooms){ this._rooms = []}
+  set rooms(rooms){
+    Utils.arrayCheck(rooms, "Map.rooms");
+    
+  }
 
   get max(){ return this._max; }
   set max(max){
