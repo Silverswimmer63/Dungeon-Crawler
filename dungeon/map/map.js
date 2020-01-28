@@ -55,10 +55,13 @@ or we will get errors. Remake the this._map.*/
   get rooms(){return this._rooms;}
   set rooms(rooms){
     if (this._rooms.length == 0) {
-      this._rooms = Utils.arrayCheck(this._rooms);
+      this._rooms = Utils.arrayCheck(this._rooms,"Map.rooms");
     }else {
       for (var i = 0; i < this._rooms.length; i++) {
-
+        Utils.arrayCheck(this._rooms[i],"Map.rooms - individual room");
+        for (var j = 0; j < this._rooms[i].length; j++) {
+          Utils.keyCheck(this.rooms[j],[x,y],"Map.rooms");
+        }
       }
     }
   }
