@@ -68,11 +68,14 @@ or we will get errors. Remake the this._map.*/
     //.7 make the setter for rooms check to see if the intended value is a blank array [ ].
     //If not, then check to see if each item in the intended item is also an array make the
     //call this time "Map.rooms - individual room"
-    Utils.arrayCheck(rooms, "Map.rooms");
-    for (var i = 0; i < rooms.length; i++) {
-      if (rooms[i] > 0) {
-        Utils.arrayCheck(rooms[i]);
-        
+    if (this._rooms.length == 0) {
+      this._rooms = Utils.arrayCheck(this._rooms,"Map.rooms");
+    }else {
+      for (var i = 0; i < this._rooms.length; i++) {
+        Utils.arrayCheck(this._rooms[i],"Map.rooms - individual room");
+        for (var j = 0; j < this._rooms[i].length; j++) {
+          Utils.keyCheck(this.rooms[j],[x,y],"Map.rooms");
+        }
       }
     }
   }
