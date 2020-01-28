@@ -1,3 +1,4 @@
+
 /*
 class Map
  this class is used to create and generate displays of 2 demensional maps.
@@ -11,6 +12,9 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
+    this._rooms = [];
+    this._roomMax = 8;
+    this._roomMin = 3;
   }
   /*3. add setters.
 The setters for this function for width and height can be added now. However,
@@ -20,6 +24,18 @@ these will need to be a little more complex than with other setters we have used
  if it is not.
 2. now that the map has a new width or height, we have to remake it from scratch
 or we will get errors. Remake the this._map.*/
+  /*
+  make the setter for rooms check to see if the intended value is a blank array [ ]. If not,
+  then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
+  */
+  get rooms(){ return this._rooms = [];}
+  set rooms(rooms){this._rooms = rooms = Utils.arrayCheck(rooms, "Map.rooms");}
+
+  get roomMax(){ return this._roomMax;}
+  set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
+
+  get roomMin(){ return this._roomMin;}
+  set roomMin(roomMin){this._roomMin = Utils.intCheck(roomMin, "Map.roomMin");}
 
   get width(){return this._width;}
   set width(width){

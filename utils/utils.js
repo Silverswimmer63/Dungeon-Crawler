@@ -150,7 +150,26 @@ Returns an array of coordinate objects for a square room.
     return retAry;
   }
 
-}
-
+  /*
+  .1 in Map we are going to add a property for rooms called _rooms this should be
+  a blank array by default
+  .2 Add a getter for rooms that returns the array in rooms
+  .3 Add a setter for rooms
+  .4 Add properties for map for max and min room size, make these 3 and 8 by default.
+  Make getters and setters, have the setters check to see if the value is an int in the setter.
+  .5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
+  .6 Add the arrayCheck to the setter for rooms
+  .7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not,
+  then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
+  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
+  with the keys X and Y
+  */
+  static arrayCheck([], call = "Utils.arrayCheck"){
+    if (( [] != null)&&(typeof [] == "object")) {
+      return [];
+    }else {
+      throw new Error("The method " + call + " expected an object and received " + [] + ".");
+    }
+  }
 
 }
