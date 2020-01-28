@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max + 1));
@@ -97,8 +97,7 @@ can use the same code order. If the object does not, it throws an error.
     throw new Error(errStr+".")
   }
 
-
-/* listCheck(item, list, call)
+  /* listCheck(item, list, call)
 helper function to check to see if an item is on the list given to it.
 If it is not, it throws an error of the form
 call + "expected one of the following: " +<list items>+ " and got " + type + "."
@@ -107,25 +106,12 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
 @param call: {text} where to call the error from
 @return {mixed} The item if no error is thrown
 */
-static listCheck(item, list, call="Utill=s.listCheck"){
-if(list.includes(item)){return item;}
-throw new Error(call + "expected one of the following: " + list + " and got " + ".")
-}
-}
-/*
-the lower x should be between 1 and the width of the map - min width of the room
-the higher x should be between the lower x + min and the lower x + max
+  static listCheck(item, list, call="Utils.listCheck"){
+    if (list.includes(item)) {return item;}
+    throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
+  }
 
-the lower y should be between 1 and the height of the map - min height of the room
-the higher y should be between the lower y + min and the lower y + max
-*/
-static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
-  var retObj = {};
-  retObj.x = this.randMath(xMin, xMax, yMin, yMax);
-  retObj.y = this.randMath(xMin, xMax, yMin, yMax);
-  return retObj;
-}
-/* randCoord(xMin, xMax, yMin, yMax)
+  /* randCoord(xMin, xMax, yMin, yMax)
 This function will produce an object with the keys of x and y, with values
 betweem xMin - xMax for the x key, & yMin and yMax for the y key
 @param xMin {int}: a number between 1 and xMax
@@ -134,28 +120,47 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
 @param yMax {int}: a number greater than yMin
 @return {obj}: An obj with x & y keys
 */
-/* randRoom(width, height, roomMin, roomMax)
-Returns an array of 4 coordinate objects
-*/
-static randRoom(width, height, rMin, rMax){
-var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
-var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(star.y + rMax, height));
-// make an array to return
-// for every line(x or y): find the values of the other coord(if x above then y here and vice versa)
-//put them into an object with they keys {x: numA y:numB} put objects on the array return array of objects
-/*
-6. Test this method.
-
-D. More updates to Utils.js - We are going update randMath while we are in here
-to do some parameter checking as well. We will be using this method a lot to
-make the rooms, so we will want to make sure we are giving it the correct things
- at all times.
-*/
-static intCheck2(item, call="Utils.intCheck.js") {
-  if(Number.isInterger(item)){return item;}
-  else{
-    throw new error ("this method" + call + "expected an integer and received" + item)
+  static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
+    var retObj = {};
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
+    return retObj;
   }
+/*
+  the lower x should be between 1 and the width of the map - min width of the room
+  the higher x should be between the lower x + min and the lower x + max
+
+  the lower y should be between 1 and the height of the map - min height of the room
+  the higher y should be between the lower y + min and the lower y + max*/
+
+  /* randRoom(width, height, roomMin, roomMax)
+Returns an array of coordinate objects for a square room.
+*/
+  static randRoom(width, height, roomMin, roomMax){
+    roomMin -= 1;
+    roomMax -= 1;
+      var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+      var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+      var tpright = {x:btright.x,y:tpleft.y};
+      var btleft = {x:tpleft.x,y:btright.y};
+      var retAry = [];
+      for (var i = tpleft.x; i <= btright.x; i++) {
+      for (var j = tpleft.y; j <= btright.y; j++) {
+        var obj = {x:i,y:j};
+        retAry.push(obj);
+      }
+    }
+    return retAry;
+  }
+
+  static arrayCheck(item, call="Utils.arrayCheck"){
+    if ((item != null)&&(Array.isArray(item))) {
+      return item;
+    }else {
+      throw new Error("The method " + call + " expected an array and received " + item + ".");
+    }
+  }
+
 }
 /* keyCheck(item, key, call= Utils.keyCheck)
 Performs two actions - 1 checks to see if item is an object. Throws an error
