@@ -9,7 +9,7 @@ class Utils {
     if (min >= max) {
       throw new Error("min must always be less then max " + call + ".")
     }
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max + 1));
   }
 
 /*
@@ -112,6 +112,37 @@ if(list.includes(item)){return item;}
 throw new Error(call + "expected one of the following: " + list + " and got " + ".")
 }
 }
+/*
+the lower x should be between 1 and the width of the map - min width of the room
+the higher x should be between the lower x + min and the lower x + max
+
+the lower y should be between 1 and the height of the map - min height of the room
+the higher y should be between the lower y + min and the lower y + max
+*/
+static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
+  var retObj = {};
+  retObj.x = this.randMath(xMin, xMax, yMin, yMax);
+  retObj.y = this.randMath(xMin, xMax, yMin, yMax);
+  return retObj;
+}
+/* randCoord(xMin, xMax, yMin, yMax)
+This function will produce an object with the keys of x and y, with values
+betweem xMin - xMax for the x key, & yMin and yMax for the y key
+@param xMin {int}: a number between 1 and xMax
+@param xMax {int}: a number greater than xMin
+@param yMin {int}: a number between 1 and yMax
+@param yMax {int}: a number greater than yMin
+@return {obj}: An obj with x & y keys
+*/
+/* randRoom(width, height, roomMin, roomMax)
+Returns an array of 4 coordinate objects
+*/
+static randRoom(width, height, rMin, rMax){
+var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
+var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(star.y + rMax, height));
+// make an array to return
+// for every line(x or y): find the values of the other coord(if x above then y here and vice versa)
+//put them into an object with they keys {x: numA y:numB} put objects on the array return array of objects
 /*
 6. Test this method.
 
