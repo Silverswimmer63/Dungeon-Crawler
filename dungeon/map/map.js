@@ -65,8 +65,16 @@ or we will get errors. Remake the this._map.*/
 
   get rooms(){ return this._rooms;}
   set rooms(rooms){
+    //.7 make the setter for rooms check to see if the intended value is a blank array [ ].
+    //If not, then check to see if each item in the intended item is also an array make the
+    //call this time "Map.rooms - individual room"
     Utils.arrayCheck(rooms, "Map.rooms");
-    
+    for (var i = 0; i < rooms.length; i++) {
+      if (rooms[i] > 0) {
+        Utils.arrayCheck(rooms[i]);
+        
+      }
+    }
   }
 
   get max(){ return this._max; }
