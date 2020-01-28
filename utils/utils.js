@@ -127,11 +127,24 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
   the higher x should be between the lower x + min and the lower x + max
 
   the lower y should be between 1 and the height of the map - min height of the room
+<<<<<<< HEAD
   the higher y should be between the lower y + min and the lower y + max*/
 
   /* randRoom(width, height, roomMin, roomMax)
 Returns an array of coordinate objects for a square room.
 */
+=======
+  the higher y should be between the lower y + min and the lower y + max
+  static randRoom(width, height, roomMin, roomMax){
+  var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+  var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+  return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
+  }
+  */
+  /*randRoom(width, height, roomMin, roomMax)
+  returns an array of coordinate objects for a square room
+  */
+>>>>>>> parent of 4df86b0... asdf
   static randRoom(width, height, roomMin, roomMax){
     roomMin -= 1;
     roomMax -= 1;
@@ -149,4 +162,13 @@ Returns an array of coordinate objects for a square room.
     return retAry;
   }
 
+<<<<<<< HEAD
+=======
+  static arrayCheck(item, call="Utils.arrayCheck"){
+    //use isArray
+    if (Array.isArray(item)){ return item; }
+    throw new Error(call + "expected and array and received " + item)
+  }
+  
+>>>>>>> parent of 4df86b0... asdf
 }
