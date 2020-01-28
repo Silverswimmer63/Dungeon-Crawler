@@ -111,6 +111,15 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
 
+  /*arrayCheck(item, call="Utils.arrayCheck")*/
+  static arrayCheck(item, call="Utils.arrayCheck"){
+    if (typeof item == "array") {
+      return item;
+    }else {
+      throw new Error("The method " + call + " expected an array and received " + item + ".");
+    }
+  }
+
   /* randCoord(xMin, xMax, yMin, yMax)
 This function will produce an object with the keys of x and y, with values
 betweem xMin - xMax for the x key, & yMin and yMax for the y key
@@ -126,12 +135,6 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
     retObj.y = this.randMath(yMin, yMax, call);
     return retObj;
   }
-/*
-  the lower x should be between 1 and the width of the map - min width of the room
-  the higher x should be between the lower x + min and the lower x + max
-
-  the lower y should be between 1 and the height of the map - min height of the room
-  the higher y should be between the lower y + min and the lower y + max*/
 
   /* randRoom(width, height, roomMin, roomMax)
 Returns an array of coordinate objects for a square room.
@@ -152,5 +155,4 @@ Returns an array of coordinate objects for a square room.
     }
     return retAry;
   }
-
 }
