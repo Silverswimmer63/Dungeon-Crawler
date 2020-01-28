@@ -11,6 +11,9 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
+    this._rooms = [];
+    this._roomMin = 3;
+    this._roomMax = 8;
   }
   /*3. add setters.
 The setters for this function for width and height can be added now. However,
@@ -48,6 +51,23 @@ or we will get errors. Remake the this._map.*/
     }
     return retMap += this._drawBorder();
   }
+
+  get rooms(){return this._rooms;}
+  set rooms(rooms){
+    if (this._rooms.length == 0) {
+      this._rooms = Utils.arrayCheck(this._rooms);
+    }else {
+      for (var i = 0; i < this._rooms.length; i++) {
+
+      }
+    }
+  }
+
+  get roomMin(){return this._roomMin;}
+  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
+
+  get roomMax(){return this._roomMax;}
+  set roomMax(roomMin){this._roomMax = Utils.intCheck(this.roomMax);}
 /*
 Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys

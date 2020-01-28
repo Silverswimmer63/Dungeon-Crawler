@@ -153,4 +153,12 @@ Returns an array of coordinate objects for a square room.
     return retAry;
   }
 
+  static arrayCheck(item, call="Utils.arrayCheck"){
+    if ((item != null)&&(Array.isArray(item))) {
+      return item;
+    }else {
+      throw new Error("The method " + call + " expected an array and received " + item + ".");
+    }
+  }
+
 }
