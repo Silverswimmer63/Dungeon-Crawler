@@ -128,19 +128,29 @@ static intCheck(item, call="Utils.intCheck.js"){
         retObj.x = this.randMath(xMin,xMax);
         retObj.y = this.randMath(yMin,yMax);
         return retObj;
-      }
 
-      /* r  andRoom(width, height, roomMin, roomMax)
+
+      /* randRoom(width, height, roomMin, roomMax)
 Returns an array of 4 coordinate objects
 */
   static randRoom(width, height, roomMin, roomMax){
-    var retArr = []
-    var topL = this.randCoord(1,width-roomMin);
-    var topR = topL
-    var botL =
-    var botR = this.randCoord(1,height-roomMin)
-    retArr.push(topL,topR,botL,botR)
-    return retArr;
+    var retArr = [];
+    var start = this.randCoord(1,width-rMin, height-rMin);
+    var stop = this.randCoord(tL.x + rMin,Math.min(tL.x + rMax), tL.y+ rMax,heigth));
+    for (var i = start.x; i < stop.x; i++) {
+      for (var j = start.y; j < stop.y; j++) {
+        retArr.push({x:i,y:stop.j})
+
+      }
+    }
+    // make an array to return
+    // for every line(x or y):
+    //find the values of the other coord(if x above then y here and vice versa)
+    //put them into an object with they keys {x: numA y:numB}
+    //put objects on the array
+    // return array of objects
+}
+    return [tL ,{x:bR.x,y:tL.y},{x:tL.x,y:bR.y},bR]
   }
 
 
