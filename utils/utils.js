@@ -141,12 +141,12 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
   static randRoom(width, height, roomMin, roomMax){
     roomMin -= 1;
     roomMax -= 1;
-      var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
-      var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
-      var tpright = {x:btright.x,y:tpleft.y};
-      var btleft = {x:tpleft.x,y:btright.y};
-      var retAry = [];
-      for (var i = tpleft.x; i <= btright.x; i++) {
+    var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
+    var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
+    var tpright = {x:btright.x,y:tpleft.y};
+    var btleft = {x:tpleft.x,y:btright.y};
+    var retAry = [];
+    for (var i = tpleft.x; i <= btright.x; i++) {
       for (var j = tpleft.y; j <= btright.y; j++) {
         var obj = {x:i,y:j};
         retAry.push(obj);
