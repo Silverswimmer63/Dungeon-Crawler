@@ -54,11 +54,18 @@ or we will get errors. Remake the this._map.*/
 
   get rooms(){return this._rooms;}
   set rooms(rooms){
-    if (this._rooms.length == 0) {
-      this._rooms = Utils.arrayCheck(this._rooms);
+      Utils.arrayCheck(rooms,"Map.rooms");
+    if (rooms.length == 0) {
+      this._rooms = rooms;
     }else {
-      for (var i = 0; i < this._rooms.length; i++) {
-
+      for (var i = 0; i < rooms.length; i++) {
+        Utils.arrayCheck(rooms[i],"Map.rooms - individual room");
+          if (rooms[i].length == 0) {
+            throw new Error("In Map.rooms: One or more room arrays is empty.")
+          }
+        for (var j = 0; j < rooms[i].length; j++) {
+          Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
+        }
       }
     }
   }
@@ -67,7 +74,7 @@ or we will get errors. Remake the this._map.*/
   set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
 
   get roomMax(){return this._roomMax;}
-  set roomMax(roomMin){this._roomMax = Utils.intCheck(this.roomMax);}
+  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
 /*
 Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
@@ -90,6 +97,22 @@ rather than y for their start. This is done so that we may access the map by
 way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
+
+/*addRoom()
+add room will use the apropriate functions in our program to generate a set
+of coordinates based on our map. It will then go to map, and update the cells at the
+corect coordinates to match the room.
+*/
+  addRoom(){
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    for (var i = 0; i < room.length; i++) {
+      var keyX = "x" + room[i].x;
+      var keyY = "y" + room[i].y;
+      var space = this._map[keyY][keyX];
+      space.image = " ";
+      space.type = "room";
+    }
+  }
 
   _generateMap(){
     var map = {};
