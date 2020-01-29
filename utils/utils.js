@@ -248,7 +248,49 @@ static randMath(min, max, call="utils.randMath"){
     throw new Error ("min must always be less than max"+call+)
   }
 }
+/*
+.1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
+.2 Add a getter for rooms that returns the array in rooms
+.3 Add a setter for rooms
+.4 Add properties for map for max and min room size, make these 3 and 8 by default. Make getters
+and setters, have the setters check to see if the value is an int in the setter.
+.5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
+.6 Add the arrayCheck to the setter for rooms
+.7 make the setter for rooms check to see if the intended value is a blank
+array [ ]. If not, then check to see if each item in the intended item is also an array
+make the call this time "Map.rooms - individual room"
+.8 for each of the items from #7 above check each of the items inside of it to
+make sure they are all objects with the keys X and Y
+*/
+var rooms
+get rooms(){return this._rooms;}
 
+set(array) {
+  array = Utils.arrayCheck(array, "map.rooms");
+  if (array.length == 0){this._rooms = array;}
+  else {
+    let room;
+    for (room of array){
+      Utils.keyCheck(room, "Map.room individual room.");
+
+    }
+  }
+}
+//add room() will use  the apportiate function in our program to generate a set
+//of coordantes based on our map. it  will then go to the map, and update the cells at the correctcordantes to match
+function addRoom(){
+for (var i = 0; i < this._randCoord; i++) {
+  standin#1
+}
+//randcoord generate room size
+standin#1{
+  min: {x: 8, y: 8},
+  max: {x: 30, y: 30}
+}
+//min and max set a cap on its size
+
+  //overlap make sure rooms dont intersect
+}
 /*
 F. Making the basic map
 1. add a new method to map called _generateMap();
