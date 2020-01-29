@@ -11,8 +11,8 @@ class Cell {
     this._occupied = [];//for livings in the cell
   }
   //getters and setters
-  get image(){return this._image;}
-  set image(image){this._image = image;}
+  get image(){return this._image}
+  set image(image){this._image = image}
 
   get type(){return this._type;}
   set type(type){
@@ -54,7 +54,6 @@ class Cell {
   */
   add(thing){
     var bad = true;
-    //determine if it is a object or Array
     if (thing instanceof Item) {
       thing = [thing];
       bad = false;
@@ -95,7 +94,7 @@ class Cell {
         }
       }
       if (num == undefined) {
-        throw new Error("Cell.remove attempted to remove a Mob that did not exist")
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
       }
       return this.occupied.splice(num,1);
     }

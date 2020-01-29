@@ -11,8 +11,8 @@ class Map{
     this._fill = Cell;
     this._map = this._generateMap();
     this._rooms = [];
-    this._maxRoom = 8;
-    this._minRoom = 3;
+    this._roomMin = 3;
+    this._roomMax = 8;
   }
   /*width Getters and Setters*/
   get width(){return this._width;}
@@ -69,19 +69,11 @@ class Map{
       }
   }*/
   /*roomMax and roomMin Getters*/
-  get roomMax(){
-    return this._roomMax;
-  }
-  get roomMin(){
-    return this._roomMin;
-  }
+  get roomMax(){return this._roomMax;}
+  get roomMin(){return this._roomMin;}
   /*roomMax and roomMin Setters*/
-  set roomMax(roomMax){
-    this._roomMax = roomMax;
-  }
-  set roomMin(roomMin){
-    this._roomMin = roomMin;
-  }
+  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
+  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
   /*map Getters and Setters*/
   get map(){
     var retMap = "";
@@ -110,18 +102,17 @@ class Map{
   at the coordinates to match the room.
   @class addRoom() - adds rooms onto the map 
   @returns {array} it will return an array of coords to set to locatioons on the map
-  */
+  */  
   addRoom(){
-    var room = Utils.randRoom(this.width,this.height,)
-    for(var i = 0; i < room.length; i++){
-      var keyX = "x" + room[i].x
-      var keyY = "y" +
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    for (var i = 0; i < room.length; i++) {
+      var keyX = "x" + room[i].x;
+      var keyY = "y" + room[i].y;
+      var space = this._map[keyY][keyX];
+      space.image = " ";
+      space.type = "room";
     }
-    //use of makecoords
-    //for loops may be needed
-    
   }
-  
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */

@@ -9,14 +9,6 @@ h5{
 text-align: center;
 }
 
-.item{
-color: purple;
-}
-
-.mob{
-color: red;
-}
-
 .big {
 width: auto;
 margin: 10px; /* changed */
@@ -97,4 +89,3 @@ font-family: 'Press Start 2P', cursive;
 font-size: 12px;
 display: none; /* will JS it into existance when playerControls are hidden. */
 }
-
