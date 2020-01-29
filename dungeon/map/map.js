@@ -60,8 +60,7 @@ or we will get errors. Remake the this._map.*/
       let room;
       for (room of array){
             Utils.arrayCheck(room, "Map.room individual room.");
-        if (room.length == 0
-        ) {throw new Error ("In Map.room: One or more arrays is empty.");
+        if (room.length == 0) {throw new Error ("In Map.room: One or more arrays is empty.");
           let coords;
           for (coords of room){
             Utils.keyCheck(coords,"");
@@ -85,7 +84,6 @@ or we will get errors. Remake the this._map.*/
         }
       }
     }*/
-  }
 
 
   get roomMin(){return this._roomMin;}
@@ -98,8 +96,10 @@ or we will get errors. Remake the this._map.*/
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
 function addRoom(){
-  randRoom
+  var room = Utils.randRoom(70, 40, 3, 8);
+for (var i = 0; i < map.length; i++) {
 
+ }
 }
 /*Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
@@ -149,7 +149,6 @@ the inner objects will be the individual cells of the map.
     return retStr + "+";
   }
 }
-
 /*.1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
 .2 Add a getter for rooms that returns the array in rooms
 .3 Add a setter for rooms
