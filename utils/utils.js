@@ -6,19 +6,29 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".");
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   static intCheck(item, call="Utils.intCheck.js"){
-    if (Number.isInteger(item)) {return item}
+    if (Number.isInteger(item)) {return item;}
     else {
       throw new Error("The method " + call + " expected an integer and received " + item + ".");
     }
   }
-
+  //arrayCheck(testArray, call);
+  //@param call {String} is to ell were the error is
+  //@param testArray {Mixed} is the input to test
+  static arrayCheck(testArray, call = "Utils.arrayChecker"){
+    if(Array.isArray(testArray) == true){
+      return testArray;
+    }
+    else{
+      throw new Error("The method "+ call + " Expected an array and received " + testArray + ".");
+    }
+  }
   /* objCheck(item, call="Utils.objCheck")
 @param item: {mixed} an item to be checked if is an object
 @param call: {string} the Class/function/method where the check occured
@@ -108,14 +118,29 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
 Returns an array of 4 coordinate objects
 */
 
+  //static randRoom(width, height, roomMin, roomMax){
+  //  var retArray = [];
+  //   var topL = this.randomCoord(1,width-roomMin,1,height-roomMin);
+  //   var botR = this,randomCoord(1,width-roomMax,1,height-roomMax);
+  //   return [topL,{x:botR.x,y:topL.y}, {x:topL.x,y:botR.y}, botR];
+  //}
   static randRoom(width, height, roomMin, roomMax){
     var retArray = [];
-    var topL = this.ranCoord(1, width-roomMin);
-    var topR = roomMax - topL;
-    var bottomL = roomMax - bottomR;
-    var bottomR = this.ranCoord(1, height-roomMax);
-    retArray.push(topL, topR, bottomL, bottomR)
-    return retArray;
+     var start = this.ranCoord(1,width-roomMin,1,height-roomMin);
+     var stop = this.ranCoord(1,width-roomMax,1,height-roomMax);
+// make an array to return
+// for every line(x or y):
+//find the values of the other coord(if x above then y here and vice versa)
+//put them into an object with they keys {x: numA y:numB}
+//put objects on the array
+// return array of objects
+    var next = [];
+    for(var i = start.x; i<= stop.x; i++){
+      for(var j = start.y; j<= stop.y; j++){
+      next.push({x:i,y:j});
+      }
+    }
+    return next;
   }
 
 }

@@ -1,41 +1,88 @@
-/*
-class Map
- this class is used to create and generate displays of 2 demensional maps.
- defult map is filled with unreachable spaces.
- @param width {int}: width of the map(max x cord)
- @param height {int}: height of the map(max y cord)
-  */
+/*@class Map
+ *this class is used to create and generate displays of 2 demensional maps.
+ *defult map is filled with unreachable spaces.
+ *@param width {int}: width of the map(max x cord)
+ *@param height {int}: height of the map(max y cord)
+ */
 class Map{
   constructor(width,height){
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._map = this._generateMap();
+    this._rooms = [];
+    this._maxRoom = 8;
+    this._minRoom = 3;
   }
-  /*3. add setters.
-The setters for this function for width and height can be added now. However,
-these will need to be a little more complex than with other setters we have used.
- They will need to do the following -
-1. Check for value inputted being an int, and giving the correct error message
- if it is not.
-2. now that the map has a new width or height, we have to remake it from scratch
-or we will get errors. Remake the this._map.*/
-
+  /*width Getters and Setters*/
   get width(){return this._width;}
   set width(width){
     this._width = Utils.intCheck(width, "Map.width");
     this._map = this._generateMap();
   }
-
+  /*height Getters and Setters*/
   get height(){return this._height;}
   set height(height){
-    this._height = Utils.intCheck(height, "Map.height")
+    this._height = Utils.intCheck(height, "Map.height");
     this._map = this._generateMap();
   }
-
+  /*fill Getters and Setters*/
   get fill(){return this._fill;}
-  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
-
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
+  /*rooms Getters and Setters*/
+  get rooms(){return this._rooms;}
+  set rooms(array){
+    array = Utils.arrayCheck(array,"Map.rooms");
+    if(array.length == 0){ this._rooms = array;}
+    else{
+      let room;
+      for(room of array){
+        if(room.length == 0){
+          throw new Error("In Map.rooms: one or more of the rooms are empty");
+        }
+        let coords;
+        for(coords of room){
+          Utils.keyCheck(coords, ["x","y"], "Map.rooms individual cell");
+        }
+      }
+      this._rooms = array;
+    }
+  }
+  /*
+   set rooms(rooms){
+    if(rooms == []){
+    this._rooms = Utils.arrayCheck(rooms, "Map.rooms");
+    }
+      for(var i = 0; i < rooms.length; i++){
+        for(var j = 0; j < rooms[i].length; j++){
+          if((Number.isInteger(rooms[i][j].x) == true) && (Number.isInteger(rooms[i][j].y) == true)){
+            if((rooms[i][j].x == undefined || isNaN(rooms[i][j].x) == true)||(rooms[i][j].y == undefined || isNaN(rooms[i][j].y) == true)){
+              throw new Error("In Map.rooms: One or more room arrays is empty.");
+            }
+            this._rooms[i] = Utils.arrayCheck(rooms[i], "Map.rooms-Individual-Rooms");
+            this._rooms[i][j] = Utils.objCheck(rooms[i][j], "Map.rooms-objCheck-Indiv-Rooms-Check");
+          }
+          else{
+            throw new Error("Map.rooms-obj test checking expected an array with arrays with and object with the values x{int} and y{int} and got " + rooms[i][j][0] + ".");
+          }
+        }
+      }
+  }*/
+  /*roomMax and roomMin Getters*/
+  get roomMax(){
+    return this._roomMax;
+  }
+  get roomMin(){
+    return this._roomMin;
+  }
+  /*roomMax and roomMin Setters*/
+  set roomMax(roomMax){
+    this._roomMax = roomMax;
+  }
+  set roomMin(roomMin){
+    this._roomMin = roomMin;
+  }
+  /*map Getters and Setters*/
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
@@ -48,11 +95,6 @@ or we will get errors. Remake the this._map.*/
     }
     return retMap += this._drawBorder();
   }
-/*
-Then we will update the map to have a setter for map, this will use the two
- functions above to make sure that the setter is given an object with the keys
-  width and height, and use it to make a new map. After checking the values as well
-  */
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -61,16 +103,28 @@ Then we will update the map to have a setter for map, this will use the two
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
-
+  /*@function addRoom()
+  add room will use the appropriate functions in our
+  program to generate a set of coordinates based on our map.
+  it will then go to the map, and upadate the cells
+  at the coordinates to match the room.
+  @class addRoom() - adds rooms onto the map 
+  @returns {array} it will return an array of coords to set to locatioons on the map
+  */
+  addRoom(){
+    var room = Utils.randRoom(this.width,this.height,)
+    for(var i = 0; i < room.length; i++){
+      var keyX = "x" + room[i].x
+      var keyY = "y" +
+    }
+    //use of makecoords
+    //for loops may be needed
+    
+  }
+  
+  /*@function _generateMap()
+   *@returns {array} an array of objects with objects
+   */
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -84,11 +138,11 @@ the inner objects will be the individual cells of the map.
     return map;
   }
 
-  /* _drawBorder()
-  Makes a border top or bottom for the map. This border will be in the general
-  design of +---------------+
-  @return {string} a string border
-  */
+  /*@function _drawBorder()
+   *Makes a border top or bottom for the map. This border will be in the general
+   *design of +---------------+
+   *@return {string} a string border
+   */
   _drawBorder(){
     var retStr = "+";
     for (var i = 0; i < this.width; i++) {
