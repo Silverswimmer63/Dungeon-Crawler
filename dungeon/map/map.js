@@ -54,7 +54,24 @@ or we will get errors. Remake the this._map.*/
 
   get rooms(){return this._rooms;}
   set rooms(rooms){
-      Utils.arrayCheck(rooms,"Map.rooms");
+    array =Utils.arrayCheck(rooms,"Map.rooms");
+    if (array.length == 0) {this._rooms = array;}
+    else {
+      let room;
+      for (room of array){
+            Utils.arrayCheck(room, "Map.room individual room.");
+        if (room.length == 0
+        ) {throw new Error ("In Map.room: One or more arrays is empty.");
+          let coords;
+          for (coords of room){
+            Utils.keyCheck(coords,"");
+          }
+          }
+        }
+      }
+      }
+    }
+  /*    Utils.arrayCheck(rooms,"Map.rooms");
     if (rooms.length == 0) {
       this._rooms = rooms;
     }else {
@@ -67,16 +84,24 @@ or we will get errors. Remake the this._map.*/
           Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
         }
       }
-    }
+    }*/
   }
+
 
   get roomMin(){return this._roomMin;}
   set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
 
   get roomMax(){return this._roomMax;}
   set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
-/*
-Then we will update the map to have a setter for map, this will use the two
+  /*addRoom()
+  add room will use the appropiate function in our program to generate a set
+  of coordinates based on our map. It will then go to the map, and update the
+  cells at the correct coordinates to match the room*/
+function addRoom(){
+  randRoom
+
+}
+/*Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
   width and height, and use it to make a new map. After checking the values as well
   */
@@ -123,6 +148,19 @@ the inner objects will be the individual cells of the map.
     }
     return retStr + "+";
   }
-
-
 }
+
+/*.1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
+.2 Add a getter for rooms that returns the array in rooms
+.3 Add a setter for rooms
+.4 Add properties for map for max and min room size, make these 3 and 8 by default. Make getters and setters,
+have the setters check to see if the value is an int in the setter.
+.5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
+.6 Add the arrayCheck to the setter for rooms
+.7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not, then check to see
+ if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
+.8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
+with the keys X and Y
+.9 to continue in Map.rooms - for each room make sure it has something in it, otherwise toss the error
+"In Map.rooms: One or more room arrays is empty."
+*/
