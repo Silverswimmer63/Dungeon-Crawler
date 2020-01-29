@@ -12,7 +12,7 @@ class Cell {
   }
   //getters and setters
   get image(){return this._image}
-  set image(image){this._image = this.image}
+  set image(image){this._image = image}
 
   get type(){return this._type}
   set type(type){

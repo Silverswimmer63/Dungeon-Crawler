@@ -98,6 +98,22 @@ way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
 
+/*addRoom()
+add room will use the apropriate functions in our program to generate a set
+of coordinates based on our map. It will then go to map, and update the cells at the
+corect coordinates to match the room.
+*/
+  addRoom(){
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    for (var i = 0; i < room.length; i++) {
+      var keyX = "x" + room[i].x;
+      var keyY = "y" + room[i].y;
+      var space = this._map[keyY][keyX];
+      space.image = " ";
+      space.type = "room";
+    }
+  }
+
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
