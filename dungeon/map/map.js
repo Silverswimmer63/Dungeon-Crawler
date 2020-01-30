@@ -115,7 +115,7 @@ for (var i = 0; i < coords.length; i++) {
    cell.image = " ";
    cell.type = "room";
 }
-this.rooms.push(coords);
+this._rooms.push(coords);
 }
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
