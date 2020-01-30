@@ -113,7 +113,7 @@ call + "expected one of the following: " +<list items>+ " and got " + type + "."
 
   /*arrayCheck(item, call="Utils.arrayCheck")*/
   static arrayCheck(item, call="Utils.arrayCheck"){
-    if (typeof item == "array") {
+    if ((item != null) && (Array.isArray(item))) {
       return item;
     }else {
       throw new Error("The method " + call + " expected an array and received " + item + ".");

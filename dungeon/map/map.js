@@ -54,19 +54,51 @@ class Map{
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
-  set rooms(rooms){this._room = Utils.arrayCheck(rooms, "Map.rooms");}
+  set rooms(array){
+    array = Utils.arrayCheck(rooms, "Map.rooms");
+    if (array.length == 0) { this._rooms = array; }
+    else {
+      for (var room of array) {
+        Utils.arrayCheck(room, "Map.rooms individual room.");
+        if (room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
+        for (var coords of room) {
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
+        }
+      }
+      this._rooms = array;
+    }
+  }
   set roomMac(roomMax){this._roomMax = Utils.intCheck(roomMax);}
   set roomMin(roomMin){this._roomMin = Utils.intCheck(roomMin);}
 
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
+  /* addRoom()
+  add room will use the appropriate function in our program and to generate a set
+  of coordinates based on our map, It will then go to the map and update the cells
+  at the correct coordinates to match the room
+  */
+  addRoom(){
+    var retArr = [];
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    for (var i = 0; i < room.length; i++) {
+      var key = "x" + room[i].x;
+      var key2 = "y" + room[i].y
+      var space = this._map[key2][key];
+      space.image = " ";
+      space.type = "room";
+      retArr.push(space);
+    }
+    return retArr
+  }
+
+  /* _generateMap()
+  A method to make a map filled with items of the this._fill value. The "map" is
+  an object with a set of objects imbeded within it. All of the top level keys,
+  which each owns it's own object, will begin with the letter y (ex y1, y2), and
+  so on. The second level objects will be keyed in the same way, but with x
+  rather than y for their start. This is done so that we may access the map by
+  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+  the inner objects will be the individual cells of the map.
+  */
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -92,16 +124,4 @@ the inner objects will be the individual cells of the map.
     }
     return retStr + "+";
   }
-
-  /*
-  .2 Add a getter for rooms that returns the array in rooms
-  .3 Add a setter for rooms
-  .4 Add properties for map for max and min room size, make these 3 and 8 by default.
-  Make getters and setters, have the setters check to see if the value is an int in the setter.
-  .5 Make a new function in Utils called arrayCheck that does what all the other checkers do,but for arrays
-  .6 Add the arrayCheck to the setter for rooms
-  .7 make the setter for rooms check to see if the intended value is a blank array [ ].
-  If not, then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
-  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects with the keys X and Y
-  */
 }
