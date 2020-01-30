@@ -158,3 +158,5 @@ Returns an array of coordinate objects for a square room.
   }
 
 }
+
+ 

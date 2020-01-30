@@ -112,13 +112,14 @@ addRoom(){
   let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
 for (var i = 0; i < coords.length; i++) {
   let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
+for (var i = 0; i < ; i++) {
 
+}
    cell.image = " ";
    cell.type = "room";
 }
 this._rooms.push(coords);
 }
-
 /*
 2. add to addRoom functionality to push the room to the _rooms array directly
 
