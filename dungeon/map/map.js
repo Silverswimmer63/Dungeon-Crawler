@@ -112,11 +112,24 @@ addRoom(){
   let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
 for (var i = 0; i < coords.length; i++) {
   let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
+
    cell.image = " ";
    cell.type = "room";
 }
 this._rooms.push(coords);
 }
+
+/*
+2. add to addRoom functionality to push the room to the _rooms array directly
+
+3. add a step between making the room coordinates and changing the map where you check each room
+ in the map array to see if any of them have the same coordinates, and if there is overlap, don't add the room
+
+4. add the correct type of loop structure and other needed items to make said loop stop if the room
+can be added (per 3 above) or keep going if not added
+
+5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+  two for lops */
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
