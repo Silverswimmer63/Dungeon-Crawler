@@ -86,13 +86,13 @@ Then we will update the map to have a setter for map, this will use the two
   and update the cells at the correct coordinates to match the room.
   */
   addRoom(){
-    var room = Utils.randRoom(70, 40, 3, 8);
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     for (var i = 0; i < room.length; i++) {
-      var key = room[i].x;
-      var key2 = room[i].y;
-      if (room[i]) {
-
-      }
+      var key = "x" + room[i].x;
+      var key2 = "y" + room[i].y;
+      var space = this._map[key][key2];
+      space.image = " ";
+      space.type = "room";
     }
   }
 
@@ -109,7 +109,6 @@ the inner objects will be the individual cells of the map.
     var map = {};
     for (var i = 1; i <= this.height; i++) {
       var key = "y"+i;
-      console.log("Bing");
       map[key] = {};
       for (var j = 1; j <= this.width; j++) {
         var key2 = "x"+j;

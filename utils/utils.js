@@ -116,10 +116,10 @@ class Utils {
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static randRoom(width, height, rMin, rMax){
+  static randRoom(width, height, roomMin, roomMax){
     var retArray = [];
-    var start = this.randCoord(1, width-rMin, 1, height-rMin); // width & height - room Min
-    var stop = this.randCoord(start.x + rMin, Math.min(start.x + rMax, width), start.y + rMin, Math.min(start.y + rMax, height));
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j})
