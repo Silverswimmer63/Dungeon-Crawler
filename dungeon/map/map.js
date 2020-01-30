@@ -104,15 +104,14 @@ of coordinates based on our map. It will then go to map, and update the cells at
 corect coordinates to match the room.
 */
   addRoom(){
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    let room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     for (var i = 0; i < room.length; i++) {
-      var keyX = "x" + room[i].x;
-      var keyY = "y" + room[i].y;
-      var space = this._map[keyY][keyX];
+      let space = this._map["y" + room[i].y]["x" + room[i].x];
       space.image = " ";
       space.type = "room";
-    }
   }
+  this._rooms.push(room);
+}
 
   _generateMap(){
     var map = {};
