@@ -24,6 +24,12 @@ these will need to be a little more complex than with other setters we have used
 2. now that the map has a new width or height, we have to remake it from scratch
 or we will get errors. Remake the this._map.*/
 
+  get roomMin(){return this._roomMin;}
+  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
+
+  get roomMax(){return this._roomMax;}
+  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
+
   get width(){return this._width;}
   set width(width){
     this._width = Utils.intCheck(width, "Map.width");
@@ -39,6 +45,15 @@ or we will get errors. Remake the this._map.*/
   get fill(){return this._fill;}
   set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
 
+  set map(dimensions){
+
+    Utils.keyCheck(dimensions,["width", "height"], "Map.map");
+    Utils.intCheck(dimensions.width,"Map.map");
+    Utils.intCheck(dimensions.height,"Map.map");
+    this._width = dimensions.width;
+    this._height = dimensions.height;
+    this._map = this._generateMap();
+  }
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
@@ -68,51 +83,42 @@ or we will get errors. Remake the this._map.*/
           }
         }
       }
-      }
     }
-  /*    Utils.arrayCheck(rooms,"Map.rooms");
-    if (rooms.length == 0) {
-      this._rooms = rooms;
-    }else {
-      for (var i = 0; i < rooms.length; i++) {
-        Utils.arrayCheck(rooms[i],"Map.rooms - individual room");
-          if (rooms[i].length == 0) {
-            throw new Error("In Map.rooms: One or more room arrays is empty.")
+    /*    Utils.arrayCheck(rooms,"Map.rooms");
+      if (rooms.length == 0) {
+        this._rooms = rooms;
+      }else {
+        for (var i = 0; i < rooms.length; i++) {
+          Utils.arrayCheck(rooms[i],"Map.rooms - individual room");
+            if (rooms[i].length == 0) {
+              throw new Error("In Map.rooms: One or more room arrays is empty.")
+            }
+          for (var j = 0; j < rooms[i].length; j++) {
+            Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
           }
-        for (var j = 0; j < rooms[i].length; j++) {
-          Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
         }
-      }
-    }*/
+      }*/
 
+    /*Then we will update the map to have a setter for map, this will use the two
+     functions above to make sure that the setter is given an object with the keys
+      width and height, and use it to make a new map. After checking the values as well
+      */
 
-  get roomMin(){return this._roomMin;}
-  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
-
-  get roomMax(){return this._roomMax;}
-  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
   /*addRoom()
   add room will use the appropiate function in our program to generate a set
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
-function addRoom(){
-  var room = Utils.randRoom(70, 40, 3, 8);
-for (var i = 0; i < map.length; i++) {
-
+_addRoom(){
+  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+for (var i = 0; i < room.length; i++) {
+  let key = "x" + room[i].x;
+  let key2 = "y" + room[i].y;
+  let space = this._map[keyY][keyX];
+  space.image = " ";
+  space.type = "room";
  }
 }
-/*Then we will update the map to have a setter for map, this will use the two
- functions above to make sure that the setter is given an object with the keys
-  width and height, and use it to make a new map. After checking the values as well
-  */
-  set map(dimensions){
-    Utils.keyCheck(dimensions,["width", "height"], "Map.map");
-    Utils.intCheck(dimensions.width,"Map.map");
-    Utils.intCheck(dimensions.height,"Map.map");
-    this._width = dimensions.width;
-    this._height = dimensions.height;
-    this._map = this._generateMap();
-  }
+
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
