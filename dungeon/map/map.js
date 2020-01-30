@@ -111,7 +111,7 @@ or we will get errors. Remake the this._map.*/
 addRoom(){
   let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
 for (var i = 0; i < coords.length; i++) {
-  let cell = this.map["y"+ coords[i].y]["x"+ coords[i].x];
+  let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
    cell.image = " ";
    cell.type = "room";
 }
