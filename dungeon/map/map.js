@@ -111,8 +111,8 @@ or we will get errors. Remake the this._map.*/
 _addRoom(){
   var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
 for (var i = 0; i < room.length; i++) {
-  let key = "x" + room[i].x;
   let key2 = "y" + room[i].y;
+  let key = "x" + room[i].x;
   let space = this._map[keyY][keyX];
   space.image = " ";
   space.type = "room";
