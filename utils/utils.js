@@ -108,8 +108,8 @@ class Utils {
   */
   static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
-    retObj.x = this.randMath(xMin, xMax);
-    retObj.y = this.randMath(yMin, yMax);
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
     return retObj;
   }
 
@@ -118,8 +118,8 @@ class Utils {
   */
   static randRoom(width, height, roomMin, roomMax){
     var retArray = [];
-    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
-    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j})

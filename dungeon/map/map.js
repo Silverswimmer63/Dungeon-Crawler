@@ -87,13 +87,16 @@ Then we will update the map to have a setter for map, this will use the two
   */
   addRoom(){
     var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    var retArray = [];
     for (var i = 0; i < room.length; i++) {
       var key = "x" + room[i].x;
       var key2 = "y" + room[i].y;
-      var space = this._map[key][key2];
+      var space = this._map[key2][key];
       space.image = " ";
       space.type = "room";
+      retArray.push(space);
     }
+    return retArray;
   }
 
 /* _generateMap()
