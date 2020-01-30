@@ -12,14 +12,25 @@ class Map{
     this._fill = Cell;
     this._map = this._generateMap();
     this._rooms = [];
-    this._roomMax = 3;
-    this._roomMin = 8;
+    this._roomMin = 3;
+    this._roomMax = 8;
   }
 
-  //getters
   get width(){return this._width;}
+  set width(width){
+    this._width = Utils.intCheck(width, "Map.width");
+    this._map = this._generateMap();
+  }
+
   get height(){return this._height;}
+  set height(height){
+    this._height = Utils.intCheck(height, "Map.height")
+    this._map = this._generateMap();
+  }
+
   get fill(){return this._fill;}
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
+
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
@@ -32,20 +43,11 @@ class Map{
     }
     return retMap += this._drawBorder();
   }
-  get rooms(){return this._rooms;}
-  get roomMax(){return this._roomMax}
-  get roomMin(){return this._roomMin}
-
-  //setters
-  set width(width){
-    this._width = Utils.intCheck(width, "Map.width");
-    this._map = this._generateMap();
-  }
-  set height(height){
-    this._height = Utils.intCheck(height, "Map.height")
-    this._map = this._generateMap();
-  }
-  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
+/*
+Then we will update the map to have a setter for map, this will use the two
+ functions above to make sure that the setter is given an object with the keys
+  width and height, and use it to make a new map. After checking the values as well
+  */
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -54,47 +56,58 @@ class Map{
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
+
+  get rooms(){ return this._rooms; }
   set rooms(array){
-    array = Utils.arrayCheck(rooms, "Map.rooms");
-    if (array.length == 0) { this._rooms = array; }
+    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
+    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
     else {
-      for (var room of array) {
-        Utils.arrayCheck(room, "Map.rooms individual room.");
-        if (room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
-        for (var coords of room) {
-          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
+      let room;
+      for (room of array){
+        Utils.arrayCheck(room, "Map.rooms individual room.")
+        if (room.length == 0) { throw new Error("In Map.room: One or more room arrays is empty.") }
+        let coords;
+        for (coords of room){ // reminder coords are {x: value, y:value}
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell")
         }
       }
       this._rooms = array;
     }
   }
-  set roomMac(roomMax){this._roomMax = Utils.intCheck(roomMax);}
-  set roomMin(roomMin){this._roomMin = Utils.intCheck(roomMin);}
+
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
+
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
   /* addRoom()
-  add room will use the appropriate function in our program and to generate a set
-  of coordinates based on our map, It will then go to the map and update the cells
-  at the correct coordinates to match the room
+  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
+  and update the cells at the correct coordinates to match the room.
   */
   addRoom(){
-    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax)
-    for (var i = 0; i < coords.length; i++) {
-      let cell = this._map["y" + coords[i].y]["x" + coords[i].x]
-      cell.image = " ";
-      cell.type = "room"
+    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    var retArray = [];
+    for (var i = 0; i < room.length; i++) {
+      var key = "x" + room[i].x;
+      var key2 = "y" + room[i].y;
+      var space = this._map[key2][key];
+      space.image = " ";
+      space.type = "room";
+      retArray.push(space);
     }
-    this._rooms.push(coords);
+    return retArray;
   }
 
-  /* _generateMap()
-  A method to make a map filled with items of the this._fill value. The "map" is
-  an object with a set of objects imbeded within it. All of the top level keys,
-  which each owns it's own object, will begin with the letter y (ex y1, y2), and
-  so on. The second level objects will be keyed in the same way, but with x
-  rather than y for their start. This is done so that we may access the map by
-  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-  the inner objects will be the individual cells of the map.
-  */
+/* _generateMap()
+A method to make a map filled with items of the this._fill value. The "map" is
+an object with a set of objects imbeded within it. All of the top level keys,
+which each owns it's own object, will begin with the letter y (ex y1, y2), and
+so on. The second level objects will be keyed in the same way, but with x
+rather than y for their start. This is done so that we may access the map by
+way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+the inner objects will be the individual cells of the map.
+*/
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -105,7 +118,7 @@ class Map{
         map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
@@ -118,6 +131,8 @@ class Map{
     for (var i = 0; i < this.width; i++) {
       retStr += "-";
     }
-    return retStr + "+";
+    return retStr += "+";
   }
+
+
 }
