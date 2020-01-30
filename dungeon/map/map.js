@@ -108,17 +108,15 @@ or we will get errors. Remake the this._map.*/
   add room will use the appropiate function in our program to generate a set
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
-_addRoom(){
-  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-for (var i = 0; i < room.length; i++) {
-  let key2 = "y" + room[i].y;
-  let key = "x" + room[i].x;
-  let space = this._map[keyY][keyX];
-  space.image = " ";
-  space.type = "room";
- }
+addRoom(){
+  let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+for (var i = 0; i < coords.length; i++) {
+  let cell = this.map["y"+ coords[i].y]["x"+ coords[i].x];
+   cell.image = " ";
+   cell.type = "room";
 }
-
+this.rooms.push(coords);
+}
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
