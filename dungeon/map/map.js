@@ -77,17 +77,13 @@ class Map{
   at the correct coordinates to match the room
   */
   addRoom(){
-    var retArr = [];
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    for (var i = 0; i < room.length; i++) {
-      var key = "x" + room[i].x;
-      var key2 = "y" + room[i].y
-      var space = this._map[key2][key];
-      space.image = " ";
-      space.type = "room";
-      retArr.push(space);
+    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax)
+    for (var i = 0; i < coords.length; i++) {
+      let cell = this._map["y" + coords[i].y]["x" + coords[i].x]
+      cell.image = " ";
+      cell.type = "room"
     }
-    return retArr
+    this._rooms.push(coords);
   }
 
   /* _generateMap()
