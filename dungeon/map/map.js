@@ -112,8 +112,11 @@ addRoom(){
   let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
 for (var i = 0; i < coords.length; i++) {
   let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
-for (var i = 0; i < ; i++) {
-
+  if (this._rooms.length != 0) {
+for (var j = 0; j < this._room.length ; j++) {
+  if ((this._rooms[j].x == cell.x)&&(this._rooms[j].y == cell.y)){
+  }
+ }
 }
    cell.image = " ";
    cell.type = "room";
