@@ -96,8 +96,21 @@ class Utils {
     }
   }
 
-  /*
-  randCoord(xMin, xMax, yMin, yMax)
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate
+  in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {return true;}
+      }
+    }
+    return false;
+
+  }
+
+  /*randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
   @param xMin {int}: a number between 1 and xMax
@@ -127,5 +140,4 @@ class Utils {
     }
     return retArray;
     }
-
-  }
+}

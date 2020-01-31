@@ -85,19 +85,31 @@ Then we will update the map to have a setter for map, this will use the two
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
+
+  /* add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room*/
   addRoom(){
     var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    var retArray = [];
     for (var i = 0; i < room.length; i++) {
       var key = "x" + room[i].x;
       var key2 = "y" + room[i].y;
       var space = this._map[key2][key];
-      space.image = " ";
-      space.type = "room";
-      retArray.push(space);
+      space._image = " ";
+      space._type = "room";
     }
-    return retArray;
+      this._rooms.push(room);
   }
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  /*
+  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+  if any of them have the same coordinates, and if there is overlap, don't add the room
+  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
