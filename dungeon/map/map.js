@@ -88,11 +88,6 @@ Then we will update the map to have a setter for map, this will use the two
   addRoom(){
     var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     for (var i = 0; i < room.length; i++) {
-      for (var i = 0; i < space.length; i++) {
-        if () {
-
-        }
-      }
       var key = "x" + room[i].x;
       var key2 = "y" + room[i].y;
       var space = this._map[key2][key];
@@ -101,10 +96,8 @@ Then we will update the map to have a setter for map, this will use the two
     }
       this._rooms.push(room);
   }
-  
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
+
+
   /*
   3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
   if any of them have the same coordinates, and if there is overlap, don't add the room
