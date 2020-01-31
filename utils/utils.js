@@ -161,9 +161,22 @@ Returns an array of coordinate objects for a square room.
 takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other.
  If so it returns a true, if not, it returns a false.
 */
+/*for (var i = 0; i < array.length; i++) {
+  if(seta[i][0] == x && seta[i][1] == y){
+    return true;
+  }
+  for (var j = 0; j < array.length; j++) {
+    if (setb[j][0]== x && setb[j][1]== y) {
+      return false
+    }
+  }
+}*/
 coordCheck(seta, setb){
-for (var i = 0; i < array.length; i++) {
-
+  for (var i = 0; i < setb.length; i++) {
+if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)){ return true; }
+  for (let j = 0; j < setb.length; j++) {
+if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) { return true; }
+   }
+  }
  }
-}
 }
