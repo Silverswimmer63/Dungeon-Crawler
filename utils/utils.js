@@ -123,7 +123,8 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
     return retObj;
   }
 
-  /*
+  /*randRoom(width, height, roomMin, roomMax)
+  returns an array of coordinate objects for a square room
   the lower x should be between 1 and the width of the map - min width of the room
   the higher x should be between the lower x + min and the lower x + max
 
@@ -135,9 +136,6 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
   return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
   }
 */
-  /*randRoom(width, height, roomMin, roomMax)
-  returns an array of coordinate objects for a square room
-  */
   static randRoom(width, height, roomMin, roomMax){
     roomMin -= 1;
     roomMax -= 1;
@@ -159,6 +157,22 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
     //use isArray
     if (Array.isArray(item)){ return item; }
     throw new Error(call + " expected and array and received " + item)
+  }
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one
+  that is this in the other. If so it returns a true, if not, it returns a false.
+*/
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          console.log("Something happened");
+          return true;
+        }
+        return false;
+      }
+    }
   }
 
 }

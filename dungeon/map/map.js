@@ -12,7 +12,7 @@ class Map{
     this._fill = Cell;
     this._map = this._generateMap();
     this._rooms = [];
-    this._roommaxin = 3;
+    this._roomMin = 3;
     this._roomMax = 8;
   }
   /*3. add setters.
@@ -99,11 +99,11 @@ or we will get errors. Remake the this._map.*/
 
   }
 
-  get min(){ return this._roomMin; }
-  set min(roomMin){ this._roomMin = Utils.intCheck(number, "Map.min") }
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(number, "Map.min") }
 
-  get max(){ return this._roomMax; }
-  set max(roomMax){ this._roomMax = Utils.intCheck(number, "Map.max") }
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(number, "Map.max") }
 
   /*addRoom()
   addRoom will use the appropriate functions in our program to generate a set of coords
@@ -112,23 +112,31 @@ or we will get errors. Remake the this._map.*/
   */
   _addRoom(){
     var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    //add a step between making the room coordinates and changing the the map
+    //where you checkeach room in the map array to see if any of them have the
+    //same coordinates,and if there is overlap, don't add the room
     for (var i = 0; i < room.length; i++) {
       var keyX = "x" + room[i].x;
       var keyY = "y" + room[i].y;
       var space = this._map[keyY][keyX];
-      space.image = " ";
-      space.type = "room"
+      space._image = " ";
+      space._type = "room"
     }
+    var overlap = false;
+    for (var i = 0; i < this._rooms.length; i++) {
+      if(!overlap) { overlap = Utils.coordsCheck(coords, this._rooms[i]); } // so we don't lose a true
+    }
+    this._rooms.push(room);
   }
 
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
+  /* _generateMap()
+  A method to make a map filled with items of the this._fill value. The "map" is
+  an object with a set of objects imbeded within it. All of the top level keys,
+  which each owns it's own object, will begin with the letter y (ex y1, y2), and
+  so on. The second level objects will be keyed in the same way, but with x
+  rather than y for their start. This is done so that we may access the map by
+  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+  the inner objects will be the individual cells of the map.
 */
   _generateMap(){
     var map = {};
