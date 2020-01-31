@@ -157,6 +157,13 @@ Returns an array of coordinate objects for a square room.
     }
   }
 
-}
+/* coordCheck(seta, setb)
+takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other.
+ If so it returns a true, if not, it returns a false.
+*/
+coordCheck(seta, setb){
+for (var i = 0; i < array.length; i++) {
 
- 
+ }
+}
+}
