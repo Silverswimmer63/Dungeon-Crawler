@@ -29,7 +29,23 @@ or we will get errors. Remake the this._map.*/
   then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
   */
   get rooms(){ return this._rooms = [];}
-  set rooms(rooms){this._rooms = rooms = Utils.arrayCheck(rooms, "Map.rooms");}
+  set rooms(array){
+    array = Utils.arrayCheck(rooms, "Map.rooms");
+      if (array.length ==  0) {this._rooms = array;}// this is clearing out the rooms
+    else {
+      let room;
+      for (room of array){
+        Utils.arrayCheck(room, "Map.rooms individual room");
+        if (room.length == 0) {
+          throw new Error("In Map.rooms one or more room arrays is empty"); }
+          let coords;
+          for (coords of room) {
+            Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
+          }
+      }
+      this._rooms = array;
+   }
+  }
 
   get roomMax(){ return this._roomMax;}
   set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
@@ -112,6 +128,36 @@ the inner objects will be the individual cells of the map.
     }
     return retStr + "+";
   }
+
+
+/*addRooms()
+add rooms will use the appropriate function in our program to generate a set
+of coords based on our map. It will then go to the map, and update the cells
+at the correct coords to watch the room.
+*/
+
+/*
+add a step between making the room coordinates and changing the the map where you
+check each room in the map array to see if any of them have the same coordinates,
+and if there is overlap, don't add the room
+*/
+
+  _addRoom(){
+    let room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+    for (var i = 0; i < room.length; i++) {
+      let keyX = "x" + room[i].x;
+      let keyY = "y" + room[i].y;
+      let space = this._map[keyY][keyX];
+    }
+      for (var i = 0; i < room.length; i++) {
+        if (Utils.coordCheck(keyX, keyY) == true) {
+      space._image = " ";
+      space._type = "room";
+     }
+    }
+    this._room.push(room);
+ }
+
 
 
 }

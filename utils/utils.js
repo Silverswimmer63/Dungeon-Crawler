@@ -163,13 +163,29 @@ Returns an array of coordinate objects for a square room.
   then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
   .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
   with the keys X and Y
+  .9 to continue in Map.rooms - for each room make sure it has something in it, otherwise toss the error
+  "In Map.rooms: One or more room arrays is empty."
   */
   static arrayCheck([], call = "Utils.arrayCheck"){
-    if (( [] != null)&&(typeof [] == "object")) {
-      return [];
+    if (( item != null)&&(Array.isArray(item))) {
+      return item;
     }else {
-      throw new Error("The method " + call + " expected an object and received " + [] + ".");
+      throw new Error("The method " + call + " expected an array and received " + item + ".");
     }
   }
+
+  /* coordCheck(setA, setB)
+takes 2 arrays of coordinates and checks them to see if there is a coordinate in
+one that is this in the other. If so it returns a true, if not, it returns a false.
+*/
+
+  static coordCheck(setA, setB){
+    for (var i = 0; i < setA.length; i++) {
+    for (var j = 0; j < setB.length; j++) {
+    if((setA[i].x == setB[j].x) && (setA[i].y == setB[j].y)) { return true; }
+    }
+  }
+  return false;
+}
 
 }

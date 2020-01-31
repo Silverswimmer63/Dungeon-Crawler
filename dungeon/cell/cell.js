@@ -160,43 +160,4 @@ class Cell {
     return this._image;
   }
 
-
-
-
-
-
-
-/* remove(index)
-remove will either remove the item from the cell inventory that exist at index
-or if index = "mob" it will remove the monster
-@param index {mixed}: either the index value of the item or the word "mob"
-@return {object}: the item or mob
-*/
-
-remove(index){
-  if (index == "Mob") {
-    //go through occupied and find if there is a mob, use instanceof
-    //if we find something, we want to splice/slice it out
-    //return it
-    var num = undefined;
-    for (var i = 0; i < this.occupied.length; i++) {
-      if (this.occupied[i] instanceof Mob) {
-        num = i;
-      }
-    }
-    if (num == undefined) {
-      throw new Error("Cell.remove attempted to remove a Mob that does not exist")
-    }
-    return this.occupied[num].splice(num,1);
-  }
-  if (Number.isInteger(index)) {
-    if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
-      throw new Error("Cell.remove attempted to remove an Item that does not exist")
-    }
-    return this.inventory.splice(index,1);
-    }
-    throw new Error("Cell.remove expected a number or Mob and received " + index +".")
-  }
-
-
 }
