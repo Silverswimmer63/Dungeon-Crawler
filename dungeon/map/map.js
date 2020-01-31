@@ -109,20 +109,29 @@ or we will get errors. Remake the this._map.*/
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
 addRoom(){
-  let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-for (var i = 0; i < coords.length; i++) {
-  let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
-  if (this._rooms.length != 0) {
-for (var j = 0; j < this._room.length ; j++) {
-  if ((this._rooms[j].x == cell.x)&&(this._rooms[j].y == cell.y)){
+  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+for (var i = 0; i < room.length; i++) {
+    var key = "x" + room[i].x;
+    var key2 = "y" + room[i].y;
+    var space = this._map[keyY][keyX]
   }
- }
+  for (var i = 0; i < room.length; i++) {
+var overlap = false
+if (!overlap) {
+  overlap = Utils.coordCheck(coords, this._room[i]);
 }
-   cell.image = " ";
-   cell.type = "room";
+   space.image = " ";
+   space.type = "room";
 }
-this._rooms.push(coords);
+this._rooms.push(room);
 }
+/*let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
+if (this._rooms.length != 0) {
+  for (var j = 0; j < this._room.length ; j++) {
+    if ((this._rooms[j].x == cell.x)&&(this._rooms[j].y == cell.y)){
+    }
+  }
+}*/
 /*
 2. add to addRoom functionality to push the room to the _rooms array directly
 
