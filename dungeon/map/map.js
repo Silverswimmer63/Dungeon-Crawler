@@ -105,30 +105,49 @@ or we will get errors. Remake the this._map.*/
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(number, "Map.max") }
 
+  /*var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+  //add a step between making the room coordinates and changing the the map
+  //where you checkeach room in the map array to see if any of them have the
+  //same coordinates,and if there is overlap, don't add the room
+  for (var i = 0; i < room.length; i++) {
+    var keyX = "x" + room[i].x;
+    var keyY = "y" + room[i].y;
+    var space = this._map[keyY][keyX];
+    space._image = " ";
+    space._type = "room"
+  }
+  var overlap = false;
+  for (var i = 0; i < this._rooms.length; i++) {
+    if(!overlap) { overlap = Utils.coordCheck(room, this._rooms[i]); } // so we don't lose a true
+  }
+  if(overlap == false) { this._rooms.push(room); }
+}*/
   /*addRoom()
   addRoom will use the appropriate functions in our program to generate a set of coords
   based on our map. It will then go to the map, and update the cells at the correct
   coords to match the room.
   */
-  _addRoom(){
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    //add a step between making the room coordinates and changing the the map
-    //where you checkeach room in the map array to see if any of them have the
-    //same coordinates,and if there is overlap, don't add the room
-    for (var i = 0; i < room.length; i++) {
-      var keyX = "x" + room[i].x;
-      var keyY = "y" + room[i].y;
-      var space = this._map[keyY][keyX];
-      space._image = " ";
-      space._type = "room"
+  addRoom(){
+    var canAdd = true;
+    while (canAdd == true) {
+      let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+      let overlap = false;
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+      }
+      // todo: add a function to pull the outside trim and set to borders
+      if(!overlap){
+        for (let i = 0; i < coords.length; i++) {
+          let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+          cell._image = " "; // todo update type to set the image then have ranked inventy
+          cell._type = "room";
+        }
+      }
+      this._rooms.push(coords);
+      canAdd = false;
     }
-    var overlap = false;
-    for (var i = 0; i < this._rooms.length; i++) {
-      if(!overlap) { overlap = Utils.coordCheck(room, this._rooms[i]); } // so we don't lose a true
-    }
-    if(overlap == false) { this._rooms.push(room); }
   }
-//
+
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
