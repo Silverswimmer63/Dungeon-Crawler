@@ -90,16 +90,27 @@ Then we will update the map to have a setter for map, this will use the two
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room*/
   addRoom(){
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    for (var i = 0; i < room.length; i++) {
-      var key = "x" + room[i].x;
-      var key2 = "y" + room[i].y;
-      var space = this._map[key2][key];
-      space._image = " ";
-      space._type = "room";
+    let made = false;
+    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+    let overlap = false;
+
+    while (made == false) {
+    for (let i = 0; i < this._rooms.length; i++) {
+      if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
     }
-      this._rooms.push(room);
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+        made = true;
+      }
+    }
+    this._rooms.push(coords);
   }
+}
+
 
   /* coordCheck(seta, setb)
   takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.

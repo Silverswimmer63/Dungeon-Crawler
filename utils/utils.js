@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -119,7 +119,7 @@ class Utils {
   @param yMax {int}: a number greater than yMin
   @return {obj}: An obj with x & y keys
   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
     retObj.x = this.randMath(xMin, xMax, call);
     retObj.y = this.randMath(yMin, yMax, call);
@@ -130,9 +130,11 @@ class Utils {
   Returns an array of 4 coordinate objects
   */
   static randRoom(width, height, roomMin, roomMax, call="Utils.randRoom"){
+    roomMin -= 1;
+    roomMax -= 1;
     var retArray = [];
-    var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
-    var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j})
