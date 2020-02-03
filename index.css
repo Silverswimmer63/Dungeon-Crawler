@@ -10,6 +10,7 @@ h5{
 text-align: center;
 }
 
+
 .big {
 width: auto;
 margin: 10px; /* changed */
@@ -45,6 +46,7 @@ float: left;
 width: 40%;
 margin: 0 auto;
 }
+
 
 #playerControls, #gameControls, #lootScreen{
 width: 100%;
@@ -85,29 +87,12 @@ border-radius: 1em;
 padding: 10px;
 }
 
-.btn:hover{
-background-color: #fff;
-cursor: pointer;
-}
-
-.btn:active{
-background-color: #99b433;
-}
-
-.controls{
-float: left;
-}
-
-.buttonRow{
-width: 40%;
-margin: 0 auto;
-}
-
 #lootScreen{
 font-family: 'Press Start 2P', cursive;
 font-size: 12px;
 display: none; /* will JS it into existance when playerControls are hidden. */
 }
+
 .item{
 color: purple;
 }

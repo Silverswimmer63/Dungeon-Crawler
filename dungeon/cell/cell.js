@@ -1,6 +1,7 @@
-/*class Cell is a individual space on the grid
-it can be open or closed and it can contain items
-or mobs or the player
+/*
+class Cell is a individual space on the grid.
+It can be open or closed and it can contain items
+or mobs or the player.
 */
 class Cell{
   constructor(){
@@ -12,15 +13,7 @@ class Cell{
   }
   //getters and setters
   get image(){return this._image}
-  set image(image){this._image = image}
-
   get type(){return this._type}
-  set type(type){
-    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
-    this._type = type;
-    this._open = ["room","hall"].includes(type);
-  }
-
   get open(){
     if (this._occupied.length>0) {
       return false;
@@ -28,8 +21,16 @@ class Cell{
       return this._open;
     }
   }
-  set open(open){throw new Error("Open status should only be set by the cell type.")}
+  get inventory(){return this._inventory}
+  get occupied(){return this._occupied}
 
+  set image(image){this._image = this.image}
+  set type(type){
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
+  }
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
   set inventory(inventory){
     if (this.inventory == 0) {
       this._inventory =inventory;
@@ -39,14 +40,6 @@ class Cell{
       throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
     }
   }
-
-/*  for the occupied setter-
-if there is a nonmob in the cell do not allow another nonmob
-if there is a mob in the cell do not allow annother mob
-if we try to add things we cant, throw an error that reads
-"Cell.occupied - cell already had a mob/nonmob and was given" + thing*/
-
-  get occupied(){return this._occupied}
   set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
 
   //external
@@ -92,8 +85,6 @@ if we try to add things we cant, throw an error that reads
   @param index {mixed}: either the index value of the item or the word "mob"
   @return {object}: the item or mob
   */
-
-
   remove(index){
     if(index == "mob"){
       var num = undefined;
@@ -115,6 +106,7 @@ if we try to add things we cant, throw an error that reads
     }
     throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
+
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.
