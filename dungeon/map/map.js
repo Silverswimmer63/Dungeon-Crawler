@@ -103,11 +103,29 @@ add room will use the apropriate functions in our program to generate a set
 of coordinates based on our map. It will then go to map, and update the cells at the
 corect coordinates to match the room.
 */
+/*2. add to addRoom functionality to push the room to the _rooms array directly
+
+3. add a step between making the room coordinates and changing the the map where
+you check each room in the map array to see if any of them have the same coordinates,
+and if there is overlap, don't add the room
+
+4. add the correct type of loop structure and other needed items to make said
+loop stop if the room can be added (per 3 above) or keep going if not added
+
+5. modify the structure from 4 above so it stops after a room is added or after
+200 tries, whichever comes first.
+*/
   addRoom(){
       let room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     for (var i = 0; i < room.length; i++) {
       let space = this._map["y" + room[i].y]["x" + room[i].x];
-      
+      if (this._rooms.length != 0) {
+      for (var j = 0; j < this._rooms.lenth; j++) {
+        if ((this._rooms[j].x == space.x) && (this._rooms[j].y == space.y)) {
+
+        }
+      }
+    }
       space.image = " ";
       space.type = "room";
   }
