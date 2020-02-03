@@ -140,24 +140,40 @@ at the correct coords to watch the room.
 add a step between making the room coordinates and changing the the map where you
 check each room in the map array to see if any of them have the same coordinates,
 and if there is overlap, don't add the room
+
+Solution - part 1 - add a step between making the room coordinates and changing
+the the map where you check each room in the map array to see if any of them have the same coordinates
+
+for (let i = 0; i < this._rooms.length; i++) {
+if(!overlap) { overlap = Utils.coordsCheck(coords, this._room[i]); } // so we don't lose a true
+}
+and if there is overlap, don't add the room
+
+4. add the correct type of loop structure and other needed item(s) to make said
+loop stop if the room can be added (per 3 above) or keep going if not added
+this is going to continue to go through the loop until it can make a room
 */
 
-  _addRoom(){
-    let room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    for (var i = 0; i < room.length; i++) {
-      let keyX = "x" + room[i].x;
-      let keyY = "y" + room[i].y;
-      let space = this._map[keyY][keyX];
-    }
-      for (var i = 0; i < room.length; i++) {
-        if (Utils.coordCheck(keyX, keyY) == true) {
-      space._image = " ";
-      space._type = "room";
-     }
-    }
-    this._room.push(room);
- }
+addRoom(){
+  let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+  let overlap = false;
+  let canAdd = false;
+  for (let i = 0; i < this._rooms.length; i++) {
+  if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+  }
+  // todo: add a function to pull the outside trim and set to borders
+  if(!overlap){
+  for (let i = 0; i < coords.length; i++) {
+  let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+  cell._image = " "; // todo update type to set the image then have ranked inventy
+  cell._type = "room";
+  }
+  while (!canAdd == false) {
 
-
+  }
+  canAdd = true;
+  this._rooms.push(coords);
+  }
+  }
 
 }
