@@ -109,22 +109,44 @@ or we will get errors. Remake the this._map.*/
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
 addRoom(){
-  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-for (var i = 0; i < room.length; i++) {
+  let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+  // make a set of coordinates based on the map constraints
+let overlap = false;
+
+for (let i = 0; i < this._rooms.length; i++) {
+if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); }
+// so we don't lose a true
+}
+// todo: add a function to pull the outside trim and set to borders
+if(!overlap){
+for (let i = 0; i < coords.length; i++) {
+let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+cell.image = " "; // todo update type to set the image then have ranked inventy
+cell.type = "room";
+}
+this._rooms.push(coords);
+}
+}
+/*  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+  var overlap = false
+  for (let i = 0; i < this._rooms.length; i++) {
+if(!overlap)
+{ overlap = Utils.coordsCheck(coords, this._rooms[i]); }
+// so we don't lose a true
+for (var j = 0; j < room.length; j++) {
     var key = "x" + room[i].x;
     var key2 = "y" + room[i].y;
     var space = this._map[keyY][keyX]
   }
-  for (var i = 0; i < room.length; i++) {
-var overlap = false
-if (!overlap) {
-  overlap = Utils.coordCheck(coords, this._room[i]);
 }
+  for (var i = 0; i < room.length; i++) {
+if (!overlap) {overlap = Utils.coordCheck(room, this._room[i]);}
    space.image = " ";
    space.type = "room";
 }
 this._rooms.push(room);
 }
+*/
 /*let cell = this._map["y"+ coords[i].y]["x"+ coords[i].x];
 if (this._rooms.length != 0) {
   for (var j = 0; j < this._room.length ; j++) {
