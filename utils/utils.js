@@ -98,7 +98,7 @@ can use the same code order. If the object does not, it throws an error.
  @param yMax {int}: a number greater than yMin
  @return {obj}: An obj with x & y keys
   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
     retObj.x = this.randMath(xMin, xMax);
     retObj.y = this.randMath(yMin, yMax);
