@@ -97,6 +97,7 @@ Then we will update the map to have a setter for map, this will use the two
         if(!overlap) {
           overlap = Utils.coordCheck(room, this._rooms[i]);
         } // so we don't lose a true {
+          else { overlap = false; }
           space._image = " ";
           space._type = "room";
       }
@@ -105,8 +106,6 @@ Then we will update the map to have a setter for map, this will use the two
 
 
   /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
   4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
   5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
   */
