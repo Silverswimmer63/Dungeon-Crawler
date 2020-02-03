@@ -1,7 +1,3 @@
-/*
-This is not actually part of the games
-this is only an example + McGregor's unused, clever potion ideas
-*/
 class Item {
   constructor(name, icon, value, desc) {
     this._name = name;// the this keywodr means thet it is something the class owns

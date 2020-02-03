@@ -1,7 +1,3 @@
-/*
-This is not part of the actual games
-This is just an example
-*/
 class Weapon extends Item {
   constructor(name, icon, value, damage, desc) {
     super(name, icon, value, desc)
