@@ -142,6 +142,28 @@ class Map{
    *@class addRoom() - adds rooms onto the map 
    *@returns {array} it will return an array of coords to set to locatioons on the map
    */
+    addRoom(){
+    let made = false;
+    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+    let overlap = false;
+
+    while (made == false) {
+    for (let i = 0; i < this._rooms.length; i++) {
+      if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+    }
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+        made = true;
+      }
+    }
+    this._rooms.push(coords);
+  }
+}
+/* My addRoom()
   addRoom(){
     for(var k = 0; k < 200;k++){
      let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
@@ -160,6 +182,7 @@ class Map{
       return true;
     }
   }  
+*/
 
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
