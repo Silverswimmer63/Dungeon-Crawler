@@ -68,7 +68,7 @@ can use the same code order. If the object does not, it throws an error.
     }
     errStr += ". It is missing the key(s) ";
     for (var i = 0; i < badKey.length; i++) {
-      errStr += badKey[i];  .6 Add the arrayCheck to the setter for rooms
+      errStr += badKey[i];
       if ((badKey.length > 0)&&(i < badKey.length - 1)) {
         errStr += ", ";
       }
@@ -123,10 +123,10 @@ Returns an array of 4 coordinate objects
     .5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
     */
     static arrayCheck(item, call="Utils.arrayCheck"){
-      if ((item != null)&&(Array.isArray(item)) {
+      if ((item != null)&&(Array.isArray(item))) {
         return item;
-      }else {
-        throw new Error("The method " + call + " expected an array and received " + item + ".");
       }
+        throw new Error("The method " + call + " expected an array and received " + item + ".");
     }
+
   }
