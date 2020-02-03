@@ -95,6 +95,7 @@ Then we will update the map to have a setter for map, this will use the two
   /* add a step between making the room coordinates and changing the the map
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room*/
+  /*
   addRoom(){
     var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     for (var i = 0; i < room.length; i++) {
@@ -106,7 +107,7 @@ Then we will update the map to have a setter for map, this will use the two
     }
       this._rooms.push(room);
   }
-
+*/
   /* coordCheck(seta, setb)
   takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
   */
@@ -166,6 +167,9 @@ these will need to be a little more complex than with other setters we have used
 2. now that the map has a new width or height, we have to remake it from scratch or we will get errors. Remake the this._map.
 */
  addRoom(){
+   var canAdd = false;
+   while (!canAdd) {
+
    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
    let overlap = false;
    for (var i = 0; i < this._rooms.length; i++) {
@@ -174,11 +178,12 @@ these will need to be a little more complex than with other setters we have used
    if (!overlap){
      let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
      cell._image = " ";
-     cell._type = "room;"
+     cell._type = "room";
+     canAdd = true;
    }
    this._rooms.push(coords);
  }
-
+}
   /* _drawBorder()
   Makes a border top or bottom for the map. This border will be in the general
   design of +---------------+
