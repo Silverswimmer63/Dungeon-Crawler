@@ -91,9 +91,15 @@ Then we will update the map to have a setter for map, this will use the two
       var key = "x" + room[i].x;
       var key2 = "y" + room[i].y;
       var space = this._map[key2][key];
-      space._image = " ";
-      space._type = "room";
     }
+      var overlap = false;
+      for (var i = 0; i < this._rooms.length; i++) {
+        if(!overlap) {
+          overlap = Utils.coordCheck(room, this._rooms[i]);
+        } // so we don't lose a true {
+          space._image = " ";
+          space._type = "room";
+      }
       this._rooms.push(room);
   }
 
