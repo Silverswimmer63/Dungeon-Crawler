@@ -155,25 +155,25 @@ this is going to continue to go through the loop until it can make a room
 */
 
 addRoom(){
+  let num = 0;
   let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
-  let overlap = false;
-  let canAdd = false;
-  for (let i = 0; i < this._rooms.length; i++) {
-  if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
-  }
-  // todo: add a function to pull the outside trim and set to borders
-  if(!overlap){
+    let overlap = false;
+        while (num <= 200) {
+          num += 1;
+          for (let i = 0; i < this._rooms.length; i++) {
+            if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+}
+// todo: add a function to pull the outside trim and set to borders
+if(!overlap){
   for (let i = 0; i < coords.length; i++) {
-  let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-  cell._image = " "; // todo update type to set the image then have ranked inventy
-  cell._type = "room";
-  }
-  while (!canAdd == false) {
+    let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+    cell._image = " "; // todo update type to set the image then have ranked inventy
+    cell._type = "room";
 
-  }
-  canAdd = true;
-  this._rooms.push(coords);
-  }
-  }
+}
+this._rooms.push(coords);
+}
+}
+}
 
 }
