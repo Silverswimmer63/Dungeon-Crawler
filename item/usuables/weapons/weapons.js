@@ -7,8 +7,8 @@ the basis for all weapons, splits to ranged and melee
 @param type {string} either the name of the collection the item belings to or trash
 @param damage {int} the value of damage a weapon does*/
 class Weapon extends Item{
-  constructor(name, icon, desc, value, type, damage, level){
-    super(name, icon, desc, value, type, level)
+  constructor(name, type, value, desc, icon, damage, level){
+    super(name, type, value, desc, icon, level)
     this._damage = damage;
   }
 

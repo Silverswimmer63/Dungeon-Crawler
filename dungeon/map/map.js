@@ -142,7 +142,7 @@ loop stop if the room can be added (per 3 above) or keep going if not added
         map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
@@ -155,8 +155,25 @@ loop stop if the room can be added (per 3 above) or keep going if not added
     for (var i = 0; i < this.width; i++) {
       retStr += "-";
     }
-    return retStr + "+";
+    return retStr += "+";
+  }
+  /*
+  .7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not, then check to see if each item in the
+  intended item is also an array make the call this time "Map.rooms - individual room"
+  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects with the keys X and Y
+  */
+
+  get rooms(){ return this._rooms = []; }
+  set rooms(rooms){
+    this._rooms = Utils.arrayCheck(rooms, "Map.rooms");
+    if (rooms = [];) {
+
+    }
   }
 
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
 
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 }
