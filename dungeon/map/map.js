@@ -124,11 +124,11 @@ or we will get errors. Remake the this._map.*/
     }
     var overlap = false;
     for (var i = 0; i < this._rooms.length; i++) {
-      if(!overlap) { overlap = Utils.coordsCheck(coords, this._rooms[i]); } // so we don't lose a true
+      if(!overlap) { overlap = Utils.coordCheck(room, this._rooms[i]); } // so we don't lose a true
     }
-    this._rooms.push(room);
+    if(overlap == false) { this._rooms.push(room); }
   }
-
+//
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
