@@ -161,7 +161,7 @@ Returns an array of coordinate objects for a square room.
     }
   }
 
-}
+
 /* keyCheck(item, key, call= Utils.keyCheck)
 Performs two actions - 1 checks to see if item is an object. Throws an error
 if not, reporting it from location call. 2 checks to see if the object has
@@ -278,18 +278,82 @@ set(array) {
 }
 //add room() will use  the apportiate function in our program to generate a set
 //of coordantes based on our map. it  will then go to the map, and update the cells at the correctcordantes to match
+/*
 function addRoom(){
 for (var i = 0; i < this._randCoord; i++) {
   standin#1
 }
+*/
 //randcoord generate room size
+/*
 standin#1{
   min: {x: 8, y: 8},
   max: {x: 30, y: 30}
 }
+*/
 //min and max set a cap on its size
 
   //overlap make sure rooms dont intersect
+
+  //jakes version
+  /*3. add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room
+
+4. add the correct type of loop structure and other needed items to make said loop
+stop if the room can be added (per 3 above) or keep going if not added
+
+5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+*/
+  static addRoom(){
+   var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+   for (var i = 0; i < room.length; i++) {
+     var keyX = "x" + room[i].x;
+     var keyY = "y" + room[i].y;
+     var space = this._map[keyY][keyX];
+     space.image = " ";
+     space.type = "room";
+     for (var i = 0; i < this.room.length; i++) {
+       for (var j = 0; j < this.room[i].length; j++) {
+        let overlap = false;
+         for (let i = 0; i < this._rooms.length; i++) {
+if(!overlap) { overlap = Utils.coordsCheck(coords, this._rooms[i]); } // so we don't lose a true
+}
+if (true) {
+
+}
+         if(this._rooms[i][j]=coords){
+           throw new Error("not allowed")
+         }
+         else
+       }
+     }
+   }
+this._rooms.push(room);
+ }
+ /* coordCheck(seta, setb)
+ takes 2 arrays of coordinates and checks them to see if there is a coordinate in
+ one that is this in the other. If so it returns a true, if not, it returns a false.
+ */
+static coordCheck(seta, setb){
+  for (var i = 0; i < seta.length; i++) {
+    for (let j = 0; j < setb.length; j++) {
+    if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) { return true; }
+else {
+  return false
+}
+    }
+  }
+}
+/*
+4. add the correct type of loop structure and other needed item(s) to make said
+loop stop if the room can be added (per 3 above) or keep going if not added
+add this near your this._rooms.push() statement:
+canAdd = true;
+at the very top of the function - add the following
+var canAdd = false;
+*/
+
 }
 /*
 F. Making the basic map
@@ -311,3 +375,4 @@ rather than y for their start. This is done so that we may access the map by
 way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
+}
