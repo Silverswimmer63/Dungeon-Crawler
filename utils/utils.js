@@ -129,7 +129,7 @@ class Utils {
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static randRoom(width, height, roomMin, roomMax){
+  static randRoom(width, height, roomMin, roomMax, call="Utils.randRoom"){
     var retArray = [];
     var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
     var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
@@ -137,8 +137,8 @@ class Utils {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j})
       }
-        throw new Error("The method " + call + " expected an array and received " + item + ".");
     }
     return retArray;
-    }
+  }
+
 }
