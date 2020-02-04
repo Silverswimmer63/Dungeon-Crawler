@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -118,11 +118,13 @@ class Utils {
   */
   static randRoom(width, height, roomMin, roomMax){
     var retArray = [];
+    roomMin -= 1;
+    roomMax -=1;
     var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
     var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
-        retArray.push({x: i, y: j})
+        retArray.push({x: i, y: j});
       }
     }
     return retArray;
@@ -137,8 +139,8 @@ class Utils {
             return true;
           }
         }
-        return false;
       }
+      return false;
     }
-    
+
   }

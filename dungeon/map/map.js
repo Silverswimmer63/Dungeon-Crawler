@@ -86,27 +86,29 @@ Then we will update the map to have a setter for map, this will use the two
   and update the cells at the correct coordinates to match the room.
   */
   addRoom(){
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    for (var i = 0; i < room.length; i++) {
-      var key = "x" + room[i].x;
-      var key2 = "y" + room[i].y;
-      var space = this._map[key2][key];
-    }
-      var overlap = false;
-      for (var i = 0; i < this._rooms.length; i++) {
-        if(!overlap) {
-          overlap = Utils.coordCheck(room, this._rooms[i]);
-        } // so we don't lose a true {
-          else { overlap = false; }
-          space._image = " ";
-          space._type = "room";
+    var num = 0;
+    while (num < 200) {
+      let overlap = false;
+      let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+      num ++;
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
       }
-      this._rooms.push(room);
+      // todo: add a function to pull the outside trim and set to borders
+      if(!overlap){
+        for (let i = 0; i < coords.length; i++) {
+          let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+          cell._image = " "; // todo update type to set the image then have ranked inventy
+          cell._type = "room";
+        }
+        num = 200;
+        this._rooms.push(coords);
+      }
+    }
   }
 
-
   /*
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+  4. add the correct type of loop structure (while) and other needed items (if statement, booleans) to make said loop stop if the room can be added (per 3 above) or keep going if not added
   5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
   */
 
