@@ -128,8 +128,10 @@ or we will get errors. Remake the this._map.*/
   coords to match the room.
   */
   addRoom(){
-    var canAdd = true;
-    while (canAdd == true) {
+    var numTry = 0;
+    while (numTry < 200) {
+      numTry ++;
+      console.log(numTry);
       let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
       let overlap = false;
       for (let i = 0; i < this._rooms.length; i++) {
@@ -142,9 +144,10 @@ or we will get errors. Remake the this._map.*/
           cell._image = " "; // todo update type to set the image then have ranked inventy
           cell._type = "room";
         }
+        this._rooms.push(coords);
+        numTry = 200;
+        console.log(numTry);
       }
-      this._rooms.push(coords);
-      canAdd = false;
     }
   }
 
