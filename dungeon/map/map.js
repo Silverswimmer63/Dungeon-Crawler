@@ -152,28 +152,58 @@ and if there is overlap, don't add the room
 4. add the correct type of loop structure and other needed item(s) to make said
 loop stop if the room can be added (per 3 above) or keep going if not added
 this is going to continue to go through the loop until it can make a room
+
+In add room we are going to continue to make our random room as we do right now.
+However, we will be making it with plus and minus one to the size we have decided.
+We will store this value in a new var called bordered room. We will then get the min
+and max x and y from that room, and make a new array where all of these which will be the displayed room.
+
+- which one will we use to check for overlap?
+- which one can should we store in the room away?
 */
 
 addRoom(){
   let num = 0;
-  let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
-    let overlap = false;
+  let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
         while (num <= 200) {
-          num += 1;
+          num ++;
+          let overlap = false;
+          let smalls = {x:this.width+1,y:this.height+1};
+          let biggy = {x:0,y:0};
+          for (var i = 0; i < border.length; i++) {
+            if (border[i].x < smalls.x) {
+              smalls.x = border[i].x;
+            }
+            if (border[i].y < smalls.y) {
+              smalls.y = border[i].y;
+            }
+            if (border[i].x < biggy.x) {
+              biggy.x = border[i].x;
+            }
+            if (border[i].y < biggy.y) {
+              biggy.y = border[i].y;
+            }
+          }
+          let coords = [];
+          for (var i = 0; i < border.length; i++) {
+            if ((border[i].x != biggy.x)||(border[i].y != biggy.y)||(border[i].x != smalls.x)||(border[i].y != smalls.y)); {
+              coords.push(border[i]);
+            }
+          }
           for (let i = 0; i < this._rooms.length; i++) {
-            if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+            if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
 }
 // todo: add a function to pull the outside trim and set to borders
-if(!overlap){
-  for (let i = 0; i < coords.length; i++) {
-    let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-    cell._image = " "; // todo update type to set the image then have ranked inventy
-    cell._type = "room";
-
-}
-this._rooms.push(coords);
-}
-}
-}
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell._image = " "; // todo update type to set the image then have ranked inventy
+        cell._type = "room";
+        }
+        num = 200;
+        this._rooms.push(coords);
+      }
+    }
+  }
 
 }
