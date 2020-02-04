@@ -167,12 +167,11 @@ betweem xMin - xMax for the x key, & yMin and yMax for the y key
     for (var i = 0; i < seta.length; i++) {
       for (var j = 0; j < setb.length; j++) {
         if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          console.log("Something happened");
           return true;
         }
-        return false;
       }
     }
+    return false;
   }
 
 }

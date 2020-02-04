@@ -132,8 +132,14 @@ or we will get errors. Remake the this._map.*/
     while (numTry < 200) {
       numTry ++;
       console.log(numTry);
-      let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+      let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
+      //let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
       let overlap = false;
+      var min = {};
+      var max = {};
+      for (var i = 0; i < border.length; i++) {
+        
+      }
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
       }
