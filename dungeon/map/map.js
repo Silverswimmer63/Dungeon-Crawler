@@ -129,19 +129,28 @@ or we will get errors. Remake the this._map.*/
   */
   addRoom(){
     var numTry = 0;
+    let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
     while (numTry < 200) {
       numTry ++;
       console.log(numTry);
-      let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
       //let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
       let overlap = false;
-      var min = {};
-      var max = {};
+      var min = {x:this.width +1,y:this.height +1};
+      var max = {x:0,y:0};
       for (var i = 0; i < border.length; i++) {
-        
+        if (border[i].x < min.x) {min.x = border[i].x}
+        if (border[i].y < min.y) {min.y = border[i].y}
+        if (border[i].x < max.x) {max.x = border[i].x}
+        if (border[i].y < max.y) {max.y = border[i].y}
+      }
+      var coords = [];
+      for (var i = 0; i < border.length; i++) {
+        if ((border[i].x != max.x) || (border[i].y != max.y) || (border[i].x != min.x) || (border[i].y != min.y)) {
+          coords.push(border[i]);
+        }
       }
       for (let i = 0; i < this._rooms.length; i++) {
-        if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
       if(!overlap){
@@ -150,8 +159,8 @@ or we will get errors. Remake the this._map.*/
           cell._image = " "; // todo update type to set the image then have ranked inventy
           cell._type = "room";
         }
-        this._rooms.push(coords);
         numTry = 200;
+        this._rooms.push(coords);
         console.log(numTry);
       }
     }
