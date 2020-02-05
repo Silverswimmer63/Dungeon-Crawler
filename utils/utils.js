@@ -103,11 +103,12 @@ class Utils {
   static coordCheck(seta, setb){
     for (var i = 0; i < seta.length; i++) {
       for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {return true;}
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          return true;
+        }
       }
     }
     return false;
-
   }
 
   /*randCoord(xMin, xMax, yMin, yMax)

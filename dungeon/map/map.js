@@ -105,29 +105,63 @@ or we will get errors. Remake the this._map.*/
       width and height, and use it to make a new map. After checking the values as well
       */
 
-  /*addRoom()
-  add room will use the appropiate function in our program to generate a set
-  of coordinates based on our map. It will then go to the map, and update the
-  cells at the correct coordinates to match the room*/
-  addRoom(){
-    let made = false;
-    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
-    let overlap = false;
+  /* addRoom()
+  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
+  and update the cells at the correct coordinates to match the room.
+  */
 
-    while (made == false) {
-    for (let i = 0; i < this._rooms.length; i++) {
-      if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
-    }
+  /* add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room
+  border room check
+  place none border room no border but after border room check
+  */
+
+  addRoom(){
+    let num = 0;
+    while (num < 200) {
+      num ++;
+      let overlap = false;
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let smalls = {x:this.width+1,y:this.height+1};
+      let biggy = {x:0,y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < smalls.x) {
+          smalls.x = border[i].x;
+        }
+        if (border[i].y < smalls.y) {
+          smalls.y = border[i].y;
+        }
+        if (border[i].x > biggy.x) {
+          biggy.x = border[i].x;
+        }
+        if (border[i].y > biggy.y) {
+          biggy.y = border[i].y;
+        }
+      }
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        var isBorder = false;
+        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
+          coords.push(border[i]);
+        }
+      }
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
+      }
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
         let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
         cell.image = " "; // todo update type to set the image then have ranked inventy
         cell.type = "room";
-        made = true;
       }
+      num = 200;
+      this._rooms.push(coords);
     }
-    this._rooms.push(coords);
   }
 }
 
