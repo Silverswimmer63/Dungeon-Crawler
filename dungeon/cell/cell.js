@@ -24,7 +24,7 @@ class Cell{
   get inventory(){return this._inventory}
   get occupied(){return this._occupied}
 
-  set image(image){this._image = this.image}
+  set image(image){this._image = image}
   set type(type){
     type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
     this._type = type;

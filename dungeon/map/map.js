@@ -110,6 +110,7 @@ or we will get errors. Remake the this._map.*/
   of coordinates based on our map. It will then go to the map, and update the
   cells at the correct coordinates to match the room*/
   addRoom(){
+<<<<<<< HEAD
     var num = 0;
     let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
     let overlap = false;
@@ -156,6 +157,29 @@ if (this._rooms.length != 0) {
 }*/
 /*
 2. add to addRoom functionality to push the room to the _rooms array directly
+=======
+    let made = false;
+    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+    let overlap = false;
+
+    while (made == false) {
+    for (let i = 0; i < this._rooms.length; i++) {
+      if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+    }
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+        made = true;
+      }
+    }
+    this._rooms.push(coords);
+  }
+}
+
+>>>>>>> origin/JAKE
 
 3. add a step between making the room coordinates and changing the map where you check each room
  in the map array to see if any of them have the same coordinates, and if there is overlap, don't add the room
