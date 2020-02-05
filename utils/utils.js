@@ -157,10 +157,12 @@ takes 2 arrays of coordinates and checks them to see if there is a coordinate in
 }*/
 static coordCheck(seta, setb){
 for (let i = 0; i < seta.length; i++) {
-if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)){ return true; }
   for (let j = 0; j < setb.length; j++) {
-if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) { return true; }
+if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)){
+  return true;
+    }
    }
+   return false;
   }
  }
 }
