@@ -6,7 +6,7 @@ class Utils {
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
-    if (min >= max) {
+    if (min > max) {
       throw new Error("min must always be less then max " + call + ".")
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -96,21 +96,8 @@ class Utils {
     }
   }
 
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate
-  in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  static coordCheck(seta, setb){
-    for (var i = 0; i < seta.length; i++) {
-      for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {return true;}
-      }
-    }
-    return false;
-
-  }
-
-  /*randCoord(xMin, xMax, yMin, yMax)
+  /*
+  randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
   @param xMin {int}: a number between 1 and xMax
@@ -131,13 +118,30 @@ class Utils {
   */
   static randRoom(width, height, roomMin, roomMax){
     var retArray = [];
+    roomMin -= 1;
+    roomMax -=1;
     var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
     var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
-        retArray.push({x: i, y: j})
+        retArray.push({x: i, y: j});
       }
     }
     return retArray;
     }
-}
+
+  /* coordCheck(seta, setb)
+    takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+    */
+  static coordCheck(seta, setb){
+      for (var i = 0; i < seta.length; i++) {
+        for (var j = 0; j < setb.length; j++) {
+          if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+  }
