@@ -1,14 +1,8 @@
 class Utils {
   /*randMath
-<<<<<<< HEAD
-@param max {int}: the max you can have
-@param min {int} the min you can have ;
-*/
-=======
   @param max {int}: the max you can have
   @param min {int} the min you can have ;
   */
->>>>>>> JAKE
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
@@ -18,28 +12,6 @@ class Utils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-<<<<<<< HEAD
-  /*1. In Utils.js
-  Make a new static method called intCheck(item, call) Here is the documentation for initCheck
-  intCheck(item, call="Utils.intCheck.js")
-  Checks to see if "item" is an integer. Throws a custom error if not.
-  @param item: {mixed} an item to be check if is an integer
-  @param call: {string} the Class/function/method where the check occured
-  @retun {mixed} returns the item unless it is not an integer
-
-  2. look up how to make a custom error message in javaScript
-  catch and throw error
-  3. look up how to check to see if something is an integer in javaScript
-  Number.isInteger()
-  4. In intCheck(item, call) check to see if the item is an integer. If so, return it.
-
-  5. If the item is not an integer, then throw your new Error. The text of this error should be :
-  "The method " + call + " expected an integer and received " + item + ".";
-
-  6. Test this method.
-*/
-=======
->>>>>>> JAKE
   static intCheck(item, call="Utils.intCheck.js"){
     if (Number.isInteger(item)) {return item}
     else {
@@ -47,19 +19,11 @@ class Utils {
     }
   }
 
-<<<<<<< HEAD
   /*objCheck(item, call="Utils.objCheck")
 @param item: {mixed} an item to be checked if is an object
 @param call: {string} the Class/function/method where the check occured
 @retun {mixed} returns the item unless it is not an object
 */
-=======
-  /* objCheck(item, call="Utils.objCheck")
-  @param item: {mixed} an item to be checked if is an object
-  @param call: {string} the Class/function/method where the check occured
-  @retun {mixed} returns the item unless it is not an object
-  */
->>>>>>> JAKE
   static objCheck(item, call="Utils.objCheck"){
     if ((item != null)&&(typeof item == "object")) {
       return item;
@@ -68,20 +32,6 @@ class Utils {
     }
   }
 
-<<<<<<< HEAD
-  /*keyCheck(item, key, call= Utils.keyCheck)
-Performs two actions - 1 checks to see if item is an object. Throws an error
-if not, reporting it from location call. 2 checks to see if the object has
-the key or keys given in the second param. The second param is check to be an
-array or not, if not an array, it is made into a single item array so that it
-can use the same code order. If the object does not, it throws an error.
-@param item: {mixed} an item to be checked if it is an object
-@param key: {mixed} a string or array of strings to be checked as keys in item
-@param call: {string} the Class/function/method where the check occured
-@retun {mixed} returns the item if object with key(s)
-*/
-  static keyCheck(item, key, call="Utils.keyCheck"){
-=======
   /* keyCheck(item, key, call= Utils.keyCheck)
   Performs two actions - 1 checks to see if item is an object. Throws an error
   if not, reporting it from location call. 2 checks to see if the object has
@@ -94,7 +44,6 @@ can use the same code order. If the object does not, it throws an error.
   @retun {mixed} returns the item if object with key(s)
   */
   static keyCheck(item, key, call= "Utils.keyCheck"){
->>>>>>> JAKE
     this.objCheck(item, call);
     if (!Array.isArray(key)) {
       key = [key];
@@ -178,33 +127,6 @@ can use the same code order. If the object does not, it throws an error.
     return retObj;
   }
 
-<<<<<<< HEAD
-  /*randRoom(width, height, roomMin, roomMax)
-  returns an array of coordinate objects for a square room
-  the lower x should be between 1 and the width of the map - min width of the room
-  the higher x should be between the lower x + min and the lower x + max
-
-  the lower y should be between 1 and the height of the map - min height of the room
-  the higher y should be between the lower y + min and the lower y + max
-  static randRoom(width, height, roomMin, roomMax){
-  var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
-  var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
-  return [tpleft,{x:btright.x,y:tpleft.y},{x:tpleft.x,y:btright.x},btright];
-  }
-*/
-  static randRoom(width, height, roomMin, roomMax){
-    roomMin -= 1;
-    roomMax -= 1;
-    var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
-    var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
-    var tpright = {x:btright.x,y:tpleft.y};
-    var btleft = {x:tpleft.x,y:btright.y};
-    var retAry = [];
-    for (var i = tpleft.x; i <= btright.x; i++) {
-      for (var j = tpleft.y; j <= btright.y; j++) {
-        var obj = {x:i,y:j};
-        retAry.push(obj);
-=======
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
@@ -217,7 +139,6 @@ can use the same code order. If the object does not, it throws an error.
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j})
->>>>>>> JAKE
       }
     }
     return retArray;

@@ -47,12 +47,6 @@ width: 40%;
 margin: 0 auto;
 }
 
-<<<<<<< HEAD
-.buttonRow{
-width: 40%;
-margin: 0 auto;
-}
-=======
 
 #playerControls, #gameControls, #lootScreen{
 width: 100%;
@@ -99,7 +93,6 @@ font-size: 12px;
 display: none; /* will JS it into existance when playerControls are hidden. */
 }
 
->>>>>>> JAKE
 .item{
 color: purple;
 }
