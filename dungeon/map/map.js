@@ -129,7 +129,7 @@ or we will get errors. Remake the this._map.*/
   */
   addRoom(){
     var numTry = 0;
-    let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
+    let border = Utils.randRoom(this.width, this.height, this.roomMin +2, this.roomMax +2); // make a set of coordinates based on the map constraints
     while (numTry < 200) {
       numTry ++;
       console.log(numTry);
@@ -145,7 +145,11 @@ or we will get errors. Remake the this._map.*/
       }
       var coords = [];
       for (var i = 0; i < border.length; i++) {
-        if ((border[i].x != max.x) || (border[i].y != max.y) || (border[i].x != min.x) || (border[i].y != min.y)) {
+        var isBorder = false;
+        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
           coords.push(border[i]);
         }
       }
