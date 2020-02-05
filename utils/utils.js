@@ -96,8 +96,22 @@ class Utils {
     }
   }
 
-  /*
-  randCoord(xMin, xMax, yMin, yMax)
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate
+  in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /*randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
   @param xMin {int}: a number between 1 and xMax
@@ -106,7 +120,7 @@ class Utils {
   @param yMax {int}: a number greater than yMin
   @return {obj}: An obj with x & y keys
   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
     retObj.x = this.randMath(xMin, xMax, call);
     retObj.y = this.randMath(yMin, yMax, call);
@@ -116,32 +130,18 @@ class Utils {
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static randRoom(width, height, roomMin, roomMax){
-    var retArray = [];
+  static randRoom(width, height, roomMin, roomMax, call="Utils.randRoom"){
     roomMin -= 1;
-    roomMax -=1;
-    var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
-    var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    roomMax -= 1;
+    var retArray = [];
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
-        retArray.push({x: i, y: j});
+        retArray.push({x: i, y: j})
       }
     }
     return retArray;
-    }
-
-  /* coordCheck(seta, setb)
-    takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-    */
-  static coordCheck(seta, setb){
-      for (var i = 0; i < seta.length; i++) {
-        for (var j = 0; j < setb.length; j++) {
-          if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
   }
+
+}
