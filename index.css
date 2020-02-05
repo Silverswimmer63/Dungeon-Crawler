@@ -10,6 +10,7 @@ h5{
 text-align: center;
 }
 
+
 .big {
 width: auto;
 margin: 10px; /* changed */
@@ -46,10 +47,59 @@ width: 40%;
 margin: 0 auto;
 }
 
+<<<<<<< HEAD
 .buttonRow{
 width: 40%;
 margin: 0 auto;
 }
+=======
+
+#playerControls, #gameControls, #lootScreen{
+width: 100%;
+}
+
+#leftButtons{
+float: left;
+margin-right: 20px;
+}
+
+#rightButtons{
+float: right;
+margin-left: 20px;
+}
+
+#map{
+font-family: 'Press Start 2P', cursive;
+font-size: 12px;
+line-height: 12px;
+float: left;
+white-space: pre;
+}
+
+#updates{
+clear: both;
+font-family: 'Press Start 2P', cursive;
+font-size: 12px;
+line-height: 12px;
+}
+
+#gameState{
+text-align: center;
+font-family: 'Press Start 2P', cursive;
+border: 2px solid;
+font-size: 16px;
+background-color: #f0f0f2;
+border-radius: 1em;
+padding: 10px;
+}
+
+#lootScreen{
+font-family: 'Press Start 2P', cursive;
+font-size: 12px;
+display: none; /* will JS it into existance when playerControls are hidden. */
+}
+
+>>>>>>> JAKE
 .item{
 color: purple;
 }

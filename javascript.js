@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Default javascript generated message for map
 document.getElementById("map").innerHTML = "Map Selected";
 
@@ -6,4 +7,13 @@ document.getElementById("map").innerHTML = "Map Selected";
 */
 var demo = new Map(70,40);
 document.getElementById("map").innerHTML = demo.map;
+=======
+//default javascript generated message for map\
+
+document.getElementById("map").innerHTML = "Map Selected";
+
+var demo = new Map(70,40)
+document.getElementById("map").innerHTML = demo.map;
+
+>>>>>>> JAKE
 document.getElementById("drwbtn").onclick = function(){ document.getElementById("map").innerHTML = demo.map; }

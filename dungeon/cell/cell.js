@@ -1,4 +1,5 @@
-/*class Cell is a individual space on the grid.
+/*
+class Cell is a individual space on the grid.
 It can be open or closed and it can contain items
 or mobs or the player.
 */
@@ -12,22 +13,21 @@ class Cell {
   }
   //getters and setters
   get image(){return this._image}
-  set image(image){this._image = this.image}
-
   get type(){return this._type}
+  get open(){
+    if (this._occupied.length>0) { return false; }
+    else { return this._open; }
+  }
+  get inventory(){return this._inventory}
+  get occupied(){return this._occupied}
+
+  set image(image){this._image = image}
   set type(type){
     type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
   }
-
-  get open(){
-    if (this._occupied.length>0) { return false; }
-    else { return this._open; }
-  }
   set open(open){throw new Error("Open status should only be set by the cell type.")}
-
-  get inventory(){return this._inventory}
   set inventory(inventory){
     if (inventory.length == 0) {
       this._inventory = inventory;
@@ -37,8 +37,6 @@ class Cell {
       throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
     }
   }
-
-  get occupied(){return this._occupied}
   set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
 
   /*add(thing)
@@ -82,8 +80,6 @@ class Cell {
   @param index {mixed}: either the index value of the item or the word "mob"
   @return {object}: the item or mob
   */
-
-
   remove(index){
     if(index == "mob"){
       var num = undefined;
@@ -105,6 +101,7 @@ class Cell {
     }
     throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
+
   //internal methods
   /*_ocHandler(occupied, call="_ocHandler")
   this to will do all of the interior work for set occupied.
