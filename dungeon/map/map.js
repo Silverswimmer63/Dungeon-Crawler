@@ -88,11 +88,33 @@ Then we will update the map to have a setter for map, this will use the two
   addRoom(){
     var num = 0;
     while (num < 200) {
-      let overlap = false;
-      let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
       num ++;
+      let border = Utils.randRoom(this.width-1, this.height-1, this.roomMin+1, this.roomMax+1); // make a set of coordinates based on the map constraints
+      let overlap = false;
+      var min = {x: this.width +1, y: this.height +1};
+      var max = {x: 0, y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < min.x) {
+          min.x = border[i].x;
+        }
+        if (border[i].y < min.y) {
+          min.y = border[i].y;
+        }
+        if (border[i].x > max.x) {
+          max.x = border[i].x;
+        }
+        if (border[i].y > max.y) {
+          max.y = border[i].y;
+        }
+      }
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        if ((border[i].x != max.x) || (border[i].y != max.y) || (border[i].x != min.x) || (border[i].y != min.y)) {
+          coords.push(border[i]);
+        }
+      }
       for (let i = 0; i < this._rooms.length; i++) {
-        if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
       if(!overlap){
@@ -106,11 +128,6 @@ Then we will update the map to have a setter for map, this will use the two
       }
     }
   }
-
-  /*
-  4. add the correct type of loop structure (while) and other needed items (if statement, booleans) to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
