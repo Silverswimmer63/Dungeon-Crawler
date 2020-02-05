@@ -11,11 +11,17 @@ class Map{
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
-    this._map = this._generateMap();
     this._rooms = [];
     this._roomMin = 3;
-    this._roomMax = 8;
+    this._roomMax = 10;
+    this._numRooms = 25;
+    this._map = this._generateMap();
   }
+
+  get numRooms(){ return this._numRooms; }
+  set numRooms(numRooms){
+    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
+   }
 
   get roomMax(){ return this._roomMax;}
   set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
@@ -100,7 +106,7 @@ Then we will update the map to have a setter for map, this will use the two
   place none border room no border but after border room check
   */
 
-  addRoom(){
+  addRoom(map=this._map){
     let num = 0;
     while (num < 200) {
       num ++;
@@ -138,7 +144,7 @@ Then we will update the map to have a setter for map, this will use the two
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
-        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        let cell = map["y" + coords[i].y]["x" + coords[i].x];
         cell.image = " "; // todo update type to set the image then have ranked inventy
         cell.type = "room";
       }
@@ -178,7 +184,11 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    return map;
+      for (var i = 0; i < this._numRooms; i++) {
+        this.addRoom(map);// addRoom expects this._map tpo exists.
+
+    }
+    return map;// this is where we make this._map
   }
 
   /* _drawBorder()
@@ -217,58 +227,23 @@ and if there is overlap, don't add the room
 4. add the correct type of loop structure and other needed item(s) to make said
 loop stop if the room can be added (per 3 above) or keep going if not added
 this is going to continue to go through the loop until it can make a room
-
-In add room we are going to continue to make our random room as we do right now.
-However, we will be making it with plus and minus one to the size we have decided.
-We will store this value in a new var called bordered room. We will then get the min
-and max x and y from that room, and make a new array where all of these which will be the displayed room.
-
-- which one will we use to check for overlap?
-- which one can should we store in the room away?
 */
 
-addRoom(){
-  let num = 0;
-  let border = Utils.randRoom(this.width -1, this.height -1, this.roomMin +1, this.roomMax +1); // make a set of coordinates based on the map constraints
-        while (num <= 200) {
-          num ++;
-          let overlap = false;
-          let smalls = {x:this.width+1,y:this.height+1};
-          let biggy = {x:0,y:0};
-          for (var i = 0; i < border.length; i++) {
-            if (border[i].x < smalls.x) {
-              smalls.x = border[i].x;
-            }
-            if (border[i].y < smalls.y) {
-              smalls.y = border[i].y;
-            }
-            if (border[i].x < biggy.x) {
-              biggy.x = border[i].x;
-            }
-            if (border[i].y < biggy.y) {
-              biggy.y = border[i].y;
-            }
-          }
-          let coords = [];
-          for (var i = 0; i < border.length; i++) {
-            if ((border[i].x != biggy.x)||(border[i].y != biggy.y)||(border[i].x != smalls.x)||(border[i].y != smalls.y)); {
-              coords.push(border[i]);
-            }
-          }
-          for (let i = 0; i < this._rooms.length; i++) {
-            if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
-}
-// todo: add a function to pull the outside trim and set to borders
-    if(!overlap){
-      for (let i = 0; i < coords.length; i++) {
-        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-        cell._image = " "; // todo update type to set the image then have ranked inventy
-        cell._type = "room";
-        }
-        num = 200;
-        this._rooms.push(coords);
-      }
-    }
-  }
+/*
+1. We will fix the issue with the logic in addRoom.
+2. We will fix up a few bugs in addRoom.
+3. We will add a new parameter to the class map, _numRooms = 25
+4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
+5. We will update the map generation process to run the addRoom method for numRooms amounts of time.
+6. We will work on cell. -
+A. remove references to borders, we don't need those.
+B. set it so that if the cell is set to open, than the cell image is set to " "
+C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either,
+have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory
+(we will change that later to deal with open and unopened doors, types of items, and so on.
+D. alter addRoom to deal not change the cell image anymore.
+*/
+
+
 
 }
