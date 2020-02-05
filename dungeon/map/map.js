@@ -13,38 +13,8 @@ class Map{
     this._fill = Cell;
     this._map = this._generateMap();
     this._rooms = [];
-    this._roomMax = 8;
     this._roomMin = 3;
-  }
-  /*3. add setters.
-The setters for this function for width and height can be added now. However,
-these will need to be a little more complex than with other setters we have used.
- They will need to do the following -
-1. Check for value inputted being an int, and giving the correct error message
- if it is not.
-2. now that the map has a new width or height, we have to remake it from scratch
-or we will get errors. Remake the this._map.*/
-  /*
-  make the setter for rooms check to see if the intended value is a blank array [ ]. If not,
-  then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
-  */
-  get rooms(){ return this._rooms = [];}
-  set rooms(array){
-    array = Utils.arrayCheck(rooms, "Map.rooms");
-      if (array.length ==  0) {this._rooms = array;}// this is clearing out the rooms
-    else {
-      let room;
-      for (room of array){
-        Utils.arrayCheck(room, "Map.rooms individual room");
-        if (room.length == 0) {
-          throw new Error("In Map.rooms one or more room arrays is empty"); }
-          let coords;
-          for (coords of room) {
-            Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
-          }
-      }
-      this._rooms = array;
-   }
+    this._roomMax = 8;
   }
 
   get roomMax(){ return this._roomMax;}
@@ -93,6 +63,102 @@ Then we will update the map to have a setter for map, this will use the two
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
+
+  get rooms(){ return this._rooms; }
+  set rooms(array){
+    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
+    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
+    else {
+      let room;
+      for (room of array){
+        Utils.arrayCheck(room, "Map.rooms individual room.")
+        if (room.length == 0) { throw new Error("In Map.room: One or more room arrays is empty.") }
+        let coords;
+        for (coords of room){ // reminder coords are {x: value, y:value}
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell")
+        }
+      }
+      this._rooms = array;
+    }
+  }
+
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
+
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
+
+  /* addRoom()
+  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
+  and update the cells at the correct coordinates to match the room.
+  */
+
+  /* add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room
+  border room check
+  place none border room no border but after border room check
+  */
+
+  addRoom(){
+    let num = 0;
+    while (num < 200) {
+      num ++;
+      let overlap = false;
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let smalls = {x:this.width+1,y:this.height+1};
+      let biggy = {x:0,y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < smalls.x) {
+          smalls.x = border[i].x;
+        }
+        if (border[i].y < smalls.y) {
+          smalls.y = border[i].y;
+        }
+        if (border[i].x > biggy.x) {
+          biggy.x = border[i].x;
+        }
+        if (border[i].y > biggy.y) {
+          biggy.y = border[i].y;
+        }
+      }
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        var isBorder = false;
+        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
+          coords.push(border[i]);
+        }
+      }
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
+      }
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+      }
+      num = 200;
+      this._rooms.push(coords);
+    }
+  }
+}
+
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  /*
+  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+  if any of them have the same coordinates, and if there is overlap, don't add the room
+  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+  */
+
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
@@ -102,7 +168,6 @@ rather than y for their start. This is done so that we may access the map by
 way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
-
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -113,7 +178,7 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
@@ -126,7 +191,7 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.width; i++) {
       retStr += "-";
     }
-    return retStr + "+";
+    return retStr += "+";
   }
 
 
