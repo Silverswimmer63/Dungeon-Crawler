@@ -10,10 +10,11 @@ class Map{
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
-    this._map = this._generateMap();
     this._rooms = [];
     this._roomMin = 3;
-    this._roomMax = 8;
+    this._roomMax = 10;
+    this._numRooms = 30;
+    this._map = this._generateMap();
   }
 
   get width(){return this._width;}
@@ -24,12 +25,12 @@ class Map{
 
   get height(){return this._height;}
   set height(height){
-    this._height = Utils.intCheck(height, "Map.height")
+    this._height = Utils.intCheck(height, "Map.height");
     this._map = this._generateMap();
   }
 
   get fill(){return this._fill;}
-  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
 
   get map(){
     var retMap = "";
@@ -81,6 +82,8 @@ Then we will update the map to have a setter for map, this will use the two
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
+  get numRooms(){ return this._numRooms;}
+  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -93,7 +96,7 @@ Then we will update the map to have a setter for map, this will use the two
   place none border room no border but after border room check
   */
 
-  addRoom(){
+  addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
       num ++;
@@ -131,7 +134,7 @@ Then we will update the map to have a setter for map, this will use the two
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
-        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        let cell = map["y" + coords[i].y]["x" + coords[i].x];
         cell.image = " "; // todo update type to set the image then have ranked inventy
         cell.type = "room";
       }
@@ -140,7 +143,6 @@ Then we will update the map to have a setter for map, this will use the two
     }
   }
 }
-
 
   /* coordCheck(seta, setb)
   takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
@@ -170,6 +172,9 @@ the inner objects will be the individual cells of the map.
         var key2 = "x"+j;
         map[key][key2] = new this.fill;
       }
+    }
+    for (var i = 0; i < this.numRooms; i++) {
+      this.addRoom(map);
     }
     return map;
   }
