@@ -91,20 +91,6 @@ class Utils {
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
 
-  /*randCoord(xMin, xMax, yMin, yMax)
-   *@param xMin {int}: a number between 1 and xMax
-   *@param xMax {int}: a number greater than xMin
-   *@param yMin {int}: a number between 1 and yMax
-   *@param yMax {int}: a number greater than yMin
-   *@return {obj}: An obj with x & y keys
-   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
-    var retObj = {};
-    retObj.x = this.randMath(xMin, xMax, call);
-    retObj.y = this.randMath(yMin, yMax, call);
-    return retObj;
-  }
-  
   /*randRoom other
    *static randRoom(width, height, roomMin, roomMax){
    *  var retArray = [];
@@ -117,17 +103,15 @@ class Utils {
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static randRoom(width, height, roomMin, roomMax){
-    var retArray = [];
-     var start = this.ranCoord(1,width-roomMin,1,height-roomMin);
-     var stop = this.ranCoord(1,width-roomMax,1,height-roomMax);
-    var next = [];
-    for(var i = start.x; i<= stop.x; i++){
-      for(var j = start.y; j<= stop.y; j++){
-      next.push({x:i,y:j});
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          return true;
+        }
       }
     }
-    return next;
+    return false;
   }
 
   /*randCoord(xMin, xMax, yMin, yMax)

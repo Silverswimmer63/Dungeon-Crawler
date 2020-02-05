@@ -105,33 +105,6 @@ class Map{
     this._map = this._generateMap();
   }
    
- /*  addRoom alt
-  *addRoom(){
-  *  var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-  *  for (var i = 0; i < room.length; i++) {
-  *    var keyX = "x" + room[i].x;
-  *    var keyY = "y" + room[i].y;
-  *    var space = this._map[keyY][keyX];
-  *    space.image = " ";
-  *    space.type = "room";
-  *  }
-  *}
-  */
-  
- /*
-  *3. add a step between making the room coordinates and changing
-  *the the map where you check each room in the map array
-  *to see if any of them have the same coordinates
-  *and if there is overlap, don't add the room
-  *
-  *4. add the correct type of loop structure and
-  *other needed items to make said loop stop if the
-  *room can be added (per 3 above) or keep going if not added
-  *
-  *5. modify the structure from 4 above so it stops after
-  *a room is added or after 200 tries, whichever comes first.
-  */
-
   /*@function addRoom()
    *
    *add room will use the appropriate functions in our
@@ -143,23 +116,53 @@ class Map{
    *@returns {array} it will return an array of coords to set to locatioons on the map
    */
   addRoom(){
-    for(var k = 0; k < 200;k++){
-     let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-      for(var i = 0; i < this._rooms.length; i++){
-            Utils.coordCheck(this._rooms[i],coords);
-            if(Utils.coordCheck(this._rooms[i],coords) == true){
-              return false;
-            }
+    let num = 0;
+    while (num < 200) {
+      num ++;
+      let overlap = false;
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let smalls = {x:this.width+1,y:this.height+1};
+      let biggy = {x:0,y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < smalls.x) {
+          smalls.x = border[i].x;
+        }
+        if (border[i].y < smalls.y) {
+          smalls.y = border[i].y;
+        }
+        if (border[i].x > biggy.x) {
+          biggy.x = border[i].x;
+        }
+        if (border[i].y > biggy.y) {
+          biggy.y = border[i].y;
+        }
       }
-          for(var i = 0; i < coords.length; i++){
-              let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-              cell.image = " ";
-              cell.type = "room";
-          }
-        this._rooms.push(coords);
-      return true;
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        var isBorder = false;
+        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
+          coords.push(border[i]);
+        }
+      }
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
+      }
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+      }
+      num = 200;
+      this._rooms.push(coords);
     }
-  }  
+  }
+}
+
 
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
