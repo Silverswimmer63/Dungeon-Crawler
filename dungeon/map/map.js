@@ -89,7 +89,7 @@ Then we will update the map to have a setter for map, this will use the two
     var num = 0;
     while (num < 200) {
       num ++;
-      let border = Utils.randRoom(this.width-1, this.height-1, this.roomMin+1, this.roomMax+1); // make a set of coordinates based on the map constraints
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       let overlap = false;
       var min = {x: this.width +1, y: this.height +1};
       var max = {x: 0, y:0};
@@ -109,7 +109,11 @@ Then we will update the map to have a setter for map, this will use the two
       }
       let coords = [];
       for (var i = 0; i < border.length; i++) {
-        if ((border[i].x != max.x) || (border[i].y != max.y) || (border[i].x != min.x) || (border[i].y != min.y)) {
+        var isBorder = false;
+        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
           coords.push(border[i]);
         }
       }
@@ -164,5 +168,15 @@ the inner objects will be the individual cells of the map.
     return retStr += "+";
   }
 
+  /*
+  3. We will add a new parameter to the class map, _numRooms = 25
+  4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
+  5. We will update the map generator to run the addRoom method for numRooms amounts of time.
+  6. We will work on cell. -
+  A. remove references to borders, we don't need those.
+  B. set it so that if the cell is set to open, than the cell image is set to " "
+  C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+  D. alter addRoom to deal not change the cell image anymore.
+  */
 
 }
