@@ -1,10 +1,3 @@
-/*
-Class Living
-@param Name: is name of mob or enemy
-@param type: is type of the mob
-@param hp: health of the mob
-@param desc: description of the enemy/mob
-@param icon: is the icon of the enemy*/
 class Living {
   constructor(name, type, hp, desc, icon, status, level){
     this._name = name;
@@ -19,7 +12,7 @@ class Living {
   set name(name){ this._name = name; }
 
   get type(){ return this._type; }
-  set type(type){ this._type = type;}
+  set type(type){ this._type = type}
 
   get hp(){ return this._hp; }
   set hp(hp){ this._hp = hp; }
@@ -27,7 +20,7 @@ class Living {
   get desc(){ return this._desc; }
   set desc(desc){ this._desc = desc; }
 
-  get icon(){ return "<spam class = 'mob'>" + this._icon + "</spam>"; }
+  get icon(){ return this._icon; }
   set icon(icon){ this._icon = icon; }
 
   get maxHp(){ return this._maxHp; }
@@ -40,9 +33,8 @@ class Living {
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen
   */
-
-
   text(){
+
     return this.desc + "<br>";
   }
   toString(){

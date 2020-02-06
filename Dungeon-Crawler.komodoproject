@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
-<project id="bc02cb8b-6e22-453c-a524-a5d5f6432856" kpf_version="5" name="MyProject.komodoproject">
+<project id="bc02cb8b-6e22-453c-a524-a5d5f6432856" kpf_version="5" name="Dungeon-Crawler.komodoproject">
 <file id="19b926d6-43ce-4811-9c3b-2087037a7016" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="head.js" url="item/usuables/armor/head/head.js">
 </file>
 <file id="1af6e7f6-d386-4585-99c0-dec749d9d9ee" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="assets.js" url="assets.js">
@@ -10,6 +10,8 @@
 <file id="270fbda9-9387-4dda-b495-e78df5c74707" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="McGreggor.js" url="McGreggor.js">
 </file>
 <file id="4ebea1b1-c564-4b7d-961c-c2b6a7a2e5c4" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="weapon.js" url="weapon.js">
+</file>
+<file id="4faa249d-614e-4b27-84c2-d1b8e889a84f" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="content_generators.js" url="content_generators.js">
 </file>
 <file id="5d1fa7d9-dc7f-44d3-8d77-6457a9dcfb95" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="itemAssets.js" url="item/itemAssets.js">
 </file>
@@ -36,8 +38,6 @@
 <file id="d7dab04e-ae70-4ca6-8180-aff25f2f54da" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="item.js" url="item/item.js">
 </file>
 <file id="dd17e4e0-defe-421a-ad4c-e66c2d16e922" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Dililla.js" url="Dililla.js">
-</file>
-<file id="dd1a0b31-83af-469d-a679-a91545b6b793" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="javascript.js" url="javascript.js">
 </file>
 <file id="e13d39c8-0c00-44b7-b066-2b939baac7cc" idref="bc02cb8b-6e22-453c-a524-a5d5f6432856" name="Euan.js" url="Euan.js">
 </file>
