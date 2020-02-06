@@ -14,6 +14,7 @@ class Map{
     this._rooms = [];
     this._roomMin = 3;
     this._roomMax = 8;
+    this._roomnumber = 
   }
 
   get width(){return this._width;}
