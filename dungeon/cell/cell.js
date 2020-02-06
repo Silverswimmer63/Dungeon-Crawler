@@ -29,6 +29,7 @@ class Cell {
     }
   }
   set open(open){ throw new Error("Open status should only be set by the cell type"); }
+
   get inventory(){return this._inventory}
   set inventory(inventory){
     if (inventory.length == 0) {
@@ -80,6 +81,7 @@ class Cell {
     // track which one it is
     // send the correct function.
   }
+
   /* remove(index)
   remove will either remove the item from the cell inventory that exist at index
   or if index = "mob" it will remove the monster
@@ -114,6 +116,7 @@ class Cell {
   @param occupied {mixed} an objec or array of objects
   @param {string} call where toss error messeage
   */
+  
   _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
       occupied = [occupied];
@@ -157,4 +160,11 @@ class Cell {
   toString(){
     return this._image;
   }
+  /*6. We will work on cell. -
+  A. remove references to borders, we don't need those.
+  B. set it so that if the cell is set to open, than the cell image is set to " "
+  C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+  D. alter addRoom to deal not change the cell image anymore.
+  4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
+  */
 }

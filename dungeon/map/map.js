@@ -10,10 +10,11 @@ class Map{
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
-    this._map = this._generateMap();
     this._rooms = [];
     this._roomMin = 3;
-    this._roomMax = 8;
+    this._roomMax = 10;
+    this._numRooms = 30;
+    this._map = this._generateMap();
   }
 
   get width(){return this._width;}
@@ -81,11 +82,16 @@ Then we will update the map to have a setter for map, this will use the two
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
+  get numRooms(){ return this._numRooms; }
+  set numRooms(numRooms){
+    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
+  }
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
-  addRoom(){
+  addRoom(map =this.map){
     var num = 0;
     while (num < 200) {
       num ++;
@@ -123,7 +129,7 @@ Then we will update the map to have a setter for map, this will use the two
       // todo: add a function to pull the outside trim and set to borders
       if(!overlap){
         for (let i = 0; i < coords.length; i++) {
-          let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+          let cell = map["y" + coords[i].y]["x" + coords[i].x];
           cell._image = " "; // todo update type to set the image then have ranked inventy
           cell._type = "room";
         }
@@ -152,7 +158,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    return map;
+    for (var i = 0; i < this._numRooms; i++) {
+      this.addRoom(map);//addRoom expects this._map to exist
+    }
+    return map; //this is where we make this._map
   }
 
   /* _drawBorder()
@@ -167,16 +176,5 @@ the inner objects will be the individual cells of the map.
     }
     return retStr += "+";
   }
-
-  /*
-  3. We will add a new parameter to the class map, _numRooms = 25
-  4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
-  5. We will update the map generator to run the addRoom method for numRooms amounts of time.
-  6. We will work on cell. -
-  A. remove references to borders, we don't need those.
-  B. set it so that if the cell is set to open, than the cell image is set to " "
-  C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
-  D. alter addRoom to deal not change the cell image anymore.
-  */
 
 }
