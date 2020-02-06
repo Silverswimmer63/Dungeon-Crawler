@@ -29,6 +29,9 @@ class Cell{
     type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
+    if (this._open== true) {
+      this.image = " ";
+    }
   }
   set open(open){throw new Error("Open status should only be set by the cell type.")}
   set inventory(inventory){
