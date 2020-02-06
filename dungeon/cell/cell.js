@@ -161,15 +161,7 @@ class Cell {
   importance for now should just be occupied (mob) > occupied (nonMob) > inventory
   (we will change that later to deal with open and unopened doors, types of items, and so on
   */
-  /*toString(){
-    let image = this._image;
-    if (this.inventory.length > 0) { image = this.inventory[0]; }
-    if (this.occupied.length == 1) { image = this.occupied[0] }
-    if (this.occupied.length == 2) {
-
-    }
-*///LaMories way
-  toString(){
+    toString(){
     if ((this._occupied.length > 0) && (this._inventory.length == 0))  {
       this._image = this._occupied[0].icon;
     }
