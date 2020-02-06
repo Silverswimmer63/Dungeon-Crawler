@@ -10,10 +10,11 @@ class Map{
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
-    this._map = this._generateMap();
     this._rooms = [];
-    this._roomMin = 3;
-    this._roomMax = 8;
+    this._roomMin = 5;
+    this._roomMax = 15;
+    this._numRooms = 30;
+    this._map = this._generateMap();
   }
 
   get width(){return this._width;}
@@ -79,6 +80,11 @@ class Map{
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
+  get numRooms(){ return this._numRooms;}
+  set numRooms(numRooms){
+    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
+  }
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -91,7 +97,7 @@ class Map{
   place none border room no border but after border room check
   */
 
-  addRoom(){
+  addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
       num ++;
@@ -129,8 +135,8 @@ class Map{
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
-        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-        cell.image = " "; // todo update type to set the image then have ranked inventy
+        let cell = map["y" + coords[i].y]["x" + coords[i].x];
+        cell.open;
         cell.type = "room";
       }
       num = 200;
@@ -138,7 +144,6 @@ class Map{
     }
   }
 }
-
 
   /* coordCheck(seta, setb)
   takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
@@ -169,7 +174,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    return map;
+    for (var i = 0; i < this.numRooms; i++) {
+      this.addRoom(map); //addRoom expacts this._map to exist
+    }
+    return map;//this is where we make this._map
   }
 
   /* _drawBorder()

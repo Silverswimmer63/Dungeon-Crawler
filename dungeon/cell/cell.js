@@ -6,28 +6,34 @@ or mobs or the player.
 class Cell {
   constructor(){
     this._image = "#";
-    this._type = "wall"//wall, hall, rooms, border: a wall but a tag
+    this._type = "wall"//wall, hall, rooms: a wall but a tag
     this._open = false;// if the cell allows movement
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
   }
   //getters and setters
-  get image(){return this._image}
-  get type(){return this._type}
-  get open(){
-    if (this._occupied.length>0) { return false; }
-    else { return this._open; }
-  }
-  get inventory(){return this._inventory}
-  get occupied(){return this._occupied}
+  get image(){ return this._image }
+  set image(image){ this._image = image }
 
-  set image(image){this._image = image}
+  get type(){ return this._type }
   set type(type){
-    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
   }
+
+  get open(){
+    if (this._occupied.length>0) {
+      return false;
+    }
+    else {
+      this._image = " ";
+      return this._open;
+    }
+  }
   set open(open){throw new Error("Open status should only be set by the cell type.")}
+
+  get inventory(){return this._inventory}
   set inventory(inventory){
     if (inventory.length == 0) {
       this._inventory = inventory;
@@ -37,6 +43,8 @@ class Cell {
       throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
     }
   }
+
+  get occupied(){return this._occupied}
   set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
 
   /*add(thing)
@@ -148,7 +156,33 @@ class Cell {
   }
 
   //toString and other overwrights
+  /*set the toSting in the cell to check to see if there is anything in inventory or occupied.
+  If there is something in either, have the cell use the toString for those items the order of
+  importance for now should just be occupied (mob) > occupied (nonMob) > inventory
+  (we will change that later to deal with open and unopened doors, types of items, and so on
+  */
+  /*toString(){
+    let image = this._image;
+    if (this.inventory.length > 0) { image = this.inventory[0]; }
+    if (this.occupied.length == 1) { image = this.occupied[0] }
+    if (this.occupied.length == 2) {
+
+    }
+*///LaMories way
   toString(){
+    if ((this._occupied.length > 0) && (this._inventory.length == 0))  {
+      this._image = this._occupied[0].icon;
+    }
+    else if ((this._occupied.length == 0) && (this._inventory.length > 0)) {
+      this._image = this._inventory[0].icon;
+    }
+    else if ((this._occupied.length > 0) && (this._inventory.length > 0)) {
+      for (var i = 0; i < 2; i++) {
+        if (this._occupied.length[i] instanceof Mob) {
+          this._image = this._occupied[i].icon;
+        }
+      }
+    }
     return this._image;
   }
 }
