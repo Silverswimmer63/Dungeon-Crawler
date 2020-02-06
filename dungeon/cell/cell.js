@@ -168,8 +168,18 @@ class Cell{
   //toString and other overwrights
     }
 toString(){
-  if ((this.inventory.length > 0)||(this.occupied.length > 0)) {
-return 
+  if ((this._inventory.length > 0)&&(this._occupied.length > 0)) {
+this._image = this._occupied[0].image;
+  }
+  else if ((this._inventory.length > 0)&&(this._occupied.length == 0)) {
+    this._image = this._inventory[0].icon;
+  }
+  else if ((this._inventory.length > 0)&&(this._occupied.length > 0)) {
+    for (var i = 0; i < 2; i++) {
+if (this.occupied[0]instanceof Mob) {
+  this._image = this._occupied[0].icon;
+}
+    }
   }
   return this._image;
   }
