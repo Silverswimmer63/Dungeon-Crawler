@@ -1,8 +1,8 @@
 class Utils {
-/*randMath
-@param max {int}: the max you can have
-@param min {int} the min you can have ;
-*/
+  /*randMath
+  @param max {int}: the max you can have
+  @param min {int} the min you can have ;
+  */
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
@@ -12,27 +12,6 @@ class Utils {
     return Math.floor(Math.random() * (max + 1));
   }
 
-/*
-  1. In Utils.js
-Make a new static method called intCheck(item, call) Here is the documentation for initCheck
-/* intCheck(item, call="Utils.intCheck.js")
-Checks to see if "item" is an integer. Throws a custom error if not.
-@param item: {mixed} an item to be check if is an integer
-@param call: {string} the Class/function/method where the check occured
-@retun {mixed} returns the item unless it is not an integer
-
-2. look up how to make a custom error message in javaScript
-catch and throw error
-3. look up how to check to see if something is an integer in javaScript
-Number.isInteger()
-4. In intCheck(item, call) check to see if the item is an integer. If so, return it.
-
-5. If the item is not an integer, then throw your new Error. The text of this error should be :
-"The method " + call + " expected an integer and received " + item + ".";
-
-6. Test this method.
-*/
-
   static intCheck(item, call="Utils.intCheck.js"){
     if (Number.isInteger(item)) {return item}
     else {
@@ -41,13 +20,12 @@ Number.isInteger()
   }
 
   /* objCheck(item, call="Utils.objCheck")
-@param item: {mixed} an item to be checked if is an object
-@param call: {string} the Class/function/method where the check occured
-@retun {mixed} returns the item unless it is not an object
-*/
-
+  @param item: {mixed} an item to be checked if is an object
+  @param call: {string} the Class/function/method where the check occured
+  @retun {mixed} returns the item unless it is not an object
+  */
   static objCheck(item, call="Utils.objCheck"){
-    if (( item != null)&&(typeof item == "object")) {
+    if ((item != null)&&(typeof item == "object")) {
       return item;
     }else {
       throw new Error("The method " + call + " expected an object and received " + item + ".");
@@ -55,17 +33,16 @@ Number.isInteger()
   }
 
   /* keyCheck(item, key, call= Utils.keyCheck)
-Performs two actions - 1 checks to see if item is an object. Throws an error
-if not, reporting it from location call. 2 checks to see if the object has
-the key or keys given in the second param. The second param is check to be an
-array or not, if not an array, it is made into a single item array so that it
-can use the same code order. If the object does not, it throws an error.
-@param item: {mixed} an item to be checked if it is an object
-@param key: {mixed} a string or array of strings to be checked as keys in item
-@param call: {string} the Class/function/method where the check occured
-@retun {mixed} returns the item if object with key(s)
-*/
-
+  Performs two actions - 1 checks to see if item is an object. Throws an error
+  if not, reporting it from location call. 2 checks to see if the object has
+  the key or keys given in the second param. The second param is check to be an
+  array or not, if not an array, it is made into a single item array so that it
+  can use the same code order. If the object does not, it throws an error.
+  @param item: {mixed} an item to be checked if it is an object
+  @param key: {mixed} a string or array of strings to be checked as keys in item
+  @param call: {string} the Class/function/method where the check occured
+  @retun {mixed} returns the item if object with key(s)
+  */
   static keyCheck(item, key, call= "Utils.keyCheck"){
     this.objCheck(item, call);
     if (!Array.isArray(key)) {
@@ -88,71 +65,27 @@ can use the same code order. If the object does not, it throws an error.
       }
     }
     errStr += ". It is missing the key(s) ";
-    for (var i = 0; i < badKey.length; i++) {
-      errStr += badKey[i];
+  errStr += badKey[i];  //.6 Add the arrayCheck to the setter for rooms
+      errStr += badKey[i];  //.6 Add the arrayCheck to the setter for rooms
       if ((badKey.length > 0)&&(i < badKey.length - 1)) {
         errStr += ", ";
       }
-    }
     throw new Error(errStr+".")
   }
-
-  /* listCheck(item, list, call)
+/*
 helper function to check to see if an item is on the list given to it.
 If it is not, it throws an error of the form
 call + "expected one of the following: " +<list items>+ " and got " + type + "."
 @param item: {mixed} the thing to be checked
 @param list: {array} an array of things to check the item against
-@param call: {text} where to call the error from
+@param call: {text} where to call the error from  .6 Add the arrayCheck to the setter for rooms
 @return {mixed} The item if no error is thrown
 */
-  static listCheck(item, list, call="Utils.listCheck"){
-    if (list.includes(item)) {return item;}
-    throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
+static listCheck(item, list, call = "Utils.listCheck"){
+    if (list.includes(item)) { return item; }
+    throw new Error(call + "expected one of the following: " + list + " and got " + item + ".");
+      throw new Error(call + "expected one of the following: " + list + " and got " + item + ".");
   }
-
-  /* randCoord(xMin, xMax, yMin, yMax)
-This function will produce an object with the keys of x and y, with values
-betweem xMin - xMax for the x key, & yMin and yMax for the y key
-@param xMin {int}: a number between 1 and xMax
-@param xMax {int}: a number greater than xMin
-@param yMin {int}: a number between 1 and yMax
-@param yMax {int}: a number greater than yMin
-@return {obj}: An obj with x & y keys
-*/
-  static randCoord(xMin, xMax, yMin, yMax, call="Utils.randCoord"){
-    var retObj = {};
-    retObj.x = this.randMath(xMin, xMax, call);
-    retObj.y = this.randMath(yMin, yMax, call);
-    return retObj;
-  }
-/*
-  the lower x should be between 1 and the width of the map - min width of the room
-  the higher x should be between the lower x + min and the lower x + max
-
-  the lower y should be between 1 and the height of the map - min height of the room
-  the higher y should be between the lower y + min and the lower y + max*/
-
-  /* randRoom(width, height, roomMin, roomMax)
-Returns an array of coordinate objects for a square room.
-*/
-  static randRoom(width, height, roomMin, roomMax){
-    roomMin -= 1;
-    roomMax -= 1;
-      var tpleft = this.randCoord(1,width-roomMin,1,height-roomMin);
-      var btright = this.randCoord(tpleft.x+roomMin,Math.min(tpleft.x+roomMax,width),tpleft.y+roomMin,Math.min(tpleft.y+roomMax,height));
-      var tpright = {x:btright.x,y:tpleft.y};
-      var btleft = {x:tpleft.x,y:btright.y};
-      var retAry = [];
-      for (var i = tpleft.x; i <= btright.x; i++) {
-      for (var j = tpleft.y; j <= btright.y; j++) {
-        var obj = {x:i,y:j};
-        retAry.push(obj);
-      }
-    }
-    return retAry;
-  }
-
   static arrayCheck(item, call="Utils.arrayCheck"){
     if ((item != null)&&(Array.isArray(item))) {
       return item;
@@ -161,6 +94,52 @@ Returns an array of coordinate objects for a square room.
     }
   }
 
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate
+  in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {return true;}
+      }
+    }
+    return false;
+
+  }
+
+  /*randCoord(xMin, xMax, yMin, yMax)
+  This function will produce an object with the keys of x and y, with values
+  betweem xMin - xMax for the x key, & yMin and yMax for the y key
+  @param xMin {int}: a number between 1 and xMax
+  @param xMax {int}: a number greater than xMin
+  @param yMin {int}: a number between 1 and yMax
+  @param yMax {int}: a number greater than yMin
+  @return {obj}: An obj with x & y keys
+  */
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+    var retObj = {};
+    retObj.x = this.randMath(xMin, xMax, call);
+    retObj.y = this.randMath(yMin, yMax, call);
+    return retObj;
+  }
+
+  /* randRoom(width, height, roomMin, roomMax)
+  Returns an array of 4 coordinate objects
+  */
+  static randRoom(width, height, roomMin, roomMax, call="Utils.randRoom"){
+    roomMax -= 1;
+    var retArray = [];
+    var retArray = [];
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    for (var i = start.x; i <= stop.x; i++) {
+      for (var j = start.y; j <= stop.y; j++) {
+        retArray.push({x: i, y: j})
+    }
+  }
+  return retArray;
+}
 
 /* keyCheck(item, key, call= Utils.keyCheck)
 Performs two actions - 1 checks to see if item is an object. Throws an error
@@ -180,7 +159,7 @@ static keyCheck(item, key, call= "Utils.keyCheck"){
   }
   var badKey = [];
   for (var i = 0; i < key.length; i++) {
-    if ((key[i] in item)!) {
+    if ((key[i] in item)) {
       badKey.push(key[i]);
     }
   }
@@ -245,7 +224,7 @@ static randMath(min, max, call="utils.randMath"){
   min = this.intCheck(min, call);
   max = this.intcheck(max,call);
   if (min <= max){
-    throw new Error ("min must always be less than max"+call+)
+    throw new Error ("min must always be less than max"+call)
   }
 }
 /*
@@ -262,7 +241,6 @@ make the call this time "Map.rooms - individual room"
 .8 for each of the items from #7 above check each of the items inside of it to
 make sure they are all objects with the keys X and Y
 */
-var rooms
 get rooms(){return this._rooms;}
 
 set(array) {
@@ -304,18 +282,68 @@ standin#1{
 stop if the room can be added (per 3 above) or keep going if not added
 
 5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+
+In add room we are going to continue to make our random room as we do right now.
+However, we will be making it with plus and minus one to the size we have decided.
+We will store this value in a new var called bordered room. We will then get the
+min and max x and y from that room, and make a new array where all of these which
+will be the displayed room.
+
+- which one will we use to check for overlap?
+- which one can should we store in the room away?
+1. We will fix the issue with the logic in addRoom.
+2. We will fix up a few bugs in addRoom.
+3. We will add a new parameter to the class room, _numRooms = 25
+4. We will add getters and setters for numRooms, setter should check if the
+input is an integer, it should also remake the map if this number is changed.
+5. We will update the map generator to run the addRoom method for numRooms amounts of time.
+6. We will work on cell. -
+A. remove references to borders, we don't need those.
+B. set it so that if the cell is set to open, than the cell image is set to " "
+C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+D. alter addRoom to deal not change the cell image anymore.
 */
   static addRoom(){
-   var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
+   var room = Utils.randRoom(this.width, this.height, this.roomMin +2, this.roomMax +2);
    for (var i = 0; i < room.length; i++) {
      var keyX = "x" + room[i].x;
      var keyY = "y" + room[i].y;
      var space = this._map[keyY][keyX];
+     var max = {x:this.width+1, y:this.height+1};
+     var min = {x:0, y:0};
+     for (var i = 0; i < border.length; i++) {
+    if (border[i].x < min.x) {
+min.x = border[i].x;
+    }
+    if (border[i].y < min.y) {
+min.y = border[i].y;
+    }
+    if (border[i].x > max.x) {
+      max.x = border[i].x;
+    }
+    if (border[i].y > max.y) {
+      max.y = border[i].y;
+    }
+     }
+     let coords = [];
+     for (var i = 0; i < border.length; i++) {
+       var isBorder = false;
+       if ((border[i].x == max.x)||(border[i].y == min.x)||(border[i].x == min.x)||(border[i].y == min.y)) {
+       iisBorder = true;
+     }
+     if (!iisBorder) {
+       coords.push(border[i]);
+     }
+     }
+
+
+     
      space.image = " ";
      space.type = "room";
      for (var i = 0; i < this.room.length; i++) {
        for (var j = 0; j < this.room[i].length; j++) {
         let overlap = false;
+      }
          for (let i = 0; i < this._rooms.length; i++) {
 if(!overlap) { overlap = Utils.coordsCheck(coords, this._rooms[i]); } // so we don't lose a true
 }
@@ -326,9 +354,8 @@ if (true) {
            throw new Error("not allowed")
          }
          else
-       }
-     }
-   }
+
+
 this._rooms.push(room);
  }
  /* coordCheck(seta, setb)
@@ -344,6 +371,7 @@ else {
 }
     }
   }
+  return retArray
 }
 /*
 4. add the correct type of loop structure and other needed item(s) to make said

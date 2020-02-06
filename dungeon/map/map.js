@@ -15,14 +15,6 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 8;
   }
-  /*3. add setters.
-The setters for this function for width and height can be added now. However,
-these will need to be a little more complex than with other setters we have used.
- They will need to do the following -
-1. Check for value inputted being an int, and giving the correct error message
- if it is not.
-2. now that the map has a new width or height, we have to remake it from scratch
-or we will get errors. Remake the this._map.*/
 
   get width(){return this._width;}
   set width(width){
@@ -51,30 +43,6 @@ or we will get errors. Remake the this._map.*/
     }
     return retMap += this._drawBorder();
   }
-
-  get rooms(){return this._rooms;}
-  set rooms(rooms){
-      Utils.arrayCheck(rooms,"Map.rooms");
-    if (rooms.length == 0) {
-      this._rooms = rooms;
-    }else {
-      for (var i = 0; i < rooms.length; i++) {
-        Utils.arrayCheck(rooms[i],"Map.rooms - individual room");
-          if (rooms[i].length == 0) {
-            throw new Error("In Map.rooms: One or more room arrays is empty.")
-          }
-        for (var j = 0; j < rooms[i].length; j++) {
-          Utils.keyCheck(rooms[i][j],["x","y"],"Map.rooms - individual cordinate");
-        }
-      }
-    }
-  }
-
-  get roomMin(){return this._roomMin;}
-  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
-
-  get roomMax(){return this._roomMax;}
-  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
 /*
 Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
@@ -88,6 +56,72 @@ Then we will update the map to have a setter for map, this will use the two
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
+
+  get rooms(){ return this._rooms; }
+  set rooms(array){
+    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
+    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
+    else {
+      let room;
+      for (room of array){
+        Utils.arrayCheck(room, "Map.rooms individual room.")
+        if (room.length == 0) { throw new Error("In Map.room: One or more room arrays is empty.") }
+        let coords;
+        for (coords of room){ // reminder coords are {x: value, y:value}
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell")
+        }
+      }
+      this._rooms = array;
+    }
+  }
+
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
+
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
+
+  /* addRoom()
+  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
+  and update the cells at the correct coordinates to match the room.
+  */
+
+  /* add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room*/
+  addRoom(){
+    let made = false;
+    let coords = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax); // make a set of coordinates based on the map constraints
+    let overlap = false;
+
+    while (made == false) {
+    for (let i = 0; i < this._rooms.length; i++) {
+      if(!overlap) { overlap = Utils.coordCheck(coords, this._rooms[i]); } // so we don't lose a true
+    }
+      // todo: add a function to pull the outside trim and set to borders
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+        made = true;
+      }
+    }
+    this._rooms.push(coords);
+  }
+}
+
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  /*
+  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+  if any of them have the same coordinates, and if there is overlap, don't add the room
+  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+  */
+
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
@@ -97,23 +131,6 @@ rather than y for their start. This is done so that we may access the map by
 way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
-
-/*addRoom()
-add room will use the apropriate functions in our program to generate a set
-of coordinates based on our map. It will then go to map, and update the cells at the
-corect coordinates to match the room.
-*/
-  addRoom(){
-    var room = Utils.randRoom(this.width, this.height, this.roomMin, this.roomMax);
-    for (var i = 0; i < room.length; i++) {
-      var keyX = "x" + room[i].x;
-      var keyY = "y" + room[i].y;
-      var space = this._map[keyY][keyX];
-      space.image = " ";
-      space.type = "room";
-    }
-  }
-
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -124,7 +141,7 @@ corect coordinates to match the room.
         map[key][key2] = new this.fill;
       }
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
@@ -137,7 +154,7 @@ corect coordinates to match the room.
     for (var i = 0; i < this.width; i++) {
       retStr += "-";
     }
-    return retStr + "+";
+    return retStr += "+";
   }
 
 

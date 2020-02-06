@@ -29,6 +29,15 @@ if there is a mob in the cell do not allow annother mob
 if we try to add things we cant, throw an error that reads
 "Cell.occupied - cell already had a mob/nonmob and was given" + thing
 */
+get occupied(){return this._occupied}
+
+set image(image){this._image = image}
+set type(type){
+  type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+  this._type = type;
+  this._open = ["room","hall"].includes(type);
+}
+set open(open){throw new Error("Open status should only be set by the cell type.")}
 set ocupied (ocupied){
   for (var i = 0; i < ; i++) {
     if (ocupied.length > 2) {
