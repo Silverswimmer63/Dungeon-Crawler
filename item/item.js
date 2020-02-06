@@ -8,7 +8,7 @@ The basic item class. Will be extended for other types of items.
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value, type="trash", level){
+  constructor(name, type, value, desc, icon, level){
     this._name = name;
     this._icon = icon; // the single character that shows up on the map
     this._desc = desc; // the description of the item
@@ -21,20 +21,23 @@ class Item {
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
-  set icon(icon){ this._icon = icon; }
-
-  get desc(){ return this._desc; }
-  set desc(desc){ this._desc = desc; }
+  get type(){ return this._type; }
+  set type(type){ this._type = type; }
 
   get value(){ return this._value; }
   set value(value){ this._value = value; }
 
-  get type(){ return this._type; }
-  set type(type){ this._type = type; }
+  get desc(){ return this._desc; }
+  set desc(desc){ this._desc = desc; }
 
-  get level(){return this._level; }
-  set level(level){this._level = level; }
+  get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
+  set icon(icon){ this._icon = icon; }
+
+  get level(){ return this._level; }
+  set level(level){ this._level = level; }
+
+  get status(){ return this._status; }
+  set status(status){ this._status = status; }
 
   /*text()
   retruns a user friendly line of text for output
