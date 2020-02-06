@@ -154,6 +154,7 @@ class Cell {
 
   //toString and other overwrights
   toString(){
-    return this._image;
+    if (this._occupied.length>0) {
+      return this._image;
   }
 }
