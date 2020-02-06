@@ -9,10 +9,11 @@ class Map{
     this._width = Utils.intCheck(width, "map constructor");
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
-    this._map = this._generateMap();
     this._rooms = [];
     this._roomMin = 3;
     this._roomMax = 8;
+    this._numroom = 25;
+    this._map = this._generateMap();
   }
   
   /*width Getters and Setters*/
@@ -52,29 +53,6 @@ class Map{
       this._rooms = array;
     }
   }
-  
-  /* set room alt
-   *set rooms(rooms){
-   * if(rooms == []){
-   * this._rooms = Utils.arrayCheck(rooms, "Map.rooms");
-   * }
-   *   for(var i = 0; i < rooms.length; i++){
-   *     for(var j = 0; j < rooms[i].length; j++){
-   *       if((Number.isInteger(rooms[i][j].x) == true) && (Number.isInteger(rooms[i][j].y) == true)){
-   *         if((rooms[i][j].x == undefined || isNaN(rooms[i][j].x) == true)||(rooms[i][j].y == undefined || isNaN(rooms[i][j].y) == true)){
-   *           throw new Error("In Map.rooms: One or more room arrays is empty.");
-   *         }
-   *         this._rooms[i] = Utils.arrayCheck(rooms[i], "Map.rooms-Individual-Rooms");
-   *         this._rooms[i][j] = Utils.objCheck(rooms[i][j], "Map.rooms-objCheck-Indiv-Rooms-Check");
-   *       }
-   *       else{
-   *         throw new Error("Map.rooms-obj test checking expected an array with arrays with and object with the values x{int} and y{int} and got " + rooms[i][j][0] + ".");
-   *       }
-   *     }
-   *   }
-   *}
-   */
- 
   /*roomMax and roomMin Getters*/
   get roomMax(){return this._roomMax;}
   get roomMin(){return this._roomMin;}
@@ -94,6 +72,7 @@ class Map{
       }
       retMap += "|<br>";
     }
+    
     return retMap += this._drawBorder();
   }
   set map(dimensions){
@@ -103,8 +82,16 @@ class Map{
     this._width = dimensions.width;
     this._height = dimensions.height;
     this._map = this._generateMap();
+
   }
-   
+     get numroom(){
+    return this._numroom;
+  }
+  set numroom(numroom){
+    this._numroom = Utils.intCheck(numroom, "Map.numroom");
+    this._map = this._generateMap();
+  } 
+
   /*@function addRoom()
    *
    *add room will use the appropriate functions in our
@@ -115,7 +102,7 @@ class Map{
    *@class addRoom() - adds rooms onto the map 
    *@returns {array} it will return an array of coords to set to locatioons on the map
    */
-  addRoom(){
+  addRoom(set = this._map){
     let num = 0;
     while (num < 200) {
       num ++;
@@ -153,8 +140,8 @@ class Map{
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
-        let cell = this._map["y" + coords[i].y]["x" + coords[i].x];
-        cell.image = " "; // todo update type to set the image then have ranked inventy
+        let cell = set["y" + coords[i].y]["x" + coords[i].x];
+        cell.open;
         cell.type = "room";
       }
       num = 200;
@@ -176,7 +163,11 @@ class Map{
         var key2 = "x"+j;
         map[key][key2] = new this.fill;
       }
+      
     }
+    for(var i = 0; i < this._numroom; i++){
+this.addRoom(map);
+}
     return map;
   }
 

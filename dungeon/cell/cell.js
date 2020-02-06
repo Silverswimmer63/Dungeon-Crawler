@@ -1,3 +1,4 @@
+
 /*class cell is a individual space on the grid.
 It can be open or closed and it can contain items
 or mobs or the player.
@@ -16,7 +17,7 @@ class Cell {
 
   get type(){return this._type;}
   set type(type){
-    type = Utils.listCheck(type, ["wall", "room", "border", "hall"], "Cell.type");
+    type = Utils.listCheck(type, ["wall", "room", "hall"], "Cell.type");
     this._type = type;
     this._open = ["room", "hall"].includes(type);
   }
@@ -25,11 +26,12 @@ class Cell {
     if (this._occupied.length>0) {
       return false;
     }else {
+      this._image = " ";
       return this._open;
     }
   }
   set open(open){ throw new Error("Open status should only be set by the cell type"); }
-  get inventory(){return this._inventory}
+  get inventory(){return this._inventory;}
   set inventory(inventory){
     if (inventory.length == 0) {
       this._inventory = inventory;
@@ -143,9 +145,9 @@ class Cell {
       // Asumes single item
 
       if ((nonMob == true) && (occupied[i] instanceof Nonmob)) {
-        throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a nonmob and was given " + occupied[i].name);
       }else if ((mob == true) && (occupied[i] instanceof Mob)) {
-        throw new Error(call + " - cell already had a mob and was given " + occupied[i].name)
+        throw new Error(call + " - cell already had a mob and was given " + occupied[i].name);
       }else {
         this._occupied.push(occupied[i]);
       }
@@ -153,7 +155,45 @@ class Cell {
   }
 
   //toString and other overwrights
+  //toString(){
+  //  if((this._occupied.length > 0) && (this._inventory.length == 0)){
+  //    this._image = this._occupied[0].icon;
+  //  }
+  //  else if((this._occupied.length == 0) && (this._inventory.length > 0)){
+  //    this._image = this._inventory[0].icon;
+  //  }
+  //  else if((this._occupied.length > 0) && (this._inventory.length > 0)){
+  //    for(var i = 0; i< 2; i++){
+  //      if(this._occupied[i] instanceof Mob){
+  //        this._image = this._occupied[i].icon;
+  //      }
+  //    }
+  //  }
+  //  return this._image;
+  //}
   toString(){
+    if(this._occupied.length == 2){
+    for(var i = 0; i < 2; i++){
+      if(this._occupied[i] instanceof Mob){
+       this._image = this._occupied[i].icon; 
+      }
+    }
+    }
+    else if(this._occupied.length == 1 && this._inventory.length >= 0){
+      this._image = this._occupied[0].icon;
+    }
+    else if(this._occupied.length == 0 && this._inventory.length > 0){
+      this._image = this._inventory[0].icon;
+    }
     return this._image;
   }
+  /*
+6. We will work on cell. -
+C. set the toSting in the cell to check to see if there is anything in inventory or occupied.
+If there is something in either, have the cell use the toString for those items the order of
+importance for now should just be occupied (mob) > occupied (nonMob) > inventory
+(we will change that later to deal with open and unopened doors, types of items
+, and so on.
+*/
+
 }
