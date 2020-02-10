@@ -218,8 +218,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     desc: "One day from retirment and his first day on the job",
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
-    drop: "",
-    status: none
+    drop: ""
   },
   {
     name: "Oil tycoon",
@@ -228,8 +227,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     desc: "Big business can aford big guns.",
     icon: "T",
     attackDam: {max: 30, min:20, type:"damage"},
-    drop: "",
-    status: none
+    drop: ""
   },
   {
     name:"Minitar",
@@ -237,8 +235,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     attackDam:{min:20, max:40, type:"damage"},
     icon:"M",
     desc:"He's a sweetheart if you get to know him",
-    type:Mythological,
-    status: none
+    type:Mythological
   },
   {
     name:"Areas",
@@ -246,8 +243,7 @@ const COMPLETE_INVENTORY_BOSS_LIST = [
     attackDam:{min:30, max:54, type:"damage"},
     icon:"A",
     desc:"He's always mad because he has daddy issues",
-    type:Mythological,
-    status: none
+    type:Mythological
   }
 ]
 //can you see this?

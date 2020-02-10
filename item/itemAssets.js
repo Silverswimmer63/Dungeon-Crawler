@@ -222,8 +222,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "The only weapon a man needs",
     damage: {min:2, max:5,type:"Normal"},
     icon: "/",
-    level: 1,
-    status: None,
+    level: 1
   },
   {
     name: "Boxing Gloves",
@@ -232,8 +231,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "Just a littel pertection for the hands",
     damage: {min:4 ,max:10,type:"Normal"},
     icon:"/",
-    level: 1,
-    status: none
+    level: 1
   },
   {
     name: "Axe",
@@ -242,8 +240,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "A powerful weapon, used by those with great strength",
     damage:{min:20, max:50,type:"Bleeding",Duration:5},
     icon: "/",
-    level: 2,
-    status: bleed
+    level: 2
   },
   {
     name: "Butcher Knife",
@@ -252,8 +249,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "A small blade, one that can be concealed, but can still inflict lots of damage",
     damage: {min:10, max:15,type:"Bleeding",Duration:5},
     icon:"/",
-    level: 1,
-    status: bleed
+    level: 1
   },
   {
     name: "Broad Sword",
@@ -262,8 +258,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "A large blade, only those truely skilled have the ability to weild it properly",
     damage: {min:25, max:40,type:"Bleeding",Duration:5},
     icon:"/",
-    level: 2,
-    status: bleed
+    level: 2
   },
   {
     name: "Stick",
@@ -272,8 +267,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "The Power of Trees Compel you(healing powers = yes).",
     damage: {min:8, max:12,type:"Healing"},
     icon:"/",
-    level: 0,
-    status: none
+    level: 0
   },
   {
     name: "Club",
@@ -282,8 +276,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "A massive, unweildly weapon that only those with the mightiest strength can hold",
     damage: {min:14, max:32,type:"Normal"},
     icon:"/",
-    level: 1,
-    status: none
+    level: 1
   },
   {
     name: "Short Sword",
@@ -292,8 +285,7 @@ const COMPLETE_MELEE_LIST = [
     desc: "A common blade, one that can be found in most shops, but its sharpness explains its commoness",
     damage: {min:10, max:24,type:"Bleeding",Duration:5},
     icon:"/",
-    level: 1,
-    status: bleed
+    level: 1
   }
 ]
 

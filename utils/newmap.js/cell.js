@@ -1,6 +1,15 @@
 /*
 class cell is a individual space on the grid. it can be open or clasedand it can
 contain iteams or mobs or the player.
+6. We will work on cell. -
+A. remove references to borders, we don't need those.
+B. set it so that if the cell is set to open, than the cell image is set to " "
+C. set the toSting in the cell to check to see if there is anything in inventory
+or occupied. If there is something in either, have the cell use the toString for
+those items the order of importance for now should just be
+occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal
+with open and unopened doors, types of items, and so on.
+D. alter addRoom to deal not change the cell image anymore.
 */
 class Cell(){
   constructor(){
@@ -31,13 +40,14 @@ if we try to add things we cant, throw an error that reads
 */
 get occupied(){return this._occupied}
 
-set image(image){this._image = image}
+set image(image){this._image = open}
 set type(type){
   type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
   this._type = type;
   this._open = ["room","hall"].includes(type);
 }
 set open(open){throw new Error("Open status should only be set by the cell type.")}
+set open (open){this._open = " "}
 set ocupied (ocupied){
   for (var i = 0; i < ; i++) {
     if (ocupied.length > 2) {

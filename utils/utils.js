@@ -300,7 +300,11 @@ input is an integer, it should also remake the map if this number is changed.
 6. We will work on cell. -
 A. remove references to borders, we don't need those.
 B. set it so that if the cell is set to open, than the cell image is set to " "
-C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+C. set the toSting in the cell to check to see if there is anything in inventory
+or occupied. If there is something in either, have the cell use the toString for
+those items the order of importance for now should just be
+occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal
+with open and unopened doors, types of items, and so on.
 D. alter addRoom to deal not change the cell image anymore.
 */
   static addRoom(){
@@ -311,6 +315,7 @@ D. alter addRoom to deal not change the cell image anymore.
      var space = this._map[keyY][keyX];
      var max = {x:this.width+1, y:this.height+1};
      var min = {x:0, y:0};
+   }
      for (var i = 0; i < border.length; i++) {
     if (border[i].x < min.x) {
 min.x = border[i].x;
@@ -325,6 +330,7 @@ min.y = border[i].y;
       max.y = border[i].y;
     }
      }
+
      let coords = [];
      for (var i = 0; i < border.length; i++) {
        var isBorder = false;
@@ -335,12 +341,17 @@ min.y = border[i].y;
        coords.push(border[i]);
      }
      }
+get cell(){return this._cell}
+get open(){return this._open}
+get border(){return this._border}
 
-
-     
+set cell(cell){this._cell = cell}
+set open(open){this._open = open}
+set border(border){this._border = border}
      space.image = " ";
      space.type = "room";
      for (var i = 0; i < this.room.length; i++) {
+     }
        for (var j = 0; j < this.room[i].length; j++) {
         let overlap = false;
       }
@@ -358,6 +369,9 @@ if (true) {
 
 this._rooms.push(room);
  }
+
+
+
  /* coordCheck(seta, setb)
  takes 2 arrays of coordinates and checks them to see if there is a coordinate in
  one that is this in the other. If so it returns a true, if not, it returns a false.
@@ -403,4 +417,3 @@ rather than y for their start. This is done so that we may access the map by
 way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
 the inner objects will be the individual cells of the map.
 */
-}
