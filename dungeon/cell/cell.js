@@ -172,10 +172,11 @@ class Cell {
   //  return this._image;
   //}
   toString(){
+    let image =
     if(this._occupied.length == 2){
     for(var i = 0; i < 2; i++){
       if(this._occupied[i] instanceof Mob){
-       this._image = this._occupied[i].icon; 
+       this._image = this._occupied[i].icon;
       }
     }
     }
