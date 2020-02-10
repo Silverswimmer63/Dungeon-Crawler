@@ -153,7 +153,20 @@ class Cell {
   }
 
   //toString and other overwrights
+  /*
+  C. set the toSting in the cell to check to see if there is anything in inventory
+  or occupied. If there is something in either, have the cell use the toString for
+  those items the order of importance for now should just be occupied (mob) > occupied
+   (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+  */
   toString(){
+  let image = this._image;
+  if (this.inevtory.length > 0 ) { image = this.inventory[0];}
+  if (this.inventory.length > 1) { }
+  if(this.occupied.length ==1) { image = this.occupied[0];}
+  if(this.occupied.length ==2) {}
+  if (this.occupied[0] instanceof Mob) { image = this.occupied[0];}
+    else
     return this._image;
   }
 
