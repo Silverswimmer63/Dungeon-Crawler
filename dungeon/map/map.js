@@ -130,7 +130,7 @@ Then we will update the map to have a setter for map, this will use the two
       if(!overlap){
         for (let i = 0; i < coords.length; i++) {
           let cell = map["y" + coords[i].y]["x" + coords[i].x];
-          cell._image = " "; // todo update type to set the image then have ranked inventy
+          cell.open;  
           cell._type = "room";
         }
         num = 200;

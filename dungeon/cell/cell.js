@@ -16,7 +16,7 @@ class Cell {
 
   get type(){return this._type}
   set type(type){
-    type = Utils.listCheck(type, ["wall", "room", "border", "hall"], "Cell.type");
+    type = Utils.listCheck(type, ["wall", "room", "hall"], "Cell.type");
     this._type = type;
     this._open = ["room", "hall"].includes(type);
   }
@@ -25,6 +25,7 @@ class Cell {
     if (this._occupied.length>0) {
       return false;
     }else {
+      this._image = " ";
       return this._open;
     }
   }
@@ -116,7 +117,7 @@ class Cell {
   @param occupied {mixed} an objec or array of objects
   @param {string} call where toss error messeage
   */
-  
+
   _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
       occupied = [occupied];
@@ -158,13 +159,25 @@ class Cell {
 
   //toString and other overwrights
   toString(){
+    if ((this._occupied.length > 0) && (this._inventory.length == 0)) {
+      this._image = this._occupied[0].icon;
+    }
+    else if ((this._occupied.length == 0) && (this._inventory.length > 0)) {
+      this._image = this._inventory[0].icon;
+    }
+    else if ((this._occupied.length > 0) && (this._inventory.length > 0)) {
+      for (var i = 0; i < 2; i++) {
+        if (this._occupied.length[0] instanceof Mob) {
+          this._image = this._occupied[i].icon;
+        }
+      }
+    }
     return this._image;
   }
-  /*6. We will work on cell. -
-  A. remove references to borders, we don't need those.
-  B. set it so that if the cell is set to open, than the cell image is set to " "
-  C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either, have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
-  D. alter addRoom to deal not change the cell image anymore.
-  4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
+  /*
+deal with the issue of how to display when there is more than 1 item in
+the inventory.
+order of display: most important - weapons, armor, potions, other -least
+order of display part 2: most important - level, value, index -least
   */
 }
