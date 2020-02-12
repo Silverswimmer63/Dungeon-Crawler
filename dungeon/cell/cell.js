@@ -172,22 +172,41 @@ class Cell {
   //  return this._image;
   //}
   toString(){
-    let image =
-    if(this._occupied.length == 2){
-    for(var i = 0; i < 2; i++){
-      if(this._occupied[i] instanceof Mob){
-       this._image = this._occupied[i].icon;
+if (this.inventory.length > 0) {this.image = this.inventory[0].icon;}
+for (var i = 0; i < this._inventory.length; i++) {
+  if (this.inventory.length > 1){
+    if(this.inventory[i];
+    this.level = this.inventory[i] instanceof() Weapons) {
+      for(var i = 0; i < this.inventory.length; i++) {
+        for (var i = 0; i < level.length; i++) {
+          if (inventory[i] instance of Weapon) {arr.push(inventory[i])}
+        }
       }
+      for(var i = 0; i < this.inventory.length; i++) {
+        for (var i = 0; i < level.length; i++) {
+          if (inventory[i] instance of Armor {arr.push(inventory[i])}
     }
+    for(var i = 0; i < this.inventory.length; i++) {
+      for (var i = 0; i < level.length; i++) {
+        if (inventory[i] instance of Potions) {arr.push(inventory[i])}
     }
-    else if(this._occupied.length == 1 && this._inventory.length >= 0){
-      this._image = this._occupied[0].icon;
+    for(var i = 0; i < this.inventory.length; i++) {
+      for (var i = 0; i < level.length; i++) {
+        if (inventory[i] instance of VenderTrash) {arr.push(inventory[i])}
     }
-    else if(this._occupied.length == 0 && this._inventory.length > 0){
-      this._image = this._inventory[0].icon;
-    }
-    return this._image;
   }
+}
+if (this.occupied.lenght == 1) {this.image = this.occupied[0].icon}
+if (this.occupied.lenght == 2) {
+if (this.occupied[0] instanceof Mob) {
+this._image = this.occupied[0].icon;
+}else {
+this._image = this.occupied[1].icon;
+}
+}
+return **+image;
+}
+
   /*
 6. We will work on cell. -
 C. set the toSting in the cell to check to see if there is anything in inventory or occupied.
