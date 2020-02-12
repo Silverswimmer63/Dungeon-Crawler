@@ -158,26 +158,58 @@ class Cell {
   }
 
   //toString and other overwrights
+  //let arr = [inventory[i]];
   toString(){
-    if ((this._occupied.length > 0) && (this._inventory.length == 0)) {
-      this._image = this._occupied[0].icon;
-    }
-    else if ((this._occupied.length == 0) && (this._inventory.length > 0)) {
-      this._image = this._inventory[0].icon;
-    }
-    else if ((this._occupied.length > 0) && (this._inventory.length > 0)) {
-      for (var i = 0; i < 2; i++) {
-        if (this._occupied.length[0] instanceof Mob) {
-          this._image = this._occupied[i].icon;
+    let image = this._image;
+    var arr = [];
+    if (this.inventory.length > 0) {this.image = this.inventory[0].icon;}
+    if (this.inventory.length > 1) {
+      for (var i = 0; i < inventory.length; i++) {
+
+      for (var j = 0; i < .length; j++) {
+        for (var k = 0; k < .length; k++) {
+          if (inventory[i] instanceof Weapon) {
+            arr.push(inventory[i]);
+          }
+        }
+      }
+      for (var j = 0; j < .length; j++) {
+        for (var k = 0; k < .length; k++) {
+          if (inventory[i] instanceof Armor) {
+            arr.push(inventory[i]);
+          }
+        }
+      }
+      for (var j = 0; j < .length; j++) {
+        for (var k = 0; k < .length; k++) {
+          if (inventory[i] instanceof Potion) {
+            arr.push(inventory[i]);
+          }
+        }
+      }
+      for (var j = 0; j < .length; j++) {
+        for (var k = 0; k < .length; k++) {
+          if (inventory[i] instanceof VendorTrash) {
+            arr.push(inventory[i]);
+          }
         }
       }
     }
-    return this._image;
+        if (this.occupied.length == 1) {image = this.occupied[0].icon}
+        if (this.occupied.length == 2) {
+          if (this.occupied[0] instanceof Mob) {
+          image = this.occupied[0].icon;
+          }else {
+            image = this.occupied[1].icon;
+          }
+        }
+      }
+    return " " + image;
   }
-  /*
+/*
 deal with the issue of how to display when there is more than 1 item in
 the inventory.
 order of display: most important - weapons, armor, potions, other -least
 order of display part 2: most important - level, value, index -least
-  */
+*/
 }
