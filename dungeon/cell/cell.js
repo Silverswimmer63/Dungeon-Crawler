@@ -178,18 +178,22 @@ doors, types of items, and so on.*/
             item.push(this.inventory[j]);
             for (var k = 0; k < item.length; k++) {
             let best = item[0];
-              if (best.level < item[k].level) {
+              if (best.value < item[k].value) {
                 best = item[k];
                 }
-                image = best.image;
+                image = best.icon;
               }
-              for (var l = 0; l < ; l++) {
-
+              for (var l = 0; l < item.length; l++) {
+              let best = item[0];
+                if (best.level < item[l].level) {
+                  best = item[l];
+                  }
+                  image = best.icon;
+                }
+              }
             }
           }
         }
-      }
-    }
     if (this.occupied.length == 1) {image = this.occupied[0].icon;}
     if (this.occupied.length == 2) {
       if (this.occupied[0] instanceof Mob) {
