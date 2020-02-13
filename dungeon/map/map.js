@@ -96,7 +96,6 @@ class Map{
   border room check
   place none border room no border but after border room check
   */
-
   addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
@@ -106,18 +105,10 @@ class Map{
       let smalls = {x:this.width+1,y:this.height+1};
       let biggy = {x:0,y:0};
       for (var i = 0; i < border.length; i++) {
-        if (border[i].x < smalls.x) {
-          smalls.x = border[i].x;
-        }
-        if (border[i].y < smalls.y) {
-          smalls.y = border[i].y;
-        }
-        if (border[i].x > biggy.x) {
-          biggy.x = border[i].x;
-        }
-        if (border[i].y > biggy.y) {
-          biggy.y = border[i].y;
-        }
+        if (border[i].x < smalls.x) { smalls.x = border[i].x; }
+        if (border[i].y < smalls.y) { smalls.y = border[i].y; }
+        if (border[i].x > biggy.x) { biggy.x = border[i].x; }
+        if (border[i].y > biggy.y) { biggy.y = border[i].y; }
       }
       let coords = [];
       for (var i = 0; i < border.length; i++) {
@@ -125,35 +116,23 @@ class Map{
         if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
           isBorder = true;
         }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
+        if (!isBorder) { coords.push(border[i]); }
       }
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
-    if(!overlap){
-      for (let i = 0; i < coords.length; i++) {
-        let cell = map["y" + coords[i].y]["x" + coords[i].x];
-        cell.open;
-        cell.type = "room";
+      if(!overlap){
+        for (let i = 0; i < coords.length; i++) {
+          let cell = map["y" + coords[i].y]["x" + coords[i].x];
+          cell.open;
+          cell.type = "room";
+        }
+        num = 200;
+        this._rooms.push(coords);
       }
-      num = 200;
-      this._rooms.push(coords);
     }
   }
-}
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
