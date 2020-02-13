@@ -97,40 +97,15 @@ Then we will update the map to have a setter for map, this will use the two
       num ++;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       let overlap = false;
-      var min = {x: this.width +1, y: this.height +1};
-      var max = {x: 0, y:0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < min.x) {
-          min.x = border[i].x;
-        }
-        if (border[i].y < min.y) {
-          min.y = border[i].y;
-        }
-        if (border[i].x > max.x) {
-          max.x = border[i].x;
-        }
-        if (border[i].y > max.y) {
-          max.y = border[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
-      }
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
       if(!overlap){
+        let coords = [];
         for (let i = 0; i < coords.length; i++) {
           let cell = map["y" + coords[i].y]["x" + coords[i].x];
-          cell.open;  
+          cell.open;
           cell._type = "room";
         }
         num = 200;
@@ -138,6 +113,7 @@ Then we will update the map to have a setter for map, this will use the two
       }
     }
   }
+
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is

@@ -143,4 +143,47 @@ class Utils {
       return false;
     }
 
+    static removeBorder(room, width, height){
+      let border = room;
+      var min = {x: width +1, y: height +1};
+      var max = {x: 0, y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < min.x) {
+          min.x = border[i].x;
+        }
+        if (border[i].y < min.y) {
+          min.y = border[i].y;
+        }
+        if (border[i].x > max.x) {
+          max.x = border[i].x;
+        }
+        if (border[i].y > max.y) {
+          max.y = border[i].y;
+        }
+      }
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        var isBorder = false;
+        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
+          coords.push(border[i]);
+        }
+      }
+      return coords;
+      }
+      /* 3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
+
+      Part 3: cordLine :
+      If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+      START AT THE SMALLER ONE
+      "start" and "end" but you need to min and max the values and go from min to max.
+      -Which one we are working on!
+      start at the small to bigger.
+      Let's talk about that for
+      -for(var i = smaller + 1; i < larger; i++){}
+      */
+      
+
   }
