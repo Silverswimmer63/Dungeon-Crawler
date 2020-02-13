@@ -189,9 +189,18 @@ one that is this in the other. If so it returns a true, if not, it returns a fal
 2. update addRoom to use this function where it is currently doing that.
 
 3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
+
+If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+START AT THE SMALLER ONE
+"start" and "end" but you need to min and max the values and go from min to max.
+-Which one we are working on!
+start at the small to bigger.
+Let's talk about that for
+-for(var i = smaller + 1; i < larger; i++){}
+
 */
 
-  static removeBorder(room, width, height){
+  static removeBorder(border, width, height){
     let smalls = {x:width+1,y:height+1};
     let biggy = {x:0,y:0};
     for (var i = 0; i < border.length; i++) {
@@ -221,5 +230,11 @@ one that is this in the other. If so it returns a true, if not, it returns a fal
     return coords;
   }
 
-  
+  static coordLine(start, end){
+    let smaller = Math.min();
+    let bigger = Math.max();
+    for(let i = smaller+1; i < bigger.length; i++){
+
+    }
+  }
 }
