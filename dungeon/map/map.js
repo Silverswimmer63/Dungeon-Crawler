@@ -14,8 +14,8 @@ class Map{
     this._rooms = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms = 30;
-    this._map = this._generateMap();
+    this._numRooms = 25;
+
   }
 
   get numRooms(){ return this._numRooms; }
@@ -108,7 +108,11 @@ Then we will update the map to have a setter for map, this will use the two
   place none border room no border but after border room check
   */
 
+
+
+
   addRoom(map=this.map){
+
     let num = 0;
     while (num < 200) {
       num ++;
@@ -185,10 +189,18 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
+
+      for (var i = 0; i < this._numRooms; i++) {
+        this.addRoom(map);// addRoom expects this._map tpo exists.
+
+    }
+    return map;// this is where we make this._map
+
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
     return map;
+
   }
 
   /* _drawBorder()

@@ -182,4 +182,44 @@ one that is this in the other. If so it returns a true, if not, it returns a fal
   return false;
 }
 
+
+/*
+1. make a function in utils called removeBorder(room) that does what is being done right now in addRoom to trim the borders.
+
+2. update addRoom to use this function where it is currently doing that.
+
+3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
+*/
+
+  static removeBorder(room, width, height){
+    let smalls = {x:width+1,y:height+1};
+    let biggy = {x:0,y:0};
+    for (var i = 0; i < border.length; i++) {
+      if (border[i].x < smalls.x) {
+        smalls.x = border[i].x;
+      }
+      if (border[i].y < smalls.y) {
+        smalls.y = border[i].y;
+      }
+      if (border[i].x > biggy.x) {
+        biggy.x = border[i].x;
+      }
+      if (border[i].y > biggy.y) {
+        biggy.y = border[i].y;
+      }
+    }
+    let coords = [];
+    for (var i = 0; i < border.length; i++) {
+      var isBorder = false;
+      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+        isBorder = true;
+      }
+      if (!isBorder) {
+        coords.push(border[i]);
+      }
+    }
+    return coords;
+  }
+
+  
 }
