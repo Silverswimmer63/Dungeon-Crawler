@@ -1,4 +1,5 @@
-/*class cell is a individual space on the grid.
+/*
+class Cell is a individual space on the grid.
 It can be open or closed and it can contain items
 or mobs or the player.
 */
@@ -12,15 +13,7 @@ class Cell {
   }
   //getters and setters
   get image(){return this._image}
-  set image(image){this._image = this.image}
-
   get type(){return this._type}
-  set type(type){
-    type = Utils.listCheck(type, ["wall", "room", "hall"], "Cell.type");
-    this._type = type;
-    this._open = ["room", "hall"].includes(type);
-  }
-
   get open(){
     if (this._occupied.length>0) {
       return false;
@@ -29,9 +22,16 @@ class Cell {
       return this._open;
     }
   }
-  set open(open){ throw new Error("Open status should only be set by the cell type"); }
-
   get inventory(){return this._inventory}
+  get occupied(){return this._occupied}
+
+  set image(image){this._image = image}
+  set type(type){
+    type = Utils.listCheck(type,["wall","border","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
+  }
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
   set inventory(inventory){
     if (inventory.length == 0) {
       this._inventory = inventory;
@@ -41,8 +41,6 @@ class Cell {
       throw new Error("Cell.inventory can not be used when the inventory is not empty. Please use Cell.add to add to inventory.");
     }
   }
-
-  get occupied(){return this._occupied}
   set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
 
   //external
@@ -56,7 +54,6 @@ class Cell {
   */
   add(thing){
     var bad = true;
-    //determine if it is a object or Array
     if (thing instanceof Item) {
       thing = [thing];
       bad = false;
@@ -93,22 +90,22 @@ class Cell {
     if(index == "mob"){
       var num = undefined;
       for (var i = 0; i < this.occupied.length; i++) {
-          if (this.occupied[i] instanceof Mob) {
-            num = i;
+        if (this.occupied[i] instanceof Mob) {
+          num = i;
         }
       }
       if (num == undefined) {
-        throw new Error("Cell.remove attempted to remove a Mob that did not exist")
+        throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
       }
-      return this.occupied.splice(num, 1)
+      return this.occupied.splice(num,1);
     }
     if (Number.isInteger(index)) {
-      if ((this.inventory.length == 0) || (index >= this.inventory.length)) {
-        throw new Error("Cell.remove attempted to remove an Item that did not exist")
+      if ((this.inventory.length == 0)||(index >= this.inventory.length)) {
+        throw new Error("Cell.remove attempted to remove a Item that does not exist.")
       }
-      return this.inventory.splice(index, 1);
+      return this.inventory.splice(index,1);
     }
-    throw new Error("Cell.remove expected a number or mob and received " + index + ".")
+    throw new Error("Cell.remove expected a number or mob and received " + index +".")
   }
 
   //internal methods
@@ -172,23 +169,84 @@ class Cell {
     return best;
   }
 
+  /*
+  C. set the toSting in the cell to check to see if there is anything in inventory
+  or occupied. If there is something in either, have the cell use the toString for
+  those items the order of importance for now should just be occupied (mob) > occupied
+   (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+
+  deal with the issue of how to display when there is more than 1 item in
+  the inventory.
+  order of display: most important - weapons, armor, potions, other -least
+  order of display part 2: most important - level, value, index -least
+  */
+  _stringHandler(className){
+  let hits = []; // all the items in the inventory that are of the given class.
+  for (let i = 0; i < this.inventory.length; i++) { // check for those things
+  if(this.inventory[i] instanceof className){ hits.push(this.inventory[i]); }
+  }
+  if(hits.length == 0){ return undefined; } // base case
+
+  let best = hits[0]; // base case - index 0
+  for (let i = 0; i < hits.length; i++) { // value
+  if(hits[i].value > best.value){ best = hits[i]; }
+  }
+  for (let i = 0; i < hits.length; i++) { // level
+  if(hits[i].level > best.level){ best = hits[i]; }
+  }
+  return best;
+  }
+
   //toString and other overwrites
   toString(){
-    let image = this._image; // default image
-    if (this.inventory.length > 0) { image = this.inventory[0]; }
-    if (this.inventory.length > 1){
-    let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
-    for (let i = 0; i < order.length; i++) {
-      let testCase = this._stringHandler(order[i]);
-      if (testCase != undefined) { image = testCase; }
-    }
-    } //ignore this for showing this step
-    if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
-    if (this.occupied.length == 2) { // find the mob
-      if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
-      else { image = this.occupied[1]; }
-    }
-    return "" + image;
+  let image = this._image; // default image
+  if (this.inventory.length > 0) { image = this.inventory[0]; }
+  if (this.inventory.length > 1){
+  let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+  for (let i = 0; i < order.length; i++) {
+  let testCase = this._stringHandler(order[i]);
+  if (testCase != undefined) { image = testCase; }
+  }
+  } //ignore this for showing this step
+  if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
+  if (this.occupied.length == 2) { // find the mob
+  if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+  else { image = this.occupied[1]; }
+  }
+  return "" + image;
   }
 
 }
+
+/*
+for all of the things{
+ if(blah){
+  for(jwbd) level
+  for(ndkas) value
+}
+if(blah){
+  for(jwbd) level
+  for(ndkas) value
+}
+ if(blah){
+  for(jwbd) level
+  for(ndkas) value
+}
+  if(blah){
+    for(jwbd) level
+    for(ndkas) value
+  }
+}
+
+
+for inventory{
+  for class in [Item, Potion, Armor, Weapon]{
+  //store [i] track the i if it is higher than for what is current, reset
+    for(jwbd) level
+    for(ndkas) value
+}
+
+}
+
+
+*/

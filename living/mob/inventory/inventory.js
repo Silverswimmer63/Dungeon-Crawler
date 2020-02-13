@@ -56,4 +56,7 @@ the _inventory as multiple things. The _inventory is an array as well. The inven
   drop(index){
     return this._inventory.splice(index, 1);
   }
+
+
+
 }

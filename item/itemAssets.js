@@ -624,6 +624,7 @@ const COMPLETE_POTION_LIST = [
     icon:"P",
   },
   */
+
   {
     name:"Freeze potion",
     type:Potion,
@@ -655,5 +656,30 @@ const COMPLETE_POTION_LIST = [
   */
 
 ]
+
+/*
+all assets have the included values of name, type, value, desc, icon, and value
+  ranged assets have the "range" asset added to them
+  melee, potion and range assets have the "damage" value added to them
+  all armor assets have the "damageresist" vlaue added to them
+
+Potions have different types of effects, such as heal, fire, frozen, Electricity,
+and all of these differnet types do specific things to the enemies, obviously.
+
+The "damageresist" value added to the armor assets(head, body, leg) will reduce damage
+done to the character by a certain percentage.
+
+The "damage" value adds a specific value that each of the melee, ranged, and Potions
+do to the enemies. The damage is scaled for each item by a min and max damage value,
+which then a random number between the two is returned.
+
+ All items have a value to them for an in-game currency, that the player can sell
+ to merchants and buy other items with.
+
+ All item assets have an icon along with them, there is only one icon per section.
+  ex. all melee assets have the same icon "/"
+this helps to identify the certain items from one another because there is no actual
+models for the items
+*/
 var allItems = [];
 allItems = allItems.concat(COMPLETE_HEAD_ARMOR_LIST, COMPLETE_ARMOR_BODY_LIST, COMPLETE_ARMOR_LIST, COMPLETE_MELEE_LIST, COMPLETE_RANGED_LIST, COMPLETE_LOOT_LIST, COMPLETE_POTION_LIST)

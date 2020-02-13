@@ -1,4 +1,3 @@
-/*This is not actually part of the monster thing*/
 /*make an armor class in a new file called armor.js that extends item.
 Have it add 2 new properties, _damageSoak and _location and getters and setters for those properties.
 */

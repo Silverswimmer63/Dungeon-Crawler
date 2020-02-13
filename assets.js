@@ -1,3 +1,4 @@
+
 // This is the basic set of assets for the game
 
 /*Example
@@ -34,3 +35,6 @@ class Ranged {
   }
 }
 */
+const COMPLETE_LOOT_LIST = [
+  
+]

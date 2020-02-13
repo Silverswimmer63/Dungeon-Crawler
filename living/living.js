@@ -6,7 +6,7 @@ Class Living
 @param desc: description of the enemy/mob
 @param icon: is the icon of the enemy*/
 class Living {
-  constructor(name, type, hp, desc, icon){
+  constructor(name, type, hp, desc, icon, status, level){
     this._name = name;
     this._type = type;
     this._hp = hp;
