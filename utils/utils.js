@@ -207,10 +207,16 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   start at the small to bigger.
   Let's talk about that for
   -for(var i = smaller + 1; i < larger; i++){}
-  */
+*/
   static cordLine(start, end){
     var retArr = [];
-    
+    var smallX = Math.min(start.x, end.x);
+    var largeX = Math.max(start.x, end.x);
+    var smallY = Math.min(start.y, end.y);
+    var largeY = Math.max(start.y, end.y);
+    for (var i = 0; i < array.length; i++) {
+      array[i]
+    }
   }
 
 }
