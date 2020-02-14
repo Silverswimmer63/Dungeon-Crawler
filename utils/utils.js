@@ -183,13 +183,16 @@ class Utils {
       start at the small to bigger.
       Let's talk about that for
       -for(var i = smaller + 1; i < larger; i++){}
+      start and end are objects: start.x
       */
       static cordLine(start, end){
-        var smaller = Math.min(start, end);
-        var larger = Math.max();
-        var arr = [];
+        var smallX = Math.min(start.x, end.x);
+        var smallY = Math.min(start.y, end.y);
+        var largeX = Math.max(start.x, end.x);
+        var largeY = Math.max(start.y, end.y);
+        var obj = {};
         for (var i = smaller ++; i < larger; i++) {
-          arr = end["x" + larger[i].x]["y" + larger[i].y];
+          obj = {}
         }
       }
 
