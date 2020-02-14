@@ -1,9 +1,8 @@
-
 /*
 class Map
- this class is used to create and generate displays of 2 demensional maps.
- defult map is filled with unreachable spaces.
- @param width {int}: width of the map(max x cord)
+this class is used to create and generate displays of 2 demensional maps.
+defult map is filled with unreachable spaces.
+@param width {int}: width of the map(max x cord)
  @param height {int}: height of the map(max y cord)
   */
 class Map{
@@ -58,8 +57,8 @@ class Map{
   }
 /*
 Then we will update the map to have a setter for map, this will use the two
- functions above to make sure that the setter is given an object with the keys
-  width and height, and use it to make a new map. After checking the values as well
+functions above to make sure that the setter is given an object with the keys
+width and height, and use it to make a new map. After checking the values as well
   */
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
@@ -129,16 +128,6 @@ Then we will update the map to have a setter for map, this will use the two
       }
     }
   }
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
