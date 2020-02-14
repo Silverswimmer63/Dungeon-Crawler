@@ -10,7 +10,6 @@ class Cell {
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
   }
-}
 set open(open){ throw new Error("Open status should only be set by the cell type"); }
 
 get inventory(){return this._inventory}
@@ -26,31 +25,10 @@ set inventory(inventory){
 
   set image(image){this._image = image}
   set type(type){
-    type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
+    type = Utils.listCheck(type,["wall","border", "room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
-    if (this._open == true) {
-      this.image = " ";
-    }
-  }
-  if (thing instanceof Living) {
-    this._ocHandler(thing,"Cell.add")
-    bad = false;
-  }
-  if (Array.isArray(thing)) {
-    for (var i = 0; i < thing.length; i++) {
-      if (!(thing[i] instanceof Item)) {
-        // if it is a array check to see if all are living or all are objects
-        // if anything isnt a item pitch a fit(throw a error)
-        throw new Error("Cell.add attempted to add nonItem(s) and item(s) at the same time")
-      }
-    }
-    bad = false;
-    this._inventory = this._inventory.concat(thing);
-  }
-  if (bad == true) {
-    throw new Error("Cell.add recieved illegal item")
-  }
+
   // track which one it is
   // send the correct function.
 }
@@ -131,114 +109,22 @@ _ocHandler(occupied, call="Cell._ocHandler"){
 
 //toString and other overwrights
 //let arr = [inventory[i]];
-
-toString(){
-  let image = this._image;
-  var arr = [];
-  if (this.inventory.length > 0) {this.image = this.inventory[0].icon;}
-  if (this.inventory.length > 1) {
-    for (var i = 0; i < inventory.length; i++) {
-    for (var j = 0; i < .length; j++) {
-      for (var k = 0; k < .length; k++) {
-        if (inventory[i] instanceof Weapon) {
-          arr.push(inventory[i]);
-        }
-      }
-    }
-    for (var j = 0; j < .length; j++) {
-      for (var k = 0; k < .length; k++) {
-        if (inventory[i] instanceof Armor) {
-          arr.push(inventory[i]);
-        }
-      }
-    }
-    for (var j = 0; j < .length; j++) {
-      for (var k = 0; k < .length; k++) {
-        if (inventory[i] instanceof Potion) {
-          arr.push(inventory[i]);
-        }
-      }
-    }
-    for (var j = 0; j < .length; j++) {
-      for (var k = 0; k < .length; k++) {
-        if (inventory[i] instanceof VendorTrash) {
-          arr.push(inventory[i]);
-        }
-      }
-    }
-  }
-      if (this.occupied.length == 1) {image = this.occupied[0].icon}
-      if (this.occupied.length == 2) {
-        if (this.occupied[0] instanceof Mob) {
-        image = this.occupied[0].icon;
-        }else {
-          image = this.occupied[1].icon;
-        }
-      }
-    }
-  }
-/*
-set the toSting in the cell to check to see if there is anything in inventory or
-occupied. If there is something in either, have the cell use the toString for
-those items. the order of importance for now should just be occupied (mob) > occupied
-(nonMob) > inventory (we will change that later to deal with open and unopened
-doors, types of items, and so on.*/
-  //toString and other overwrights
   toString(){
-    let image = this._image;
-    if (this.inventory.length > 0) {image = this.inventory[0].icon;}
-    if (this.inventory.length > 1) {
-      let check = [Item, Potion, Armor, Weapon];
-      let item = [];
-      let hit = 0;
-      for (var i = 0; i < check.length; i++) {
-        for (var j = 0; j < this.inventory.length; j++) {
-          if (this.inventory[j] instanceof check[i]) {
-            if (i > hit) {
-              hit = i;
-              item = [];
-            }
-            item.push(this.inventory[j]);
-            for (var k = 0; k < item.length; k++) {
-            let best = item[0];
-              if (best.value < item[k].value) {
-                best = item[k];
-                }
-                image = best.icon;
-              }
-              for (var l = 0; l < item.length; l++) {
-              let best = item[0];
-                if (best.level < item[l].level) {
-                  best = item[l];
-                  }
-                  image = best.icon;
-                }
-              }
-            }
-          }
-        }
-    if (this.occupied.length == 1) {image = this.occupied[0].icon;}
-    if (this.occupied.length == 2) {
-      if (this.occupied[0] instanceof Mob) {
-        image = this.occupied[0].icon;
-      }else {
-        image = this.occupied[1].icon;
+    let image = this._image; // default image
+    if (this.inventory.length > 0) { image = this.inventory[0]; }
+    if (this.inventory.length > 1){
+      let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+      for (let i = 0; i < order.length; i++) {
+        let testCase = this._stringHandler(order[i]);
+        if (testCase != undefined) { image = testCase; }
       }
+    } //ignore this for showing this step
+    if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
+    if (this.occupied.length == 2) { // find the mob
+    if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+    else { image = this.occupied[1]; }
     }
-    return "" + image;
+  return "" + image;
   }
 
 }
-
-
-for inventory{
-  for class in [Item, Potion, Armor, Weapon]{
-  //store [i] track the i if it is higher than for what is current, reset
-    for(jwbd) level
-    for(ndkas) value
-}
-
-}
-
-
-*/

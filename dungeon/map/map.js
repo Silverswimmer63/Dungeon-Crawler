@@ -13,7 +13,7 @@ class Map{
     this._rooms = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms = 30;
+    this._numRooms = 25;
     this._map = this._generateMap();
   }
 
@@ -55,11 +55,6 @@ class Map{
     }
     return retMap += this._drawBorder();
   }
-/*
-Then we will update the map to have a setter for map, this will use the two
-functions above to make sure that the setter is given an object with the keys
-width and height, and use it to make a new map. After checking the values as well
-  */
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -87,62 +82,34 @@ width and height, and use it to make a new map. After checking the values as wel
     }
   }
 
-  get roomMin(){ return this._roomMin; }
-  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
-
-  get roomMax(){ return this._roomMax; }
-  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
-
-  get numRooms(){ return this._numRooms; }
-  set numRooms(numRooms){
-    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
-  }
-
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
-  addRoom(map =this.map){
-    var num = 0;
+
+  addRoom(map=this.map){
+    let num = 0;
     while (num < 200) {
       num ++;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let overlap = false;
       let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
       if(!overlap){
+        let coords = [];
         for (let i = 0; i < coords.length; i++) {
           let cell = map["y" + coords[i].y]["x" + coords[i].x];
-          cell.open;
+          cell.image = " ";
           cell._type = "room";
         }
         num = 200;
         this._rooms.push(coords);
       }
-      num = 200;
-      this._rooms.push(coords);
-      }
     }
   }
-
-/*
-@param {start}: int
-@param {end}: int
-this takes the distnace between two numbers and returns it.
-*/
-
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
@@ -167,6 +134,10 @@ the inner objects will be the individual cells of the map.
       this.addRoom(map);//addRoom expects this._map to exist
     }
     return map; //this is where we make this._map
+    for (var i = 0; i < this.numRooms; i++) {
+      this.addRoom(map);
+    }
+    return map;
   }
 
   /* _drawBorder()

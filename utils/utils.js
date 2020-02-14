@@ -145,8 +145,8 @@ class Utils {
 
     static removeBorder(room, width, height){
       let border = room;
-      var min = {x: width + 1, y: height + 1};
-      var max = {x: 0, y: 0};
+      var min = {x: width +1, y: height +1};
+      var max = {x: 0, y:0};
       for (var i = 0; i < border.length; i++) {
         if (border[i].x < min.x) {
           min.x = border[i].x;
@@ -197,58 +197,3 @@ class Utils {
       }
 
   }
-/*
-  1. make a function in utils called removeBorder(room) that does what is being
-  done right now in addRoom to trim the borders.
-  2. update addRoom to use this function where it is currently doing that.
-*/
-  static removeBorder(room, width, height){
-    let border = room; // make a set of coordinates based on the map constraints
-    let smalls = {x:width+1,y:height+1};
-    let biggy = {x:0,y:0};
-    for (var i = 0; i < border.length; i++) {
-      if (border[i].x < smalls.x) {smalls.x = border[i].x;}
-      if (border[i].y < smalls.y) {smalls.y = border[i].y;}
-      if (border[i].x > biggy.x) {biggy.x = border[i].x;}
-      if (border[i].y > biggy.y) {biggy.y = border[i].y;}
-    }
-    let coords = [];
-    for (var i = 0; i < border.length; i++) {
-      var isBorder = false;
-      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-        isBorder = true;
-      }
-      if (!isBorder) {coords.push(border[i]);}
-  }
-  return coords;
-}
-
-static dis(start, end){
-  let num = undefined;
-  let max = Math.max(start,end);
-  if (start != end) {
-    if (max < start) {num = start - max;}
-    if (max > start) {num = max - start;}
-    if (max < end) {num = end - max;}
-    if (max > end){num = max - end;}
-    return num;
-  }else {
-    return start - end;
-  }
-}
-
-  static cordline(start, end){
-    let xdis = this.dis(start.x, end.x);
-    let ydis = this.dis(start.y, end.y);
-    let obj = {};
-    if (ydis != 0) {
-      obj.x = xdis;
-      obj.y = ydis-2;
-    }
-    if (xdis != 0) {
-      obj.x = xdis-2;
-      obj.y = ydis;
-    }
-  }
-
-}
