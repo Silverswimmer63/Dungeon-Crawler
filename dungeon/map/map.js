@@ -57,11 +57,6 @@ class Map{
     }
     return retMap += this._drawBorder();
   }
-/*
-Then we will update the map to have a setter for map, this will use the two
- functions above to make sure that the setter is given an object with the keys
-  width and height, and use it to make a new map. After checking the values as well
-  */
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -95,8 +90,7 @@ Then we will update the map to have a setter for map, this will use the two
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
-  get numRooms(){ return this._numRooms;}
-  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -113,12 +107,11 @@ Then we will update the map to have a setter for map, this will use the two
 
 
   addRoom(map=this.map){
-
     let num = 0;
     while (num < 200) {
       num ++;
-      let overlap = false;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let overlap = false;
       let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
@@ -165,13 +158,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-
       for (var i = 0; i < this._numRooms; i++) {
         this.addRoom(map);// addRoom expects this._map tpo exists.
-
     }
     return map;// this is where we make this._map
-
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }

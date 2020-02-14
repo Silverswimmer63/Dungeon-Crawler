@@ -194,34 +194,32 @@ If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
 START AT THE SMALLER ONE
 "start" and "end" but you need to min and max the values and go from min to max.
 -Which one we are working on!
-start at the small to bigger.
+start at the min to bigger.
 Let's talk about that for
--for(var i = smaller + 1; i < larger; i++){}
+-for(var i = miner + 1; i < larger; i++){}
 
 */
 
-  static removeBorder(border, width, height){
-    let smalls = {x:width+1,y:height+1};
-    let biggy = {x:0,y:0};
+  static removeBorder(room, width, height){
+    let border = room;
+    let max = {x:0,y:0};
+    let min = {x:width+1,y:height+1};
     for (var i = 0; i < border.length; i++) {
-      if (border[i].x < smalls.x) {
-        smalls.x = border[i].x;
-      }
-      if (border[i].y < smalls.y) {
-        smalls.y = border[i].y;
-      }
-      if (border[i].x > biggy.x) {
-        biggy.x = border[i].x;
-      }
-      if (border[i].y > biggy.y) {
-        biggy.y = border[i].y;
-      }
+      if (border[i].x < min.x) { min.x = border[i].x; }
+      if (border[i].y < min.y) { min.y = border[i].y; }
+      if (border[i].x > max.x) { max.x = border[i].x; }
+      if (border[i].y > max.y) { max.y = border[i].y; }
     }
+  
+
     let coords = [];
     for (var i = 0; i < border.length; i++) {
+
       var isBorder = false;
-      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+      if ((border[i].x == max.x)||(border[i].y == max.y)
+        ||(border[i].x == min.x)||(border[i].y == min.y)) {
         isBorder = true;
+
       }
       if (!isBorder) {
         coords.push(border[i]);
@@ -230,10 +228,14 @@ Let's talk about that for
     return coords;
   }
 
+
   static coordLine(start, end){
-    let smaller = Math.min();
-    let bigger = Math.max();
-    for(let i = smaller+1; i < bigger.length; i++){
+    let minX = Math.min(start.x, end.x);
+    let minY = Math.min(start.y, end.y);
+    let largeX = Math.max(start.x, end.x);
+    let largeY = Math.max(start.y, end.y);
+    let obj = {};
+    for (var i = min; i < largeS.length; i++) {
 
     }
   }

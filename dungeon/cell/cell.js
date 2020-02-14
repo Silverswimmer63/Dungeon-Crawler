@@ -183,18 +183,18 @@ class Cell {
   //toString and other overwrites
   toString(){
   let image = this._image; // default image
-  if (this.inventory.length > 0) { image = this.inventory[0]; }
-  if (this.inventory.length > 1){
-  let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
-  for (let i = 0; i < order.length; i++) {
-  let testCase = this._stringHandler(order[i]);
-  if (testCase != undefined) { image = testCase; }
-  }
+    if (this.inventory.length > 0) { image = this.inventory[0]; }
+    if (this.inventory.length > 1){
+      let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+      for (let i = 0; i < order.length; i++) {
+        let testCase = this._stringHandler(order[i]);
+        if (testCase != undefined) { image = testCase; }
+      }
   } //ignore this for showing this step
   if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
-  if (this.occupied.length == 2) { // find the mob
-  if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
-  else { image = this.occupied[1]; }
+    if (this.occupied.length == 2) { // find the mob
+      if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+      else { image = this.occupied[1]; }
   }
   return "" + image;
   }
