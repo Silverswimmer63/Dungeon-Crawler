@@ -3,30 +3,12 @@ It can be open or closed and it can contain items
 or mobs or the player.
 */
 class Cell {
-constructor(){
-  this._image = "#";
-  this._type = "wall"//wall, hall, rooms, border: a wall but a tag
-  this._open = false;// if the cell allows movement
-  this._inventory = [];//items in the cell
-  this._occupied = [];//for livings in the cell
-}
-//getters and setters
-get image(){return this._image}
-set image(image){this._image = this.image}
-
-get type(){return this._type}
-set type(type){
-  type = Utils.listCheck(type, ["wall", "room", "hall"], "Cell.type");
-  this._type = type;
-  this._open = ["room", "hall"].includes(type);
-}
-
-get open(){
-  if (this._occupied.length>0) {
-    return false;
-  }else {
-    this._image = " ";
-    return this._open;
+  constructor(){
+    this._image = "#";
+    this._type = "wall"//wall, hall, rooms, a wall but a tag
+    this._open = false;// if the cell allows movement
+    this._inventory = [];//items in the cell
+    this._occupied = [];//for livings in the cell
   }
 }
 set open(open){ throw new Error("Open status should only be set by the cell type"); }
@@ -42,24 +24,14 @@ set inventory(inventory){
   }
 }
 
-get occupied(){return this._occupied}
-set occupied(occupied){this._ocHandler(occupied, "Cell.occupied")}
-
-//external
-/*add()thing
-add will be used to udate the cell when we do update
-cycles for the game.
-this will be used to take care of monsters moving in and out of the cell
-and loot drops or discards being added to the cell. will make sure
-that the param thing is one of the 3 appropriate classes.
-@param thing {mixed}: the thing or things to be added to cell
-*/
-add(thing){
-  var bad = true;
-  //determine if it is a object or Array
-  if (thing instanceof Item) {
-    thing = [thing];
-    bad = false;
+  set image(image){this._image = image}
+  set type(type){
+    type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
+    if (this._open == true) {
+      this.image = " ";
+    }
   }
   if (thing instanceof Living) {
     this._ocHandler(thing,"Cell.add")
@@ -204,35 +176,58 @@ toString(){
         }
       }
     }
-  return " " + image;
-}
-
-/*
-deal with the issue of how to display when there is more than 1 item in
-the inventory.
-order of display: most important - weapons, armor, potions, other -least
-order of display part 2: most important - level, value, index -least
-*/
-}
-
-/*
-for all of the things{
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-  if(blah){
-    for(jwbd) level
-    for(ndkas) value
   }
+/*
+set the toSting in the cell to check to see if there is anything in inventory or
+occupied. If there is something in either, have the cell use the toString for
+those items. the order of importance for now should just be occupied (mob) > occupied
+(nonMob) > inventory (we will change that later to deal with open and unopened
+doors, types of items, and so on.*/
+  //toString and other overwrights
+  toString(){
+    let image = this._image;
+    if (this.inventory.length > 0) {image = this.inventory[0].icon;}
+    if (this.inventory.length > 1) {
+      let check = [Item, Potion, Armor, Weapon];
+      let item = [];
+      let hit = 0;
+      for (var i = 0; i < check.length; i++) {
+        for (var j = 0; j < this.inventory.length; j++) {
+          if (this.inventory[j] instanceof check[i]) {
+            if (i > hit) {
+              hit = i;
+              item = [];
+            }
+            item.push(this.inventory[j]);
+            for (var k = 0; k < item.length; k++) {
+            let best = item[0];
+              if (best.value < item[k].value) {
+                best = item[k];
+                }
+                image = best.icon;
+              }
+              for (var l = 0; l < item.length; l++) {
+              let best = item[0];
+                if (best.level < item[l].level) {
+                  best = item[l];
+                  }
+                  image = best.icon;
+                }
+              }
+            }
+          }
+        }
+    if (this.occupied.length == 1) {image = this.occupied[0].icon;}
+    if (this.occupied.length == 2) {
+      if (this.occupied[0] instanceof Mob) {
+        image = this.occupied[0].icon;
+      }else {
+        image = this.occupied[1].icon;
+      }
+    }
+    return "" + image;
+  }
+
 }
 
 

@@ -107,33 +107,7 @@ width and height, and use it to make a new map. After checking the values as wel
     while (num < 200) {
       num ++;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
-      let overlap = false;
-      var min = {x: this.width +1, y: this.height +1};
-      var max = {x: 0, y:0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < min.x) {
-          min.x = border[i].x;
-        }
-        if (border[i].y < min.y) {
-          min.y = border[i].y;
-        }
-        if (border[i].x > max.x) {
-          max.x = border[i].x;
-        }
-        if (border[i].y > max.y) {
-          max.y = border[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
-      }
+      let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
@@ -147,8 +121,28 @@ width and height, and use it to make a new map. After checking the values as wel
         num = 200;
         this._rooms.push(coords);
       }
+      num = 200;
+      this._rooms.push(coords);
+      }
     }
   }
+
+/*
+@param {start}: int
+@param {end}: int
+this takes the distnace between two numbers and returns it.
+*/
+
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+  */
+  /*
+  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+  if any of them have the same coordinates, and if there is overlap, don't add the room
+  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+  */
 
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
