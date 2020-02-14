@@ -226,6 +226,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
     var xdist = this.dist(start.x, end.x);
     var ydist = this.dist(start.y, end.y);
     var obj = {};
+    var retArr = [];
     if (ydist != 0) {
       obj.x = xdist;
       obj.y = ydist -2;
