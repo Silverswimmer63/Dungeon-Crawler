@@ -47,7 +47,22 @@ functions above to make sure that the setter is given an object with the keys
 width and height, and use it to make a new map. After checking the values as well
 */
 set map(dimensions){
-  Utils.keyCheck(dimensions, ["width", "height"], "Map.map");
+  Utils.keyCheck(dimensions, ["width", "height"       coords.push(border[i]);
+     }
+     }
+get cell(){return this._cell}
+get open(){return this._open}
+get border(){return this._border}
+
+
+
+
+set cell(cell){this._cell = cell}
+set open(open){this._open = open}
+set border(border){this._border = border}
+     space.image = " ";
+     space.type = "room";
+     for (var i = 0; i < this.room.length; i++) {], "Map.map");
   Utils.intCheck(dimensions.width, "Map.map");
     Utils.intCheck(dimensions.height, "Map.map");
     this.width = dimensions.width;

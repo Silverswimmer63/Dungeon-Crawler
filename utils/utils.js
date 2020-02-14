@@ -341,13 +341,8 @@ min.y = border[i].y;
        coords.push(border[i]);
      }
      }
-get cell(){return this._cell}
-get open(){return this._open}
-get border(){return this._border}
 
-set cell(cell){this._cell = cell}
-set open(open){this._open = open}
-set border(border){this._border = border}
+
      space.image = " ";
      space.type = "room";
      for (var i = 0; i < this.room.length; i++) {
@@ -369,7 +364,13 @@ if (true) {
 
 this._rooms.push(room);
  }
+ get cell(){return this._cell}
+ get open(){return this._open}
+ get border(){return this._border}
 
+ set cell(cell){this._cell = cell}
+ set open(open){this._open = open}
+ set border(border){this._border = border}
 
 
  /* coordCheck(seta, setb)
@@ -395,6 +396,73 @@ canAdd = true;
 at the very top of the function - add the following
 var canAdd = false;
 */
+
+/*
+1. make a function in utils called removeBorder(room, width, height) that does what is being done
+right now in addRoom to trim the borders.
+
+2. update addRoom to use this function where it is currently doing that.
+
+3. make a function in utils called cordLine(start, end) that returns a set of coordinates between
+start (cords) and end (cords)
+(figure out what to do and how) i dont know what im doing right now
+Part 3: cordLine :
+If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+START AT THE SMALLER ONE
+"start" and "end" but you need to min and max the values and go from min to max.
+-Which one we are working on!
+start at the small to bigger.
+Let's talk about that for
+-for(var i = smaller + 1; i < larger; i++){}
+Start of class:
+Where did we end yesterday?
+What do we need to do to get everyone caught up?
+*/
+removeBorder(room, width, height){
+var keyX = "x" + room[i].x;
+var keyY = "y" + room[i].y;
+var space = this._map[keyY][keyX];
+var max = {x:this.width+1, y:this.height+1};
+var min = {x:0, y:0};
+for (var i = 0; i < border.length; i++) {
+if (border[i].x < min.x) {
+min.x = border[i].x;
+}
+if (border[i].y < min.y) {
+min.y = border[i].y;
+}
+if (border[i].x > max.x) {
+ max.x = border[i].x;
+}
+if (border[i].y > max.y) {
+ max.y = border[i].y;
+}
+}
+cordLine(){
+for(var i = smaller + 1; i < larger; i++){
+  this._smaller = Math.min;
+}
+for (var j = larger - 1; j < smaller; j++) {
+  this._bigger = Math.max;
+}
+if (true) {
+  //min.x min.y max.x max.y
+  min.x
+max.x
+min.y
+max.y
+}
+}
+let coords = [];
+for (var i = 0; i < border.length; i++) {
+  var isBorder = false;
+  if ((border[i].x == max.x)||(border[i].y == min.x)||(border[i].x == min.x)||(border[i].y == min.y)) {
+  iisBorder = true;
+}
+if (!iisBorder) {
+  coords.push(border[i]);
+}
+}
 
 }
 /*
