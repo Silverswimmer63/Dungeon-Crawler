@@ -186,4 +186,75 @@ var tf = undefined;
   }
   return tf;
 }
+
+static hallCheck(roomOne, roomTwo){
+    var heightOne = roomOne[0].y - roomOne[roomOne.length-1].y;
+    var widthOne = roomOne[0].x - roomOne[roomOne.length-1].x;
+    var heightTwo = roomTwo[0].y - roomTwo[roomTwo.length-1].y;
+    var widthTwo = roomTwo[0].x - roomTwo[roomTwo.length-1].x;
+    var midOne = {x: (widthOne/2)+roomOne[0].x, y: (heightOne/2)+roomOne[0].y};
+    var midTwo = {x: (widthTwo/2)+roomTwo[0].x, y: (heightTwo/2)+roomTwo[0].y};
+    var distance = {x: midOne.x-midTwo.x, y: midOne.y-midTwo.y};
+    var hallCords = [];
+    console.log(heightOne);
+    console.log(heightTwo);
+    console.log(midTwo);
+    console.log(midOne);
+
+    for(var i = 1; i < Math.abs(distance.y+1); i++){
+      if(distance.y > 0){
+      hallCords.push({x:midOne.x,y:midOne.y+i});
+      }
+      else if(distance.y < 0){
+      hallCords.push({x:midOne.x,y:midOne-i});
+      }
+    }
+    console.log(hallCords.length)
+    var hallYmath = hallCords.length - 1;
+    for(var j = 1; j < Math.abs(distance.x+1); j++){
+     if(distance.x > 0){
+      hallCords.push({x:midOne.x + j, y:hallCords[hallYmath].y});
+     }   
+     else if(distance.x < 0){
+     hallCords.push({x:midOne.x + j, y:hallCords[yDone].y});
+     }       
+    }
+    console.log(hallCords.length)
+    if(hallCords[hallCords.length-1].x == midTwo.x && hallCords[hallCords.length-1].y == midTwo.y){
+      console.log("yayayyayayyayayayayy");
+    }
+ }
+ static removeBorder(room,width,height,rooms){
+      let smalls = {x:width+1,y:height+1};
+      let biggy = {x:0,y:0};
+      for (var i = 0; i < room.length; i++) {
+        if (room[i].x < smalls.x) {
+          smalls.x = room[i].x;
+        }
+        if (room[i].y < smalls.y) {
+          smalls.y = room[i].y;
+        }
+        if (room[i].x > biggy.x) {
+          biggy.x = room[i].x;
+        }
+        if (room[i].y > biggy.y) {
+          biggy.y = room[i].y;
+        }
+      }
+      let coords = [];
+      for (var i = 0; i < room.length; i++) {
+        var isBorder = false;
+        if ((room[i].x == biggy.x)||(room[i].y == biggy.y)||(room[i].x == smalls.x)||(room[i].y == smalls.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) {
+          coords.push(rooms[i]);
+        }
+      }
+      for (let i = 0; i < rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(room, rooms[i]);
+        return coords;} // so we don't lose a true
+      }
+
+ }
 }

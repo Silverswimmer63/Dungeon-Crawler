@@ -105,38 +105,11 @@ class Map{
   addRoom(set = this._map){
     let num = 0;
     while (num < 200) {
+        let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       num ++;
       let overlap = false;
-      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
-      let smalls = {x:this.width+1,y:this.height+1};
-      let biggy = {x:0,y:0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < smalls.x) {
-          smalls.x = border[i].x;
-        }
-        if (border[i].y < smalls.y) {
-          smalls.y = border[i].y;
-        }
-        if (border[i].x > biggy.x) {
-          biggy.x = border[i].x;
-        }
-        if (border[i].y > biggy.y) {
-          biggy.y = border[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
-      }
-      for (let i = 0; i < this._rooms.length; i++) {
-        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
-      }
+      var coords = Utils.removeBorder(border, this._height, this._width);
+      console.log(coords);
       // todo: add a function to pull the outside trim and set to borders
     if(!overlap){
       for (let i = 0; i < coords.length; i++) {
