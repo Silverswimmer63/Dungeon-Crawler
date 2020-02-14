@@ -195,7 +195,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
       }
       if (!isBorder) { coords.push(border[i]); }
     }
-    return border;
+    return coords;
   }
 
   /* make a function in utils called cordLine(start, end)
@@ -208,14 +208,31 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   Let's talk about that for
   -for(var i = smaller + 1; i < larger; i++){}
 */
+  static dist(start, end){
+    var num = undefined;
+    var max =  Math.max(start, end);
+    if (start != end) {
+      if (max < start) { num = start - max; }
+      if (max > start) { num = max - start; }
+      if (max < min) { num = end - max; }
+      if (max > min) { num = max - end; }
+      return num;
+    }else {
+      return start - end;
+    }
+  }
+
   static cordLine(start, end){
-    var retArr = [];
-    var smallX = Math.min(start.x, end.x);
-    var largeX = Math.max(start.x, end.x);
-    var smallY = Math.min(start.y, end.y);
-    var largeY = Math.max(start.y, end.y);
-    for (var i = 0; i < array.length; i++) {
-      array[i]
+    var xdist = this.dist(start.x, end.x);
+    var ydist = this.dist(start.y, end.y);
+    var obj = {};
+    if (ydist != 0) {
+      obj.x = xdist;
+      obj.y = ydist -2;
+    }
+    if (xdist != 0) {
+      obj.x = xdist -2;
+      obj.y = ydist;
     }
   }
 
