@@ -25,7 +25,6 @@ if its ranged or meelee or armor like head or legs and then it
 creates them using retItem and depending on what it is and creates the item
 @ return object determined on what item it is
 */
-//name, icon, desc, value, type="trash", level
  function _makeItem(){
   var index = Utils.randMath(0, allItems.length - 1);
   var item = allItems[index];

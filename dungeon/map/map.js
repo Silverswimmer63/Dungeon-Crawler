@@ -75,6 +75,10 @@ class Map{
     
     return retMap += this._drawBorder();
   }
+  /*Then we will update the map to have a setter for map, this will use the two
+  functions above to make sure that the setter is given an object with the keys
+  width and height, and use it to make a new map. After checking the values as well
+*/
   set map(dimensions){
     Utils.keyCheck(dimensions,["width", "height"], "Map.map");
     Utils.intCheck(dimensions.width,"Map.map");
@@ -102,31 +106,62 @@ class Map{
    *@class addRoom() - adds rooms onto the map 
    *@returns {array} it will return an array of coords to set to locatioons on the map
    */
-  addRoom(set = this._map){
+  /* addRoom()
+  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
+  and update the cells at the correct coordinates to match the room.
+  */
+
+  /* add a step between making the room coordinates and changing the the map
+  where you check each room in the map array to see if any of them have the same
+  coordinates, and if there is overlap, don't add the room
+  border room check
+  place none border room no border but after border room check
+  */
+  addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
         let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       num ++;
       let overlap = false;
-      var coords = Utils.removeBorder(border, this._height, this._width);
-      console.log(coords);
-      // todo: add a function to pull the outside trim and set to borders
-    if(!overlap){
-      for (let i = 0; i < coords.length; i++) {
-        let cell = set["y" + coords[i].y]["x" + coords[i].x];
-        cell.open;
-        cell.type = "room";
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let smalls = {x:this.width+1,y:this.height+1};
+      let biggy = {x:0,y:0};
+      for (var i = 0; i < border.length; i++) {
+        if (border[i].x < smalls.x) { smalls.x = border[i].x; }
+        if (border[i].y < smalls.y) { smalls.y = border[i].y; }
+        if (border[i].x > biggy.x) { biggy.x = border[i].x; }
+        if (border[i].y > biggy.y) { biggy.y = border[i].y; }
       }
-      num = 200;
-      this._rooms.push(coords);
+      let coords = [];
+      for (var i = 0; i < border.length; i++) {
+        var isBorder = false;
+        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+          isBorder = true;
+        }
+        if (!isBorder) { coords.push(border[i]); }
+      }
+      for (let i = 0; i < this._rooms.length; i++) {
+        if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
+      }
+      // todo: add a function to pull the outside trim and set to borders
+      if(!overlap){
+        for (let i = 0; i < coords.length; i++) {
+          let cell = map["y" + coords[i].y]["x" + coords[i].x];
+          cell.open;
+          cell.type = "room";
+        }
+        num = 200;
+        this._rooms.push(coords);
+      }
     }
   }
-}
+    }
 
 
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
+gin/Euan
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -138,10 +173,10 @@ class Map{
       }
       
     }
-    for(var i = 0; i < this._numroom; i++){
-this.addRoom(map);
-}
-    return map;
+    for (var i = 0; i < this.numRooms; i++) {
+      this.addRoom(map); //addRoom expacts this._map to exist
+    }
+    return map;//this is where we make this._map
   }
 
   /*@function _drawBorder()

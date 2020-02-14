@@ -255,6 +255,76 @@ static hallCheck(roomOne, roomTwo){
         if(!overlap) { overlap = Utils.coordCheck(room, rooms[i]);
         return coords;} // so we don't lose a true
       }
-
  }
+
+
+  /* coordCheck(seta, setb)
+  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one
+  that is this in the other. If so it returns a true, if not, it returns a false.
+*/
+/* coordCheck(seta, setb)
+takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+*/
+/*
+3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+if any of them have the same coordinates, and if there is overlap, don't add the room
+4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+*/
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /*make a function in utils called removeBorder(room) that
+  does what is being done right now in addRoom to trim the borders
+*/
+  static removeBorder(room, width, height){
+    let border = room;
+    let smalls = {x:width+1,y:height+1};
+    let biggy = {x:0,y:0};
+    for (var i = 0; i < border.length; i++) {
+      if (border[i].x < smalls.x) { smalls.x = border[i].x; }
+      if (border[i].y < smalls.y) { smalls.y = border[i].y; }
+      if (border[i].x > biggy.x) { biggy.x = border[i].x; }
+      if (border[i].y > biggy.y) { biggy.y = border[i].y; }
+    }
+    let coords = [];
+    for (var i = 0; i < border.length; i++) {
+      var isBorder = false;
+      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+        isBorder = true;
+      }
+      if (!isBorder) { coords.push(border[i]); }
+    }
+    return border;
+  }
+
+  /* make a function in utils called cordLine(start, end)
+  that returns a set of coordinates between start (cords) and end (cords)
+  If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+  START AT THE SMALLER ONE
+  "start" and "end" but you need to min and max the values and go from min to max.
+  -Which one we are working on!
+  start at the small to bigger.
+  Let's talk about that for
+  -for(var i = smaller + 1; i < larger; i++){}
+*/
+  static cordLine(start, end){
+    var retArr = [];
+    var smallX = Math.min(start.x, end.x);
+    var largeX = Math.max(start.x, end.x);
+    var smallY = Math.min(start.y, end.y);
+    var largeY = Math.max(start.y, end.y);
+    for (var i = 0; i < array.length; i++) {
+      array[i]
+    }
+  }
+
 }
