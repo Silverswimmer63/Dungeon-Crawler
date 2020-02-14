@@ -145,8 +145,8 @@ class Utils {
 
     static removeBorder(room, width, height){
       let border = room;
-      var min = {x: width +1, y: height +1};
-      var max = {x: 0, y:0};
+      var min = {x: width + 1, y: height + 1};
+      var max = {x: 0, y: 0};
       for (var i = 0; i < border.length; i++) {
         if (border[i].x < min.x) {
           min.x = border[i].x;

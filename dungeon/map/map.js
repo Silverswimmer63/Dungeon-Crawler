@@ -152,14 +152,10 @@ the inner objects will be the individual cells of the map.
       this.addRoom(map);//addRoom expects this._map to exist
     }
     return map; //this is where we make this._map
-
-
       for (var i = 0; i < this._numRooms; i++) {
         this.addRoom(map);// addRoom expects this._map tpo exists.
-
     }
     return map;// this is where we make this._map
-
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
@@ -178,6 +174,5 @@ the inner objects will be the individual cells of the map.
     }
     return retStr += "+";
   }
-
 
 }
