@@ -82,6 +82,13 @@ class Map{
     }
   }
 
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
+
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
+
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -130,10 +137,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    for (var i = 0; i < this._numRooms; i++) {
-      this.addRoom(map);//addRoom expects this._map to exist
+      for (var i = 0; i < this._numRooms; i++) {
+        this.addRoom(map);// addRoom expects this._map tpo exists.
     }
-    return map; //this is where we make this._map
+    return map;// this is where we make this._map
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
