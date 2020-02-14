@@ -94,11 +94,11 @@ display: none; /* will JS it into existance when playerControls are hidden. */
 }
 
 .item{
-color: purple;
+  color: purple;
 }
 
 .mob{
-color: red;
+  color: red;
 }
 
 #playerControls, #gameControls, #lootScreen{
