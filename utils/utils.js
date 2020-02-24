@@ -200,26 +200,23 @@ Let's talk about that for
 
 */
 
+
   static removeBorder(room, width, height){
     let border = room;
     let max = {x:0,y:0};
-    let min = {x:width+1,y:height+1};
+    let min = {x:width+1, y:height+1};
     for (var i = 0; i < border.length; i++) {
       if (border[i].x < min.x) { min.x = border[i].x; }
       if (border[i].y < min.y) { min.y = border[i].y; }
       if (border[i].x > max.x) { max.x = border[i].x; }
       if (border[i].y > max.y) { max.y = border[i].y; }
     }
-  
-
     let coords = [];
     for (var i = 0; i < border.length; i++) {
-
       var isBorder = false;
       if ((border[i].x == max.x)||(border[i].y == max.y)
         ||(border[i].x == min.x)||(border[i].y == min.y)) {
         isBorder = true;
-
       }
       if (!isBorder) {
         coords.push(border[i]);
@@ -227,16 +224,4 @@ Let's talk about that for
     }
     return coords;
   }
-
-
-  static coordLine(start, end){
-    let minX = Math.min(start.x, end.x);
-    let minY = Math.min(start.y, end.y);
-    let largeX = Math.max(start.x, end.x);
-    let largeY = Math.max(start.y, end.y);
-    let obj = {};
-    for (var i = min; i < largeS.length; i++) {
-
-    }
   }
-}

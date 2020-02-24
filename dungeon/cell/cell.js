@@ -197,7 +197,7 @@ class Cell {
       else { image = this.occupied[1]; }
   }
   return "" + image;
-  }
+}
 
 }
 
