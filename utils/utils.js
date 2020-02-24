@@ -175,7 +175,7 @@ class Utils {
       return coords;
       }
 
-  /* Part 3: cordLine :
+  /*cordLine :
   If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
   START AT THE SMALLER ONE
   "start" and "end" but you need to min and max the values and go from min to max.
@@ -184,7 +184,7 @@ class Utils {
   Let's talk about that for
   -for(var i = smaller + 1; i < larger; i++){}
   */
-  static cordLine(start,end){
+  static cordLine(start, end){
    let smallX = Math.min(start.x, end.x);
    let smallY = Math.min(start.y, end.y);
    let largeX = Math.max(start.x, end.x);
@@ -200,5 +200,18 @@ class Utils {
    }
    return retArr;
  }
+
+  /* hallCords(start, end)
+  makes a line with chance of a turn between start and end
+  @param start: {object} one of the two sets of coordinates on a hall
+  @param end: {object} one of the two sets of coordinates on a hall
+  @return: {array} an array of the coordinates between the two input coordinates
+  */
+  static hallCord(start, end){
+    if ((start.x == end.x) || (start.y == end.y)) {
+      this.cordLine(start,end);
+    }
+    
+  }
 
 }
