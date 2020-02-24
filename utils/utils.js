@@ -182,7 +182,22 @@ static dis(start, end){
     return start - end;
   }
 }
+/* 1. make a function in utils called removeBorder(room, width, height)
+that does what is being done right now in addRoom to trim the borders.
 
+2. update addRoom to use this function where it is currently doing that.
+
+3. make a function in utils called cordLine(start, end) that returns a
+set of coordinates between start (cords) and end (cords)
+ Part 3: cordLine :
+If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+START AT THE SMALLER ONE
+"start" and "end" but you need to min and max the values and go from min to max.
+-Which one we are working on!
+start at the small to bigger.
+Let's talk about that for
+-for(var i = smaller + 1; i < larger; i++){}
+*/
   static cordline(start, end){
     let xdis = this.dis(start.x, end.x);// these are to add to start and end
     let ydis = this.dis(start.y, end.y);// this one is the same but just y
@@ -232,4 +247,13 @@ if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)){
   }
   return false;
  }
+/* hallCords(start, end)
+makes a line with chance of a turn between start and end
+@param start: {object} one of the two sets of coordinates on a hall
+@param end: {object} one of the two sets of coordinates on a hall
+@return: {array} an array of the coordinates between the two input coordinates
+*/
+hallCords(start, end){
+
+}
 }

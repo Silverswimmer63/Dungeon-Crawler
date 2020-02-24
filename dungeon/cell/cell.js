@@ -155,6 +155,7 @@ class Cell{
     }
    }
   }
+}
 /*
 set the toSting in the cell to check to see if there is anything in inventory or
 occupied. If there is something in either, have the cell use the toString for
@@ -163,47 +164,22 @@ those items. the order of importance for now should just be occupied (mob) > occ
 doors, types of items, and so on.*/
   //toString and other overwrights
   toString(){
-    let image = this._image;
-    if (this.inventory.length > 0) {image = this.inventory[0].icon;}
-    if (this.inventory.length > 1) {
-      let check = [Item, Potion, Armor, Weapon];
-      let item = [];
-      let hit = 0;
-      for (var i = 0; i < check.length; i++) {
-        for (var j = 0; j < this.inventory.length; j++) {
-          if (this.inventory[j] instanceof check[i]) {
-            if (i > hit) {
-              hit = i;
-              item = [];
-            }
-            item.push(this.inventory[j]);
-            for (var k = 0; k < item.length; k++) {
-            let best = item[0];
-              if (best.value < item[k].value) {
-                best = item[k];
-                }
-                image = best.icon;
-              }
-              for (var l = 0; l < item.length; l++) {
-              let best = item[0];
-                if (best.level < item[l].level) {
-                  best = item[l];
-                  }
-                  image = best.icon;
-                }
-              }
-            }
-          }
-        }
-    if (this.occupied.length == 1) {image = this.occupied[0].icon;}
-    if (this.occupied.length == 2) {
-      if (this.occupied[0] instanceof Mob) {
-        image = this.occupied[0].icon;
-      }else {
-        image = this.occupied[1].icon;
-      }
-    }
-    return "" + image;
-  }
+   let image = this._image; // default image
+     if (this.inventory.length > 0) { image = this.inventory[0]; }
+     if (this.inventory.length > 1){
+       let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+       for (let i = 0; i < order.length; i++) {
+         let testCase = this._stringHandler(order[i]);
+         if (testCase != undefined) { image = testCase; }
+       }
+   } //ignore this for showing this step
+   if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
+     if (this.occupied.length == 2) { // find the mob
+       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+       else { image = this.occupied[1]; }
+   }
+   return "" + image;
+ }
+
 
 }
