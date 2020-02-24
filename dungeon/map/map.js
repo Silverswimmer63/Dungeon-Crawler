@@ -164,7 +164,7 @@ or we will get errors. Remake the this._map.*/
 @param {end}: int
 this takes the distnace between two numbers and returns it.
 */
-
+/*
 6. We will work on cell. -
 A. remove references to borders, we don't need those.
 B. set it so that if the cell is set to open, than the cell image is set to " "
