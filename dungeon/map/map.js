@@ -14,7 +14,7 @@ class Map{
     this._rooms = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms =30;
+    this._numRooms = 30;
     this._map = this._generateMap();
   }
   /*3. add setters.
@@ -40,12 +40,12 @@ or we will get errors. Remake the this._map.*/
 
   get height(){return this._height;}
   set height(height){
-    this._height = Utils.intCheck(height, "Map.height")
+    this._height = Utils.intCheck(height, "Map.height");
     this._map = this._generateMap();
   }
 
   get fill(){return this._fill;}
-  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill")}
+  set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
 
   set map(dimensions){
 
@@ -122,6 +122,8 @@ or we will get errors. Remake the this._map.*/
       width and height, and use it to make a new map. After checking the values as well
       */
 
+  get numRooms(){ return this._numRooms;}
+  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -134,38 +136,13 @@ or we will get errors. Remake the this._map.*/
   place none border room no border but after border room check
   */
 
-  addRoom(map=this._map){
+  addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
       num ++;
       let overlap = false;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
-      let smalls = {x:this.width+1,y:this.height+1};
-      let biggy = {x:0,y:0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < smalls.x) {
-          smalls.x = border[i].x;
-        }
-        if (border[i].y < smalls.y) {
-          smalls.y = border[i].y;
-        }
-        if (border[i].x > biggy.x) {
-          biggy.x = border[i].x;
-        }
-        if (border[i].y > biggy.y) {
-          biggy.y = border[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
-      }
+      let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
@@ -178,10 +155,15 @@ or we will get errors. Remake the this._map.*/
       }
       num = 200;
       this._rooms.push(coords);
+      }
     }
   }
-}
+
 /*
+@param {start}: int
+@param {end}: int
+this takes the distnace between two numbers and returns it.
+*/
 
 6. We will work on cell. -
 A. remove references to borders, we don't need those.
@@ -222,10 +204,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-    for (var i = 0; i < this._numRooms; i++) {
-      this.addRoom(map);//addRoom expects this._map tp exist
+    for (var i = 0; i < this.numRooms; i++) {
+      this.addRoom(map);
     }
-    return map;//yay
+    return map;
   }
 
   /* _drawBorder()
