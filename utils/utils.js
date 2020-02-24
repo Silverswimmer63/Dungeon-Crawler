@@ -227,14 +227,30 @@ if any of them have the same coordinates, and if there is overlap, don't add the
     var ydist = this.dist(start.y, end.y);
     var obj = {};
     var retArr = [];
-    if (ydist != 0) {
-      obj.x = xdist;
-      obj.y = ydist -2;
+    if (ydis != 0) {
+      let addTo = Math.min(start.y, end.y);
+      for (var i = addTo; i < ydis-2; i++) {
+        obj = {x:end.x,y:[i]}
+        retAry.push(obj);
+      }
     }
-    if (xdist != 0) {
-      obj.x = xdist -2;
-      obj.y = ydist;
+    if (xdis != 0) {
+      let addTo = Math.min(start.y, end.y);
+      for (var i = addTo.x; i < xdis-2; i++) {
+        addTo.x ++;
+      }
     }
+    return retAry;
+  }
+
+  /* hallCords(start, end)
+  makes a line with chance of a turn between start and end
+  @param start: {object} one of the two sets of coordinates on a hall
+  @param end: {object} one of the two sets of coordinates on a hall
+  @return: {array} an array of the coordinates between the two input coordinates
+*/
+  static hallCords(start, end){
+    
   }
 
 }
