@@ -18,7 +18,6 @@ class Cell {
     if (this._occupied.length>0) {
       return false;
     }else {
-      this._image = " ";
       return this._open;
     }
   }
@@ -114,7 +113,6 @@ class Cell {
   @param occupied {mixed} an objec or array of objects
   @param {string} call where toss error messeage
   */
-
   _ocHandler(occupied, call="Cell._ocHandler"){
     if (!Array.isArray(occupied)) {
       occupied = [occupied];
@@ -153,28 +151,12 @@ class Cell {
       }
     }
   }
-  _stringHandler(className){
-    let hits = []; // all the items in the inventory that are of the given class.
-    for (let i = 0; i < this.inventory.length; i++) { // check for those things
-      if(this.inventory[i] instanceof className){ hits.push(this.inventory[i]); }
-    }
-    if(hits.length == 0){ return undefined; } // base case
-    let best = hits[0]; // base case - index 0
-    for (let i = 0; i < hits.length; i++) { // value
-      if(hits[i].value > best.value){ best = hits[i]; }
-    }
-    for (let i = 0; i < hits.length; i++) { // level
-      if(hits[i].level > best.level){ best = hits[i]; }
-    }
-    return best;
-  }
 
   /*
   C. set the toSting in the cell to check to see if there is anything in inventory
   or occupied. If there is something in either, have the cell use the toString for
   those items the order of importance for now should just be occupied (mob) > occupied
    (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
-
   deal with the issue of how to display when there is more than 1 item in
   the inventory.
   order of display: most important - weapons, armor, potions, other -least
@@ -200,18 +182,18 @@ class Cell {
   //toString and other overwrites
   toString(){
   let image = this._image; // default image
-  if (this.inventory.length > 0) { image = this.inventory[0]; }
-  if (this.inventory.length > 1){
-  let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
-  for (let i = 0; i < order.length; i++) {
-  let testCase = this._stringHandler(order[i]);
-  if (testCase != undefined) { image = testCase; }
-  }
+    if (this.inventory.length > 0) { image = this.inventory[0]; }
+    if (this.inventory.length > 1){
+      let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+      for (let i = 0; i < order.length; i++) {
+        let testCase = this._stringHandler(order[i]);
+        if (testCase != undefined) { image = testCase; }
+      }
   } //ignore this for showing this step
   if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
-  if (this.occupied.length == 2) { // find the mob
-  if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
-  else { image = this.occupied[1]; }
+    if (this.occupied.length == 2) { // find the mob
+      if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+      else { image = this.occupied[1]; }
   }
   return "" + image;
   }
@@ -237,16 +219,11 @@ if(blah){
     for(ndkas) value
   }
 }
-
-
 for inventory{
   for class in [Item, Potion, Armor, Weapon]{
   //store [i] track the i if it is higher than for what is current, reset
     for(jwbd) level
     for(ndkas) value
 }
-
 }
-
-
 */
