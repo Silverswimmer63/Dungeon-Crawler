@@ -101,12 +101,11 @@ static listCheck(item, list, call = "Utils.listCheck"){
   static coordCheck(seta, setb){
     for (var i = 0; i < seta.length; i++) {
       for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          return true;
-        }
+        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {return true;}
       }
     }
     return false;
+
   }
 
   /*randCoord(xMin, xMax, yMin, yMax)
@@ -221,12 +220,13 @@ Now we can use it all over the place and set the call to whatever method we are
 using, to help check for errors. But by giving it the default value in the call
 param, we can still use it the way we have always been using it.
 */
-static randMath(min, max, call="utils.randMath"){
+static randMath(max, min, call="utils.randMath"){
   min = this.intCheck(min, call);
-  max = this.intcheck(max,call);
-  if (min <= max){
-    throw new Error ("min must always be less than max"+call)
+  max = this.intCheck(max, call);
+  if (min < max){
+    throw new Error ("min must always be less than max"+call+".")
   }
+  return Math.floor(Math.random()  * (max - min)) + min;
 }
 /*
 .1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
@@ -420,26 +420,38 @@ Where did we end yesterday?
 What do we need to do to get everyone caught up?
 */
 removeBorder(room, width, height){
+  var border = room;
+  var max = {x:width+1, y:height+1};
+  var min = {x:0, y:0};
 var keyX = "x" + room[i].x;
 var keyY = "y" + room[i].y;
 var space = this._map[keyY][keyX];
 var max = {x:this.width+1, y:this.height+1};
 var min = {x:0, y:0};
 for (var i = 0; i < border.length; i++) {
-if (border[i].x < min.x) {
-min.x = border[i].x;
+  if (border[i].x < min.x) {min.x = border[i].x;}
+  if (border[i].y < min.y) {min.y = border[i].y;}
+  if (border[i].x > max.x) { max.x = border[i].x;}
+  if (border[i].y > max.y) { max.y = border[i].y;}
 }
-if (border[i].y < min.y) {
-min.y = border[i].y;
+let coords = [];
+for (var i = 0; i < border.length; i++)
+var isBorder = false;
+if ((border[i].x == max.x)||(border[i].y == max.y)||(border[i] == min.x)||(border[i].y == min.y))
+if (!isBorder) {coords.push(border[i]);}
 }
-if (border[i].x > max.x) {
- max.x = border[i].x;
-}
-if (border[i].y > max.y) {
- max.y = border[i].y;
-}
-}
-cordLine(){
+cordLine(smaller, large){
+  var xdis = this.dis(start.x, end.x);
+  var ydis = this.dis(start.y, end.y);
+  var obj = {};
+  if (ydis != 0){
+    obj.x = xdis;
+    obj.y = ydis-2
+  }
+  if (xdis != 0){
+    obj.x = xdis-2;
+    obj.y = ydis;
+  }
 for(var i = smaller + 1; i < larger; i++){
   this._smaller = Math.min;
 }
@@ -453,7 +465,7 @@ max.x
 min.y
 max.y
 }
-}
+
 let coords = [];
 for (var i = 0; i < border.length; i++) {
   var isBorder = false;
@@ -464,8 +476,10 @@ if (!iisBorder) {
   coords.push(border[i]);
 }
 }
+}
 
 }
+
 /*
 F. Making the basic map
 1. add a new method to map called _generateMap();
