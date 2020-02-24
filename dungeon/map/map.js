@@ -11,8 +11,8 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._roomMin = 3;
-    this._roomMax = 8;
-    this._numroom = 25;
+    this._roomMax = 10;
+    this._numRooms = 30;
     this._map = this._generateMap();
   }
   
@@ -33,35 +33,6 @@ class Map{
   /*fill Getters and Setters*/
   get fill(){return this._fill;}
   set fill(fill){this._fill = Utils.keyCheck(fill,"image","Map.fill");}
-  
-  /*rooms Getters and Setters*/
-  get rooms(){return this._rooms;}
-  set rooms(array){
-    array = Utils.arrayCheck(array,"Map.rooms");
-    if(array.length == 0){ this._rooms = array;}
-    else{
-      let room;
-      for(room of array){
-        if(room.length == 0){
-          throw new Error("In Map.rooms: one or more of the rooms are empty");
-        }
-        let coords;
-        for(coords of room){
-          Utils.keyCheck(coords, ["x","y"], "Map.rooms individual cell");
-        }
-      }
-      this._rooms = array;
-    }
-  }
-  /*roomMax and roomMin Getters*/
-  get roomMax(){return this._roomMax;}
-  get roomMin(){return this._roomMin;}
-  
-  /*roomMax and roomMin Setters*/
-  set roomMax(roomMax){this._roomMax = Utils.intCheck(this.roomMax);}
-  set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
-  
-  /*map Getters and Setters*/
   get map(){
     var retMap = "";
     retMap += this._drawBorder() + "<br>";
@@ -88,24 +59,14 @@ class Map{
     this._map = this._generateMap();
 
   }
-     get numroom(){
-    return this._numroom;
-  }
-  set numroom(numroom){
-    this._numroom = Utils.intCheck(numroom, "Map.numroom");
-    this._map = this._generateMap();
-  } 
+  get roomMin(){ return this._roomMin; }
+  set roomMin(roomMin){ this._roomMin = Utils.intCheck(roomMin, "Map.roomMin"); }
 
-  /*@function addRoom()
-   *
-   *add room will use the appropriate functions in our
-   *program to generate a set of coordinates based on our map.
-   *it will then go to the map, and upadate the cells
-   *at the coordinates to match the room.
-   *
-   *@class addRoom() - adds rooms onto the map 
-   *@returns {array} it will return an array of coords to set to locatioons on the map
-   */
+  get roomMax(){ return this._roomMax; }
+  set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
+
+  get numRooms(){ return this._numRooms;}
+  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -123,38 +84,28 @@ class Map{
       num ++;
       let overlap = false;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
-      let smalls = {x:this.width+1,y:this.height+1};
-      let biggy = {x:0,y:0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < smalls.x) { smalls.x = border[i].x; }
-        if (border[i].y < smalls.y) { smalls.y = border[i].y; }
-        if (border[i].x > biggy.x) { biggy.x = border[i].x; }
-        if (border[i].y > biggy.y) { biggy.y = border[i].y; }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) { coords.push(border[i]); }
-      }
+      let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       // todo: add a function to pull the outside trim and set to borders
-      if(!overlap){
-        for (let i = 0; i < coords.length; i++) {
-          let cell = map["y" + coords[i].y]["x" + coords[i].x];
-          cell.open;
-          cell.type = "room";
-        }
-        num = 200;
-        this._rooms.push(coords);
+    if(!overlap){
+      for (let i = 0; i < coords.length; i++) {
+        let cell = map["y" + coords[i].y]["x" + coords[i].x];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "room";
+      }
+      num = 200;
+      this._rooms.push(coords);
       }
     }
   }
-    
+
+/*
+@param {start}: int
+@param {end}: int
+this takes the distnace between two numbers and returns it.
+*/
 
 
   /*@function _generateMap()

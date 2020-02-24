@@ -6,7 +6,7 @@ or mobs or the player.
 class Cell {
   constructor(){
     this._image = "#";
-    this._type = "wall";//wall, hall, rooms, border: a wall but a tag
+    this._type = "wall"//wall, hall, rooms, a wall but a tag
     this._open = false;// if the cell allows movement
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
@@ -31,8 +31,19 @@ class Cell {
       return this._open;
     }
   }
-  set open(open){ throw new Error("Open status should only be set by the cell type"); }
-  get inventory(){return this._inventory;}
+  get inventory(){return this._inventory}
+  get occupied(){return this._occupied}
+
+  set image(image){this._image = image}
+  set type(type){
+    type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
+    this._type = type;
+    this._open = ["room","hall"].includes(type);
+    if (this._open == true) {
+      this.image = " ";
+    }
+  }
+  set open(open){throw new Error("Open status should only be set by the cell type.")}
   set inventory(inventory){
     if (inventory.length == 0) {
       this._inventory = inventory;
