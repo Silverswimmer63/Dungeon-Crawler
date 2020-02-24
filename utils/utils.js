@@ -96,21 +96,6 @@ class Utils {
     }
   }
 
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate
-  in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  static coordCheck(seta, setb){
-    for (var i = 0; i < seta.length; i++) {
-      for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   /*randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
@@ -144,35 +129,10 @@ class Utils {
     return retArray;
   }
 
-  /*
-  .1 in Map we are going to add a property for rooms called _rooms this should be
-  a blank array by default
-  .2 Add a getter for rooms that returns the array in rooms
-  .3 Add a setter for rooms
-  .4 Add properties for map for max and min room size, make these 3 and 8 by default.
-  Make getters and setters, have the setters check to see if the value is an int in the setter.
-  .5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
-  .6 Add the arrayCheck to the setter for rooms
-  .7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not,
-  then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
-  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
-  with the keys X and Y
-  .9 to continue in Map.rooms - for each room make sure it has something in it, otherwise toss the error
-  "In Map.rooms: One or more room arrays is empty."
-  */
-  static arrayCheck([], call = "Utils.arrayCheck"){
-    if (( item != null)&&(Array.isArray(item))) {
-      return item;
-    }else {
-      throw new Error("The method " + call + " expected an array and received " + item + ".");
-    }
-  }
-
   /* coordCheck(setA, setB)
 takes 2 arrays of coordinates and checks them to see if there is a coordinate in
 one that is this in the other. If so it returns a true, if not, it returns a false.
 */
-
   static coordCheck(setA, setB){
     for (var i = 0; i < setA.length; i++) {
     for (var j = 0; j < setB.length; j++) {
@@ -181,20 +141,6 @@ one that is this in the other. If so it returns a true, if not, it returns a fal
   }
   return false;
 }
-
-
-/*
-1. make a function in utils called removeBorder(room) that does what is being done right now in addRoom to trim the borders.
-2. update addRoom to use this function where it is currently doing that.
-3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
-If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-START AT THE SMALLER ONE
-"start" and "end" but you need to min and max the values and go from min to max.
--Which one we are working on!
-start at the min to bigger.
-Let's talk about that for
--for(var i = miner + 1; i < larger; i++){}
-*/
 
   static removeBorder(room, width, height){
     let border = room;
@@ -206,8 +152,6 @@ Let's talk about that for
       if (border[i].x > max.x) { max.x = border[i].x; }
       if (border[i].y > max.y) { max.y = border[i].y; }
     }
-
-
     let coords = [];
     for (var i = 0; i < border.length; i++) {
 
@@ -224,15 +168,31 @@ Let's talk about that for
     return coords;
   }
 
-
   static coordLine(start, end){
     let minX = Math.min(start.x, end.x);
     let minY = Math.min(start.y, end.y);
     let largeX = Math.max(start.x, end.x);
     let largeY = Math.max(start.y, end.y);
-    let obj = {};
-    for (var i = min; i < largeS.length; i++) {
-
+    let retArr = [];
+    for (var i = minX + 1; i < largeX; i++) {
+      var newX = {x:i, y:minY};
+      retArr.push(newX);
     }
+    for (var i = minY + 1; i < largeY; i++) {
+      var newY = {x:minX, y:i};
+      retArr.push(newY);
+    }
+    return retArr;
   }
+
 }
+/*
+3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
+If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+START AT THE SMALLER ONE
+"start" and "end" but you need to min and max the values and go from min to max.
+-Which one we are working on!
+start at the min to bigger.
+Let's talk about that for
+-for(var i = miner + 1; i < larger; i++){}
+*/
