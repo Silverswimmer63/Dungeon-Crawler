@@ -184,17 +184,28 @@ static dis(start, end){
 }
 
   static cordline(start, end){
-    let xdis = this.dis(start.x, end.x);
-    let ydis = this.dis(start.y, end.y);
+    let xdis = this.dis(start.x, end.x);// these are to add to start and end
+    let ydis = this.dis(start.y, end.y);// this one is the same but just y
     let obj = {};
+    let retAry = [];
     if (ydis != 0) {
-      obj.x = xdis;
-      obj.y = ydis-2;
+      let addTo = Math.min(start.y, end.y);
+      console.log(ydis-2);
+      console.log(addTo);
+      console.log(end.x);
+      for (var i = addTo; i < ydis-2; i++) {
+        console.log("fnjius");
+        obj = {x:end.x,y:[i]}
+        retAry.push(obj);
+      }
     }
     if (xdis != 0) {
-      obj.x = xdis-2;
-      obj.y = ydis;
+      let addTo = Math.min(start.y, end.y);
+      for (var i = addTo.x; i < xdis-2; i++) {
+        addTo.x ++;
+      }
     }
+    return retAry;
   }
 
 }
