@@ -167,20 +167,43 @@ class Cell{
   D. alter addRoom to deal not change the cell image anymore.*/
   //toString and other overwrights
     }
-toString(){
-  if ((this._inventory.length > 0)&&(this._occupied.length > 0)) {
-this._image = this._occupied[0].image;
-  }
-  else if ((this._inventory.length > 0)&&(this._occupied.length == 0)) {
-    this._image = this._inventory[0].icon;
-  }
-  else if ((this._inventory.length > 0)&&(this._occupied.length > 0)) {
-    for (var i = 0; i < 2; i++) {
-if (this.occupied[0]instanceof Mob) {
-  this._image = this._occupied[0].icon;
+    /*deal with the issue of how to display when there is more than 1 item in
+the inventory.
+order of display: most important - weapons, armor, potions, other -least
+order of display part 2: most important - level, value, index -least*/
+_stringHandler(className){
+let hits = []; // all the items in the inventory that are of the given class.
+for (let i = 0; i < this.inventory.length; i++) { // check for those things
+if(this.inventory[i] instanceof className){ hits.push(this.inventory[i]); }
 }
-    }
-  }
-  return this._image;
-  }
+if(hits.length == 0){ return undefined; } // base case
+
+let best = hits[0]; // base case - index 0
+for (let i = 0; i < hits.length; i++) { // value
+if(hits[i].value > best.value){ best = hits[i]; }
+}
+for (let i = 0; i < hits.length; i++) { // level
+if(hits[i].level > best.level){ best = hits[i]; }
+}
+return best;
+}
+
+//toString and other overwrites
+toString(){
+let image = this._image; // default image
+if (this.inventory.length > 0) { image = this.inventory[0]; }
+if (this.inventory.length > 1){
+let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+for (let i = 0; i < order.length; i++) {
+let testCase = this._stringHandler(order[i]);
+if (testCase != undefined) { image = testCase; }
+}
+} //ignore this for showing this step
+if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
+if (this.occupied.length == 2) { // find the mob
+if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+else { image = this.occupied[1]; }
+}
+return "" + image;
+}
 }
