@@ -120,7 +120,6 @@ class Map{
   addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
-        let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       num ++;
       let overlap = false;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
@@ -155,13 +154,12 @@ class Map{
       }
     }
   }
-    }
+    
 
 
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
-gin/Euan
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
