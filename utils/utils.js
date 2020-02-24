@@ -175,24 +175,30 @@ class Utils {
       return coords;
       }
 
-  /* 3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
-
-      Part 3: cordLine :
-      If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-      START AT THE SMALLER ONE
-      "start" and "end" but you need to min and max the values and go from min to max.
-      -Which one we are working on!
-      start at the small to bigger.
-      Let's talk about that for
-      -for(var i = smaller + 1; i < larger; i++){}
-      */
-  static cordLine(start, end){
-        var smaller = Math.min(start, end);
-        var larger = Math.max();
-        var arr = [];
-        for (var i = smaller ++; i < larger; i++) {
-          arr = end["x" + larger[i].x]["y" + larger[i].y];
-        }
-      }
+  /* Part 3: cordLine :
+  If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+  START AT THE SMALLER ONE
+  "start" and "end" but you need to min and max the values and go from min to max.
+  -Which one we are working on!
+  start at the small to bigger.
+  Let's talk about that for
+  -for(var i = smaller + 1; i < larger; i++){}
+  */
+  static cordLine(start,end){
+   let smallX = Math.min(start.x, end.x);
+   let smallY = Math.min(start.y, end.y);
+   let largeX = Math.max(start.x, end.x);
+   let largeY = Math.max(start.y, end.y);
+   let retArr = [];
+   for (var i = smallX + 1; i < largeX; i++) {
+     var newX = {x: i, y: smallY};
+     retArr.push(newX);
+   }
+   for (var i = smallY + 1; i < largeY; i++) {
+     var newY = {x: smallX, y: i};
+     retArr.push(newY);
+   }
+   return retArr;
+ }
 
 }
