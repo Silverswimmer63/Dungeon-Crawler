@@ -190,22 +190,59 @@ static dis(start, end){
     let retAry = [];
     if (ydis != 0) {
       let addTo = Math.min(start.y, end.y);
-      console.log(ydis-2);
-      console.log(addTo);
-      console.log(end.x);
-      for (var i = addTo; i < ydis-2; i++) {
-        console.log("fnjius");
-        obj = {x:end.x,y:[i]}
+      for (var i = addTo+1; i < ydis+addTo; i++) {
+        obj = {x:end.x,y:i};
         retAry.push(obj);
       }
     }
     if (xdis != 0) {
-      let addTo = Math.min(start.y, end.y);
-      for (var i = addTo.x; i < xdis-2; i++) {
-        addTo.x ++;
+      let addTo = Math.min(start.x, end.x);
+      for (var i = addTo+1; i < xdis+addTo; i++) {
+        obj = {x:i,y:start.y};
+        retAry.push(obj);
       }
     }
     return retAry;
+  }
+
+
+  /* hallCords(start, end)
+makes a line with chance of a turn between start and end
+@param start: {object} one of the two sets of coordinates on a hall
+@param end: {object} one of the two sets of coordinates on a hall
+@return: {array} an array of the coordinates between the two input coordinates
+*/
+  static hallCords(start, end){
+    let disx = this.dis(start.x,end.x);
+    let disy = this.dis(start.y,end.y);
+    let connect = this.cordline(start,end);
+    let retAry = [];
+    let retObj = {};
+    let chance = Math.random();
+      if ((start.x == end.x)||(start.y == end.y)) {return connect;}
+      if (chance < .5) {
+        for (var i = start.x+1; i <= start.x+disx; i++) {
+          retObj = {x:i,y:start.y};
+          retAry.push(retObj);
+        }
+        let endCord = retAry.length-1;
+        for (var i = retAry[endCord].y+1; i < retAry[endCord].y+disy; i++) {
+          retObj = {x:end.x,y:i};
+          retAry = retAry.concat(retObj);
+        }
+      }
+      if (chance > .5) {
+        for (var i = start.y+1; i < start.y+disy; i++) {
+          retObj = {x:start.x,y:i};
+          retAry.push(retObj);
+        }
+        let endCord = retAry.length-1;
+        for (var i = retAry[endCord].x; i < retAry[endCord].x+disx; i++) {
+          retObj = {x:i,y:end.y};
+          retAry = retAry.concat(retObj);
+        }
+      }
+      return retAry;
   }
 
 }
