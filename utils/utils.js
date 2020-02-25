@@ -178,16 +178,16 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   does what is being done right now in addRoom to trim the borders
 */
   static removeBorder(room, width, height){
-    let border = room;
-    let smalls = {x:width+1,y:height+1};
-    let biggy = {x:0,y:0};
+    var border = room;
+    var smalls = {x:width+1,y:height+1};
+    var biggy = {x:0,y:0};
     for (var i = 0; i < border.length; i++) {
       if (border[i].x < smalls.x) { smalls.x = border[i].x; }
       if (border[i].y < smalls.y) { smalls.y = border[i].y; }
       if (border[i].x > biggy.x) { biggy.x = border[i].x; }
       if (border[i].y > biggy.y) { biggy.y = border[i].y; }
     }
-    let coords = [];
+    var coords = [];
     for (var i = 0; i < border.length; i++) {
       var isBorder = false;
       if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
@@ -205,7 +205,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   "start" and "end" but you need to min and max the values and go from min to max.
   -Which one we are working on!
   start at the small to bigger.
-  Let's talk about that for
+  var's talk about that for
   -for(var i = smaller + 1; i < larger; i++){}
 */
   static dist(start, end){
@@ -214,30 +214,56 @@ if any of them have the same coordinates, and if there is overlap, don't add the
     if (start != end) {
       if (max < start) { num = start - max; }
       if (max > start) { num = max - start; }
-      if (max < min) { num = end - max; }
-      if (max > min) { num = max - end; }
+      if (max < end) { num = end - max; }
+      if (max > end) { num = max - end; }
       return num;
     }else {
       return start - end;
     }
   }
 
-  static cordLine(start, end){
-    var xdist = this.dist(start.x, end.x);
-    var ydist = this.dist(start.y, end.y);
+  /*static cordLine(start, end){
+    //var xdist = this.dist(start.x, end.x);
+    //var ydist = this.dist(start.y, end.y);
+    var xmin = Math.min(start.x, end.x);
+    var xmax = Math.max(start.x, end.x);
+    var ymin = Math.min(start.y, end.y);
+    var ymax = Math.max(start.y, end.y);
     var obj = {};
     var retArr = [];
+    if (ydist != 0) {
+      //var addTo = Math.min(start.y, end.y);
+      for (var i = addTo; i < ydist-2; i++) {
+        obj = {x:end.x,y:[i]}
+        retArr.push(obj);
+      }
+    }
+    if (xdist != 0) {
+      //var addTo = Math.min(start.y, end.y);
+      for (var i = addTo.x; i < xdist-2; i++) {
+        addTo.x ++;
+      }
+    }
+    return retArr;
+  }
+*/
+  static cordLine(start, end){
+    let xdis = this.dist(start.x, end.x);// these are to add to start and end
+    let ydis = this.dist(start.y, end.y);// this one is the same but just y
+    let obj = {};
+    let retAry = [];
     if (ydis != 0) {
       let addTo = Math.min(start.y, end.y);
-      for (var i = addTo; i < ydis-2; i++) {
-        obj = {x:end.x,y:[i]}
+      for (var i = addTo+1; i < ydis+addTo; i++) {
+        obj = {x:end.x,y:i};
         retAry.push(obj);
       }
     }
     if (xdis != 0) {
-      let addTo = Math.min(start.y, end.y);
-      for (var i = addTo.x; i < xdis-2; i++) {
-        addTo.x ++;
+      let addTo = Math.min(start.x, end.x);
+      for (var i = addTo+1; i < xdis+addTo; i++) {
+        obj = {x:i,y:start.y};
+        retAry.push(obj);
       }
     }
     return retAry;
@@ -250,7 +276,9 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   @return: {array} an array of the coordinates between the two input coordinates
 */
   static hallCords(start, end){
-    
+    var xdist = this.dist(start.x, end.x);
+    var ydist = this.dist(start.y, end.y);
+    var retArr = [];
   }
 
 }
