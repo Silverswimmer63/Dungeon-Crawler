@@ -10,6 +10,7 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 30;
@@ -98,6 +99,28 @@ class Map{
       num = 200;
       this._rooms.push(coords);
       }
+    }
+  }
+  addHalls(map = this._map){
+    var objArr = [];
+    for(var i = 0; i < this._rooms.length-1; i++){
+      for(var j = 1; j< this._rooms.length-1; j++){
+          var roomone = this._rooms[i];
+          var roomtwo = this._rooms[j];
+      objArr[i] = Utils.hallCheck(roomone,roomtwo);
+      }
+    }
+    var sm = []
+    for(var i = 0; i < objArr.length; i++){
+      for(var j = 0; j < objArr[i].length; j++){
+        sm.push(objArr[i][j]);
+      }
+    }
+    for(var i = 0; i < sm.length-1; i++){
+    let cell = map["y" + (sm[i].y+1)]["x" + (sm[i].x+1)];
+        cell.image = " "; // todo update type to set the image then have ranked inventy
+        cell.type = "hall";
+    this._halls.push(cell);
     }
   }
 

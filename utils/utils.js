@@ -192,37 +192,39 @@ static hallCheck(roomOne, roomTwo){
     var widthOne = roomOne[0].x - roomOne[roomOne.length-1].x;
     var heightTwo = roomTwo[0].y - roomTwo[roomTwo.length-1].y;
     var widthTwo = roomTwo[0].x - roomTwo[roomTwo.length-1].x;
-    var midOne = {x: (widthOne/2)+roomOne[0].x, y: (heightOne/2)+roomOne[0].y};
-    var midTwo = {x: (widthTwo/2)+roomTwo[0].x, y: (heightTwo/2)+roomTwo[0].y};
-    var distance = {x: midOne.x-midTwo.x, y: midOne.y-midTwo.y};
+    var midOne = {x: Math.ceil(widthOne/2)+roomOne[roomOne.length-1].x, y: Math.ceil(heightOne/2)+roomOne[roomOne.length-1].y};
+    var midTwo = {x: Math.ceil(widthTwo/2)+roomTwo[roomTwo.length-1].x, y: Math.ceil(heightTwo/2)+roomTwo[roomTwo.length-1].y};
+    var distance = {x: Math.ceil(midOne.x-midTwo.x), y: Math.ceil(midOne.y-midTwo.y)};
     var hallCords = [];
-    console.log(heightOne);
-    console.log(heightTwo);
-    console.log(midTwo);
-    console.log(midOne);
-
-    for(var i = 1; i < Math.abs(distance.y+1); i++){
+    var hallYmath = 0;
+    hallCords.push({x:Math.ceil(midOne.x), y:Math.ceil(midOne.y)});
+    for(var i = 1; i < Math.abs(distance.y); i++){
       if(distance.y > 0){
-      hallCords.push({x:midOne.x,y:midOne.y+i});
+       if(Math.ceil(midOne.y)-i >= 0){
+       var posStatY = Math.ceil(midOne.y)-i;
+       }
+      hallCords.push({x:Math.ceil(midOne.x),y:Math.abs(posStatY)});
       }
       else if(distance.y < 0){
-      hallCords.push({x:midOne.x,y:midOne-i});
+       var negStatY = Math.ceil(midOne.y)+i;
+      hallCords.push({x:Math.ceil(midOne.x),y:Math.abs(negStatY)});
+
       }
+          var hallYmath = hallCords.length - 1;
     }
-    console.log(hallCords.length)
-    var hallYmath = hallCords.length - 1;
-    for(var j = 1; j < Math.abs(distance.x+1); j++){
+    for(var j = 1; j < Math.abs(distance.x); j++){
      if(distance.x > 0){
-      hallCords.push({x:midOne.x + j, y:hallCords[hallYmath].y});
+      if(Math.ceil(midOne.x)-j >= 0){
+       var posStatX = Math.ceil(midOne.x)-j;
+      }
+      hallCords.push({x:Math.abs(posStatX), y:hallCords[hallYmath].y});
      }   
      else if(distance.x < 0){
-     hallCords.push({x:midOne.x + j, y:hallCords[yDone].y});
+     var negStatX = Math.ceil(midOne.x)+j;
+     hallCords.push({x:Math.abs(negStatX), y:hallCords[hallYmath].y});
      }       
     }
-    console.log(hallCords.length)
-    if(hallCords[hallCords.length-1].x == midTwo.x && hallCords[hallCords.length-1].y == midTwo.y){
-      console.log("yayayyayayyayayayayy");
-    }
+    return hallCords;
  }
  static removeBorder(room,width,height,rooms){
       let smalls = {x:width+1,y:height+1};
@@ -316,16 +318,6 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   Let's talk about that for
   -for(var i = smaller + 1; i < larger; i++){}
 */
-  static cordLine(start, end){
-    var retArr = [];
-    var smallX = Math.min(start.x, end.x);
-    var largeX = Math.max(start.x, end.x);
-    var smallY = Math.min(start.y, end.y);
-    var largeY = Math.max(start.y, end.y);
-    for (var i = 0; i < array.length; i++) {
-      array[i]
-    }
-  }
 /*
   1. make a function in utils called removeBorder(room) that does what is being
   done right now in addRoom to trim the borders.
