@@ -202,20 +202,71 @@ static dis(start, end){
   @param end: {object} one of the two sets of coordinates on a hall
   @return: {array} an array of the coordinates between the two input coordinates
   */
-  static hallCords{
+  static hallCords(start, end){
     //connect two rooms by random points something something math.random
-let height = randRoom[0].y randRoom[randRoom.length].y
-let width = randRoom[0].x randRoom[randRoom.width].x
-//let hightB = randRoom
-if ((height.x == width.x)||(height.y == width.y)) {
+let minX = Math.min(start.x, end.x);/*randRoom[0].y randRoom[randRoom.length].y*/
+let minY = Math.min(start.y, end.y);//randRoom[0].x randRoom[randRoom.width].x
+let maxX = Math.max(start.x, end.x);
+let maxY = Math.max(start.y, end.y);
+let retVar = [];
+if ((start.x == end.x)||(start.y == end.y)) {
   //width and height need to connect to widthB and heightB
-  this.cordline(height.width)
+  this.cordline(start, end)
+}else {
+for (var i = minX +1; i < maxX +1; i++) {
+  var newX = {x:i, y:minY}
+  retVar.push(newX);
 }
-for (var i = 0; i < height.length; i++) {
-  
+for (var j = minY +1; j < maxY +1; j++) {
+var newY = {x:maxX, y:j};
+retVar = retVar.concat(newY);
 }
-for (var j = 0; j < width.length; j++) {
+}
+return retVar;
+  }
+  /*
+shuffleIndex(array){
+arr = []
+result = []
+for(i<array){
+arr.push(i)
+}
+for(i<array){
+thing = 0
+otherthing = 0
+var rand = randomnum(0,max);
+for(j<array){
+if(rand == arr){
+result.push()
+thing++
+}
+else if(arr == array+1){
 
 }
+else{
+otherthing++
+}
+}
+if(otherthing >= 0 && thing !== array){
+i--
+}
+}
+return result
+}
+*/
+helpingHalls(){
+while (i=lenght) {
+for (var i = 0; i < .length; i++) {
+
+}
+}
+}
+  /* shuffleIndex(array)
+  @param array: {array} an array to shuffle the index of
+  @return array: an array of number index (eg: array of length 5 might
+  give you a result of [2, 3, 0, 1, 4])
+  */
+  static shuffleIndex(){
+
   }
 }
