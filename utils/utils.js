@@ -253,7 +253,17 @@ makes a line with chance of a turn between start and end
 @param end: {object} one of the two sets of coordinates on a hall
 @return: {array} an array of the coordinates between the two input coordinates
 */
-hallCords(start, end){
-
+static hallCords(start, end){
+let 
+  let retAry = [];
+  if ((start.x == end.x)(start.y == end.y)) {
+    for (var i = 0; i < ; i++) {
+    }
+  }
 }
+/* shuffleIndex(array)
+@param array: {array} an array to shuffle the index of
+@return array: an array of number index (eg: array of length 5 might
+give you a result of [2, 3, 0, 1, 4])
+*/
 }
