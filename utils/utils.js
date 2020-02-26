@@ -193,8 +193,29 @@ static dis(start, end){
     }
     if (xdis != 0) {
       obj.x = xdis-2;
-      obj.y = ydis;
+  obj.y = ydis;
     }
   }
+  /* hallCords(start, end)
+  makes a line with chance of a turn between start and end
+  @param start: {object} one of the two sets of coordinates on a hall
+  @param end: {object} one of the two sets of coordinates on a hall
+  @return: {array} an array of the coordinates between the two input coordinates
+  */
+  static hallCords{
+    //connect two rooms by random points something something math.random
+let height = randRoom[0].y randRoom[randRoom.length].y
+let width = randRoom[0].x randRoom[randRoom.width].x
+//let hightB = randRoom
+if ((height.x == width.x)||(height.y == width.y)) {
+  //width and height need to connect to widthB and heightB
+  this.cordline(height.width)
+}
+for (var i = 0; i < height.length; i++) {
+  
+}
+for (var j = 0; j < width.length; j++) {
 
+}
+  }
 }
