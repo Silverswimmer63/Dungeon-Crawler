@@ -276,9 +276,34 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   @return: {array} an array of the coordinates between the two input coordinates
 */
   static hallCords(start, end){
-    var xdist = this.dist(start.x, end.x);
-    var ydist = this.dist(start.y, end.y);
+    var xmin = Math.min(start.x, end.x);
+    var xmax = Math.max(start.x, end.x);
+    var ymin = Math.min(start.y, end.y);
+    var ymax = Math.max(start.y, end.y);
     var retArr = [];
+    if ((start.x == end.x) || (start.y == end.y)) {
+      this.cordLine(start, end);
+    }else {
+      for (var i = xmin+1; i < xmax+1; i++) {
+        var newX = {x:i, y:ymin};
+        retArr.push(newX);
+      }
+      for (var i = ymin+1; i < ymax; i++) {
+        var newY = {x:xmax, y:i};
+        retArr = retArr.concat(newY);
+      }
+    }
+  return retArr;
   }
+
+  /* shuffleIndex(array)
+  @param array: {array} an array to shuffle the index of
+  @return array: an array of number index (eg: array of length 5 might
+  give you a result of [2, 3, 0, 1, 4])
+*/
+  static shuffleIndex(){
+    
+  }
+
 
 }
