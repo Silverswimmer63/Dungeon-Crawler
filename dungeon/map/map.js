@@ -12,7 +12,7 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._roomMin = 5;
-    this._roomMax = 15;
+    this._roomMax = 10;
     this._numRooms = 30;
     this._map = this._generateMap();
   }

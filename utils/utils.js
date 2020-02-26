@@ -301,6 +301,35 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   @return array: an array of number index (eg: array of length 5 might
   give you a result of [2, 3, 0, 1, 4])
 */
+  /*shuffleIndex(array){
+    arr = []
+    result = []
+    for(i<array){
+      arr.push(i)
+    }
+    for(i<array){
+      thing = 0
+      otherthing = 0
+      var rand = randomnum(0,max);
+      for(j<array){
+        if(rand == arr){
+        result.push()
+        thing++
+      }
+      else if(arr == array+1){
+
+      }
+      else{
+      otherthing++
+      }
+      }
+        if(otherthing >= 0 && thing !== array){
+          i--
+        }
+      }
+      return result
+    }
+*/
   static shuffleIndex(){
     
   }
