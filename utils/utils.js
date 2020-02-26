@@ -209,6 +209,7 @@ makes a line with chance of a turn between start and end
         retArr = retArr.concat(newY);
       }
     }
+    return retArr;
   }
 
 }
