@@ -199,15 +199,14 @@ makes a line with chance of a turn between start and end
     let retArr = [];
     if ((start.x == end.x)||(start.y == end.y)) {
       this.coordLine(start, end)
-    }else {
-      for (var i = minX +1; i < largeX +1; i++) {
-        var newX = {x:i, y:minY};
-        retArr.push(newX);
-      }
-      for (var i = minY +1; i < largeY +1; i++) {
-        var newY = {x:largeX, y:i};
-        retArr = retArr.concat(newY);
-      }
+    }
+    for (var i = minX + 1; i < largeX + 1; i++) {
+      var newX = {x:i, y:minY};
+      retArr.push(newX);
+    }
+    for (var i = minY + 1; i < largeY + 1; i++) {
+      var newY = {x:largeX, y:i};
+      retArr = retArr.concat(newY);
     }
     return retArr;
   }
