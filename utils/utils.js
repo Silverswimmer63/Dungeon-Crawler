@@ -224,4 +224,63 @@ Let's talk about that for
     }
     return coords;
   }
-  }
+
+/*make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
+Part 3: cordLine :
+If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
+START AT THE SMALLER ONE
+"start" and "end" but you need to min and max the values and go from min to max.
+-Which one we are working on!
+start at the small to bigger.
+Let's talk about that for
+-for(var i = smaller + 1; i < larger; i++){}
+
+*/
+
+  static cordLine(start,end){
+   let minX = Math.min(start.x, end.x);
+   let minY = Math.min(start.y, end.y);
+   let maxX = Math.max(start.x, end.x);
+   let maxY = Math.max(start.y, end.y);
+   let retArr = [];
+   for (var i = minX + 1; i < maxX; i++) {
+     var newX = {x: i, y: minY};
+     retArr.push(newX);
+   }
+   for (var i = minY + 1; i < maxY; i++) {
+     var newY = {x: minX, y: i};
+     retArr.push(newY);
+   }
+   return retArr;
+ }
+
+ /* hallCords(start, end)
+ makes a line with chance of a turn between start and end
+ @param start: {object} one of the two sets of coordinates on a hall
+ @param end: {object} one of the two sets of coordinates on a hall
+ @return: {array} an array of the coordinates between the two input coordinates
+ */
+
+ static hallCords(start, end){
+   let minX = Math.min(start.x, end.x);
+   let minY = Math.min(start.y, end.y);
+   let maxX = Math.max(start.x, end.x);
+   let maxY = Math.max(start.y, end.y);
+   let retArr = [];
+     if((start.x == end.x)||(start.y == end.y)){
+       this.cordLine(start, end);
+     }
+     else {
+       for (var i = minX + 1; i < maxX +1; i++) {
+         var newX = {x: i, y: minY};
+         retArr.push(newX);
+       }
+       for (var i = minY + 1; i < maxY +1; i++) {
+         var newY = {x: maxX, y: i};
+         retArr = retArr.concat(newY);
+       }
+       console.log(retArr);
+     }
+   }
+
+}

@@ -12,7 +12,7 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
-    this._roomMin = 3;
+    this._roomMin = 5;
     this._roomMax = 10;
     this._numRooms = 25;
     this._map = this._generateMap();
