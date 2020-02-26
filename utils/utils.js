@@ -301,7 +301,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   @return array: an array of number index (eg: array of length 5 might
   give you a result of [2, 3, 0, 1, 4])
 */
-  /*shuffleIndex(array){
+  /* shuffleIndex(array){
     arr = []
     result = []
     for(i<array){
@@ -313,25 +313,48 @@ if any of them have the same coordinates, and if there is overlap, don't add the
       var rand = randomnum(0,max);
       for(j<array){
         if(rand == arr){
-        result.push()
-        thing++
-      }
-      else if(arr == array+1){
+          result.push()
+          thing++
+        }
+        else if(arr == array+1){
 
-      }
-      else{
-      otherthing++
-      }
+        }else{
+          otherthing++
+        }
       }
         if(otherthing >= 0 && thing !== array){
           i--
         }
       }
       return result
+}*/
+  static shuffleIndex(array){
+    var arr = [];
+    var result = [];
+    for (var i = 0; i < array; i++) {
+      arr.push(i)
     }
-*/
-  static shuffleIndex(){
-    
+    for (var i = 0; i < array; i++) {
+      var thing = 0;
+      var otherthing = 0;
+      var rand = this.randMath(0, array)
+      for (var j = 0; j < array; j++) {
+        if (rand == arr[j]) {
+          arr[j] = array +1;
+          result.push(rand);
+          thing++;
+        }
+        else if (arr[j] == array +1) {
+
+        }else {
+          otherthing++;
+        }
+      }
+      if ((otherthing >= 1) && (thing !== array)) {
+        i--;
+      }
+    }
+    return result;
   }
 
 
