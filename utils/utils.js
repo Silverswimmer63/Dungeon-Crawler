@@ -96,8 +96,7 @@ class Utils {
     }
   }
 
-  /*
-  randCoord(xMin, xMax, yMin, yMax)
+  /*randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
   @param xMin {int}: a number between 1 and xMax
@@ -106,7 +105,7 @@ class Utils {
   @param yMax {int}: a number greater than yMin
   @return {obj}: An obj with x & y keys
   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
     retObj.x = this.randMath(xMin, xMax, call);
     retObj.y = this.randMath(yMin, yMax, call);
@@ -116,102 +115,100 @@ class Utils {
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static randRoom(width, height, roomMin, roomMax){
-    var retArray = [];
+  static randRoom(width, height, roomMin, roomMax, call="Utils.randRoom"){
     roomMin -= 1;
-    roomMax -=1;
-    var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
-    var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    roomMax -= 1;
+    var retArray = [];
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
-        retArray.push({x: i, y: j});
+        retArray.push({x: i, y: j})
       }
     }
     return retArray;
-    }
+  }
 
-  /* coordCheck(seta, setb)
-    takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-    */
-  static coordCheck(seta, setb){
-      for (var i = 0; i < seta.length; i++) {
-        for (var j = 0; j < setb.length; j++) {
-          if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-            return true;
-          }
-        }
-      }
-      return false;
+  /* coordCheck(setA, setB)
+takes 2 arrays of coordinates and checks them to see if there is a coordinate in
+one that is this in the other. If so it returns a true, if not, it returns a false.
+*/
+  static coordCheck(setA, setB){
+    for (var i = 0; i < setA.length; i++) {
+    for (var j = 0; j < setB.length; j++) {
+    if((setA[i].x == setB[j].x) && (setA[i].y == setB[j].y)) { return true; }
     }
+  }
+  return false;
+}
 
   static removeBorder(room, width, height){
-      let border = room;
-      var min = {x: width + 1, y: height + 1};
-      var max = {x: 0, y: 0};
-      for (var i = 0; i < border.length; i++) {
-        if (border[i].x < min.x) {
-          min.x = border[i].x;
-        }
-        if (border[i].y < min.y) {
-          min.y = border[i].y;
-        }
-        if (border[i].x > max.x) {
-          max.x = border[i].x;
-        }
-        if (border[i].y > max.y) {
-          max.y = border[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < border.length; i++) {
-        var isBorder = false;
-        if ((border[i].x == max.x) || (border[i].y == max.y) || (border[i].x == min.x) || (border[i].y == min.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(border[i]);
-        }
-      }
-      return coords;
-      }
+    let border = room;
+    let max = {x:0,y:0};
+    let min = {x:width+1,y:height+1};
+    for (var i = 0; i < border.length; i++) {
+      if (border[i].x < min.x) { min.x = border[i].x; }
+      if (border[i].y < min.y) { min.y = border[i].y; }
+      if (border[i].x > max.x) { max.x = border[i].x; }
+      if (border[i].y > max.y) { max.y = border[i].y; }
+    }
+    let coords = [];
+    for (var i = 0; i < border.length; i++) {
 
-  /*cordLine :
-  If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-  START AT THE SMALLER ONE
-  "start" and "end" but you need to min and max the values and go from min to max.
-  -Which one we are working on!
-  start at the small to bigger.
-  Let's talk about that for
-  -for(var i = smaller + 1; i < larger; i++){}
-  */
-  static cordLine(start, end){
-   let smallX = Math.min(start.x, end.x);
-   let smallY = Math.min(start.y, end.y);
-   let largeX = Math.max(start.x, end.x);
-   let largeY = Math.max(start.y, end.y);
-   let retArr = [];
-   for (var i = smallX + 1; i < largeX; i++) {
-     var newX = {x: i, y: smallY};
-     retArr.push(newX);
-   }
-   for (var i = smallY + 1; i < largeY; i++) {
-     var newY = {x: smallX, y: i};
-     retArr.push(newY);
-   }
-   return retArr;
- }
+      var isBorder = false;
+      if ((border[i].x == max.x)||(border[i].y == max.y)
+        ||(border[i].x == min.x)||(border[i].y == min.y)) {
+        isBorder = true;
+
+      }
+      if (!isBorder) {
+        coords.push(border[i]);
+      }
+    }
+    return coords;
+  }
+
+  static coordLine(start, end){
+    let minX = Math.min(start.x, end.x);
+    let minY = Math.min(start.y, end.y);
+    let largeX = Math.max(start.x, end.x);
+    let largeY = Math.max(start.y, end.y);
+    let retArr = [];
+    for (var i = minX + 1; i < largeX; i++) {
+      var newX = {x:i, y:minY};
+      retArr.push(newX);
+    }
+    for (var i = minY + 1; i < largeY; i++) {
+      var newY = {x:minX, y:i};
+      retArr.push(newY);
+    }
+    return retArr;
+  }
 
   /* hallCords(start, end)
-  makes a line with chance of a turn between start and end
-  @param start: {object} one of the two sets of coordinates on a hall
-  @param end: {object} one of the two sets of coordinates on a hall
-  @return: {array} an array of the coordinates between the two input coordinates
-  */
-  static hallCord(start, end){
-    if ((start.x == end.x) || (start.y == end.y)) {
-      this.cordLine(start,end);
+makes a line with chance of a turn between start and end
+@param start: {object} one of the two sets of coordinates on a hall
+@param end: {object} one of the two sets of coordinates on a hall
+@return: {array} an array of the coordinates between the two input coordinates
+*/
+  static hallCords(start, end){
+    let minX = Math.min(start.x, end.x);
+    let minY = Math.min(start.y, end.y);
+    let largeX = Math.max(start.x, end.x);
+    let largeY = Math.max(start.y, end.y);
+    let retArr = [];
+    if ((start.x == end.x)||(start.y == end.y)) {
+      this.coordLine(start, end)
+    }else {
+      for (var i = minX +1; i < largeX +1; i++) {
+        var newX = {x:i, y:minY};
+        retArr.push(newX);
+      }
+      for (var i = minY +1; i < largeY +1; i++) {
+        var newY = {x:largeX, y:i};
+        retArr = retArr.concat(newY);
+      }
     }
-    
   }
 
 }
