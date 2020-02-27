@@ -253,20 +253,59 @@ i--
 }
 return result
 }
+static = function() {
+  var i = this.length, j, temp;
+  if ( i == 0 ) return this;
+  while ( --i ) {
+     j = Math.floor( Math.random() * ( i + 1 ) );
+     temp = this[i];
+     this[i] = this[j];
+     this[j] = temp;
+  }
+  return this;
+}
 */
-helpingHalls(){
-while (i=lenght) {
-for (var i = 0; i < .length; i++) {
-
-}
-}
+static helpingHalls(array) {
+  var i = array.length, j, temp;
+  if ( i == 0 ) return this;
+  while ( --i ) {
+     j = Math.floor( Math.random() * ( i + 1 ) );
+     temp = array[i];
+     array[i] = array[j];
+     array[j] = temp;
+  }
+  return array;
 }
   /* shuffleIndex(array)
   @param array: {array} an array to shuffle the index of
   @return array: an array of number index (eg: array of length 5 might
   give you a result of [2, 3, 0, 1, 4])
   */
-  static shuffleIndex(){
-
+  static shuffleIndex(array){
+let numArr = [];
+for (var i = 0; i < array.length; i++) {
+  numArr.push(i);
+}
+let retAry = this.helpingHalls(numArr)
+return retAry;
   }
+  /*
+  Now that shuffle indexes is working we can come up with a randomized
+  unordered list of rooms, which we can then use to make hallways -
+First goal - figure out how to use the the random list of room indexes to make halls abstractly.
+
+Second goal - what 1 more thing will we need to know get to make the halls
+
+Third goal - ask me what to do next re second goal above ^^
+*/
+//maybe use something something addroom and shuffle because it uses helping halls which is ment to be an addition to hallCords
+//choice random place in said rooms make a new room but only leave the border for a small path to make the halls
+//choice a point off the border and then conect them using data from shuffleIndex
+//maybe use randMath to decide a point on the border (use removeBorder maybe to decide the border area)
+//for(length of shuffleIndex){use i to connect i and i + 1 this [i] connect this.room[i+1]}
+//[10,14,7,3] lengthis 4 use for connect 14,14 to 7, 7 to 3
+//use randCoord
+static makingHalls(){
+
+}
 }
