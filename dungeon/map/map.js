@@ -237,3 +237,13 @@ with the keys X and Y
 .9 to continue in Map.rooms - for each room make sure it has something in it, otherwise toss the error
 "In Map.rooms: One or more room arrays is empty."
 */
+/*make a function in map
+makeHall(indexA, indexB)
+gets rooms from indexes
+takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+makes those the start and end cords
+makes the hall
+returns the hall*/
+function makeHall(indexA,indexB){
+  
+}

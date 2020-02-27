@@ -254,16 +254,79 @@ makes a line with chance of a turn between start and end
 @return: {array} an array of the coordinates between the two input coordinates
 */
 static hallCords(start, end){
-let 
-  let retAry = [];
-  if ((start.x == end.x)(start.y == end.y)) {
-    for (var i = 0; i < ; i++) {
-    }
-  }
-}
+   let minX = Math.min(start.x, end.x);
+   let minY = Math.min(start.y, end.y);
+   let maxX = Math.max(start.x, end.x);
+   let maxY = Math.max(start.y, end.y);
+   let retArr = [];
+     if((start.x == end.x)||(start.y == end.y)){
+       this.cordLine(start, end);
+     }
+     else {
+       for (var i = minX + 1; i < maxX +1; i++) {
+         var newX = {x: i, y: minY};
+         retArr.push(newX);
+       }
+       for (var i = minY + 1; i < maxY +1; i++) {
+         var newY = {x: maxX, y: i};
+         retArr = retArr.concat(newY);
+       }
+       console.log(retArr);
+     }
+   }
 /* shuffleIndex(array)
 @param array: {array} an array to shuffle the index of
 @return array: an array of number index (eg: array of length 5 might
 give you a result of [2, 3, 0, 1, 4])
 */
+/*
+shuffleIndex(array){
+arr = []
+result = []
+for(i<array){
+arr.push(i)
+}
+for(i<array){
+thing = 0
+otherthing = 0
+var rand = randomnum(0,max);
+for(j<array){
+if(rand == arr){
+result.push()
+thing++
+}
+else if(arr == array+1){
+
+}
+else{
+otherthing++
+}
+}
+if(otherthing >= 0 && thing !== array){
+i--
+}
+}
+return result
+}
+*/
+
+static something(array) {
+  var i = array.length, j, temp;
+  if ( i == 0 ) return this;
+  while ( --i ) {
+     j = Math.floor( Math.random() * ( i + 1 ) );
+     temp = array[i];
+     array[i] = array[j];
+     array[j] = temp;
+  }
+  return array;
+}
+static shuffleIndex(array){
+let numArr = [];
+for (var i = 0; i < array.length; i++) {
+numArr.push(i);
+}
+let retAry = this.something(numArr)
+return retAry;
+}
 }
