@@ -211,4 +211,63 @@ makes a line with chance of a turn between start and end
     return retArr;
   }
 
+  /* shuffleIndex(array)
+  @param array: {array} an array to shuffle the index of
+  @return array: an array of number index (eg: array of length 5 might
+  give you a result of [2, 3, 0, 1, 4])
+  */
+
+  /*
+shuffleIndex(array){
+arr = []
+result = []
+for(i<array){
+arr.push(i)
+}
+for(i<array){
+thing = 0
+otherthing = 0
+var rand = randomnum(0,max);
+for(j<array){
+if(rand == arr){
+result.push()
+thing++
+}
+else if(arr == array+1){
+
+}
+else{
+otherthing++
+}
+}
+if(otherthing >= 0 && thing !== array){
+i--
+}
+}
+return result
+}
+*/
+  static shuffleIndex(array){
+    for (var i = 0; i < array.length; i++) {
+      array.push(i);
+    }
+    for (var i = 0; i < array.length; i++) {
+      var firstNum = 0;
+      var secNum = 0;
+      var randNum = this.randMath(0, array.length);
+      for (var j = 0; j < array.length; j++) {
+        if (randNum == array) {
+          array.push();
+          firstNum++;
+        } else if (array == array + 1) {
+          
+        } else {
+          secNum++;
+        } if (secNum >= 0 && firstNum !== array) {
+          i--;
+        }
+      }
+    }
+    return array;
+  }
 }
