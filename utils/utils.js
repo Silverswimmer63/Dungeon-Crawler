@@ -271,16 +271,44 @@ Let's talk about that for
        this.cordLine(start, end);
      }
      else {
-       for (var i = minX + 1; i < maxX +1; i++) {
+       for (var i = minX + 1; i < maxX ; i++) {
          var newX = {x: i, y: minY};
          retArr.push(newX);
        }
-       for (var i = minY + 1; i < maxY +1; i++) {
+       for (var i = minY + 1; i < maxY ; i++) {
          var newY = {x: maxX, y: i};
          retArr = retArr.concat(newY);
        }
-       console.log(retArr);
+       return retArr;
      }
    }
+
+/* shuffleIndex(array)
+  @param array: {array} an array to shuffle the index of
+  @return array: an array of number index (eg: array of length 5 might
+  give you a result of [2, 3, 0, 1, 4])
+*/
+static shuffle (array) {
+  var i = 0;
+  var j = 0;
+  var temp = null;
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+  return array;
+}
+
+  static shuffeIndex(array){
+    let retArr = [];
+    for (var i = 0; i < array.length; i++) {
+        retArr.push(i);
+    }
+    let numArr = this.shuffle(retArr);
+    return numArr;
+  }
+
 
 }
