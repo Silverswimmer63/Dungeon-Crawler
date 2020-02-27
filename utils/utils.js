@@ -248,26 +248,31 @@ return result
 }
 */
   static shuffleIndex(array){
-    for (var i = 0; i < array.length; i++) {
-      array.push(i);
+    var arr = [];
+    var result = [];
+    for (var i = 0; i < array; i++) {
+      arr.push(i)
     }
-    for (var i = 0; i < array.length; i++) {
-      var firstNum = 0;
-      var secNum = 0;
-      var randNum = this.randMath(0, array.length);
-      for (var j = 0; j < array.length; j++) {
-        if (randNum == array) {
-          array.push();
-          firstNum++;
-        } else if (array == array + 1) {
-          
-        } else {
-          secNum++;
-        } if (secNum >= 0 && firstNum !== array) {
-          i--;
+    for (var i = 0; i < array; i++) {
+      var thing = 0;
+      var otherthing = 0;
+      var rand = this.randMath(0, array)
+      for (var j = 0; j < array; j++) {
+        if (rand == arr[j]) {
+          arr[j] = array +1;
+          result.push(rand);
+          thing++;
+        }
+        else if (arr[j] == array +1) {
+
+        }else {
+          otherthing++;
         }
       }
+      if ((otherthing >= 1) && (thing !== array)) {
+        i--;
+      }
     }
-    return array;
+    return result;
   }
 }
