@@ -316,6 +316,9 @@ returns the hall
 //[10,14,7,3] lengthis 4 use for connect 14,14 to 7, 7 to 3
 //use randCoord
 static makingHalls(IndexA, IndexB){
+var shu = call(shuffleIndex)
+var cor = call(cordline)
+var hal = call(hallCords)//idk what im doing remember to get help
 for (var i = 0; i < this.room.length; i++) {
 
 }
