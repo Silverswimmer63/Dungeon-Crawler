@@ -101,26 +101,48 @@ class Map{
       }
     }
   }
+  /* addHalls()
+   *@param {array} map is to be able to change the map;
+   *  addHalls adds all halls in one go and connects them randomly with starts of
+   *X values or starting with changes of Y values
+   */
   addHalls(map = this._map){
     var objArr = [];
-    for(var i = 0; i < this._rooms.length-1; i++){
-      for(var j = 1; j< this._rooms.length-1; j++){
-          var roomone = this._rooms[i];
-          var roomtwo = this._rooms[j];
-      objArr[i] = Utils.hallCheck(roomone,roomtwo);
+    var arrayAmount = Utils.shuffleIndex(this._rooms.length)
+    for(var i = 0; i < this._rooms.length; i++){
+      var rand = Utils.randMath(1,2);
+      for(var j = 1; j< 2; j++){
+        if(i == 0){
+          var roomone = this._rooms[arrayAmount[i]];
+          var roomtwo = this._rooms[arrayAmount[i+1]];
+        }
+        else{
+          var roomone = this._rooms[arrayAmount[i]];
+          var roomtwo = this._rooms[arrayAmount[i-1]];
+        }
+          if(rand == 1){
+      objArr.push(Utils.hallYstart(roomone,roomtwo));
+          }
+          else if(rand == 2){
+      objArr.push(Utils.hallYstart(roomone,roomtwo));
+          }
       }
     }
-    var sm = []
+    var coordsArray = []
     for(var i = 0; i < objArr.length; i++){
       for(var j = 0; j < objArr[i].length; j++){
-        sm.push(objArr[i][j]);
+        coordsArray.push(objArr[i][j]);
       }
     }
-    for(var i = 0; i < sm.length-1; i++){
-    let cell = map["y" + (sm[i].y+1)]["x" + (sm[i].x+1)];
+    for(var i = 0; i < coordsArray.length-1; i++){
+    let cell = map["y" + (coordsArray[i].y+1)]["x" + (coordsArray[i].x+1)];
+    if(cell.type !== "room"){
         cell.image = " "; // todo update type to set the image then have ranked inventy
         cell.type = "hall";
+    }
+    if(cell.type == "hall"){
     this._halls.push(cell);
+    }
     }
   }
 
@@ -148,6 +170,7 @@ this takes the distnace between two numbers and returns it.
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map); //addRoom expacts this._map to exist
     }
+      this.addHalls(map);
     return map;//this is where we make this._map
   }
 

@@ -1,8 +1,8 @@
 class Utils {
-/*randMath
-@param max {int} the max you can have
-@param min {int} the min you can have ;
-*/
+  /*randMath
+   *@param max {int} the max you can have
+   *@param min {int} the min you can have ;
+   */
   static randMath(min, max, call="Utils.randMath"){
     min = this.intCheck(min, call);
     max = this.intCheck(max, call);
@@ -18,6 +18,7 @@ class Utils {
       throw new Error("The method " + call + " expected an integer and received " + item + ".");
     }
   }
+  
   /*arrayCheck(testArray, call);
    *@param call {String} is to ell were the error is
    *@param testArray {Mixed} is the input to test
@@ -30,6 +31,7 @@ class Utils {
       throw new Error("The method "+ call + " Expected an array and received " + testArray + ".");
     }
   }
+  
   /*@function objCheck(item, call="Utils.objCheck")
    *@param item: {mixed} an item to be checked if is an object
    *@param call: string} the Class/function/method where the check occured
@@ -90,29 +92,10 @@ class Utils {
     if (list.includes(item)) {return item;}
     throw new Error(call + "expected one of the following: " + list + " and got " + item + ".")
   }
-
-  /*randRoom other
-   *static randRoom(width, height, roomMin, roomMax){
-   *  var retArray = [];
-   *   var topL = this.randomCoord(1,width-roomMin,1,height-roomMin);
-   *   var botR = this,randomCoord(1,width-roomMax,1,height-roomMax);
-   *   return [topL,{x:botR.x,y:topL.y}, {x:topL.x,y:botR.y}, botR];
-   *}
-   */
   
   /* randRoom(width, height, roomMin, roomMax)
   Returns an array of 4 coordinate objects
   */
-  static coordCheck(seta, setb){
-    for (var i = 0; i < seta.length; i++) {
-      for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
 
   /*randCoord(xMin, xMax, yMin, yMax)
    *This function will produce an object with the keys of x and y, with values
@@ -168,7 +151,6 @@ class Utils {
     }
   }
 
-
 /*coordCheck(seta, setb)
  *takes 2 arrays of coordinates and checks them to
  *see if there is a coordinate in one that is this in the other.
@@ -187,7 +169,48 @@ var tf = undefined;
   return tf;
 }
 
-static hallCheck(roomOne, roomTwo){
+/* shuffleIndex(array)
+@param array: {array} an array to shuffle the index of
+@return array: an array of number index (eg: array of length 5 might
+give you a result of [2, 3, 0, 1, 4])
+*/
+static shuffleIndex(array){
+ var setArray = [];
+ var resultArray = [];
+ for(var i = 0; i < array; i++){
+  setArray.push(i)
+ }
+ for(var i = 0; i<array;i++){
+ var tf = 0;
+ var tf2 = 0;
+  var randmath = this.randMath(0, array);
+  for(var j = 0;j<array;j++){
+  if(randmath == setArray[j]){
+   setArray[j] = array+1;
+   resultArray.push(randmath);
+   tf2++;
+  }
+  else if(setArray[j] == array+1){
+  }
+  else{
+   tf++;
+  }
+ }
+  if(tf >=1 && tf2 !== array){
+   i--;
+  }
+  }
+ return resultArray;
+}
+
+/*hallYstart() and hallXstart()
+ *@param {array} roomOne:first room
+ *@param {array} roomTwo:second room
+ *@returns {array} hallCords:array of coords for the hall points
+ *they are the exact same just one is for x start and the other is for y start
+ *these need to be updated but because they are long but its fine for now
+ */
+static hallYstart(roomOne, roomTwo){
     var heightOne = roomOne[0].y - roomOne[roomOne.length-1].y;
     var widthOne = roomOne[0].x - roomOne[roomOne.length-1].x;
     var heightTwo = roomTwo[0].y - roomTwo[roomTwo.length-1].y;
@@ -198,7 +221,10 @@ static hallCheck(roomOne, roomTwo){
     var hallCords = [];
     var hallYmath = 0;
     hallCords.push({x:Math.ceil(midOne.x), y:Math.ceil(midOne.y)});
-    for(var i = 1; i < Math.abs(distance.y); i++){
+    for(var i = 1; i < Math.abs(distance.y)+1; i++){
+     if(i==1){
+      
+     }
       if(distance.y > 0){
        if(Math.ceil(midOne.y)-i >= 0){
        var posStatY = Math.ceil(midOne.y)-i;
@@ -212,7 +238,7 @@ static hallCheck(roomOne, roomTwo){
       }
           var hallYmath = hallCords.length - 1;
     }
-    for(var j = 1; j < Math.abs(distance.x); j++){
+    for(var j = 1; j < Math.abs(distance.x)+1; j++){
      if(distance.x > 0){
       if(Math.ceil(midOne.x)-j >= 0){
        var posStatX = Math.ceil(midOne.x)-j;
@@ -225,105 +251,55 @@ static hallCheck(roomOne, roomTwo){
      }       
     }
     return hallCords;
- }
- static removeBorder(room,width,height,rooms){
-      let smalls = {x:width+1,y:height+1};
-      let biggy = {x:0,y:0};
-      for (var i = 0; i < room.length; i++) {
-        if (room[i].x < smalls.x) {
-          smalls.x = room[i].x;
-        }
-        if (room[i].y < smalls.y) {
-          smalls.y = room[i].y;
-        }
-        if (room[i].x > biggy.x) {
-          biggy.x = room[i].x;
-        }
-        if (room[i].y > biggy.y) {
-          biggy.y = room[i].y;
-        }
-      }
-      let coords = [];
-      for (var i = 0; i < room.length; i++) {
-        var isBorder = false;
-        if ((room[i].x == biggy.x)||(room[i].y == biggy.y)||(room[i].x == smalls.x)||(room[i].y == smalls.y)) {
-          isBorder = true;
-        }
-        if (!isBorder) {
-          coords.push(rooms[i]);
-        }
-      }
-      for (let i = 0; i < rooms.length; i++) {
-        if(!overlap) { overlap = Utils.coordCheck(room, rooms[i]);
-        return coords;} // so we don't lose a true
-      }
- }
 
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one
-  that is this in the other. If so it returns a true, if not, it returns a false.
-*/
-/* coordCheck(seta, setb)
-takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-*/
-/*
-3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-if any of them have the same coordinates, and if there is overlap, don't add the room
-4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-*/
-  static coordCheck(seta, setb){
-    for (var i = 0; i < seta.length; i++) {
-      for (var j = 0; j < setb.length; j++) {
-        if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          return true;
-        }
+}
+static hallXstart(roomOne, roomTwo){
+    var heightOne = roomOne[0].y - roomOne[roomOne.length-1].y;
+    var widthOne = roomOne[0].x - roomOne[roomOne.length-1].x;
+    var heightTwo = roomTwo[0].y - roomTwo[roomTwo.length-1].y;
+    var widthTwo = roomTwo[0].x - roomTwo[roomTwo.length-1].x;
+    var midOne = {x: Math.ceil(widthOne/2)+roomOne[roomOne.length-1].x, y: Math.ceil(heightOne/2)+roomOne[roomOne.length-1].y};
+    var midTwo = {x: Math.ceil(widthTwo/2)+roomTwo[roomTwo.length-1].x, y: Math.ceil(heightTwo/2)+roomTwo[roomTwo.length-1].y};
+    var distance = {x: Math.ceil(midOne.x-midTwo.x), y: Math.ceil(midOne.y-midTwo.y)};
+    var hallCords = [];
+    var hallYmath = 0;
+    hallCords.push({x:Math.ceil(midOne.x), y:Math.ceil(midOne.y)});
+    for(var i = 1; i < Math.abs(distance.x)+1; i++){
+      if(distance.x > 0){
+       if(Math.ceil(midOne.x)-i >= 0){
+       var posStatX = Math.ceil(midOne.x)-i;
+       }
+      hallCords.push({x:Math.abs(posStatX),y:Math.ceil(midOne.y)});
       }
+      else if(distance.x < 0){
+       var negStatX = Math.ceil(midOne.x)+i;
+      hallCords.push({x:Math.abs(negStatX),y:Math.ceil(midOne.y)});
+
+      }
+          var hallXmath = hallCords.length - 1;
     }
-    return false;
-  }
-
-  /*make a function in utils called removeBorder(room) that
-  does what is being done right now in addRoom to trim the borders
-*/
-  static removeBorder(room, width, height){
-    let border = room;
-    let smalls = {x:width+1,y:height+1};
-    let biggy = {x:0,y:0};
-    for (var i = 0; i < border.length; i++) {
-      if (border[i].x < smalls.x) { smalls.x = border[i].x; }
-      if (border[i].y < smalls.y) { smalls.y = border[i].y; }
-      if (border[i].x > biggy.x) { biggy.x = border[i].x; }
-      if (border[i].y > biggy.y) { biggy.y = border[i].y; }
-    }
-    let coords = [];
-    for (var i = 0; i < border.length; i++) {
-      var isBorder = false;
-      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-        isBorder = true;
+    for(var j = 1; j < Math.abs(distance.y)+1; j++){
+     if(distance.y > 0){
+      if(Math.ceil(midOne.y)-j >= 0){
+       var posStatY = Math.ceil(midOne.y)-j;
       }
-      if (!isBorder) { coords.push(border[i]); }
+      hallCords.push({x:hallCords[hallYmath].x, y:Math.abs(posStatY)});
+     }   
+     else if(distance.y < 0){
+     var negStatY = Math.ceil(midOne.y)+j;
+     hallCords.push({x:hallCords[hallYmath].x, y:Math.abs(negStatY)});
+     }       
     }
-    return border;
-  }
+    return hallCords;
+}
 
-  /* make a function in utils called cordLine(start, end)
-  that returns a set of coordinates between start (cords) and end (cords)
-  If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-  START AT THE SMALLER ONE
-  "start" and "end" but you need to min and max the values and go from min to max.
-  -Which one we are working on!
-  start at the small to bigger.
-  Let's talk about that for
-  -for(var i = smaller + 1; i < larger; i++){}
-*/
-/*
-  1. make a function in utils called removeBorder(room) that does what is being
-  done right now in addRoom to trim the borders.
-  2. update addRoom to use this function where it is currently doing that.
-*/
-  static removeBorder(room, width, height){
+/*removeBorder()
+ *@param {array} room:a select room(rooms are made of array of coords)
+ *@param {int} width:width of the room
+ *@param {int} height:height of the room
+ *@param {array} rooms:all the rooms
+ */
+static removeBorder(room, width, height){
     let border = room; // make a set of coordinates based on the map constraints
     let smalls = {x:width+1,y:height+1};
     let biggy = {x:0,y:0};
@@ -344,6 +320,26 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   return coords;
 }
 
+  /* coordCheck(seta, setb)
+   *@param {array} seta:first set of coords
+   *@param {array} setb:second set of coords
+   *@returns {bool} true or false 
+   *takes 2 arrays of coordinates and checks them to see if there is a coordinate in one
+   *that is this in the other. If so it returns a true, if not, it returns a false.
+   */
+  static coordCheck(seta, setb){
+    for (var i = 0; i < seta.length; i++) {
+      for (var j = 0; j < setb.length; j++) {
+        if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+/*dis()
+ *dis is a distance function
+ */
 static dis(start, end){
   let num = undefined;
   let max = Math.max(start,end);
@@ -382,5 +378,4 @@ static dis(start, end){
     }
     return retAry;
   }
-
 }
