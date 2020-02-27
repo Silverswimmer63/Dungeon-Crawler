@@ -297,6 +297,16 @@ First goal - figure out how to use the the random list of room indexes to make h
 Second goal - what 1 more thing will we need to know get to make the halls
 
 Third goal - ask me what to do next re second goal above ^^
+
+Four -
+make a function in map -
+
+makeHall(indexA, indexB)
+gets rooms from indexes
+takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+makes those the start and end cords
+makes the hall
+returns the hall
 */
 //maybe use something something addroom and shuffle because it uses helping halls which is ment to be an addition to hallCords
 //choice random place in said rooms make a new room but only leave the border for a small path to make the halls
@@ -305,7 +315,10 @@ Third goal - ask me what to do next re second goal above ^^
 //for(length of shuffleIndex){use i to connect i and i + 1 this [i] connect this.room[i+1]}
 //[10,14,7,3] lengthis 4 use for connect 14,14 to 7, 7 to 3
 //use randCoord
-static makingHalls(){
+static makingHalls(IndexA, IndexB){
+for (var i = 0; i < this.room.length; i++) {
 
 }
+}
+
 }
