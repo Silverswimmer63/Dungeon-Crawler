@@ -89,7 +89,6 @@ class Map{
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
-
   /* add a step between making the room coordinates and changing the the map
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room
@@ -157,5 +156,15 @@ the inner objects will be the individual cells of the map.
     return retStr += "+";
   }
 
+  /*makeHall(indexA, indexB)
+  gets rooms from indexes
+  takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+  makes those the start and end cords
+  makes the hall
+  returns the hall
+*/
+  makeHall(indexA, indexB){
+    
+  }
 
 }
