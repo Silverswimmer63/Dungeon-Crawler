@@ -311,20 +311,20 @@ returns the hall
 //min starts at topleft, max starts at bottom right remove the border of the room for
 //loops that check for the biggist and the smallest roomAV.min.x=math.min(roomAV.min room[i].x) randCoord then return randCoord
 static makingHalls(IndexA, IndexB){
-  var shu = call(shuffleIndex)
-  var cor = call(cordline)
-  var hal = call(hallCords)//idk what im doing remember to get help
+  var shu = call(utils.shuffleIndex)
+  var cor = call(utils.cordline)
+  var hal = call(utils.hallCords)//idk what im doing remember to get help
   for (var i = 0; i < this.room.length; i++) {
 indexA.min.y = Math.min(indexA.min.x)
 indexA.min.x = Math.min(indexB.min.y)
-indexA.min.y = Math.max(indexA.max.x)
-indexA.min.x = Math.max(indexB.max.y)
+indexA.max.y = Math.max(indexA.max.x)
+indexA.max.x = Math.max(indexB.max.y)
   }
-  for (var i = 0; i < .length; i++) {
-indexB
-indexB
-indexB
-indexB
+  for (var i = 0; i < .length; i++) {//boy idk what im doing
+indexB.min.y = Math.min()
+indexB.min.x = Math.min()
+indexB.max.y = Math.max()
+indexB.max.x = Math.max()
   }
 }
 
