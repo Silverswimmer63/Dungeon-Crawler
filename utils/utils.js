@@ -217,30 +217,23 @@ makes a line with chance of a turn between start and end
   @return array: an array of number index (eg: array of length 5 might
   give you a result of [2, 3, 0, 1, 4])
   */
-  static shuffleIndex(array){
-    var arr = [];
-    var result = [];
-    for(var i = 0; i < array; i++){
-      arr.push(i);
+  static something(array) {
+    var i = array.length, j, temp;
+    if ( i == 0 ) return this;
+    while ( --i ) {
+       j = Math.floor( Math.random() * ( i + 1 ) );
+       temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
     }
-    for(var i = 0; i < array; i++){
-      var thing = 0;
-      var otherthing = 0;
-      var rand = this.randMath(0,array);
-      for(var j = 0; j < array; j++){
-        if(rand == arr[j]){
-          arr[j] = array +1;
-          result.push(rand);
-          thing++;
-        }
-        else if(arr[j] == array +1){ }
-        else{ otherthing++; }
-      }
-      if((otherthing >= 1) && (thing !== array)){
-        i--;
-      }
-    }
-    return result;
+    return array;
   }
-
+  static shuffleIndex(array){
+  let numArr = [];
+  for (var i = 0; i < array.length; i++) {
+  numArr.push(i);
+  }
+  let retAry = this.something(numArr)
+  return retAry;
+  }
 }

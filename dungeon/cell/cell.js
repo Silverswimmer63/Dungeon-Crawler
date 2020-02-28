@@ -199,31 +199,3 @@ class Cell {
   }
 
 }
-
-/*
-for all of the things{
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-  if(blah){
-    for(jwbd) level
-    for(ndkas) value
-  }
-}
-for inventory{
-  for class in [Item, Potion, Armor, Weapon]{
-  //store [i] track the i if it is higher than for what is current, reset
-    for(jwbd) level
-    for(ndkas) value
-}
-}
-*/
