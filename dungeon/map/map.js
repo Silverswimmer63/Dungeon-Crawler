@@ -141,7 +141,8 @@ or we will get errors. Remake the this._map.*/
     while (num < 200) {
       num ++;
       let overlap = false;
-      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
+      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2);
+      // make a set of coordinates based on the map constraints
       let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
@@ -245,5 +246,10 @@ makes those the start and end cords
 makes the hall
 returns the hall*/
 function makeHall(indexA,indexB){
-  
+  var roomAvl;
+roomAvl.min.x = Math.min(roomAvl.max, room[i].x);
+roomAvl.min.y = Math.min(roomAvl.max, room[i].y);
+roomAvl.max.x = Math.max(roomAvl.min, room[i].x);
+roomAvl.max.y = Math.max(roomAvl.max, room[i].y);
+return randCoord;
 }
