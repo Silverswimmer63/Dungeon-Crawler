@@ -308,6 +308,26 @@ makes those the start and end cords
 makes the hall
 returns the hall
 */
+//min starts at topleft, max starts at bottom right remove the border of the room for
+//loops that check for the biggist and the smallest roomAV.min.x=math.min(roomAV.min room[i].x) randCoord then return randCoord
+static makingHalls(IndexA, IndexB){
+  var shu = call(shuffleIndex)
+  var cor = call(cordline)
+  var hal = call(hallCords)//idk what im doing remember to get help
+  for (var i = 0; i < this.room.length; i++) {
+indexA.min.y = Math.min(indexA.min.x)
+indexA.min.x = Math.min(indexB.min.y)
+indexA.min.y = Math.max(indexA.max.x)
+indexA.min.x = Math.max(indexB.max.y)
+  }
+  for (var i = 0; i < .length; i++) {
+indexB
+indexB
+indexB
+indexB
+  }
+}
+
 //maybe use something something addroom and shuffle because it uses helping halls which is ment to be an addition to hallCords
 //choice random place in said rooms make a new room but only leave the border for a small path to make the halls
 //choice a point off the border and then conect them using data from shuffleIndex
@@ -315,13 +335,5 @@ returns the hall
 //for(length of shuffleIndex){use i to connect i and i + 1 this [i] connect this.room[i+1]}
 //[10,14,7,3] lengthis 4 use for connect 14,14 to 7, 7 to 3
 //use randCoord
-static makingHalls(IndexA, IndexB){
-var shu = call(shuffleIndex)
-var cor = call(cordline)
-var hal = call(hallCords)//idk what im doing remember to get help
-for (var i = 0; i < this.room.length; i++) {
-
-}
-}
 
 }
