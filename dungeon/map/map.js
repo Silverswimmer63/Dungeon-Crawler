@@ -164,22 +164,22 @@ the inner objects will be the individual cells of the map.
   returns the hall
 */
   makeHall(indexA, indexB){
+    //need another variable. don't know what goes in it
     var roomAval = indexA;
     var roomBval = indexB;
-    for (var i = 0; i < roomAval.length; i++) {
+    for (var i = 0; i < roomAval.length; i++) {//need to add randCoord
       roomAval.min.x = Math.min(roomAval.min.x, room[i].x);
       roomAval.max.x = Math.max(roomAval.max.x, room[i].x);
       roomAval.min.y = Math.min(roomAval.min.y, room[i].y);
       roomAval.max.y = Math.max(roomAval.max.y, room[i].y);
     }
-    for (var i = 0; i < roomBval.length; i++) {
+    for (var i = 0; i < roomBval.length; i++) {//need to add randCoord
       roomBval.min.x = Math.min(roomBval.min.x, room[i].x);
       roomBval.max.x = Math.max(roomBval.max.x, room[i].x);
       roomBval.min.y = Math.min(roomBval.min.y, room[i].y);
       roomBval.max.y = Math.max(roomBval.max.y, room[i].y);
     }
-    Utils.randCoord();
-    return hallCords(roomAval, roomBval);
+    return hallCords();//use randCoord results
   }
 
 }

@@ -163,7 +163,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
 4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
 5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
 */
-  static coordCheck(seta, setb){
+  static coordCheck(seta, setb, call="Utils.coordCheck"){
     for (var i = 0; i < seta.length; i++) {
       for (var j = 0; j < setb.length; j++) {
         if ((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
@@ -177,7 +177,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   /*make a function in utils called removeBorder(room) that
   does what is being done right now in addRoom to trim the borders
 */
-  static removeBorder(room, width, height){
+  static removeBorder(room, width, height, call="Utils.removeBorder"){
     var border = room;
     var smalls = {x:width+1,y:height+1};
     var biggy = {x:0,y:0};
@@ -247,7 +247,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
     return retArr;
   }
 */
-  static cordLine(start, end){
+  static cordLine(start, end, call="Utils.cordLine"){
     let xdis = this.dist(start.x, end.x);// these are to add to start and end
     let ydis = this.dist(start.y, end.y);// this one is the same but just y
     let obj = {};
@@ -275,7 +275,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
   @param end: {object} one of the two sets of coordinates on a hall
   @return: {array} an array of the coordinates between the two input coordinates
 */
-  static hallCords(start, end){
+  static hallCords(start, end, call="Utils.hallCords"){
     var xmin = Math.min(start.x, end.x);
     var xmax = Math.max(start.x, end.x);
     var ymin = Math.min(start.y, end.y);
@@ -328,7 +328,7 @@ if any of them have the same coordinates, and if there is overlap, don't add the
       }
       return result
 }*/
-  static shuffleIndex(array){
+  static shuffleIndex(array, call="Utils.shuffleIndex"){
     var arr = [];
     var result = [];
     for (var i = 0; i < array; i++) {
