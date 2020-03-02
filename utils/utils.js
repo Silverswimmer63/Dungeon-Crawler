@@ -212,67 +212,29 @@ makes a line with chance of a turn between start and end
   }
 
   /* shuffleIndex(array)
-  @param array: {array} an array to shuffle the index of
-  @return array: an array of number index (eg: array of length 5 might
-  give you a result of [2, 3, 0, 1, 4])
+    @param array: {array} an array to shuffle the index of
+    @return array: an array of number index (eg: array of length 5 might
+    give you a result of [2, 3, 0, 1, 4])
   */
-
-  /*
-shuffleIndex(array){
-arr = []
-result = []
-for(i<array){
-arr.push(i)
-}
-for(i<array){
-thing = 0
-otherthing = 0
-var rand = randomnum(0,max);
-for(j<array){
-if(rand == arr){
-result.push()
-thing++
-}
-else if(arr == array+1){
-
-}
-else{
-otherthing++
-}
-}
-if(otherthing >= 0 && thing !== array){
-i--
-}
-}
-return result
-}
-*/
-  static shuffleIndex(array){
-    var arr = [];
-    var result = [];
-    for (var i = 0; i < array; i++) {
-      arr.push(i)
+  static shuffle (array) {
+    var i = 0;
+    var j = 0;
+    var temp = null;
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1))
+      temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
     }
-    for (var i = 0; i < array; i++) {
-      var thing = 0;
-      var otherthing = 0;
-      var rand = this.randMath(0, array)
-      for (var j = 0; j < array; j++) {
-        if (rand == arr[j]) {
-          arr[j] = array +1;
-          result.push(rand);
-          thing++;
-        }
-        else if (arr[j] == array +1) {
-
-        }else {
-          otherthing++;
-        }
-      }
-      if ((otherthing >= 1) && (thing !== array)) {
-        i--;
-      }
-    }
-    return result;
+    return array;
   }
+
+  static shuffleIndex(array){
+      let retArr = [];
+      for (var i = 0; i < array.length; i++) {
+          retArr.push(i);
+      }
+      let numArr = this.shuffle(retArr);
+      return numArr;
+    }
 }
