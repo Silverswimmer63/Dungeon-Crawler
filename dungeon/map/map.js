@@ -117,23 +117,26 @@ class Map{
 }
 
   makeHall(indexA, indexB){
-    var rooms = {roomA:Utils.removeBorder(this.rooms[indexA], this.rooms[indexA].height, this.rooms[indexA].width), roomB:Utils.removeBorder(this.rooms[indexB], this.rooms[indexB].height, this.rooms[indexB].width)}
-    var coords = {min:{x: 3, y: 3}, max:{x:10, y: 10}};
-    for (var i = 0; i < rooms.roomA.length; i++) {
-      coords.min.x = Math.min(coords.min.x, rooms.roomA[i].x)
-      coords.min.y = Math.min(coords.min.y, rooms.roomA[i].y)
-      coords.max.x = Math.max(coords.max.x, rooms.roomA[i].x)
-      coords.max.y = Math.max(coords.max.y, rooms.roomA[i].y)
+    var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
+    var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    for (var i = 0; i < remover.roomA.length; i++) {
+      setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+      setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+      setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+      setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
     }
-    for (var i = 0; i < rooms.roomB.length; i++) {
-      coords.min.x = Math.min(coords.min.x, rooms.roomB[i].x)
-      coords.min.y = Math.min(coords.min.y, rooms.roomB[i].y)
-      coords.max.x = Math.max(coords.max.x, rooms.roomB[i].x)
-      coords.max.y = Math.max(coords.max.y, rooms.roomB[i].y)
+    for (var i = 0; i< remover.roomB.length; i++) {
+      setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+      setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+      setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+      setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
     }
-    return randCoord()
+    var aCoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.max.y)
+    var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
+    return Utils.hallCords(aCoords, bCoords);
   }
-
+  
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
