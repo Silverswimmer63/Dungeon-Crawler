@@ -89,22 +89,6 @@ class Map{
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
-
-  /* addRoom()
-  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
-  and update the cells at the correct coordinates to match the room.
-  */
-
-  /* add a step between making the room coordinates and changing the the map
-  where you check each room in the map array to see if any of them have the same
-  coordinates, and if there is overlap, don't add the room
-  border room check
-  place none border room no border but after border room check
-  */
-
-
-
-
   addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
@@ -128,25 +112,6 @@ class Map{
   }
 }
 
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
-
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -191,17 +156,25 @@ the inner objects will be the individual cells of the map.
   makes the hall
   returns the hall
   */
-  makeHall(indexA, indexB){
-    var arr = this.shuffleIndex(array);
-    var hall = this.hallCords(start, end);
-    
-    var obj = {   }
-    var bool = false;
-    for (var i = 0; i < indexA.length; i++) {
-      for (var j = 0; j< indexB.length; j++) {
-
-      }
+  _makeHall(indexA, indexB){
+    var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
+    var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    for (var i = 0; i < remover.roomA.length; i++) {
+      setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+      setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+      setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+      setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
     }
+    for (var i = 0; i< remover.roomB.length; i++) {
+      setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+      setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+      setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+      setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
+    }
+    var aCoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.max.y)
+    var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
+    return Utils.hallCords(aCoords, bCoords);
   }
 
 }
