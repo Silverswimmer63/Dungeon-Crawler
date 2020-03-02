@@ -311,21 +311,24 @@ returns the hall
 //min starts at topleft, max starts at bottom right remove the border of the room for
 //loops that check for the biggist and the smallest roomAV.min.x=math.min(roomAV.min room[i].x) randCoord then return randCoord
 static makingHalls(IndexA, IndexB){
-  var shu = call(utils.shuffleIndex)
-  var cor = call(utils.cordline)
-  var hal = call(utils.hallCords)//idk what im doing remember to get help
-  for (var i = 0; i < this.room.length; i++) {
-indexA.min.y = Math.min(indexA.min.x)
-indexA.min.x = Math.min(indexB.min.y)
-indexA.max.y = Math.max(indexA.max.x)
-indexA.max.x = Math.max(indexB.max.y)
+var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.hight), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.hight)}
+var setA = {min:{x:this.width, y:this.hight}, max:{x:1, y:1}};
+var setB = {min:{x:this.width, y:this.hight}, max:{x:1, y:1}};)//idk what im doing remember to get help
+  for (var i = 0; i < remover.roomA.length; i++) {//min to max ect A to B x and y
+    setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+    setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+    setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+    setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
   }
-  for (var i = 0; i < .length; i++) {//boy idk what im doing
-indexB.min.y = Math.min()
-indexB.min.x = Math.min()
-indexB.max.y = Math.max()
-indexB.max.x = Math.max()
+  for (var i = 0; i < remover.roomB.length; i++) {//boy idk what im doing
+    setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+    setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+    setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+    setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
   }
+  var acoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.min.y)
+  var bcoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.min.y)
+  return Utils.hallCoords(acoords, bcoords);
 }
 
 //maybe use something something addroom and shuffle because it uses helping halls which is ment to be an addition to hallCords
