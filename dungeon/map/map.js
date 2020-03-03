@@ -140,6 +140,14 @@ class Map{
     return Utils.hallCords(aCoords, bCoords);
   }
 
+  _addHalls(){
+    var shuff = Utils.shuffleIndex(this.rooms)
+    for (var i = 0; i < shuff.length -1; i++) {
+      var hall = this._makeHall(shuff[i], shuff[i+1])
+      this.halls.push(hall);
+    }
+  }
+
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
@@ -166,8 +174,8 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
+    this._addHalls();
     return map;
-
   }
 
   /* _drawBorder()
@@ -183,11 +191,4 @@ the inner objects will be the individual cells of the map.
     return retStr += "+";
   }
 
-  _addHalls(){
-    var shuff = Utils.shuffleIndex(this.rooms)
-    for (var i = 0; i < shuff.length -1; i++) {
-      var hall = this._makeHall(shuff[i], shuff[i+1])
-      this.halls.push(hall);
-    }
-  }
 }
