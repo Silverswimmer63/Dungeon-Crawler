@@ -15,7 +15,7 @@ class Map{
     this._roomMax = 10;
     this._numRooms = 25;
     this._map = this._generateMap();
-
+    this._halls = [];
   }
 
   get numRooms(){ return this._numRooms; }
@@ -89,6 +89,9 @@ class Map{
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
+  get halls(){ return this._halls }
+  set halls(halls){ throw new Error("Feature not implemented at this time.") }
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -116,7 +119,7 @@ class Map{
   }
 }
 
-  makeHall(indexA, indexB){
+  _makeHall(indexA, indexB){
     var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
     var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
     var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
@@ -136,7 +139,7 @@ class Map{
     var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
     return Utils.hallCords(aCoords, bCoords);
   }
-  
+
 /* _generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
@@ -178,5 +181,13 @@ the inner objects will be the individual cells of the map.
       retStr += "-";
     }
     return retStr += "+";
+  }
+
+  _addHalls(){
+    var shuff = Utils.shuffleIndex(this.rooms)
+    for (var i = 0; i < shuff.length -1; i++) {
+      var hall = this._makeHall(shuff[i], shuff[i+1])
+      this.halls.push(hall);
+    }
   }
 }
