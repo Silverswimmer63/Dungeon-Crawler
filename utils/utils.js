@@ -219,30 +219,55 @@ makes a line with chance of a turn between start and end
     let retAry = [];
     let retObj = {};
     let chance = Math.random();
+    // start is going to have to = small coord and vise versa
+    let xVals = {smol:Math.min(start.x,end.x),big:Math.max(start.x,end.x)};
+    let yVals = {smol:Math.min(start.y,end.y),big:Math.max(start.y,end.y)};
       if ((start.x == end.x)||(start.y == end.y)) {return connect;}
       if (chance < .5) {
-        for (var i = start.x+1; i <= start.x+disx; i++) {
-          retObj = {x:i,y:start.y};
+        for (var i = xVals.smol+1; i <= xVals.smol+disx; i++) {
+          retObj = {x:i,y:yVals.smol};
           retAry.push(retObj);
         }
         let endCord = retAry.length-1;
         for (var i = retAry[endCord].y+1; i < retAry[endCord].y+disy; i++) {
-          retObj = {x:end.x,y:i};
+          retObj = {x:xVals.big,y:i};
           retAry = retAry.concat(retObj);
         }
       }
       if (chance > .5) {
-        for (var i = start.y+1; i < start.y+disy; i++) {
-          retObj = {x:start.x,y:i};
+        for (var i = yVals.smol+1; i < yVals.smol+disy; i++) {
+          retObj = {x:xVals.smol,y:i};
           retAry.push(retObj);
         }
         let endCord = retAry.length-1;
         for (var i = retAry[endCord].x; i < retAry[endCord].x+disx; i++) {
-          retObj = {x:i,y:end.y};
+          retObj = {x:i,y:xVals.big};
           retAry = retAry.concat(retObj);
         }
       }
       return retAry;
+  }
+
+  static shuffle (array) {
+    var i = 0;
+    var j = 0;
+    var temp = null;
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1))
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+  return array;
+}
+
+  static shuffleIndex(array){
+    let numArr = [];
+    for (var i = 0; i < array.length; i++) {
+      numArr.push(i);
+    }
+    let retAry = this.shuffle(numArr);
+    return retAry;
   }
 
 }

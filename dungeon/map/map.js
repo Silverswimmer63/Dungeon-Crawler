@@ -15,6 +15,7 @@ class Map{
     this._roomMax = 10;
     this._numRooms = 30;
     this._map = this._generateMap();
+    this._halls = [];
   }
 
   get width(){return this._width;}
@@ -44,6 +45,7 @@ class Map{
     }
     return retMap += this._drawBorder();
   }
+
 /*
 Then we will update the map to have a setter for map, this will use the two
  functions above to make sure that the setter is given an object with the keys
@@ -84,6 +86,9 @@ Then we will update the map to have a setter for map, this will use the two
 
   get numRooms(){ return this._numRooms;}
   set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
+
+  get halls(){return this._halls;}
+  set halls(halls){throw new Error("Feature not implemented at this time.");}
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -172,6 +177,53 @@ the inner objects will be the individual cells of the map.
       retStr += "-";
     }
     return retStr += "+";
+  }
+
+/*
+  Four -
+  make a function in map -
+  makeHall(indexA, indexB)
+  gets rooms from indexes
+  takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+  makes those the start and end cords
+  makes the hall
+  returns the hall
+*/
+  makeHall(indexA, indexB){
+    let room = {roomA:Utils.removeBorder(this.rooms[indexA],this.width,this.height),roomB:Utils.removeBorder(this.rooms[indexB],this.width,this.height)};
+    let paramsA = {min:{x:this.width,y:this.height},max:{x:1,y:1}};
+    let paramsB = {min:{x:this.width,y:this.height},max:{x:1,y:1}};
+    for (var i = 0; i < room.roomA.length; i++) {
+      paramsA.min.x = Math.min(paramsA.min.x,room.roomA[i].x);
+      paramsA.min.y = Math.min(paramsA.min.y,room.roomA[i].y);
+      paramsA.max.x = Math.max(paramsB.max.x,room.roomA[i].x);
+      paramsA.max.y = Math.max(paramsA.max.y,room.roomA[i].y);
+
+    }
+    let randCoordA = Utils.randCoord(paramsA.min.x,paramsA.max.x,paramsA.min.y,paramsA.max.y,"room.makeHall");
+    for (var i = 0; i < room.roomB.length; i++) {
+      paramsB.min.x = Math.min(paramsB.min.x,room.roomB[i].x);
+      paramsB.min.y = Math.min(paramsB.min.y,room.roomB[i].y);
+      paramsB.max.x = Math.max(paramsB.max.x,room.roomB[i].x);
+      paramsB.max.y = Math.max(paramsB.max.y,room.roomB[i].y);
+    }
+    let randCoordB = Utils.randCoord(paramsB.min.x,paramsB.max.x,paramsB.min.y,paramsB.max.y,"room.makeHall");
+
+    return Utils.hallCords(randCoordA,randCoordB);
+  }
+
+  /* _addHalls()
+Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
+Adds all of the resulting halls to this._halls
+5. add _addHalls() to _generateMap()
+*/
+
+  _addHalls(){
+    let shuff = Utils.shuffleIndex(this.rooms);
+    for (var i = 0; i < shuff.length-1; i++) {
+     var hall = this.makeHall(shuff[i],shuff[i+1]);
+      this.halls.push(hall);
+    }
   }
 
 
