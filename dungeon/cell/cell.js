@@ -20,6 +20,7 @@ class Cell {
     type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
+    if(this._open){ this.image = " "; }
   }
 
   get open(){
@@ -190,5 +191,5 @@ class Cell {
     }
     return "" + image;
   }
-  
+
 }

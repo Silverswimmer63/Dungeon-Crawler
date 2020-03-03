@@ -11,10 +11,10 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 5;
     this._roomMax = 10;
-    this._numRooms = 25;
-    this._halls = [];
+    this._numRooms = 20;
     this._map = this._generateMap();
   }
 
@@ -144,6 +144,7 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map); //addRoom expacts this._map to exist
     }
+    this._addHalls(map);
     return map;//this is where we make this._map
   }
 
@@ -192,9 +193,17 @@ the inner objects will be the individual cells of the map.
   Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
   Adds all of the resulting halls to this._halls
 */
-  _addHalls(){
-    var shuffle = Utils.shuffleIndex(this._rooms);
-    
+  _addHalls(map = this._map){
+    var shuffle = Utils.shuffleIndex(this.rooms.length);
+    for (var i = 0; i < shuffle.length-1; i++) {
+      var hall = this._makeHall(shuffle[i], shuffle[i+1]);
+      this._halls.push(hall);
+      //for loop to draw the rooms
+      for (var j = 0; j < hall.length; j++) {
+        let cell = map["y" + hall[j].y]["x" + hall[j].x];
+        cell.type = "hall";
+      }
+    }
   }
 
 }

@@ -256,18 +256,16 @@ class Utils {
     var xmax = Math.max(start.x, end.x);
     var ymin = Math.min(start.y, end.y);
     var ymax = Math.max(start.y, end.y);
-    var retArr = [];
     if ((start.x == end.x) || (start.y == end.y)) {
-      this.cordLine(start, end);
+      return this.cordLine(start, end);
     }else {
-      for (var i = xmin+1; i < xmax+1; i++) {
-        var newX = {x:i, y:ymin};
-        retArr.push(newX);
-      }
-      for (var i = ymin+1; i < ymax; i++) {
-        var newY = {x:xmax, y:i};
-        retArr = retArr.concat(newY);
-      }
+      var turn = {};
+      var choice = Math.random();
+      if (choice < .5) { turn = {x:start.x, y:end.y} }
+      if (choice >= .5) { turn = {x:end.x, y:start.y} }
+      var retArr = this.cordLine(start, turn);
+      retArr.push(turn);
+      retArr = retArr.concat(this.cordLine(turn, end));
     }
   return retArr;
   }
