@@ -355,6 +355,14 @@ class Utils {
     return monsters;
   }
 
+  static itemPlace(itemNumber){
+    var items = [];
+      for(var i = 0;i<itemNumber; i++){
+        var randItem = randomItem(1);
+        items.push(randItem);
+      }
+      return items;
+  }
   static move(direction,point){
     //point should be an object of x and y
     //so if you take a point off the map
@@ -380,7 +388,6 @@ class Utils {
       newReturn.x = point.x-1;
       }
       }
-    }
     else if(Number.isInteger(point.x) == false || Number.isInteger(point.y) == false){
      throw new Error("The function move() expected a point containing an x and y number and got an x of " + point.x + " and a y of " + point.y+ ".");
     }

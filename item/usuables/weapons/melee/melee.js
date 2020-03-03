@@ -1,6 +1,6 @@
 class Melee extends Weapon {
-  constructor (name, type, value, desc, icon, damage, level){
-  super (name, type, value, desc, icon, damage, level);
+  constructor (name, icon, desc, value, type, damage, level){
+  super (name, icon, desc, value, type, damage, level);
   }
 
   /*text()

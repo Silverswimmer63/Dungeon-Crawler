@@ -201,6 +201,21 @@ this takes the distnace between two numbers and returns it.
     mobItter++;
    }
   }
+  makeLoot(perRoom, map = this._map){
+    var itemItter = 0;
+      while(itemItter < perRoom){
+        for(var i = 0;i < this._rooms.length;i++){
+         var items = Utils.itemPlace(3);
+            var random = Utils.randMath(0, this._rooms[i].length-1);
+            var room = this._rooms[i][random];
+         for(var j = 0;j<items.length;j++){
+            let cell = map["y" + (room.y)]["x" + (room.x)];
+            cell.add(items[j]);
+           }
+          }
+        itemItter++;
+        }
+      }
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
@@ -220,6 +235,7 @@ this takes the distnace between two numbers and returns it.
     }
       this.addHalls(map);
       this.makeMonsters(3, map);
+      this.makeLoot(2,map)
     return map;//this is where we make this._map
   }
 
