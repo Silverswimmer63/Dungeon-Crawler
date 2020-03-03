@@ -47,6 +47,7 @@ class Map{
     
     return retMap += this._drawBorder();
   }
+  
   /*Then we will update the map to have a setter for map, this will use the two
   functions above to make sure that the setter is given an object with the keys
   width and height, and use it to make a new map. After checking the values as well
@@ -72,7 +73,12 @@ class Map{
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
-
+  get halls(){
+    return this._halls;
+  }
+  set halls(halls){
+    console.log("this is a error just dont need it rn");
+  }
   /* add a step between making the room coordinates and changing the the map
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room
@@ -101,6 +107,7 @@ class Map{
       }
     }
   }
+  
   /* addHalls()
    *@param {array} map is to be able to change the map;
    *  addHalls adds all halls in one go and connects them randomly with starts of
@@ -151,8 +158,49 @@ class Map{
 @param {end}: int
 this takes the distnace between two numbers and returns it.
 */
-
-
+  makeMonsters(perRoom, map = this._map){
+    var mobItter = 0;
+   while(mobItter < perRoom){
+    for(var i = 0; i < this._rooms.length; i++){
+    var monsters = Utils.monPlace(3);
+    var monsterList = [];
+    var mob = false;
+    var nomob= false;
+    for(var j = 0; j < monsters.length;j++){
+      if(monsters[j].length > 1){
+        if((monsters[j][0] instanceof Noinventory) && nomob == false){
+          monsterList.push(monsters[j][0]);
+          nomob = true;
+          mob = true;
+        }
+        else if((monsters[j][0] instanceof Inventory) && mob == false){
+          monsterList.push(monsters[j][0]);
+          mob = true;
+          nomob = true;
+        }
+      }
+      else if((monsters[j] instanceof Inventory) && mob == false){
+        monsterList.push(monsters[j]);
+        mob = true;
+        nomob = true;
+      }
+      else if((monsters[j] instanceof Noinventory) && nomob == false){
+        monsterList.push(monsters[j]);
+        nomob = true;
+        mob = true;
+      }
+    }
+    if(monsterList.length == 0){
+      monsterList.push(monsters[0]);
+    }
+    var random = Utils.randMath(0, this._rooms[i].length-1);
+    var room = this._rooms[i][random];
+        let cell = map["y" + (room.y)]["x" + (room.x)];
+        cell.occupied.push(monsterList);
+    }
+    mobItter++;
+   }
+  }
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
@@ -171,6 +219,7 @@ this takes the distnace between two numbers and returns it.
       this.addRoom(map); //addRoom expacts this._map to exist
     }
       this.addHalls(map);
+      this.makeMonsters(3, map);
     return map;//this is where we make this._map
   }
 

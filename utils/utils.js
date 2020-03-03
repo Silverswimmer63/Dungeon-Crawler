@@ -341,4 +341,55 @@ class Utils {
      }
      return retAry;
   }
+
+  /*monPlace(monNumber)
+   *@param {int} mobNumber tells how many mobs there will be "kinda"
+   *@returns {Array} monsters is an array of mobs
+   */
+  static monPlace(monNumber){
+    var monsters = []
+    for(var i = 0;i<monNumber; i++){
+    var randMon = randomFoe(1);
+    monsters.push(randMon);
+    }
+    return monsters;
+  }
+
+  static move(direction,point){
+    //point should be an object of x and y
+    //so if you take a point off the map
+    //push the y value nad the x value into an {}
+    var newReturn = {x:point.x, y:point.y};
+    if((direction == "north")||(direction == "North")){
+      //North is -1y
+      if(point.y !== 0){
+      newReturn.y = point.y-1;
+      }
+    }
+    else if((direction == "south")||(direction == "South")){
+      //South is +1y
+      newReturn.y = point.y+1;
+    }
+    else if((direction == "east")||(direction == "East")){
+      //East is +1x
+      newReturn.x = point.x+1;
+    }
+    else if((direction == "west")||(direction == "West")){
+      //West is -1x
+      if(point.x !== 0){
+      newReturn.x = point.x-1;
+      }
+      }
+    }
+    else if(Number.isInteger(point.x) == false || Number.isInteger(point.y) == false){
+     throw new Error("The function move() expected a point containing an x and y number and got an x of " + point.x + " and a y of " + point.y+ ".");
+    }
+    else{
+      //this will or should only happen if its given
+      //NORTH,SOUTH,EAST,WEST,[],{},#,Undefined,NaN,or just anything other than
+      //"North","north","South","south","East","east","West","west"
+      throw new Error("move() expected a direction North, South, East or West and got " + direction);
+    }
+    return newReturn;
+  }
 }
