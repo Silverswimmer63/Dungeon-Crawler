@@ -13,7 +13,8 @@ class Map{
     this._rooms = [];
     this._roomMin = 5;
     this._roomMax = 10;
-    this._numRooms = 30;
+    this._numRooms = 25;
+    this._halls = [];
     this._map = this._generateMap();
   }
 
@@ -80,15 +81,18 @@ class Map{
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
-  get numRooms(){ return this._numRooms;}
+  get numRooms(){ return this._numRooms; }
   set numRooms(numRooms){
     this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
   }
 
+  get halls(){ return this._halls; }
+  set halls(halls){ throw new Error("Feature not implemented at this time."); }
+
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
-  */
+*/
   /* add a step between making the room coordinates and changing the the map
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room
@@ -118,7 +122,7 @@ class Map{
     }
   }
 
-/* _generateMap()
+  /*_generateMap()
 A method to make a map filled with items of the this._fill value. The "map" is
 an object with a set of objects imbeded within it. All of the top level keys,
 which each owns it's own object, will begin with the letter y (ex y1, y2), and
@@ -147,7 +151,7 @@ the inner objects will be the individual cells of the map.
   Makes a border top or bottom for the map. This border will be in the general
   design of +---------------+
   @return {string} a string border
-  */
+*/
   _drawBorder(){
     var retStr = "+";
     for (var i = 0; i < this.width; i++) {
@@ -163,23 +167,34 @@ the inner objects will be the individual cells of the map.
   makes the hall
   returns the hall
 */
-  makeHall(indexA, indexB){
-    //need another variable. don't know what goes in it
-    var roomAval = indexA;
-    var roomBval = indexB;
-    for (var i = 0; i < roomAval.length; i++) {//need to add randCoord
-      roomAval.min.x = Math.min(roomAval.min.x, room[i].x);
-      roomAval.max.x = Math.max(roomAval.max.x, room[i].x);
-      roomAval.min.y = Math.min(roomAval.min.y, room[i].y);
-      roomAval.max.y = Math.max(roomAval.max.y, room[i].y);
+  _makeHall(indexA, indexB){
+    var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
+    var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    for (var i = 0; i < remover.roomA.length; i++) {
+      setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+      setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+      setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+      setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
     }
-    for (var i = 0; i < roomBval.length; i++) {//need to add randCoord
-      roomBval.min.x = Math.min(roomBval.min.x, room[i].x);
-      roomBval.max.x = Math.max(roomBval.max.x, room[i].x);
-      roomBval.min.y = Math.min(roomBval.min.y, room[i].y);
-      roomBval.max.y = Math.max(roomBval.max.y, room[i].y);
+    for (var i = 0; i< remover.roomB.length; i++) {
+      setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+      setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+      setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+      setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
     }
-    return hallCords();//use randCoord results
+    var aCoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.max.y)
+    var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
+    return Utils.hallCords(aCoords, bCoords);
+  }
+
+  /* _addHalls()
+  Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
+  Adds all of the resulting halls to this._halls
+*/
+  _addHalls(){
+    var shuffle = Utils.shuffleIndex(this._rooms);
+    
   }
 
 }
