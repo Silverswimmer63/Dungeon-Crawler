@@ -3,10 +3,16 @@ class Map{
     this.width = Utills.intcheck(width, "Map constructor");
     this._height = Utills.intcheck(height, "Map constructor");
     this._fill = new Cell;
-    this._map ={this._generateMap()};
+    this._rooms = [];
+    this._roomMin = 3;
+    this._roomMax = 10;
+    this._nunMax = 30;
+    this._map = {this._generateMap()};
+    this._halls = [];
 
 
   get fill{}{return this._fill;}
+
   get fill(fill){this._fill = Utils.keyCheck(this.fill,"image","Map.fill")
 }
   /*
@@ -53,10 +59,12 @@ set map(dimensions){
 get cell(){return this._cell}
 get open(){return this._open}
 get border(){return this._border}
-
-
-
-
+get roomMin(){return this._roomMin;}
+set roomMin(roomMin){this._roomMin = Utils.intCheck(roomMin, "Map.room");}
+get roomMax(){return this._roomMax;}
+set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
+get halls(){return this._halls}
+set halls(halls){ throw new Error("egg")}
 set cell(cell){this._cell = cell}
 set open(open){this._open = open}
 set border(border){this._border = border}
@@ -261,4 +269,64 @@ _generateMap(){
   }
     for(let j = 1; j<= this.width; j++){
       map
+    }
+}
+/*
+Now that shuffle indexes is working we can come up with a randomized
+unordered list of rooms, which we can then use to make hallways -
+First goal - figure out how to use the the random list of room indexes to make halls abstractly.
+
+Second goal - what 1 more thing will we need to know get to make the halls
+
+Third goal - ask me what to do next re second goal above ^^
+
+Four -
+make a function in map -
+
+makeHall(indexA, indexB)
+gets rooms from indexes
+takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+makes those the start and end cords
+makes the hall
+returns the hall
+*/
+//min starts at topleft, max starts at bottom right remove the border of the room for
+//loops that check for the biggist and the smallest roomAV.min.x=math.min(roomAV.min room[i].x) randCoord then return randCoord
+makingHalls(IndexA, IndexB){
+var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.hight), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.hight)}
+var setA = {min:{x:this.width, y:this.hight}, max:{x:1, y:1}};
+var setB = {min:{x:this.width, y:this.hight}, max:{x:1, y:1}};)//idk what im doing remember to get help
+for (var i = 0; i < remover.roomA.length; i++) {//min to max ect A to B x and y
+  setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+  setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+  setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+  setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
+}
+for (var i = 0; i < remover.roomB.length; i++) {//boy idk what im doing
+  setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+  setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+  setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+  setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
+}
+var acoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.min.y)
+var bcoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.min.y)
+return Utils.hallCoords(acoords, bcoords);
+}
+    /*
+    1. add a prop to room _halls init to an empty array
+    2. add a getter for halls
+    3. add a setter for halls that at this point raises an error "Feature not implemented at this time."
+    4.
+    /*
+    _addHalls()
+    Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
+    Adds all of the resulting halls to this._halls
+    5. add _addHalls() to _generateMap()
+    */
+    addHall(){//things would be better if i were smart
+      var sI = Utils.shuffleIndex(this.rooms)
+      for (var i = 0; i < sI.length-1; i++) {
+        var mH = this.makingHalls(sI[i],si[i+1])
+        this.halls.push(mH)
+      }
     }
