@@ -1,4 +1,7 @@
 class Utils {
+  static betterMath(min,max){
+    return Math.random() < 0.5 ? min : max;
+  }
   /*randMath
   @param max {int}: the max you can have
   @param min {int} the min you can have ;
@@ -106,7 +109,7 @@ class Utils {
   @param yMax {int}: a number greater than yMin
   @return {obj}: An obj with x & y keys
   */
-  static ranCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
+  static randCoord(xMin, xMax, yMin, yMax, call = "Utils.randCoord"){
     var retObj = {};
     retObj.x = this.randMath(xMin, xMax, call);
     retObj.y = this.randMath(yMin, yMax, call);
@@ -120,8 +123,8 @@ class Utils {
     var retArray = [];
     roomMin -= 1;
     roomMax -=1;
-    var start = this.ranCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
-    var stop = this.ranCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
+    var start = this.randCoord(1, width-roomMin, 1, height-roomMin); // width & height - room Min
+    var stop = this.randCoord(start.x + roomMin, Math.min(start.x + roomMax, width), start.y + roomMin, Math.min(start.y + roomMax, height));
     for (var i = start.x; i <= stop.x; i++) {
       for (var j = start.y; j <= stop.y; j++) {
         retArray.push({x: i, y: j});
@@ -183,12 +186,74 @@ class Utils {
       Let's talk about that for
       -for(var i = smaller + 1; i < larger; i++){}
       */
-      static cordLine(start, end){
-        static coordLine(coordOne,coordTwo){
-      coordX = Math.max(coordOne.x,coordTwo.x);
-      coordx = Math.min(coordOne.x,coordTwo.x);
-      coordY = Math.max(coordOne.y,coordTwo.y);
-      coordy = Math.min(coordOne.y,coordTwo.y);
+    static hallCords(coordOne,coordTwo,call="Utils.hallCoords"){
+      var random = Math.random() < 0.5 ? 1 : 2;//decides if it draws up/down then left to right or left/right then up/down
+      var retArr = [];
+      var coordX = Math.max(coordOne.x,coordTwo.x);
+      var coordx = Math.min(coordOne.x,coordTwo.x);
+      var coordY = Math.max(coordOne.y,coordTwo.y);
+      var coordy = Math.min(coordOne.y,coordTwo.y);
+      if (coordx == coordX){//checks if the x values are the same, if they are then it will make it so the y valuies run through therefore not breaking the loops
+        random = 2;
+      }
+      if(coordy == coordY){//same as the previous comment but with y
+        random  = 1;
+      }
+      if (random == 1){
+        for (var i = 1; coordx <= coordX;i++) {
+          if(i == 1){
+            coordx -1;
+          }else{
+            coordx++;
+            retArr.push({x:coordx,y:coordy})
+          }
+          for (var j = 1; coordy <= coordY; j++) {
+            coordy++;
+            retArr.push({x:coordx,y:coordy});
+          }
+        }
+    }
+    if (random == 2){
+      for (var i = 1; coordy < coordY;i++) {
+        if(i == 1){
+          coordy -1;
+        }else{
+          coordy++;
+          retArr.push({x:coordx,y:coordy})
+        }
+        for (var j = 1; coordx < coordX; j++) {
+          coordx++;
+          retArr.push({x:coordx,y:coordy});
+        }
+      }
+  }
+      return retArr;
       }
 
-  }
+      /* shuffleIndex(array)
+        @param array: {array} an array to shuffle the index of
+        @return array: an array of number index (eg: array of length 5 might
+        give you a result of [2, 3, 0, 1, 4])
+      */
+      static shuffle (array) {
+        var i = 0;
+        var j = 0;
+        var temp = null;
+        for (i = array.length - 1; i > 0; i -= 1) {
+          j = Math.floor(Math.random() * (i + 1))
+          temp = array[i]
+          array[i] = array[j]
+          array[j] = temp
+        }
+        return array;
+      }
+
+      static shuffleIndex(array,call="Utils.shuffleIndex"){
+        var numArr = [];
+        for (var i = 0; i < array.length; i++) {
+          numArr.push(i);
+        }
+        var retAry = this.shuffle(numArr)
+        return retAry;
+}
+}

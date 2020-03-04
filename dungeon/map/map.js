@@ -11,12 +11,15 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 25;
     this._map = this._generateMap();
 
   }
+  get hall(){return this.halls}
+  set halls(halls){throw new Error("Yo cant do dat yet bro")}
 
   get numRooms(){ return this._numRooms; }
   set numRooms(numRooms){
@@ -167,12 +170,13 @@ the inner objects will be the individual cells of the map.
 
       for (var i = 0; i < this._numRooms; i++) {
         this.addRoom(map);// addRoom expects this._map tpo exists.
+        this.addRoom(map);
+        this._addHall();
 
     }
     return map;// this is where we make this._map
 
     for (var i = 0; i < this.numRooms; i++) {
-      this.addRoom(map);
     }
     return map;
 
@@ -212,22 +216,33 @@ and if there is overlap, don't add the room
 loop stop if the room can be added (per 3 above) or keep going if not added
 this is going to continue to go through the loop until it can make a room
 */
+_makeHall(indexA, indexB){
+ var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
+ var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+ var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+ for (var i = 0; i < remover.roomA.length; i++) {
+   setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+   setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+   setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+   setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
+ }
+ for (var i = 0; i< remover.roomB.length; i++) {
+   setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+   setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+   setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+   setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
+ }
+ var aCoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.max.y)
+ var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
+ return Utils.hallCords(aCoords, bCoords);
+}
+  _addHall(){
+    var index = Utils.shuffleIndex(this.rooms,"Map._addHall");
+    for (var i = 0; i < index.length-1; i++) {
+      var start = this._makeHall(index[i],index[i+1])
+    }
+    this._halls.push(start);
 
-/*
-1. We will fix the issue with the logic in addRoom.
-2. We will fix up a few bugs in addRoom.
-3. We will add a new parameter to the class map, _numRooms = 25
-4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
-5. We will update the map generation process to run the addRoom method for numRooms amounts of time.
-6. We will work on cell. -
-A. remove references to borders, we don't need those.
-B. set it so that if the cell is set to open, than the cell image is set to " "
-C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either,
-have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory
-(we will change that later to deal with open and unopened doors, types of items, and so on.
-D. alter addRoom to deal not change the cell image anymore.
-*/
-
-
+    }
 
 }
