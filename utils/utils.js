@@ -198,31 +198,22 @@ start at the small to bigger.
 Let's talk about that for
 -for(var i = smaller + 1; i < larger; i++){}
 */
-  static cordline(start, end){
-    let xdis = this.dis(start.x, end.x);// these are to add to start and end
-    let ydis = this.dis(start.y, end.y);// this one is the same but just y
-    let obj = {};
-    let retAry = [];
-    if (ydis != 0) {
-      let addTo = Math.min(start.y, end.y);
-      console.log(ydis-2);
-      console.log(addTo);
-      console.log(end.x);
-      for (var i = addTo; i < ydis-2; i++) {
-        console.log("fnjius");
-        obj = {x:end.x,y:[i]}
-        retAry.push(obj);
-      }
-    }
-    if (xdis != 0) {
-      let addTo = Math.min(start.y, end.y);
-      for (var i = addTo.x; i < xdis-2; i++) {
-        addTo.x ++;
-      }
-    }
-    return retAry;
-  }
-
+  static cordLine(start, end){
+    let minX = Math.min(start.x, end.x);
+    let minY = Math.min(start.y, end.y);
+    let maxX = Math.max(start.x, end.x);
+    let maxY = Math.max(start.y, end.y);
+    let retArr = [];
+     for (var i = minX +1 ; i < maxX; i++) {
+       let newX = {x: i, y:minY};
+       retArr.push(newX);
+     }
+     for (var i = minY + 1; i < maxY; i++) {
+       let newY = {x: minX, y: i};
+        retArr.push(newY);
+     }
+     return retArr;
+   }
 /* coordCheck(seta, setb)
 takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other.
  If so it returns a true, if not, it returns a false.
@@ -271,7 +262,7 @@ static hallCords(start, end){
          var newY = {x: maxX, y: i};
          retArr = retArr.concat(newY);
        }
-       console.log(retArr);
+       return retArr;
      }
    }
 /* shuffleIndex(array)
@@ -311,22 +302,23 @@ return result
 */
 
 static something(array) {
-  var i = array.length, j, temp;
-  if ( i == 0 ) return this;
-  while ( --i ) {
-     j = Math.floor( Math.random() * ( i + 1 ) );
-     temp = array[i];
-     array[i] = array[j];
-     array[j] = temp;
+  let i =0;
+  let j = 0;
+  let temp = null;
+  for ( i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+     temp = array[i]
+     array[i] = array[j]
+     array[j] = temp
   }
   return array;
 }
 static shuffleIndex(array){
-let numArr = [];
+let retArr = [];
 for (var i = 0; i < array.length; i++) {
-numArr.push(i);
+retArr.push(i);
 }
-let retAry = this.something(numArr)
-return retAry;
+let numArr = this.something(retArr);
+return numArr;
 }
 }

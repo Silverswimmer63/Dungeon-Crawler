@@ -12,6 +12,7 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 30;
@@ -26,6 +27,10 @@ these will need to be a little more complex than with other setters we have used
 2. now that the map has a new width or height, we have to remake it from scratch
 or we will get errors. Remake the this._map.*/
 
+get halls(){return this._halls;}
+set halls(halls){
+  throw new Error ("Feature not implemented at this time.");
+}
   get roomMin(){return this._roomMin;}
   set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
 
@@ -128,7 +133,6 @@ or we will get errors. Remake the this._map.*/
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
   */
-
   /* add a step between making the room coordinates and changing the the map
   where you check each room in the map array to see if any of them have the same
   coordinates, and if there is overlap, don't add the room
@@ -223,7 +227,7 @@ the inner objects will be the individual cells of the map.
     }
     return retStr + "+";
   }
-}
+
 /*.1 in Map we are going to add a property for rooms called _rooms this should be a blank array by default
 .2 Add a getter for rooms that returns the array in rooms
 .3 Add a setter for rooms
@@ -245,11 +249,51 @@ takes a random cord form the INSIDE of room A and a random cord from the inside 
 makes those the start and end cords
 makes the hall
 returns the hall*/
-function makeHall(indexA,indexB){
-  var roomAvl;
-roomAvl.min.x = Math.min(roomAvl.max, room[i].x);
-roomAvl.min.y = Math.min(roomAvl.max, room[i].y);
-roomAvl.max.x = Math.max(roomAvl.min, room[i].x);
-roomAvl.max.y = Math.max(roomAvl.max, room[i].y);
-return randCoord;
+ _makeHall(indexA,indexB){
+let room = {roomA:Utils.removeBorder(this.rooms[indexA],this.width, this.height),roomB:Utils.removeBorder(this.rooms[indexB],this.width, this.height)};
+let roomavlA ={min:{x:this.width,y:this.height},max:{x:1,y:1}};
+let roomavlB ={min:{x:this.width,y:this.height},max:{x:1,y:1}};
+  for (var i = 0; i < room.roomA.length; i++) {
+roomavlA.min.x = Math.min(roomavlA.max.x, room.roomA[i].x);
+roomavlA.min.y = Math.min(roomavlA.max.y, room.roomA[i].y);
+roomavlA.max.x = Math.max(roomavlA.min.x, room.roomA[i].x);
+roomavlA.max.y = Math.max(roomavlA.max.y, room.roomA[i].y);
+}
+let randCoordA = Utils.randCoord(roomavlA.min.x,roomavlA.max.x,roomavlA.min.y,roomavlA.max.y,"room.makeHall");
+for (var i = 0; i < room.roomB.length; i++) {
+  roomavlB.min.x = Math.min(roomavlB.max.x, room.roomB[i].x);
+  roomavlB.min.y = Math.min(roomavlB.max.y, room.roomB[i].y);
+  roomavlB.max.x = Math.max(roomavlB.min.x, room.roomB[i].x);
+  roomavlB.max.y = Math.max(roomavlB.max.y, room.roomB[i].y);
+}
+let randCoordB = Utils.randCoord(roomavlB.min.x,roomavlB.max.x,roomavlB.min.y,roomavlB.max.y,"room.makeHall");
+return Utils.hallCords(randCoordA,randCoordB);
+}
+/*
+1. add a prop to map _halls init to an empty array
+2. add a getter for halls
+3. add a setter for halls that at this point raises an error "Feature not implemented at this time."
+4.
+ _addHalls()
+Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
+Adds all of the resulting halls to this._halls
+5. add _addHalls() to _generateMap()
+_addHalls(map)
+Version 2.0 As version 1, but also sets all of the halls to open and to hall be aware
+ that you will need to pass it a parameter, map, from here on out.*/
+_addHalls(map){
+  var shuffle = Utils.shuffleIndex(this.rooms);
+  for (var i = 0; i < shuffle.length-1; i++) {
+    var make = this._makeHall(shuffle[i],shuffle[i+1] );
+    for (var i = 0; i < map.length; i++) {
+    }
+   this.halls.push(make);
+    }
+  }
+  _demoAddHalls(){
+    let connections= Utils.shuffleIndex(this.rooms, "Map._addHalls");
+    for (var i = 0; i < connections.length-1; i++) {
+this._halls.push(this.makeHalls(connections[i],connections[i+1]));
+    }
+  }
 }
