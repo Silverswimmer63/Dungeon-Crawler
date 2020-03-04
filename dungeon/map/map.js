@@ -212,6 +212,7 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
+    this._addHalls(map);
     return map;
   }
 
@@ -254,16 +255,16 @@ let room = {roomA:Utils.removeBorder(this.rooms[indexA],this.width, this.height)
 let roomavlA ={min:{x:this.width,y:this.height},max:{x:1,y:1}};
 let roomavlB ={min:{x:this.width,y:this.height},max:{x:1,y:1}};
   for (var i = 0; i < room.roomA.length; i++) {
-roomavlA.min.x = Math.min(roomavlA.max.x, room.roomA[i].x);
-roomavlA.min.y = Math.min(roomavlA.max.y, room.roomA[i].y);
-roomavlA.max.x = Math.max(roomavlA.min.x, room.roomA[i].x);
+roomavlA.min.x = Math.min(roomavlA.min.x, room.roomA[i].x);
+roomavlA.min.y = Math.min(roomavlA.min.y, room.roomA[i].y);
+roomavlA.max.x = Math.max(roomavlA.max.x, room.roomA[i].x);
 roomavlA.max.y = Math.max(roomavlA.max.y, room.roomA[i].y);
 }
 let randCoordA = Utils.randCoord(roomavlA.min.x,roomavlA.max.x,roomavlA.min.y,roomavlA.max.y,"room.makeHall");
 for (var i = 0; i < room.roomB.length; i++) {
-  roomavlB.min.x = Math.min(roomavlB.max.x, room.roomB[i].x);
-  roomavlB.min.y = Math.min(roomavlB.max.y, room.roomB[i].y);
-  roomavlB.max.x = Math.max(roomavlB.min.x, room.roomB[i].x);
+  roomavlB.min.x = Math.min(roomavlB.min.x, room.roomB[i].x);
+  roomavlB.min.y = Math.min(roomavlB.min.y, room.roomB[i].y);
+  roomavlB.max.x = Math.max(roomavlB.max.x, room.roomB[i].x);
   roomavlB.max.y = Math.max(roomavlB.max.y, room.roomB[i].y);
 }
 let randCoordB = Utils.randCoord(roomavlB.min.x,roomavlB.max.x,roomavlB.min.y,roomavlB.max.y,"room.makeHall");
@@ -280,20 +281,25 @@ Adds all of the resulting halls to this._halls
 5. add _addHalls() to _generateMap()
 _addHalls(map)
 Version 2.0 As version 1, but also sets all of the halls to open and to hall be aware
- that you will need to pass it a parameter, map, from here on out.*/
+ that you will need to pass it a parameter, map, from here on out.
+ _addHalls(map) Version 3.0 As version 2, but also does not turn a cell to hall if it is a room*/
 _addHalls(map){
   var shuffle = Utils.shuffleIndex(this.rooms);
   for (var i = 0; i < shuffle.length-1; i++) {
-    var make = this._makeHall(shuffle[i],shuffle[i+1] );
-    for (var i = 0; i < map.length; i++) {
+    var make = this._makeHall(shuffle[i],shuffle[i+1]);
+      this.halls.push(make);
+      var len = make.length;
+
+      for (var j = 0; j < len; j++) {
+    let cell = map["y"+ make[j].y]["x"+ make[j].x];
+    cell.type = "hall";
+      }
     }
-   this.halls.push(make);
-    }
-  }
+  }/*
   _demoAddHalls(){
     let connections= Utils.shuffleIndex(this.rooms, "Map._addHalls");
     for (var i = 0; i < connections.length-1; i++) {
 this._halls.push(this.makeHalls(connections[i],connections[i+1]));
     }
-  }
+  } */
 }

@@ -244,7 +244,7 @@ makes a line with chance of a turn between start and end
 @param end: {object} one of the two sets of coordinates on a hall
 @return: {array} an array of the coordinates between the two input coordinates
 */
-static hallCords(start, end){
+static hallCords(start, end, call="Utils.hallCords"){
    let minX = Math.min(start.x, end.x);
    let minY = Math.min(start.y, end.y);
    let maxX = Math.max(start.x, end.x);
