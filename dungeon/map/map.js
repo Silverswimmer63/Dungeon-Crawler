@@ -11,11 +11,11 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 30;
     this._map = this._generateMap();
-    this._halls = [];
   }
 
   get width(){return this._width;}
@@ -163,6 +163,7 @@ the inner objects will be the individual cells of the map.
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
+    this._addHalls(map);
     return map;
   }
 
@@ -208,7 +209,6 @@ the inner objects will be the individual cells of the map.
       paramsB.max.y = Math.max(paramsB.max.y,room.roomB[i].y);
     }
     let randCoordB = Utils.randCoord(paramsB.min.x,paramsB.max.x,paramsB.min.y,paramsB.max.y,"room.makeHall");
-
     return Utils.hallCords(randCoordA,randCoordB);
   }
 
@@ -218,12 +218,16 @@ Adds all of the resulting halls to this._halls
 5. add _addHalls() to _generateMap()
 */
 
-  _addHalls(){
+  _addHalls(map){
     let shuff = Utils.shuffleIndex(this.rooms);
     for (var i = 0; i < shuff.length-1; i++) {
      var hall = this.makeHall(shuff[i],shuff[i+1]);
-      this.halls.push(hall);
+     this.halls.push(hall);
+     for (var j = 0; j < hall.length; j++) {
+       let cell = map["y" + hall[j].y]["x" + hall[j].x];
+       cell.type = "hall";
     }
+   }
   }
 
 

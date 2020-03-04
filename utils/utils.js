@@ -213,39 +213,17 @@ makes a line with chance of a turn between start and end
 @return: {array} an array of the coordinates between the two input coordinates
 */
   static hallCords(start, end){
-    let disx = this.dis(start.x,end.x);
-    let disy = this.dis(start.y,end.y);
-    let connect = this.cordline(start,end);
-    let retAry = [];
-    let retObj = {};
-    let chance = Math.random();
-    // start is going to have to = small coord and vise versa
-    let xVals = {smol:Math.min(start.x,end.x),big:Math.max(start.x,end.x)};
-    let yVals = {smol:Math.min(start.y,end.y),big:Math.max(start.y,end.y)};
-      if ((start.x == end.x)||(start.y == end.y)) {return connect;}
-      if (chance < .5) {
-        for (var i = xVals.smol+1; i <= xVals.smol+disx; i++) {
-          retObj = {x:i,y:yVals.smol};
-          retAry.push(retObj);
-        }
-        let endCord = retAry.length-1;
-        for (var i = retAry[endCord].y+1; i < retAry[endCord].y+disy; i++) {
-          retObj = {x:xVals.big,y:i};
-          retAry = retAry.concat(retObj);
-        }
+    let maybe = Math.random();
+      if ((start.x == end.x)||(start.y == end.y)) {return this.cordline(start, end);}
+      else{
+        var turn = {};
+        if (maybe < .5) { turn = {x:start.x, y:end.y}; }
+        if (maybe >= .5) { turn = {x:end.x, y:start.y}; }
+        var retArr = this.cordline(start, turn);
+        retArr.push(turn);
+        retArr = retArr.concat(this.cordline(turn, end));
       }
-      if (chance > .5) {
-        for (var i = yVals.smol+1; i < yVals.smol+disy; i++) {
-          retObj = {x:xVals.smol,y:i};
-          retAry.push(retObj);
-        }
-        let endCord = retAry.length-1;
-        for (var i = retAry[endCord].x; i < retAry[endCord].x+disx; i++) {
-          retObj = {x:i,y:xVals.big};
-          retAry = retAry.concat(retObj);
-        }
-      }
-      return retAry;
+      return retArr;
   }
 
   static shuffle (array) {
