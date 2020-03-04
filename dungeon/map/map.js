@@ -193,16 +193,22 @@ the inner objects will be the individual cells of the map.
   Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
   Adds all of the resulting halls to this._halls
 */
-  _addHalls(map = this._map){
-    var shuffle = Utils.shuffleIndex(this.rooms.length);
+  _addHalls(map = this._map, number="max"){
+    var shuffle = Utils.shuffleIndex(this.rooms);
     for (var i = 0; i < shuffle.length-1; i++) {
       var hall = this._makeHall(shuffle[i], shuffle[i+1]);
       this._halls.push(hall);
       //for loop to draw the rooms
       for (var j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        cell.type = "hall";
+        if (cell.type != "room") {
+          cell.type = "hall";
+        }
       }
+    }
+    var connections = [];
+    if (number == "max") {
+      number = connections.length;
     }
   }
 

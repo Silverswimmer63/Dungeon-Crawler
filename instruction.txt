@@ -1,0 +1,7 @@
+_addHalls(map, number="max") Version 4.0 As version 3, but also add -
+a param named number with a default value of "max" 
+if the value is "max" then set number to connections.length in the function
+in your for loop replace connections.length with number.
+
+then change the setter to take the param number, and then use _addHalls to add number
+halls to the map

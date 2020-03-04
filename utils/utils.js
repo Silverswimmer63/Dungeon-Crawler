@@ -252,10 +252,6 @@ class Utils {
   @return: {array} an array of the coordinates between the two input coordinates
 */
   static hallCords(start, end, call="Utils.hallCords"){
-    var xmin = Math.min(start.x, end.x);
-    var xmax = Math.max(start.x, end.x);
-    var ymin = Math.min(start.y, end.y);
-    var ymax = Math.max(start.y, end.y);
     if ((start.x == end.x) || (start.y == end.y)) {
       return this.cordLine(start, end);
     }else {
@@ -303,6 +299,7 @@ class Utils {
       return result
 }*/
   static shuffleIndex(array){
+    var array = array.length;
     var arr = [];
     var result = [];
     for (var i = 0; i < array; i++) {
