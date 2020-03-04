@@ -199,9 +199,9 @@ makes a line with chance of a turn between start and end
       var choice = Math.random();
       if (choice < .5) { turn = {x:start.x, y:end.y} }
       if (choice >= .5) { turn = {x:end.x, y:start.y} }
-      var retArr = this.cordLine(start, turn);
+      var retArr = this.coordLine(start, turn);
       retArr.push(turn);
-      retArr = retArr.concat(this.cordLine(turn, end));
+      retArr = retArr.concat(this.coordLine(turn, end));
     }
     return retArr;
   }

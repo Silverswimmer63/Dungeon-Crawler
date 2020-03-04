@@ -11,10 +11,10 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 25;
-    this._halls = [];
     this._map = this._generateMap();
   }
   get halls(){ return this._halls; }
@@ -113,7 +113,7 @@ class Map{
 }
 
 _addHalls(map){
-  var shuffle = Utils.shuffleIndex(this.rooms.length);
+  var shuffle = Utils.shuffleIndex(this.rooms);
   for (var i = 0; i < shuffle.length-1; i++) {
     var array = this._makeHall(shuffle[i], shuffle[i+1]);
     this._halls.push(array);
@@ -136,11 +136,6 @@ _addHalls(map){
     }
       for (var i = 0; i < this._numRooms; i++) {
         this.addRoom(map);// addRoom expects this._map to exists.
-    }
-
-    return map;// this is where we make this._map
-    for (var i = 0; i < this.numRooms; i++) {
-      this.addRoom(map);
     }
     this._addHalls(map);
     return map;
@@ -189,11 +184,5 @@ _addHalls(map){
     var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
     return Utils.hallCords(aCoords, bCoords);
   }
-  /*
-  _addHalls()
-  Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
-  Adds all of the resulting halls to this._halls
-  5. add _addHalls() to _generateMap()
-  */
 
 }
