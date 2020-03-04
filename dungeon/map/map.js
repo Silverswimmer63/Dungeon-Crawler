@@ -14,14 +14,14 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 25;
+    this._halls = [];
     this._map = this._generateMap();
-
   }
+  get halls(){ return this._halls; }
+  set halls(halls){ throw new Error("Feature not implemented at this time.") }
 
   get numRooms(){ return this._numRooms; }
-  set numRooms(numRooms){
-    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
-   }
+  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms"); }
 
   get roomMax(){ return this._roomMax;}
   set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
@@ -112,6 +112,18 @@ class Map{
   }
 }
 
+_addHalls(map){
+  var shuffle = Utils.shuffleIndex(this.rooms.length);
+  for (var i = 0; i < shuffle.length-1; i++) {
+    var array = this._makeHall(shuffle[i], shuffle[i+1]);
+    this._halls.push(array);
+    for (var j = 0; j < array.length; j++) {
+      let cell = map["y" + array[j].y]["x" + array[j].x];
+      cell.type = "hall";
+    }
+  }
+}
+
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -123,14 +135,15 @@ class Map{
       }
     }
       for (var i = 0; i < this._numRooms; i++) {
-        this.addRoom(map);// addRoom expects this._map tpo exists.
+        this.addRoom(map);// addRoom expects this._map to exists.
     }
+
     return map;// this is where we make this._map
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
+    this._addHalls(map);
     return map;
-
   }
 
   /* _drawBorder()
@@ -176,5 +189,11 @@ class Map{
     var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
     return Utils.hallCords(aCoords, bCoords);
   }
+  /*
+  _addHalls()
+  Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
+  Adds all of the resulting halls to this._halls
+  5. add _addHalls() to _generateMap()
+  */
 
 }

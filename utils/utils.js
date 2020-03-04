@@ -191,23 +191,17 @@ makes a line with chance of a turn between start and end
 @param end: {object} one of the two sets of coordinates on a hall
 @return: {array} an array of the coordinates between the two input coordinates
 */
-  static hallCords(start, end){
-    let minX = Math.min(start.x, end.x);
-    let minY = Math.min(start.y, end.y);
-    let largeX = Math.max(start.x, end.x);
-    let largeY = Math.max(start.y, end.y);
-    let retArr = [];
+  static hallCords(start, end, call="Utils.hallCords"){
     if ((start.x == end.x)||(start.y == end.y)) {
-      this.coordLine(start, end)
+      return this.coordLine(start, end);
     }else {
-      for (var i = minX +1; i < largeX +1; i++) {
-        var newX = {x:i, y:minY};
-        retArr.push(newX);
-      }
-      for (var i = minY +1; i < largeY; i++) {
-        var newY = {x:largeX, y:i};
-        retArr = retArr.concat(newY);
-      }
+      var turn = {};
+      var choice = Math.random();
+      if (choice < .5) { turn = {x:start.x, y:end.y} }
+      if (choice >= .5) { turn = {x:end.x, y:start.y} }
+      var retArr = this.cordLine(start, turn);
+      retArr.push(turn);
+      retArr = retArr.concat(this.cordLine(turn, end));
     }
     return retArr;
   }
