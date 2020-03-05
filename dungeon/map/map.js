@@ -11,11 +11,11 @@ class Map{
     this._height = Utils.intCheck(height, "map constructor");
     this._fill = Cell;
     this._rooms = [];
+    this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 25;
     this._map = this._generateMap();
-    this._halls = [];
   }
 
   get numRooms(){ return this._numRooms; }
@@ -140,11 +140,20 @@ class Map{
     return Utils.hallCords(aCoords, bCoords);
   }
 
-  _addHalls(){
-    var shuff = Utils.shuffleIndex(this.rooms)
-    for (var i = 0; i < shuff.length -1; i++) {
-      var hall = this._makeHall(shuff[i], shuff[i+1])
-      this.halls.push(hall);
+  _addHalls(map,number="max"){
+    var shuff = Utils.shuffleIndex(this.rooms);
+    if (number == "max") {
+      number = shuff.length;
+    }
+    for (var i = 0; i < number -1; i++) {
+      var arr = this._makeHall(shuff[i], shuff[i+1]);
+      this.halls.push(arr);
+      for (var j = 0; j < arr.length; j++) {
+        var cell = map["y" + arr[j].y]["x" + arr[j].x];
+        if (cell.type != "room") {
+          cell.type = "hall";
+        }
+      }
     }
   }
 
@@ -167,14 +176,10 @@ the inner objects will be the individual cells of the map.
         map[key][key2] = new this.fill;
       }
     }
-      for (var i = 0; i < this._numRooms; i++) {
-        this.addRoom(map);// addRoom expects this._map tpo exists.
-    }
-    return map;// this is where we make this._map
     for (var i = 0; i < this.numRooms; i++) {
       this.addRoom(map);
     }
-    this._addHalls();
+    this._addHalls(map);
     return map;
   }
 
