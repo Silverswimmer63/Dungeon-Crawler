@@ -87,7 +87,7 @@ class Map{
   }
 
   get halls(){ return this._halls; }
-  set halls(halls){ throw new Error("Feature not implemented at this time."); }
+  set halls(number){ this._halls = this._addHalls(this._map, number); }
 
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
@@ -192,23 +192,23 @@ the inner objects will be the individual cells of the map.
   /* _addHalls()
   Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
   Adds all of the resulting halls to this._halls
+  //move this stuff else where
+  var connections = [];
+  if (number == "max") {
+    number = connections.length;
+  }
 */
   _addHalls(map = this._map, number="max"){
     var shuffle = Utils.shuffleIndex(this.rooms);
-    for (var i = 0; i < shuffle.length-1; i++) {
+    if (number == "max") { number = shuffle.length; }
+    for (var i = 0; i < number -1; i++) {
       var hall = this._makeHall(shuffle[i], shuffle[i+1]);
       this._halls.push(hall);
       //for loop to draw the rooms
       for (var j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        if (cell.type != "room") {
-          cell.type = "hall";
-        }
+        if (cell.type != "room") { cell.type = "hall"; }
       }
-    }
-    var connections = [];
-    if (number == "max") {
-      number = connections.length;
     }
   }
 
