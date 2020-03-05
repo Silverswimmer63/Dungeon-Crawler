@@ -96,21 +96,6 @@ class Utils {
     }
   }
 
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate
-  in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  static coordCheck(seta, setb){
-    for (var i = 0; i < seta.length; i++) {
-      for (var j = 0; j < setb.length; j++) {
-        if((seta[i].x == setb[j].x) && (seta[i].y == setb[j].y)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   /*randCoord(xMin, xMax, yMin, yMax)
   This function will produce an object with the keys of x and y, with values
   betweem xMin - xMax for the x key, & yMin and yMax for the y key
@@ -143,140 +128,11 @@ class Utils {
     }
     return retArray;
   }
-/*
-  1. make a function in utils called removeBorder(room) that does what is being
-  done right now in addRoom to trim the borders.
-  2. update addRoom to use this function where it is currently doing that.
-*/
-  static removeBorder(room, width, height){
-    let border = room; // make a set of coordinates based on the map constraints
-    let smalls = {x:width+1,y:height+1};
-    let biggy = {x:0,y:0};
-    for (var i = 0; i < border.length; i++) {
-      if (border[i].x < smalls.x) {smalls.x = border[i].x;}
-      if (border[i].y < smalls.y) {smalls.y = border[i].y;}
-      if (border[i].x > biggy.x) {biggy.x = border[i].x;}
-      if (border[i].y > biggy.y) {biggy.y = border[i].y;}
-    }
-    let coords = [];
-    for (var i = 0; i < border.length; i++) {
-      var isBorder = false;
-      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
-        isBorder = true;
-      }
-      if (!isBorder) {coords.push(border[i]);}
-  }
-  return coords;
-}
-
-static dis(start, end){
-  let num = undefined;
-  let max = Math.max(start,end);
-  if (start != end) {
-    if (max < start) {num = start - max;}
-    if (max > start) {num = max - start;}
-    if (max < end) {num = end - max;}
-    if (max > end){num = max - end;}
-    return num;
-  }else {
-    return start - end;
-  }
-}
-
-  static cordline(start, end){
-    let xdis = this.dis(start.x, end.x);// these are to add to start and end
-    let ydis = this.dis(start.y, end.y);// this one is the same but just y
-    let obj = {};
-    let retAry = [];
-    if (ydis != 0) {
-      let addTo = Math.min(start.y, end.y);
-      for (var i = addTo+1; i < ydis+addTo; i++) {
-        obj = {x:end.x,y:i};
-        retAry.push(obj);
-      }
-    }
-    if (xdis != 0) {
-      let addTo = Math.min(start.x, end.x);
-      for (var i = addTo+1; i < xdis+addTo; i++) {
-        obj = {x:i,y:start.y};
-        retAry.push(obj);
-      }
-    }
-    return retAry;
-  }
-
-
-  /* hallCords(start, end)
-makes a line with chance of a turn between start and end
-@param start: {object} one of the two sets of coordinates on a hall
-@param end: {object} one of the two sets of coordinates on a hall
-@return: {array} an array of the coordinates between the two input coordinates
-*/
-  static hallCords(start, end){
-    let maybe = Math.random();
-      if ((start.x == end.x)||(start.y == end.y)) {return this.cordline(start, end);}
-      else{
-        var turn = {};
-        if (maybe < .5) { turn = {x:start.x, y:end.y}; }
-        if (maybe >= .5) { turn = {x:end.x, y:start.y}; }
-        var retArr = this.cordline(start, turn);
-        retArr.push(turn);
-        retArr = retArr.concat(this.cordline(turn, end));
-      }
-      return retArr;
-  }
-
-  static shuffle (array) {
-    var i = 0;
-    var j = 0;
-    var temp = null;
-    for (i = array.length - 1; i > 0; i -= 1) {
-      j = Math.floor(Math.random() * (i + 1))
-      temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-  }
-  return array;
-}
-
-  static shuffleIndex(array){
-    let numArr = [];
-    for (var i = 0; i < array.length; i++) {
-      numArr.push(i);
-    }
-    let retAry = this.shuffle(numArr);
-    return retAry;
-  }
-
-  /*
-  .1 in Map we are going to add a property for rooms called _rooms this should be
-  a blank array by default
-  .2 Add a getter for rooms that returns the array in rooms
-  .3 Add a setter for rooms
-  .4 Add properties for map for max and min room size, make these 3 and 8 by default.
-  Make getters and setters, have the setters check to see if the value is an int in the setter.
-  .5 Make a new function in Utils called arrayCheck that does what all the other checkers do, but for arrays
-  .6 Add the arrayCheck to the setter for rooms
-  .7 make the setter for rooms check to see if the intended value is a blank array [ ]. If not,
-  then check to see if each item in the intended item is also an array make the call this time "Map.rooms - individual room"
-  .8 for each of the items from #7 above check each of the items inside of it to make sure they are all objects
-  with the keys X and Y
-  .9 to continue in Map.rooms - for each room make sure it has something in it, otherwise toss the error
-  "In Map.rooms: One or more room arrays is empty."
-  */
-  static arrayCheck([], call = "Utils.arrayCheck"){
-    if (( item != null)&&(Array.isArray(item))) {
-      return item;
-    }else {
-      throw new Error("The method " + call + " expected an array and received " + item + ".");
-    }
-  }
 
   /* coordCheck(setA, setB)
 takes 2 arrays of coordinates and checks them to see if there is a coordinate in
 one that is this in the other. If so it returns a true, if not, it returns a false.
 */
-
   static coordCheck(setA, setB){
     for (var i = 0; i < setA.length; i++) {
     for (var j = 0; j < setB.length; j++) {
@@ -285,25 +141,6 @@ one that is this in the other. If so it returns a true, if not, it returns a fal
   }
   return false;
 }
-
-
-/*
-1. make a function in utils called removeBorder(room) that does what is being done right now in addRoom to trim the borders.
-
-2. update addRoom to use this function where it is currently doing that.
-
-3. make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
-
-If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-START AT THE SMALLER ONE
-"start" and "end" but you need to min and max the values and go from min to max.
--Which one we are working on!
-start at the min to bigger.
-Let's talk about that for
--for(var i = miner + 1; i < larger; i++){}
-
-*/
-
 
   static removeBorder(room, width, height){
     let border = room;
@@ -329,90 +166,66 @@ Let's talk about that for
     return coords;
   }
 
-/*make a function in utils called cordLine(start, end) that returns a set of coordinates between start (cords) and end (cords)
-Part 3: cordLine :
-If we had {x:1, y:1} and {x:1, y:6} we would get {x:1 y:2}, {x:1, y:3}.....
-START AT THE SMALLER ONE
-"start" and "end" but you need to min and max the values and go from min to max.
--Which one we are working on!
-start at the small to bigger.
-Let's talk about that for
--for(var i = smaller + 1; i < larger; i++){}
+  static coordLine(start, end){
+    let minX = Math.min(start.x, end.x);
+    let minY = Math.min(start.y, end.y);
+    let largeX = Math.max(start.x, end.x);
+    let largeY = Math.max(start.y, end.y);
+    let retArr = [];
+    for (var i = minX + 1; i < largeX; i++) {
+      var newX = {x:i, y:minY};
+      retArr.push(newX);
+    }
+    for (var i = minY + 1; i < largeY; i++) {
+      var newY = {x:minX, y:i};
+      retArr.push(newY);
+    }
+    return retArr;
+  }
 
+  /* hallCords(start, end)
+makes a line with chance of a turn between start and end
+@param start: {object} one of the two sets of coordinates on a hall
+@param end: {object} one of the two sets of coordinates on a hall
+@return: {array} an array of the coordinates between the two input coordinates
 */
+  static hallCords(start, end, call="Utils.hallCords"){
+    if ((start.x == end.x)||(start.y == end.y)) {
+      return this.coordLine(start, end);
+    }else {
+      var turn = {};
+      var choice = Math.random();
+      if (choice < .5) { turn = {x:start.x, y:end.y} }
+      if (choice >= .5) { turn = {x:end.x, y:start.y} }
+      var retArr = this.coordLine(start, turn);
+      retArr.push(turn);
+      retArr = retArr.concat(this.coordLine(turn, end));
+    }
+    return retArr;
+  }
 
-  static cordLine(start,end){
-   let minX = Math.min(start.x, end.x);
-   let minY = Math.min(start.y, end.y);
-   let maxX = Math.max(start.x, end.x);
-   let maxY = Math.max(start.y, end.y);
-   let retArr = [];
-   for (var i = minX + 1; i < maxX; i++) {
-     var newX = {x: i, y: minY};
-     retArr.push(newX);
-   }
-   for (var i = minY + 1; i < maxY; i++) {
-     var newY = {x: minX, y: i};
-     retArr.push(newY);
-   }
-   return retArr;
- }
-
- /* hallCords(start, end)
- makes a line with chance of a turn between start and end
- @param start: {object} one of the two sets of coordinates on a hall
- @param end: {object} one of the two sets of coordinates on a hall
- @return: {array} an array of the coordinates between the two input coordinates
- */
-
- static hallCords(start, end){
-   let minX = Math.min(start.x, end.x);
-   let minY = Math.min(start.y, end.y);
-   let maxX = Math.max(start.x, end.x);
-   let maxY = Math.max(start.y, end.y);
-   let retArr = [];
-     if((start.x == end.x)||(start.y == end.y)){
-       this.cordLine(start, end);
-     }
-     else {
-       for (var i = minX + 1; i < maxX ; i++) {
-         var newX = {x: i, y: minY};
-         retArr.push(newX);
-       }
-       for (var i = minY + 1; i < maxY ; i++) {
-         var newY = {x: maxX, y: i};
-         retArr = retArr.concat(newY);
-       }
-       return retArr;
-     }
-   }
-
-/* shuffleIndex(array)
+  /* shuffleIndex(array)
   @param array: {array} an array to shuffle the index of
   @return array: an array of number index (eg: array of length 5 might
   give you a result of [2, 3, 0, 1, 4])
-*/
-static shuffle (array) {
-  var i = 0;
-  var j = 0;
-  var temp = null;
-  for (i = array.length - 1; i > 0; i -= 1) {
-    j = Math.floor(Math.random() * (i + 1))
-    temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-  return array;
-}
-
-  static shuffeIndex(array){
-    let retArr = [];
-    for (var i = 0; i < array.length; i++) {
-        retArr.push(i);
+  */
+  static something(array) {
+    var i = array.length, j, temp;
+    if ( i == 0 ) return this;
+    while ( --i ) {
+       j = Math.floor( Math.random() * ( i + 1 ) );
+       temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
     }
-    let numArr = this.shuffle(retArr);
-    return numArr;
+    return array;
   }
-
-
+  static shuffleIndex(array){
+  let numArr = [];
+  for (var i = 0; i < array.length; i++) {
+  numArr.push(i);
+  }
+  let retAry = this.something(numArr)
+  return retAry;
+  }
 }

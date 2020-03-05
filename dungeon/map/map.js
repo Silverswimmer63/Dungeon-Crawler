@@ -1,4 +1,3 @@
-
 /*
 class Map
  this class is used to create and generate displays of 2 demensional maps.
@@ -17,13 +16,12 @@ class Map{
     this._roomMax = 10;
     this._numRooms = 25;
     this._map = this._generateMap();
-
   }
+  get halls(){ return this._halls; }
+  set halls(halls){ throw new Error("Feature not implemented at this time.") }
 
   get numRooms(){ return this._numRooms; }
-  set numRooms(numRooms){
-    this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");
-   }
+  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms"); }
 
   get roomMax(){ return this._roomMax;}
   set roomMax(roomMax){this._roomMax = Utils.intCheck(roomMax, "Map.roomMax");}
@@ -97,33 +95,12 @@ Then we will update the map to have a setter for map, this will use the two
   get roomMax(){ return this._roomMax; }
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
-  get numRooms(){ return this._numRooms;}
-  set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
-
-  get halls(){return this._halls;}
-  set halls(halls){throw new Error("Feature not implemented at this time.");}
-  /* addRoom()
-  add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
-  and update the cells at the correct coordinates to match the room.
-  */
-
-  /* add a step between making the room coordinates and changing the the map
-  where you check each room in the map array to see if any of them have the same
-  coordinates, and if there is overlap, don't add the room
-  border room check
-  place none border room no border but after border room check
-  */
-
-
-
-
   addRoom(map=this.map){
     let num = 0;
     while (num < 200) {
       num ++;
       let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       let overlap = false;
-      let border = Utils.randRoom(this.width, this.height, this.roomMin+2, this.roomMax+2); // make a set of coordinates based on the map constraints
       let coords = Utils.removeBorder(border, this.width, this.height);
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
@@ -137,36 +114,22 @@ Then we will update the map to have a setter for map, this will use the two
       }
       num = 200;
       this._rooms.push(coords);
-      }
     }
   }
+}
 
-/*
-@param {start}: int
-@param {end}: int
-this takes the distnace between two numbers and returns it.
-*/
+_addHalls(map){
+  var shuffle = Utils.shuffleIndex(this.rooms);
+  for (var i = 0; i < shuffle.length-1; i++) {
+    var array = this._makeHall(shuffle[i], shuffle[i+1]);
+    this._halls.push(array);
+    for (var j = 0; j < array.length; j++) {
+      let cell = map["y" + array[j].y]["x" + array[j].x];
+      cell.type = "hall";
+    }
+  }
+}
 
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
-
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
@@ -178,15 +141,10 @@ the inner objects will be the individual cells of the map.
       }
     }
       for (var i = 0; i < this._numRooms; i++) {
-        this.addRoom(map);// addRoom expects this._map tpo exists.
-    }
-    return map;// this is where we make this._map
-    for (var i = 0; i < this.numRooms; i++) {
-      this.addRoom(map);
+        this.addRoom(map);// addRoom expects this._map to exists.
     }
     this._addHalls(map);
     return map;
-
   }
 
   /* _drawBorder()
@@ -202,80 +160,35 @@ the inner objects will be the individual cells of the map.
     return retStr += "+";
   }
 
-/*
-  Four -
+  /*
   make a function in map -
+
   makeHall(indexA, indexB)
   gets rooms from indexes
-  takes a random cord form the INSIDE of room A and a random cord from the inside of room B
+  takes a random cord from the INSIDE of room A and a random cord from the inside of room B
   makes those the start and end cords
   makes the hall
   returns the hall
-*/
-  makeHall(indexA, indexB){
-    let room = {roomA:Utils.removeBorder(this.rooms[indexA],this.width,this.height),roomB:Utils.removeBorder(this.rooms[indexB],this.width,this.height)};
-    let paramsA = {min:{x:this.width,y:this.height},max:{x:1,y:1}};
-    let paramsB = {min:{x:this.width,y:this.height},max:{x:1,y:1}};
-    for (var i = 0; i < room.roomA.length; i++) {
-      paramsA.min.x = Math.min(paramsA.min.x,room.roomA[i].x);
-      paramsA.min.y = Math.min(paramsA.min.y,room.roomA[i].y);
-      paramsA.max.x = Math.max(paramsB.max.x,room.roomA[i].x);
-      paramsA.max.y = Math.max(paramsA.max.y,room.roomA[i].y);
-
+  */
+  _makeHall(indexA, indexB){
+    var remover = {roomA: Utils.removeBorder(this.rooms[indexA], this.width, this.height), roomB: Utils.removeBorder(this.rooms[indexB], this.width, this.height)};
+    var setA = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    var setB = {min:{x:this.width,y:this.height}, max:{x:1, y:1}};
+    for (var i = 0; i < remover.roomA.length; i++) {
+      setA.max.x = Math.max(setA.max.x, remover.roomA[i].x);
+      setA.max.y = Math.max(setA.max.y, remover.roomA[i].y);
+      setA.min.x = Math.min(setA.min.x, remover.roomA[i].x);
+      setA.min.y = Math.min(setA.min.y, remover.roomA[i].y);
     }
-    let randCoordA = Utils.randCoord(paramsA.min.x,paramsA.max.x,paramsA.min.y,paramsA.max.y,"room.makeHall");
-    for (var i = 0; i < room.roomB.length; i++) {
-      paramsB.min.x = Math.min(paramsB.min.x,room.roomB[i].x);
-      paramsB.min.y = Math.min(paramsB.min.y,room.roomB[i].y);
-      paramsB.max.x = Math.max(paramsB.max.x,room.roomB[i].x);
-      paramsB.max.y = Math.max(paramsB.max.y,room.roomB[i].y);
+    for (var i = 0; i< remover.roomB.length; i++) {
+      setB.max.x = Math.max(setB.max.x, remover.roomB[i].x);
+      setB.max.y = Math.max(setB.max.y, remover.roomB[i].y);
+      setB.min.x = Math.min(setB.min.x, remover.roomB[i].x);
+      setB.min.y = Math.min(setB.min.y, remover.roomB[i].y);
     }
-    let randCoordB = Utils.randCoord(paramsB.min.x,paramsB.max.x,paramsB.min.y,paramsB.max.y,"room.makeHall");
-    return Utils.hallCords(randCoordA,randCoordB);
+    var aCoords = Utils.randCoord(setA.min.x, setA.max.x, setA.min.y, setA.max.y)
+    var bCoords = Utils.randCoord(setB.min.x, setB.max.x, setB.min.y, setB.max.y)
+    return Utils.hallCords(aCoords, bCoords);
   }
-
-  /* _addHalls()
-Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
-Adds all of the resulting halls to this._halls
-5. add _addHalls() to _generateMap()
-*/
-
-  _addHalls(map){
-    let shuff = Utils.shuffleIndex(this.rooms);
-    for (var i = 0; i < shuff.length-1; i++) {
-     var hall = this.makeHall(shuff[i],shuff[i+1]);
-     this.halls.push(hall);
-     for (var j = 0; j < hall.length; j++) {
-       let cell = map["y" + hall[j].y]["x" + hall[j].x];
-       cell.type = "hall";
-    }
-   }
-  }
-
-
-}
-and if there is overlap, don't add the room
-
-4. add the correct type of loop structure and other needed item(s) to make said
-loop stop if the room can be added (per 3 above) or keep going if not added
-this is going to continue to go through the loop until it can make a room
-*/
-
-/*
-1. We will fix the issue with the logic in addRoom.
-2. We will fix up a few bugs in addRoom.
-3. We will add a new parameter to the class map, _numRooms = 25
-4. We will add getters and setters for numRooms, setter should check if the input is an integer, it should also remake the map if this number is changed.
-5. We will update the map generation process to run the addRoom method for numRooms amounts of time.
-6. We will work on cell. -
-A. remove references to borders, we don't need those.
-B. set it so that if the cell is set to open, than the cell image is set to " "
-C. set the toSting in the cell to check to see if there is anything in inventory or occupied. If there is something in either,
-have the cell use the toString for those items the order of importance for now should just be occupied (mob) > occupied (nonMob) > inventory
-(we will change that later to deal with open and unopened doors, types of items, and so on.
-D. alter addRoom to deal not change the cell image anymore.
-*/
-
-
 
 }

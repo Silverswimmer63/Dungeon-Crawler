@@ -6,7 +6,7 @@ or mobs or the player.
 class Cell {
   constructor(){
     this._image = "#";
-    this._type = "wall"//wall, hall, rooms, a wall but a tag
+    this._type = "wall"//wall, hall, rooms, border: a wall but a tag
     this._open = false;// if the cell allows movement
     this._inventory = [];//items in the cell
     this._occupied = [];//for livings in the cell
@@ -18,6 +18,7 @@ class Cell {
     if (this._occupied.length>0) {
       return false;
     }else {
+      this._image = " ";
       return this._open;
     }
   }
@@ -154,90 +155,23 @@ class Cell {
       }
     }
   }
-/*
-set the toSting in the cell to check to see if there is anything in inventory or
-occupied. If there is something in either, have the cell use the toString for
-those items. the order of importance for now should just be occupied (mob) > occupied
-(nonMob) > inventory (we will change that later to deal with open and unopened
-doors, types of items, and so on.*/
-  //toString and other overwrights
-  toString(){
-    let image = this._image;
-    if (this.inventory.length > 0) {image = this.inventory[0].icon;}
-    if (this.inventory.length > 1) {
-      let check = [Item, Potion, Armor, Weapon];
-      let item = [];
-      let hit = 0;
-      for (var i = 0; i < check.length; i++) {
-        for (var j = 0; j < this.inventory.length; j++) {
-          if (this.inventory[j] instanceof check[i]) {
-            if (i > hit) {
-              hit = i;
-              item = [];
-            }
-            item.push(this.inventory[j]);
-            for (var k = 0; k < item.length; k++) {
-            let best = item[0];
-              if (best.value < item[k].value) {
-                best = item[k];
-                }
-                image = best.icon;
-              }
-              for (var l = 0; l < item.length; l++) {
-              let best = item[0];
-                if (best.level < item[l].level) {
-                  best = item[l];
-                  }
-                  image = best.icon;
-                }
-              }
-            }
-          }
-        }
-    if (this.occupied.length == 1) {image = this.occupied[0].icon;}
-    if (this.occupied.length == 2) {
-      if (this.occupied[0] instanceof Mob) {
-        image = this.occupied[0].icon;
-      }else {
-        image = this.occupied[1].icon;
-      }
-    }
-    return "" + image;
+
+  /*
+  C. set the toSting in the cell to check to see if there is anything in inventory
+  or occupied. If there is something in either, have the cell use the toString for
+  those items the order of importance for now should just be occupied (mob) > occupied
+   (nonMob) > inventory (we will change that later to deal with open and unopened doors, types of items, and so on.
+  deal with the issue of how to display when there is more than 1 item in
+  the inventory.
+  order of display: most important - weapons, armor, potions, other -least
+  order of display part 2: most important - level, value, index -least
+  */
+  _stringHandler(className){
+  let hits = []; // all the items in the inventory that are of the given class.
+  for (let i = 0; i < this.inventory.length; i++) { // check for those things
+  if(this.inventory[i] instanceof className){ hits.push(this.inventory[i]); }
   }
 
 }
 
 }
-
-/*
-for all of the things{
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
- if(blah){
-  for(jwbd) level
-  for(ndkas) value
-}
-  if(blah){
-    for(jwbd) level
-    for(ndkas) value
-  }
-}
-
-
-for inventory{
-  for class in [Item, Potion, Armor, Weapon]{
-  //store [i] track the i if it is higher than for what is current, reset
-    for(jwbd) level
-    for(ndkas) value
-}
-
-}
-
-
-*/
