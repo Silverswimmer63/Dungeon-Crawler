@@ -187,14 +187,22 @@ static dis(start, end){
     let xdis = this.dis(start.x, end.x);
     let ydis = this.dis(start.y, end.y);
     let obj = {};
+    let retAry = [];
     if (ydis != 0) {
-      obj.x = xdis;
-      obj.y = ydis-2;
+      var addTo = Math.min(start.y, end.y);
+      for (var i = addTo+1; i < ydis+addTo; i++) {
+        obj = {x:end.x, y:i};
+        retAry.push(obj);
+      }
     }
     if (xdis != 0) {
-      obj.x = xdis-2;
-  obj.y = ydis;
+      var addTo = Math.min(start.x, end.x);
+      for (var i = addTo+1; i < xdis+addTo; i++) {
+        obj = {x:i, y:start.y};
+        retAry.push(obj);
+      }
     }
+    return retAry;
   }
   /* hallCords(start, end)
   makes a line with chance of a turn between start and end
@@ -203,8 +211,22 @@ static dis(start, end){
   @return: {array} an array of the coordinates between the two input coordinates
   */
   static hallCords(start, end){
+    var maybe = Math.random();
+    if((start.x == end.x)||(start.y == end.y)){return this. cordline(start, end);}
+    else{
+      var turn = {};
+      if(maybe < .5){turn = {x:start.x, y:end.y};}
+      if(maybe >= .5){turn = {x:end.x, y:start.y};}
+      var retArr = this.cordline(start, turn);
+      retArr.push(turn);
+      retArr = retArr.concat(this.cordline(turn, end));
+    }
+    return retArr;
+  }
+
+  /*
     //connect two rooms by random points something something math.random
-let minX = Math.min(start.x, end.x);/*randRoom[0].y randRoom[randRoom.length].y*/
+    let minX = Math.min(start.x, end.x);/*randRoom[0].y randRoom[randRoom.length].y
 let minY = Math.min(start.y, end.y);//randRoom[0].x randRoom[randRoom.width].x
 let maxX = Math.max(start.x, end.x);
 let maxY = Math.max(start.y, end.y);
@@ -224,6 +246,7 @@ retVar = retVar.concat(newY);
 }
 return retVar;
   }
+  */
   /*
 shuffleIndex(array){
 arr = []
@@ -289,7 +312,7 @@ for (var i = 0; i < array.length; i++) {
 let retAry = this.helpingHalls(numArr)
 return retAry;
   }
-  
+
 
 //maybe use something something addroom and shuffle because it uses helping halls which is ment to be an addition to hallCords
 //choice random place in said rooms make a new room but only leave the border for a small path to make the halls
