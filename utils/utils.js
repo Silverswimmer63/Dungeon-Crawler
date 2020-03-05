@@ -143,6 +143,110 @@ class Utils {
     }
     return retArray;
   }
+/*
+  1. make a function in utils called removeBorder(room) that does what is being
+  done right now in addRoom to trim the borders.
+  2. update addRoom to use this function where it is currently doing that.
+*/
+  static removeBorder(room, width, height){
+    let border = room; // make a set of coordinates based on the map constraints
+    let smalls = {x:width+1,y:height+1};
+    let biggy = {x:0,y:0};
+    for (var i = 0; i < border.length; i++) {
+      if (border[i].x < smalls.x) {smalls.x = border[i].x;}
+      if (border[i].y < smalls.y) {smalls.y = border[i].y;}
+      if (border[i].x > biggy.x) {biggy.x = border[i].x;}
+      if (border[i].y > biggy.y) {biggy.y = border[i].y;}
+    }
+    let coords = [];
+    for (var i = 0; i < border.length; i++) {
+      var isBorder = false;
+      if ((border[i].x == biggy.x)||(border[i].y == biggy.y)||(border[i].x == smalls.x)||(border[i].y == smalls.y)) {
+        isBorder = true;
+      }
+      if (!isBorder) {coords.push(border[i]);}
+  }
+  return coords;
+}
+
+static dis(start, end){
+  let num = undefined;
+  let max = Math.max(start,end);
+  if (start != end) {
+    if (max < start) {num = start - max;}
+    if (max > start) {num = max - start;}
+    if (max < end) {num = end - max;}
+    if (max > end){num = max - end;}
+    return num;
+  }else {
+    return start - end;
+  }
+}
+
+  static cordline(start, end){
+    let xdis = this.dis(start.x, end.x);// these are to add to start and end
+    let ydis = this.dis(start.y, end.y);// this one is the same but just y
+    let obj = {};
+    let retAry = [];
+    if (ydis != 0) {
+      let addTo = Math.min(start.y, end.y);
+      for (var i = addTo+1; i < ydis+addTo; i++) {
+        obj = {x:end.x,y:i};
+        retAry.push(obj);
+      }
+    }
+    if (xdis != 0) {
+      let addTo = Math.min(start.x, end.x);
+      for (var i = addTo+1; i < xdis+addTo; i++) {
+        obj = {x:i,y:start.y};
+        retAry.push(obj);
+      }
+    }
+    return retAry;
+  }
+
+
+  /* hallCords(start, end)
+makes a line with chance of a turn between start and end
+@param start: {object} one of the two sets of coordinates on a hall
+@param end: {object} one of the two sets of coordinates on a hall
+@return: {array} an array of the coordinates between the two input coordinates
+*/
+  static hallCords(start, end){
+    let maybe = Math.random();
+      if ((start.x == end.x)||(start.y == end.y)) {return this.cordline(start, end);}
+      else{
+        var turn = {};
+        if (maybe < .5) { turn = {x:start.x, y:end.y}; }
+        if (maybe >= .5) { turn = {x:end.x, y:start.y}; }
+        var retArr = this.cordline(start, turn);
+        retArr.push(turn);
+        retArr = retArr.concat(this.cordline(turn, end));
+      }
+      return retArr;
+  }
+
+  static shuffle (array) {
+    var i = 0;
+    var j = 0;
+    var temp = null;
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1))
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+  return array;
+}
+
+  static shuffleIndex(array){
+    let numArr = [];
+    for (var i = 0; i < array.length; i++) {
+      numArr.push(i);
+    }
+    let retAry = this.shuffle(numArr);
+    return retAry;
+  }
 
   /*
   .1 in Map we are going to add a property for rooms called _rooms this should be
