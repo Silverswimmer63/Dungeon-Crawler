@@ -171,7 +171,35 @@ class Cell {
   for (let i = 0; i < this.inventory.length; i++) { // check for those things
   if(this.inventory[i] instanceof className){ hits.push(this.inventory[i]); }
   }
+  if(hits.length == 0){ return undefined; } // base case
 
-}
+  let best = hits[0]; // base case - index 0
+  for (let i = 0; i < hits.length; i++) { // value
+  if(hits[i].value > best.value){ best = hits[i]; }
+  }
+  for (let i = 0; i < hits.length; i++) { // level
+  if(hits[i].level > best.level){ best = hits[i]; }
+  }
+  return best;
+  }
+
+  //toString and other overwrites
+  toString(){
+  let image = this._image; // default image
+    if (this.inventory.length > 0) { image = this.inventory[0]; }
+    if (this.inventory.length > 1){
+      let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
+      for (let i = 0; i < order.length; i++) {
+        let testCase = this._stringHandler(order[i]);
+        if (testCase != undefined) { image = testCase; }
+      }
+  } //ignore this for showing this step
+    if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
+    if (this.occupied.length == 2) { // find the mob
+    if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
+    else { image = this.occupied[1]; }
+    }
+  return "" + image;
+  }
 
 }
