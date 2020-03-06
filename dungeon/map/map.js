@@ -112,7 +112,7 @@ Then we will update the map to have a setter for map, this will use the two
 }
 
 _addHalls(map, number = "max"){
-  var shuffle = Utils.shuffleIndex(this.rooms);
+  var shuffle = Utils.shuffleIndex(this.rooms);xc vnbxncvb
   if (number  == "max"){
   number = shuffle.length;
 }
