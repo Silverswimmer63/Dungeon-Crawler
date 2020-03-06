@@ -14,7 +14,7 @@ class Map{
     this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms = 30;
+    this._numRooms = 20;
     this._map = this._generateMap();
   }
 
@@ -88,7 +88,7 @@ Then we will update the map to have a setter for map, this will use the two
   set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms");}
 
   get halls(){return this._halls;}
-  set halls(halls){throw new Error("Feature not implemented at this time.");}
+  set halls(number){ this._halls = this._addHalls(this._map, number);}
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
   and update the cells at the correct coordinates to match the room.
@@ -218,14 +218,18 @@ Adds all of the resulting halls to this._halls
 5. add _addHalls() to _generateMap()
 */
 
-  _addHalls(map){
+  _addHalls(map, number="max"){
     let shuff = Utils.shuffleIndex(this.rooms);
-    for (var i = 0; i < shuff.length-1; i++) {
+    if (number == "max") {number = shuff.length;}
+    for (var i = 0; i < number-1; i++) {
      var hall = this.makeHall(shuff[i],shuff[i+1]);
      this.halls.push(hall);
      for (var j = 0; j < hall.length; j++) {
        let cell = map["y" + hall[j].y]["x" + hall[j].x];
        cell.type = "hall";
+       if (cell.type != "room") {
+         cell.type = "hall";
+       }
     }
    }
   }
