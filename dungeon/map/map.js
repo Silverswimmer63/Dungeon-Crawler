@@ -14,11 +14,17 @@ class Map{
     this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms = 25;
+    this._numRooms = 20;
     this._map = this._generateMap();
   }
   get halls(){ return this._halls; }
-  set halls(halls){ throw new Error("Feature not implemented at this time.") }
+  set halls(number = "max"){ this._halls = this._addHalls(this._map, number); }
+/*
+_addHalls(map, number="max") Version 4.0 As version 3, but also add - a param named number with a default value of
+"max" if the value is "max" then set number to shuffle.length in the function
+in your for loop replace shuffle.length with number.
+then change the setter to take the param number, and then use _addHalls to add number halls to the map
+*/
 
   get numRooms(){ return this._numRooms; }
   set numRooms(numRooms){ this._numRooms = Utils.intCheck(numRooms, "Map.numRooms"); }
@@ -112,18 +118,22 @@ class Map{
   }
 }
 
-_addHalls(map){
+_addHalls(map, number = "max"){
   var shuffle = Utils.shuffleIndex(this.rooms);
-  for (var i = 0; i < shuffle.length-1; i++) {
+  if (number == "max") {
+    number = shuffle.length;
+  }
+  for (var i = 0; i < number-1; i++) {
     var array = this._makeHall(shuffle[i], shuffle[i+1]);
-    this._halls.push(array);
     for (var j = 0; j < array.length; j++) {
       let cell = map["y" + array[j].y]["x" + array[j].x];
+      if (cell.type != "room") {
       cell.type = "hall";
+      }
     }
+    this._halls.push(array);
   }
 }
-
   _generateMap(){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
