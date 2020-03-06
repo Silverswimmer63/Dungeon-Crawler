@@ -28,8 +28,8 @@ these will need to be a little more complex than with other setters we have used
 or we will get errors. Remake the this._map.*/
 
 get halls(){return this._halls;}
-set halls(halls){
-  throw new Error ("Feature not implemented at this time.");
+set halls(number){
+  this._halls = this._addHalls(this.map, number);
 }
   get roomMin(){return this._roomMin;}
   set roomMin(roomMin){this._roomMin = Utils.intCheck(this.roomMin);}
@@ -271,31 +271,29 @@ let randCoordB = Utils.randCoord(roomavlB.min.x,roomavlB.max.x,roomavlB.min.y,ro
 return Utils.hallCords(randCoordA,randCoordB);
 }
 /*
-1. add a prop to map _halls init to an empty array
-2. add a getter for halls
-3. add a setter for halls that at this point raises an error "Feature not implemented at this time."
-4.
- _addHalls()
-Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
-Adds all of the resulting halls to this._halls
-5. add _addHalls() to _generateMap()
-_addHalls(map)
 Version 2.0 As version 1, but also sets all of the halls to open and to hall be aware
  that you will need to pass it a parameter, map, from here on out.
- _addHalls(map) Version 3.0 As version 2, but also does not turn a cell to hall if it is a room*/
-_addHalls(map){
+ _addHalls(map) Version 3.0 As version 2, but also does not turn a cell to hall if it is a room
+ _addHalls(map, number="max") Version 4.0 As version 3, but also add - a param named number with a default value of
+"max" if the value is "max" then set number to connections.length in the function
+in your for loop replace connections.length with number.
+then change the setter to take the param number, and then use _addHalls to add number halls to the map*/
+_addHalls(map, number ="max"){
   var shuffle = Utils.shuffleIndex(this.rooms);
-  for (var i = 0; i < shuffle.length-1; i++) {
+  if (number == "max") { number = shuffle.length;}
+  for (var i = 0; i < shuffle-1; i++) {
     var make = this._makeHall(shuffle[i],shuffle[i+1]);
       this.halls.push(make);
       var len = make.length;
-
       for (var j = 0; j < len; j++) {
     let cell = map["y"+ make[j].y]["x"+ make[j].x];
     cell.type = "hall";
+    if (cell.type != "room") {
+      cell.type = "hall";}
       }
     }
-  }/*
+  }
+  /*
   _demoAddHalls(){
     let connections= Utils.shuffleIndex(this.rooms, "Map._addHalls");
     for (var i = 0; i < connections.length-1; i++) {
