@@ -100,15 +100,12 @@ class Map{
   cells at the correct coordinates to match the room.
   */
   addRoom(map=this._map){
-
     let canAdd = 0;
     while(canAdd < 200){
       let border = Utils.randRoom(this.width, this.height, this.min+2, this.max+2); // make a set of coordinates based on the map constraints
       // changed the above ^^ +2 not +1 because 2 borders!!
       let overlap = false;
-
       let coords = Utils.removeBorder(border, this.width, this.height); // trimmed room
-
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
@@ -132,13 +129,10 @@ class Map{
   returns the hall
   */
   makeHall(indexA, indexB){
-
     let roomA = Utils.removeBorder(this.rooms[indexA], this.width, this.height,"Map.makeHall");
     let roomB = Utils.removeBorder(this.rooms[indexB], this.width, this.height,"Map.makeHall");
-
     let aVals = Utils.roomCorners(roomA, this.width, this.height);
     let bVals = Utils.roomCorners(roomB, this.width, this.height);
-
     let coordA = Utils.randCoord(aVals.x.min, aVals.x.max, aVals.y.min, aVals.y.max, "Map.makeHall");
     let coordB = Utils.randCoord(bVals.x.min, bVals.x.max, bVals.y.min, bVals.y.max, "Map.makeHall");
     // make the hall
@@ -193,7 +187,6 @@ class Map{
   return map; // this is where we make this._map
   }
 
-
   /* _drawBorder()
   Makes a border top or bottom for the map. This border will be in the general
   design of +---------------+
@@ -207,6 +200,5 @@ class Map{
     retString += "+";
     return retString;
   }
-
 
 }
