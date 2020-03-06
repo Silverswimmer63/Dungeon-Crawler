@@ -11,9 +11,14 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._halls = [];
+    this._startRoom = [];//this will actually have a object in it though;
     this._roomMin = 3;
     this._roomMax = 10;
     this._numRooms = 30;
+    this._test = 0;
+    this._cellTest = [];
+    this._ittertest = 0;
+    this._character = characterNew;
     this._map = this._generateMap();
   }
   
@@ -158,10 +163,20 @@ class Map{
 @param {end}: int
 this takes the distnace between two numbers and returns it.
 */
+
   makeMonsters(perRoom, map = this._map){
     var mobItter = 0;
+    var randomRoom = Utils.randMath(0, this._rooms.length-1)
+    var startRoom = this._rooms[randomRoom];
+    this._startRoom.push(startRoom)
+    var validRooms = [];
+    for(var r = 0; r<this._rooms.length;r++){
+      if(this._rooms[r] !== startRoom){
+        validRooms.push(this._rooms[r]);
+      }
+    }
    while(mobItter < perRoom){
-    for(var i = 0; i < this._rooms.length; i++){
+    for(var i = 0; i < validRooms.length; i++){
     var monsters = Utils.monPlace(3);
     var monsterList = [];
     var mob = false;
@@ -193,8 +208,8 @@ this takes the distnace between two numbers and returns it.
     if(monsterList.length == 0){
       monsterList.push(monsters[0]);
     }
-    var random = Utils.randMath(0, this._rooms[i].length-1);
-    var room = this._rooms[i][random];
+    var random = Utils.randMath(0, validRooms[i].length-1);
+    var room = validRooms[i][random];
         let cell = map["y" + (room.y)]["x" + (room.x)];
         cell.occupied.push(monsterList);
     }
@@ -216,10 +231,35 @@ this takes the distnace between two numbers and returns it.
         itemItter++;
         }
       }
+          _setBeginningPos(){
+        var randomPoint = Utils.randMath(0, this._startRoom.length);
+        var point = this._startRoom[0][randomPoint];
+        this._character._position = point;
+        return this._character;
+          }
+    _setPlayer(map =this._map){
+              if(this._test >= 1){
+          console.log(this._character._positionB);
+          console.log("chara^^");
+      let remo = map["y" + (this._character._positionB.y)]["x" + (this._character._positionB.x)];
+      console.log(remo)
+        remo.remove("player");
+        }
+        this._test +=1;
+      var character = [];
+      character.push(this._character);
+      let cell = map["y" + (this._character.position.y)]["x" + (this._character.position.x)];
+        cell.occupied.push(character);
+        this._cellTest.push(character);
+        console.log(character);
+        console.log("character^^^");
+        return this._map;
+
+    }
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
-  _generateMap(){
+  _generateMap(direction){
     var map = {};
     for (var i = 1; i <= this.height; i++) {
       var key = "y"+i;
@@ -235,9 +275,28 @@ this takes the distnace between two numbers and returns it.
     }
       this.addHalls(map);
       this.makeMonsters(3, map);
-      this.makeLoot(2,map)
+      this.makeLoot(2,map);
+      if(this._ittertest == 0){
+       this._setBeginningPos();
+       this._ittertest+=1;
+      }
+      else{
+      this._changePosition(direction, map);
+      }
     return map;//this is where we make this._map
   }
+        _changePosition(direction, map = this._map){
+          if(direction !== undefined){
+        var positionB = this._character._position;
+          console.log(positionB);
+        this._character._positionB = positionB;
+        console.log(this._character)
+        this._character.position = Utils.move(direction, this._character.position, this.width, this.height, this._map);
+              console.log(this)
+              }
+              this._setPlayer()
+        }
+
 
   /*@function _drawBorder()
    *

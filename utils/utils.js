@@ -363,28 +363,48 @@ class Utils {
       }
       return items;
   }
-  static move(direction,point){
+  static move(direction,point,width, height,map){
     //point should be an object of x and y
     //so if you take a point off the map
     //push the y value nad the x value into an {}
     var newReturn = {x:point.x, y:point.y};
+    var xpoint = point.x;
+    var ypoint = point.y;
     if((direction == "north")||(direction == "North")){
       //North is -1y
-      if(point.y !== 0){
+      if(ypoint-1 !== 0 || ypoint-1 !== -1){
+      var yminus = ypoint-1;
+      }
+      else{
+        var yminus = 1;
+      }
+      if((point.y !== 0) && (map["y" +yminus]["x"+xpoint].type !== "wall")){
       newReturn.y = point.y-1;
       }
     }
     else if((direction == "south")||(direction == "South")){
       //South is +1y
+      var yplus =  point.y+1;
+      if((point.y !== height) && (map["y" + yplus]["x"+xpoint].type !== "wall")){
       newReturn.y = point.y+1;
+      }
     }
     else if((direction == "east")||(direction == "East")){
       //East is +1x
+      var xplus = point.x + 1;
+    if((point.x !== width) && (map["y" + ypoint]["x"+ xplus].type !== "wall")){
       newReturn.x = point.x+1;
+      }
     }
     else if((direction == "west")||(direction == "West")){
       //West is -1x
-      if(point.x !== 0){
+      if(xpoint-1 !== 0 || xpoint-1 !== -1){
+      var xminus = xpoint - 1;
+      }
+      else{
+        xminus = 1;
+      }
+      if((point.x !== 0) && (map["y" + ypoint]["x"+xminus].type !== "wall")){
       newReturn.x = point.x-1;
       }
       }

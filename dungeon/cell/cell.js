@@ -17,7 +17,7 @@ class Cell {
 
   get type(){return this._type;}
   set type(type){
-    type = Utils.listCheck(type, ["wall", "room", "hall"], "Cell.type");
+    type = Utils.listCheck(type, ["wall", "room", "hall, hero"], "Cell.type");
     this._type = type;
     this._open = ["room", "hall"].includes(type);
   }
@@ -36,7 +36,7 @@ class Cell {
 
   set image(image){this._image = image}
   set type(type){
-    type = Utils.listCheck(type,["wall","room","hall"], "Cell.type");
+    type = Utils.listCheck(type,["wall","room","hall","hero"], "Cell.type");
     this._type = type;
     this._open = ["room","hall"].includes(type);
     if (this._open == true) {
@@ -107,6 +107,19 @@ class Cell {
       }
       if (num == undefined) {
         throw new Error("Cell.remove attempted to remove a Mob that does not exist.")
+      }
+      return this.occupied.splice(num,1);
+    }
+    if(index == "player"){
+      console.log(this._occupied)
+      var num = undefined;
+      for (var i = 0; i < this.occupied.length; i++) {
+        if (this.occupied[i][0] instanceof Character) {
+          num = i;
+        }
+      }
+      if (num == undefined) {
+        throw new Error("Cell.remove attempted to remove a Player that does not exist.")
       }
       return this.occupied.splice(num,1);
     }
