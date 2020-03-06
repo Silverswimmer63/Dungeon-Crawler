@@ -112,6 +112,7 @@ class Cell {
     }
     if(index == "player"){
       console.log(this._occupied)
+      console.log(this._inventory)
       var num = undefined;
       for (var i = 0; i < this.occupied.length; i++) {
         if (this.occupied[i][0] instanceof Character) {

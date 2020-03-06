@@ -239,10 +239,7 @@ this takes the distnace between two numbers and returns it.
           }
     _setPlayer(map =this._map){
               if(this._test >= 1){
-          console.log(this._character._positionB);
-          console.log("chara^^");
       let remo = map["y" + (this._character._positionB.y)]["x" + (this._character._positionB.x)];
-      console.log(remo)
         remo.remove("player");
         }
         this._test +=1;
@@ -250,9 +247,11 @@ this takes the distnace between two numbers and returns it.
       character.push(this._character);
       let cell = map["y" + (this._character.position.y)]["x" + (this._character.position.x)];
         cell.occupied.push(character);
+        if(cell._inventory.length !== 0){
+          this._character._inventory.push(cell._inventory)
+          cell._inventory = [];
+        }
         this._cellTest.push(character);
-        console.log(character);
-        console.log("character^^^");
         return this._map;
 
     }
@@ -274,7 +273,7 @@ this takes the distnace between two numbers and returns it.
       this.addRoom(map); //addRoom expacts this._map to exist
     }
       this.addHalls(map);
-      this.makeMonsters(3, map);
+      this.makeMonsters(2, map);
       this.makeLoot(2,map);
       if(this._ittertest == 0){
        this._setBeginningPos();
@@ -288,15 +287,10 @@ this takes the distnace between two numbers and returns it.
         _changePosition(direction, map = this._map){
           if(direction !== undefined){
         var positionB = this._character._position;
-          console.log(positionB);
         this._character._positionB = positionB;
-        console.log(this._character)
         this._character.position = Utils.move(direction, this._character.position, this.width, this.height, this._map);
-              console.log(this)
               }
-              this._setPlayer()
         }
-
 
   /*@function _drawBorder()
    *
