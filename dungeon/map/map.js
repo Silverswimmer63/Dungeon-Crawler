@@ -14,7 +14,7 @@ class Map{
     this._halls = [];
     this._roomMin = 3;
     this._roomMax = 10;
-    this._numRooms = 20;
+    this._numRooms = 3;
     this._map = this._generateMap();
   }
   get halls(){ return this._halls; }
