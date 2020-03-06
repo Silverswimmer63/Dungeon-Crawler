@@ -90,7 +90,7 @@ class Map{
   set roomMax(roomMax){ this._roomMax = Utils.intCheck(roomMax, "Map.roomMax"); }
 
   get halls(){ return this._halls }
-  set halls(halls){ throw new Error("Feature not implemented at this time.") }
+  set halls(number="max"){ this._halls = this._addHalls(this._map,number="max") }
 
   /* addRoom()
   add room will use the appropriate functions in our program to generate a set of coordinates based on our map. It will then go to the map,
