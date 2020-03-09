@@ -1,15 +1,3 @@
-/* Class Map (verson 0.1)
-This class creates a map that is fully filled with closed or unusable spaces.
-In the most basic form of this, these will be represented by the text string '#'
-The map will be generated to x width by y height, which will be the only items
-in the map constructor. Any and all changes to the map following this will be done
-via methods in the map. The map will check inital conditions to make sure the
-correct type of data. The fill will be hard coded, and when it is to be changed
-to objects of class cell, that will also be hard coded into the map.
-@param width {int} the x max value of the map
-@param height {int} the y max value of the map
-*/
-
 class Map{
   constructor(width, height){
     this._width = Utils.intCheck(width, "Map constructor");
@@ -20,10 +8,13 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
+    this._level = 0;
     this._map = this._generateMap(); // needs to be at the bottom
+    this._startroom = Utils.shuffleIndex(this._rooms)[0];
     // later: add a level, and a name,
   }
 
+  //getters and setters
   get width(){ return this._width; }
   set width(width){
     this._width = Utils.intCheck(width, "Map.width");
@@ -93,6 +84,9 @@ class Map{
     this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
     this._map = this._generateMap();
   }
+
+  get level() { return this._level; }
+  set level(level) { this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
