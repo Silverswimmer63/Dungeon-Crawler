@@ -20,7 +20,9 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
+    this._level = 0;
     this._map = this._generateMap(); // needs to be at the bottom
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
     // later: add a level, and a name,
   }
 
@@ -93,6 +95,9 @@ class Map{
     this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
     this._map = this._generateMap();
   }
+
+  get level(){ return this._level; }
+  set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck")}
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -208,5 +213,25 @@ class Map{
     return retString;
   }
 
+  /* _addMonsters()
+  1. give each room a 82.25% chance to have a monster roll for it.
+  2. it will then store those reults
+  3. will then place them on the map, being mindful not using the same place twice.
+*/
+  _addMonsters(){
+    for (var i = 0; i < this._rooms.length; i++) {
+      if (i != this._startRoom) {
+        if (Math.random() < .8225) {//needs more for loops and a while loop
+          for (var i = 0; i < array.length; i++) {
+            while (true) {
+              for (var i = 0; i < array.length; i++) {
+                
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 }

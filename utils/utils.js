@@ -195,16 +195,13 @@ class Utils {
   }
 
   static roomCorners(room, width, height){
-
     let corners = {x: {min: width, max: 0}, y: {min: height, max: 0} };
-
     for (var i = 0; i < room.length; i++) {
       corners.x.min = Math.min(room[i].x, corners.x.min);
       corners.x.max = Math.max(room[i].x, corners.x.max);
       corners.y.min = Math.min(room[i].y, corners.y.min);
       corners.y.max = Math.max(room[i].y, corners.y.max);
     }
-
     return corners;
   }
 
@@ -320,13 +317,10 @@ class Utils {
   static shuffleIndex(array, call="Utils.shuffleIndex"){
     //this.arrayCheck(array, call) //for debugging
     let pullFrom  = []; // for the indexes pre randomized
-
     // javaScript low rent version of a generator
     for (let i = 0; i < array.length; i++) { pullFrom.push(i); }
-
     let length = array.length; // We will need a while loop because errors.
     let retArr = [];  // for the return
-
     while(length > 0){
       let removeIndex = this.randMath(0, length-1);
       retArr.push(pullFrom.splice(removeIndex, 1)[0]); // kids gonna hate this
