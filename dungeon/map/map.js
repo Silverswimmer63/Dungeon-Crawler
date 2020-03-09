@@ -20,8 +20,10 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
+    this._level = 0;
     this._map = this._generateMap(); // needs to be at the bottom
     // later: add a level, and a name,
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
   }
 
   get width(){ return this._width; }
@@ -36,11 +38,41 @@ class Map{
     this._map = this._generateMap();
   }
 
+  get fill(){ return this._fill; }
+  set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
+
+  get rooms() { return this._rooms; }
+  set rooms(array) {
+    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
+    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
+    else {
+      let room;
+      for (room of array) {
+        Utils.arrayCheck(room, "Map.rooms individual room."); // room check
+        if(room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
+        let coords;
+        for (coords of room) { // coords are {x: value, y: value}
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
+        }
+      }
+      this._rooms = array;
+    }
+  }
+
   get halls() { return this._halls; }
   set halls(number) { this._addHalls(this._map, number); }
 
-  get fill(){ return this._fill; }
-  set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
+  get min() { return this._roomMin; }
+  set min(number){ this._roomMin = Utils.intCheck(number, "Map.min"); }
+
+  get max() { return this._roomMax; }
+  set max(number){ this._roomMax = Utils.intCheck(number, "Map.max"); }
+
+  get roomNumber() { return this._roomNumber; }
+  set roomNumber(number){
+    this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
+    this._map = this._generateMap();
+  }
 
   get map(){ // returns an html formated version of the map
     let retString = this._drawBorder() + "<br>";
@@ -64,35 +96,9 @@ class Map{
     this._map = this._generateMap();
   }
 
-  get rooms() { return this._rooms; }
-  set rooms(array) {
-    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
-    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
-    else {
-      let room;
-      for (room of array) {
-        Utils.arrayCheck(room, "Map.rooms individual room."); // room check
-        if(room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
-        let coords;
-        for (coords of room) { // coords are {x: value, y: value}
-          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
-        }
-      }
-      this._rooms = array;
-    }
-  }
+  get level(){ return this._level; }
+  set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
-  get min() { return this._roomMin; }
-  set min(number){ this._roomMin = Utils.intCheck(number, "Map.min"); }
-
-  get max() { return this._roomMax; }
-  set max(number){ this._roomMax = Utils.intCheck(number, "Map.max"); }
-
-  get roomNumber() { return this._roomNumber; }
-  set roomNumber(number){
-    this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
-    this._map = this._generateMap();
-  }
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -201,4 +207,7 @@ class Map{
     return retString;
   }
 
+  _addMonster(){
+
+  }
 }

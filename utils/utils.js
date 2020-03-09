@@ -381,30 +381,4 @@ makes a line with chance of a turn between start and end
     return retArr;
   }
 
-  /* shuffleIndex(array)
-  @param array: {array} an array to shuffle the index of
-  @return array: an array of number index (eg: array of length 5 might
-  give you a result of [2, 3, 0, 1, 4])
-  */
-  static something(array) {
-    var i = array.length, j, temp;
-    if ( i == 0 ) return this;
-    while ( --i ) {
-       j = Math.floor( Math.random() * ( i + 1 ) );
-       temp = array[i];
-       array[i] = array[j];
-       array[j] = temp;
-    }
-    return array;
-  }
-
-  static shuffleIndex(array){
-  let numArr = [];
-  for (var i = 0; i < array.length; i++) {
-  numArr.push(i);
-  }
-  let retAry = this.something(numArr)
-  return retAry;
-  }
-
 }
