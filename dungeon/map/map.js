@@ -238,6 +238,34 @@ then change the setter to take the param number, and then use _addHalls to add n
     }
    }
   }
+  /* _addMonsters()
+  1. give each room a 82.25% chance to have a monster roll for it.   randNum
+  2. it will then store those reults     store in an array
+  3. will then place them on the map, being mindful not using the same place twice.     check for other monsters and maps
+  */
+  _addMonsters(mon){
+    var mat = Utils.randMath()
+    var roo = Map.addRoom()
+    if (mon =! "roo") {
+      //dont spawn if not on map
+      
+      }
+      else {
+          // give a 82.25% chance to spawn in room
+
+    for (var i = 0; i < .length; i++) {
+
+      }
+      for (var j = 0; j < .length; j++) {//store the resulting info in an array over here
+
+      }
+    }
+
+  }
+
+
+
+
 
 //ahhhhhhhhhhhhhhhhhhhhhhhh stooooooooooooop pleeeesesseseseseseseseseseseseeeee
 }
