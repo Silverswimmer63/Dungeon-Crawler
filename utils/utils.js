@@ -335,4 +335,26 @@ class Utils {
     }
   }
 
+  /*monPlace(monNumber)
+   *@param {int} mobNumber tells how many mobs there will be "kinda"
+   *@returns {Array} monsters is an array of mobs
+   */
+  static monPlace(monNumber){
+    var monsters = []
+    for(var i = 0;i<monNumber; i++){
+      var randMon = randomFoe(1);
+      monsters.push(randMon);
+    }
+    return monsters;
+  }
+
+  static itemPlace(itemNumber){
+    var items = [];
+      for(var i = 0;i<itemNumber; i++){
+        var randItem = randomItem(1);
+        items.push(randItem);
+      }
+      return items;
+  }
+
 }
