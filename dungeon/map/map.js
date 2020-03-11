@@ -20,8 +20,10 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
+    this._level = 0;
     this._map = this._generateMap(); // needs to be at the bottom
     // later: add a level, and a name,
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
   }
 
   get width(){ return this._width; }
@@ -36,11 +38,41 @@ class Map{
     this._map = this._generateMap();
   }
 
+  get fill(){ return this._fill; }
+  set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
+
+  get rooms() { return this._rooms; }
+  set rooms(array) {
+    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
+    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
+    else {
+      let room;
+      for (room of array) {
+        Utils.arrayCheck(room, "Map.rooms individual room."); // room check
+        if(room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
+        let coords;
+        for (coords of room) { // coords are {x: value, y: value}
+          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
+        }
+      }
+      this._rooms = array;
+    }
+  }
+
   get halls() { return this._halls; }
   set halls(number) { this._addHalls(this._map, number); }
 
-  get fill(){ return this._fill; }
-  set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
+  get min() { return this._roomMin; }
+  set min(number){ this._roomMin = Utils.intCheck(number, "Map.min"); }
+
+  get max() { return this._roomMax; }
+  set max(number){ this._roomMax = Utils.intCheck(number, "Map.max"); }
+
+  get roomNumber() { return this._roomNumber; }
+  set roomNumber(number){
+    this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
+    this._map = this._generateMap();
+  }
 
   get map(){ // returns an html formated version of the map
     let retString = this._drawBorder() + "<br>";
@@ -64,35 +96,9 @@ class Map{
     this._map = this._generateMap();
   }
 
-  get rooms() { return this._rooms; }
-  set rooms(array) {
-    array = Utils.arrayCheck(array, "Map.rooms"); // first level array
-    if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
-    else {
-      let room;
-      for (room of array) {
-        Utils.arrayCheck(room, "Map.rooms individual room."); // room check
-        if(room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
-        let coords;
-        for (coords of room) { // coords are {x: value, y: value}
-          Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
-        }
-      }
-      this._rooms = array;
-    }
-  }
+  get level(){ return this._level; }
+  set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
-  get min() { return this._roomMin; }
-  set min(number){ this._roomMin = Utils.intCheck(number, "Map.min"); }
-
-  get max() { return this._roomMax; }
-  set max(number){ this._roomMax = Utils.intCheck(number, "Map.max"); }
-
-  get roomNumber() { return this._roomNumber; }
-  set roomNumber(number){
-    this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
-    this._map = this._generateMap();
-  }
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -100,15 +106,12 @@ class Map{
   cells at the correct coordinates to match the room.
   */
   addRoom(map=this._map){
-
     let canAdd = 0;
     while(canAdd < 200){
       let border = Utils.randRoom(this.width, this.height, this.min+2, this.max+2); // make a set of coordinates based on the map constraints
       // changed the above ^^ +2 not +1 because 2 borders!!
       let overlap = false;
-
       let coords = Utils.removeBorder(border, this.width, this.height); // trimmed room
-
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
@@ -132,17 +135,42 @@ class Map{
   returns the hall
   */
   makeHall(indexA, indexB){
-
     let roomA = Utils.removeBorder(this.rooms[indexA], this.width, this.height,"Map.makeHall");
     let roomB = Utils.removeBorder(this.rooms[indexB], this.width, this.height,"Map.makeHall");
-
     let aVals = Utils.roomCorners(roomA, this.width, this.height);
     let bVals = Utils.roomCorners(roomB, this.width, this.height);
-
     let coordA = Utils.randCoord(aVals.x.min, aVals.x.max, aVals.y.min, aVals.y.max, "Map.makeHall");
     let coordB = Utils.randCoord(bVals.x.min, bVals.x.max, bVals.y.min, bVals.y.max, "Map.makeHall");
     // make the hall
     return Utils.hallCoords(coordA, coordB, "Map.makeHall");
+  }
+
+  /* _addMonsters()
+  1. give each room a 82.25% chance to have a monster roll for it.
+  2. it will then store those reults
+  3. will then place them on the map, being mindful not using the same place twice.
+  */
+  _addMonster(){
+    var bool = true;
+    var foe = randomFoe(this.level);
+    while (bool) {
+      for (var i = 0; i < this._rooms.length; i++) {
+        var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
+        var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+          if (i != this._startRoom) {
+            if (Math.random() < .8225) {
+              for (var j = 0; j < foe.length; j++) {
+              var tst = Cell.add(foe[j]);
+                if (Cell.occupied[k] == 0) {
+                  for (var k = 0; k < cord.length; k++) {
+                }
+              }
+            }
+          }
+          bool = false;
+        }
+      }
+    }
   }
 
   /* _addHalls()
@@ -193,7 +221,6 @@ class Map{
   return map; // this is where we make this._map
   }
 
-
   /* _drawBorder()
   Makes a border top or bottom for the map. This border will be in the general
   design of +---------------+
@@ -207,6 +234,5 @@ class Map{
     retString += "+";
     return retString;
   }
-
 
 }
