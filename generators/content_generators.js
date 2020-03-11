@@ -67,9 +67,11 @@ function randomSomthing(level, type){
       if (remains == 0) {return retAry;} //max levels worth of stuff hit
       if (Utils.randMath(0,max) > remains){return retAry;} //chance to return less than max levels of stuff
     }
+
     var goodItem = false;
 
     while (!goodItem) {
+
       if (type == "item") { var item = this._makeItem(); } // add an item if type is item
       else { var item = this._makeFoe(); } // add an NPC if type is not item
 
@@ -77,6 +79,7 @@ function randomSomthing(level, type){
         retAry.push(item);
         goodItem = true;
       }
+
     }
   }
 }

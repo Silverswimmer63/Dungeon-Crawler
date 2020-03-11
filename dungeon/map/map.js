@@ -20,8 +20,10 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
+    this._level = 0;
     this._map = this._generateMap(); // needs to be at the bottom
     // later: add a level, and a name,
+    this._startRoom = Utils.randMath(0,Utils.shuffleIndex(this.rooms,"Map.startRoom").length);
   }
 
   get width(){ return this._width; }
@@ -93,6 +95,9 @@ class Map{
     this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
     this._map = this._generateMap();
   }
+
+  get level() { return this._level; }
+  set level(level){ this._level = Utils.typeCheck(level, "int", "Map.level"); }
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -207,6 +212,28 @@ class Map{
     retString += "+";
     return retString;
   }
+
+  _addMonster(){
+    var bool = true;
+    var foe = randomFoe(this.level);
+    while (bool) {
+    for (var i = 0; i < this._rooms.length; i++) {
+      var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
+      var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+      console.log(cell);
+      if (i != this._startRoom) {
+        if (Math.random() < .8225) {
+          for (var j = 0; j < foe.length; j++) {
+            if (cell.occupied.length != 1) {
+            }
+          }
+        }
+      }
+    }
+    bool = false;
+  }
+
+}
 
 
 }
