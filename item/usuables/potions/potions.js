@@ -23,11 +23,7 @@ class Potion extends Item {
   attackDam(){
     return Utils.randMath(this.damage.min, this.damage.max);
   }
-  toString(){
-    var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-    retStr += "It can be described as: " + this.desc; + this.class + "it's a"
-    return retStr
-  }
+
 }
 /*
 function rollDice(numDice, numSides){

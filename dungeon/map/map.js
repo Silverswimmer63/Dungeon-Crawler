@@ -278,7 +278,7 @@ class Map{
             mob = true;
             nomob = true;
           }
-          else if((monsters[j] instanceof Noinventory) && nomob == false){
+          else if((monsters[j] instanceof Noinventory) && (nomob == false)){
             monsterList.push(monsters[j]);
             nomob = true;
             mob = true;
