@@ -165,6 +165,7 @@ class Map{
               if (cell.occupied.length == 0) {
                 cell.add(foe[j]);
                 bool = true;
+                //comment
               }
             }
           }
