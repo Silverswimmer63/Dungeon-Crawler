@@ -16,6 +16,7 @@ class Map{
     this._roomMax = 10;
     this._numRooms = 30;
     this._test = 0;
+    this._
     this._cellTest = [];
     this._ittertest = 0;
     this._character = characterNew;
@@ -216,6 +217,10 @@ this takes the distnace between two numbers and returns it.
     mobItter++;
    }
   }
+  /*makeLoot()
+   *@param {int} perRoom
+   *creates loot in each room of this amount of spaces !!! NOT EXACT AMOUNT OF LOOT IN A ROOM !!!
+   */
   makeLoot(perRoom, map = this._map){
     var itemItter = 0;
       while(itemItter < perRoom){
@@ -231,12 +236,7 @@ this takes the distnace between two numbers and returns it.
         itemItter++;
         }
       }
-          _setBeginningPos(){
-        var randomPoint = Utils.randMath(0, this._startRoom.length);
-        var point = this._startRoom[0][randomPoint];
-        this._character._position = point;
-        return this._character;
-          }
+      
     _setPlayer(map =this._map){
               if(this._test >= 1){
       let remo = map["y" + (this._character._positionB.y)]["x" + (this._character._positionB.x)];
@@ -255,6 +255,24 @@ this takes the distnace between two numbers and returns it.
         return this._map;
 
     }
+              _setBeginningPos(){
+        var randomPoint = Utils.randMath(0, this._startRoom.length);
+        var point = this._startRoom[0][randomPoint];
+        this._character._position = point;
+        return this._character;
+          }
+
+        _changePosition(direction, map = this._map){
+          if(direction !== undefined){
+        var positionB = this._character._position;
+        this._character._positionB = positionB;
+        this._character._position = Utils.move(direction, this._character._position, this.width, this.height, this._map);
+              }
+              this._setPlayer()
+        }
+      funAIupdate(){
+        
+      }
   /*@function _generateMap()
    *@returns {array} an array of objects with objects
    */
@@ -284,13 +302,6 @@ this takes the distnace between two numbers and returns it.
       }
     return map;//this is where we make this._map
   }
-        _changePosition(direction, map = this._map){
-          if(direction !== undefined){
-        var positionB = this._character._position;
-        this._character._positionB = positionB;
-        this._character.position = Utils.move(direction, this._character.position, this.width, this.height, this._map);
-              }
-        }
 
   /*@function _drawBorder()
    *

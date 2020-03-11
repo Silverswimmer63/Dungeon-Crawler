@@ -5,7 +5,7 @@ document.getElementById("map").innerHTML = demo.map;
 document.getElementById("drwbtn").onclick = setInterval(function(){ document.getElementById("map").innerHTML = demo.map; }, 1);
         demo._setBeginningPos();
         demo._character = characterNew;
-        demo._generateMap(undefined);
+        demo._setPlayer()
 document.addEventListener('keyup', keyPress);
 function keyPress(e){
     var direct = undefined;

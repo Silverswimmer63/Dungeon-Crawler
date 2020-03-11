@@ -419,4 +419,113 @@ class Utils {
     }
     return newReturn;
   }
+  
+  
+  
+  
+  
+  
+  
+  //AI movement
+  //moveAInvs() stands for move AI not very smart
+  //its for the stupidly simple ai that only use directions to calculate movement :)
+  static moveAInvs(direction, aiCoords){
+    var newCoords = {x:aiCoords.x, y:aiCoords.y};
+    if(direction == "North"){
+      newCoords.y = aiCoords.y-1;
+    }
+    else if(direction == "South"){      
+      newCoords.y = aiCoords.y+1;
+    }
+    else if(direction == "East"){      
+      newCoords.x = aiCoords.x-1;
+    }
+    else if(direction == "West"){      
+      newCoords.x = aiCoords.x+1;
+    }
+    else{
+      throw new Error("moveAI expected one of the following [North, South, East, West] and got " + direction)
+    }
+    aiCoords.x = newCoords.x;
+    aiCoords.y = newCoords.y;
+    return aiCoords;
+  }
+  //Random/Fun AI
+  static funAI(aiCoords){
+    var randDirection = this.randMath(1,4);
+    var direction = undefined;
+      if(randDirection == 1){
+        direction = "North";
+      }
+      if(randDirection == 2){
+        direction = "South";
+      }
+      if(randDirection == 3){
+        direction = "East";
+      }
+      if(randDirection == 4){
+        direction = "West";
+      }
+      return this.moveAInvs(direction,aiCoords);
+  }
+  //Smart AI
+  static smartAi(aiCoords, characterCoords){
+    var calculateDist = {x:Math.abs(aiCoords.x-characterCoords.x),y:Math.abs(aiCoords.y-characterCoords.y)};
+    var negYdis = undefined;
+    var negXdis = undefined;
+    var newCoords = {x:aiCoords.x,y:aiCoords.y};
+    if((aiCoords.y-characterCoords.y) < 0){
+      negYdis = true;
+    }
+    else{
+      negYdis = false;
+    }
+    if((aiCoords.x-characterCoords.x) < 0){
+      negXdis = true;
+    }
+    else{
+      negXdis = false;
+    }
+        if(newCoords !== characterCoords){
+        if((negYdis == true) && characterCoords.y !== newCoords.y){
+            newCoords.y = aiCoords.y + 1;
+                return newCoords;
+        }
+        else if((negYdis == false) && characterCoords.y !== newCoords.y){
+          newCoords.y = aiCoords.y - 1;
+                return newCoords;
+        }
+        if((negXdis == true) && characterCoords.x !== newCoords.x){
+            newCoords.x = aiCoords.x + 1;
+            return newCoords;
+          }
+          else if((negXdis == false) && characterCoords.x !== newCoords.x){
+            newCoords.x = aiCoords.x - 1;
+            return newCoords;
+          }
+        return newCoords; 
+        }
+  }
+  //God AI
+  godAI(aiCoords){
+    
+  }
+  //Vision is going the be the main one
+  //+==========+
+  //|5555555555|
+  //|5444444445|
+  //|5433333345| 1 being the payer 
+  //|5432222345|
+  //|5432112345|
+  //|5432222345|
+  //|5433333345|
+  //|5444444445|
+  //|5555555555|
+  //+==========+
+  static visionAI(aiCoords, playerCoords){
+    var plc = playerCoords;
+    for(){
+      
+    }
+  }
 }
