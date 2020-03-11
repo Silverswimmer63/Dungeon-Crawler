@@ -99,7 +99,6 @@ class Map{
   get level(){ return this._level; }
   set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
-
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
   of coordinates based on our map. It will then go to the map, and update the
@@ -150,24 +149,25 @@ class Map{
   2. it will then store those reults
   3. will then place them on the map, being mindful not using the same place twice.
   */
-  _addMonster(){
-    var bool = true;
-    var foe = randomFoe(this.level);
-    while (bool) {
-      for (var i = 0; i < this._rooms.length; i++) {
-        var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
-        var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
-          if (i != this._startRoom) {
-            if (Math.random() < .8225) {
-              for (var j = 0; j < foe.length; j++) {
-              var tst = Cell.add(foe[j]);
-                if (Cell.occupied[k] == 0) {
-                  for (var k = 0; k < cord.length; k++) {
-                }
+  _addMonster(map){
+    let chance = Math.random();
+    for (var i = 0; i < this.rooms.length; i++) {
+      if (i != this.startRoom) {
+        if (chance < .8225) {
+          let corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
+          let foe = randomFoe(this.level);
+          for (var j = 0; j < foe.length; j++) {
+            let bool = false;
+            while (!bool) {
+              let cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
+              let cell = map["y" + cords.y]["x" + cords.x];
+              if (cell.occupied.length == 0) {
+                cell.add(foe[j]);
+                bool = true;
+                //comment
               }
             }
           }
-          bool = false;
         }
       }
     }
