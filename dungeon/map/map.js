@@ -145,6 +145,34 @@ class Map{
     return Utils.hallCoords(coordA, coordB, "Map.makeHall");
   }
 
+  /* _addMonsters()
+  1. give each room a 82.25% chance to have a monster roll for it.
+  2. it will then store those reults
+  3. will then place them on the map, being mindful not using the same place twice.
+  */
+  _addMonster(){
+    var bool = true;
+    var foe = randomFoe(this.level);
+    while (bool) {
+      for (var i = 0; i < this._rooms.length; i++) {
+        var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
+        var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+          if (i != this._startRoom) {
+            if (Math.random() < .8225) {
+              for (var j = 0; j < foe.length; j++) {
+              var tst = Cell.add(foe[j]);
+                if (Cell.occupied[k] == 0) {
+                  for (var k = 0; k < cord.length; k++) {
+                }
+              }
+            }
+          }
+          bool = false;
+        }
+      }
+    }
+  }
+
   /* _addHalls()
   Version 1.0 uses makeHall() and shuffleIndex to connect all the rooms to one another.
   Adds all of the resulting halls to this._halls
@@ -207,7 +235,4 @@ class Map{
     return retString;
   }
 
-  _addMonster(){
-
-  }
 }
