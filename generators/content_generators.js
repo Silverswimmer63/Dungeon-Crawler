@@ -59,7 +59,6 @@ function randomSomthing(level, type){
   if (Math.random() <= .2) {max = level +2;} // chance of an additional level worth of stuff
   var remains = max;
   while (true) {
-
     if (retAry.length != 0) {
       for (var i = 0; i < retAry.length; i++) {
         remains -= (retAry[i].level+1);

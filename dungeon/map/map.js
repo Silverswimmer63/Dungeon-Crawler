@@ -17,10 +17,13 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._halls = [];
-    this._roomMin = 3;
+    this._roomMin = 5;
     this._roomMax = 10;
-    this._roomNumber = 20;
-    this._map = this._generateMap(); // needs to be at the bottom
+    this._roomNumber = 15;
+    this._level = 0;
+    this._map = this._generateMap();
+    this._startRoom = Utils.shuffleIndex(this.rooms)[0];
+     // needs to be at the bottom
     // later: add a level, and a name,
   }
 
@@ -92,7 +95,11 @@ class Map{
   set roomNumber(number){
     this._roomNumber = Utils.intCheck(number, "Map.roomNumber");
     this._map = this._generateMap();
+
   }
+
+  get level() { return this._level; }
+  set level(level){ this._level = Utils.typeCheck(item, "int",call = "Utils.typeCheck"); }
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -208,5 +215,32 @@ class Map{
     return retString;
   }
 
+  /* _addMonsters()
+  1. give each room a 82.25% chance to have a monster roll for it.
+  2. it will then store those reults
+  3. will then place them on the map, being mindful not using the same place twice.
+  */
+  _addMonsters(room){
+    let bool =  true;
+    let foe = randomFoe(this.level);
+    for (var i = 0; i < this._rooms.length; i++) {
+      if (i != this._startRoom) {
+        if (Math.random() < .8225) {
+          let val = Utils.roomCorners(this._rooms[i], this.width, this.height);
+          let cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+          for (var j = 0; j < Cell._occupied.length; j++) {
+            if (Cell._occupied[j] == 1) {
+            for (var k = 0; k < foe.length; k++) {
+              while (bool) {
+                Cell.add(foe[k]);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
 
 }

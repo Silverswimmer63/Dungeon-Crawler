@@ -341,7 +341,7 @@ class Utils {
     }
   }
 
-}
+
 
   static removeBorder(room, width, height){
     let border = room;
@@ -421,6 +421,7 @@ makes a line with chance of a turn between start and end
     }
     return array;
   }
+  
   static shuffleIndex(array){
   let numArr = [];
   for (var i = 0; i < array.length; i++) {
