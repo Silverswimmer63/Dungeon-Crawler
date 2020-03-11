@@ -168,6 +168,7 @@ class Map{
               }
             }
           }
+          bool = false;
         }
       }
     }
