@@ -99,7 +99,6 @@ class Map{
   get level(){ return this._level; }
   set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
-
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
   of coordinates based on our map. It will then go to the map, and update the
