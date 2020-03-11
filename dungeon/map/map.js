@@ -195,6 +195,7 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
+    this._addMonster(map)
   return map; // this is where we make this._map
   }
 
@@ -213,27 +214,46 @@ class Map{
     return retString;
   }
 
-  _addMonster(){
-    var bool = true;
-    var foe = randomFoe(this.level);
-    while (bool) {
-    for (var i = 0; i < this._rooms.length; i++) {
-      var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
-      var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
-      console.log(cell);
-      if (i != this._startRoom) {
-        if (Math.random() < .8225) {
-          for (var j = 0; j < foe.length; j++) {
-            if (cell.occupied.length != 1) {
+  _addMonster(map){
+    let chance = Math.random();
+    for (var i = 0; i < this.rooms.length; i++) {
+      if (i != this.startRoom) {
+        if (chance < .8225) {
+          let corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
+          let enemy = randomFoe(this.level);
+          for (var j = 0; j < enemy.length; j++) {
+            let boo = false;
+            while (!boo) {
+              let cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
+              let cell = map["y" + cords.y]["x" + cords.x];
+              if (cell.occupied.length == 0) {
+                cell.add(enemy[j]);
+                boo = true;
+              }
             }
           }
         }
       }
     }
-    bool = false;
   }
 
-}
+ _fake(){
+   /* for all the rooms
+        check to see if the room is not the one where we have to start
+        check to see if the chance is good
+          get are corners using room corners/store
+          get monsters and store them
+            for the mosnters .length
+            use a bool and asume its false to place the mosnters
+              use a while bool = false after this to try to place monsters
+              use randcord to get rand coordinates using room corners
+              check the map at the y and x cooridnates to see if it is occupied
+                if not occupied place monster
+                map y x .add were going to have to create the keys
+                monster[j]
+                shut off the while loop;
+   */
+ }
 
 
 }
