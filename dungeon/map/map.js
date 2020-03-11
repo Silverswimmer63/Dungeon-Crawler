@@ -17,7 +17,6 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._halls = [];
-    this._firstRoom = [];
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
@@ -196,8 +195,7 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
-    this.makeMonsters(2, map);
-    this.makeLoot(2, map);
+    this._addMonsters(map);
   return map; // this is where we make this._map
   }
 
@@ -243,74 +241,38 @@ class Map{
   }
   ijklmnpoqrstuvwxyz
 */
-  makeMonsters(perRoom, map = this._map){
-    var mobItter = 0;
-    var randomRoom = Utils.randMath(0, this._rooms.length-1)
-    var startRoom = this._rooms[randomRoom];
-    this._firstRoom.push(startRoom)
-    var validRooms = [];
-    for(var r = 0; r<this._rooms.length;r++){
-      if(this._rooms[r] !== startRoom){
-        validRooms.push(this._rooms[r]);
-      }
-    }
-    while(mobItter < perRoom){
-      for(var i = 0; i < validRooms.length; i++){
-        var monsters = Utils.monPlace(3);
-        var monsterList = [];
-        var mob = false;
-        var nomob= false;
-        for(var j = 0; j < monsters.length;j++){
-          if(monsters[j].length > 1){
-            if((monsters[j][0] instanceof Noinventory) && nomob == false){
-              monsterList.push(monsters[j][0]);
-              nomob = true;
-              mob = true;
-            }
-            else if((monsters[j][0] instanceof Inventory) && mob == false){
-              monsterList.push(monsters[j][0]);
-              mob = true;
-              nomob = true;
+/*for all of the rooms
+  check to make sure it is not the start room
+  check the chance if mob can spawn
+    get corrners using roomCorners - store this
+    get monsters - store this
+    for monsters.length
+      need a bool to place monster, asume it is false
+      use a while bool = cannot place monster
+        use randCoord the get room coords using roomCorners
+        check map at x and y coords to see if it is occupied
+          if not occupied
+          map x y .add
+          set bool to true
+*/
+  _addMonsters(map = this._map){
+    var chance = Math.random();
+    for (var i = 0; i < this._rooms.length; i++) {
+      if (i != this._startRoom) {
+        if (chance < .8225) {
+          var corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
+          var enemy = randomFoe(this.level);
+          for (var j = 0; j < enemy.length; j++) {
+            var foePlaced = false;
+            while (foePlaced = false) {
+              var cord = Utils.randCoord(corners.x.min, corners.x.max, corners.y.min, corners.y.max);
+              
             }
           }
-          else if((monsters[j] instanceof Inventory) && mob == false){
-            monsterList.push(monsters[j]);
-            mob = true;
-            nomob = true;
-          }
-          else if((monsters[j] instanceof Noinventory) && (nomob == false)){
-            monsterList.push(monsters[j]);
-            nomob = true;
-            mob = true;
-          }
         }
-        if(monsterList.length == 0){
-          monsterList.push(monsters[0]);
-        }
-        var random = Utils.randMath(0, validRooms[i].length-1);
-        var room = validRooms[i][random];
-        let cell = map["y" + (room.y)]["x" + (room.x)];
-        cell.occupied.push(monsterList);
       }
-      mobItter++;
     }
   }
-
-  makeLoot(perRoom, map = this._map){
-  var itemItter = 0;
-    while(itemItter < perRoom){
-      for(var i = 0;i < this._rooms.length;i++){
-        var items = Utils.itemPlace(3);
-        var random = Utils.randMath(0, this._rooms[i].length-1);
-        var room = this._rooms[i][random];
-         for(var j = 0;j<items.length;j++){
-          let cell = map["y" + (room.y)]["x" + (room.x)];
-          cell.add(items[j]);
-         }
-        }
-      itemItter++;
-      }
-    }
 
 
 }
