@@ -1,6 +1,6 @@
 /* Class Utils
 A set of utility functions that may want to be used all over the project
-*/
+*/ 
 class Utils {
 
   /* typeCheck(item, type, call);

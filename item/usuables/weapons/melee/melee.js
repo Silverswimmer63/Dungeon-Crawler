@@ -24,9 +24,5 @@ class Melee extends Weapon {
     var retString = super.text();
     return retstring + " Is a weapon.";
   }
-  toString(){
-  var retStr = " you see a " + this.name + ". It is worth" + this.value + ".";
-  retStr += "It can be described as: " + this.desc; + "it's a" + this.class ;
-  return retStr;
-}
+
 }
