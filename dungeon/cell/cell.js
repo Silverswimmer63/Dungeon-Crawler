@@ -20,7 +20,7 @@ class Cell{
     this._type = type;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    // if(this._type == "room") { this.image = "R";}
+    //if(this._type == "room") { this.image = "R";}
   }
 
   get open(){
@@ -196,55 +196,3 @@ class Cell{
     return "" + image;
   }
 }
-
-
-/*
-for inventory  // CLASS {
-  if (blah) {
-    for (blerg) level
-    for (berog) value
-
-  }
-  if (blah) {
-    for (blerg) level
-    for (berog) value
-
-  }
-  if (blah) {
-    for (blerg) level
-    for (berog) value
-
-  }
-  if (blah) {
-    for (blerg) level
-    for (berog) value
-
-  }
-}
-
-for inventory{
-  for class in [Item, Potion, Armor, Weapon]{
-     store [i] track the i if it is higher then for what is current, reset
-    for (blerg) level
-    for (berog) value
-
-  }
-}
-
-thing = undefined;
-thing = this._helperfunctionyoucomeupwithenameof(this.inventory, Item, thing)
-thing = this._helperfunctionyoucomeupwithenameof(this.inventory, Potion, thing)
-thing = this._helperfunctionyoucomeupwithenameof(this.inventory, Armor, thing)
-thing = this._helperfunctionyoucomeupwithenameof(this.inventory, Weapon, thing)
-helper function:
-let otherThing = undefined;
-for inventory   store best with otherThing
-  if(inventory[i] instanceof 2nd parameter)
-    for (blerg) level
-    for (berog) value
-
-if otherThing !== undefined
-  return otherThing
-else
-  return string
-*/

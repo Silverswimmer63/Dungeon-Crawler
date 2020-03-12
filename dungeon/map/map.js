@@ -21,8 +21,8 @@ class Map{
     this._roomMax = 10;
     this._roomNumber = 15;
     this._level = 0;
-    this._map = this._generateMap();
     this._startRoom = Utils.shuffleIndex(this.rooms)[0];
+    this._map = this._generateMap();
      // needs to be at the bottom
     // later: add a level, and a name,
   }
@@ -186,7 +186,7 @@ class Map{
   @ return {object} an object per the description above
   */
   _generateMap(){
-    let map  = {}
+    let map  = {};
     for (let i = 1; i <= this.height; i++) { // go though the y values
       map["y"+ i] = {} // give them the key values
       for (let j = 1; j <= this.width; j++){ // go though the x values
@@ -196,7 +196,10 @@ class Map{
     for (let i = 0; i < this._roomNumber; i++) {
       this.addRoom(map); //addRoom expects this._map to exist.
     }
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
     this._addHalls(map);
+    this._addThing(map, "item");
+    this._addThing(map, "foe");
   return map; // this is where we make this._map
   }
 
@@ -215,32 +218,68 @@ class Map{
     return retString;
   }
 
-  /* _addMonsters()
+  /* _addThing(map, monster, item)
   1. give each room a 82.25% chance to have a monster roll for it.
   2. it will then store those reults
   3. will then place them on the map, being mindful not using the same place twice.
   */
-  _addMonsters(room){
-    let bool =  true;
-    let foe = randomFoe(this.level);
-    for (var i = 0; i < this._rooms.length; i++) {
+  _addThing(map, thing){
+    for (var i = 0; i < this.rooms.length; i++) {
       if (i != this._startRoom) {
         if (Math.random() < .8225) {
-          let val = Utils.roomCorners(this._rooms[i], this.width, this.height);
-          let cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
-          for (var j = 0; j < Cell._occupied.length; j++) {
-            if (Cell._occupied[j] == 1) {
-            for (var k = 0; k < foe.length; k++) {
-              while (bool) {
-                Cell.add(foe[k]);
-                }
+          var corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
+          if (thing == "foe") {
+          var foe = randomFoe(this.level);
+        }
+        if (thing == "item") {
+            var foe = randomItem(this.level);
+        }
+          for (var j = 0; j < foe.length; j++) {
+            var boo = false;
+            while (!boo) {
+              var cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
+              var cell = map["y" + cords.y]["x" + cords.x];
+              if ((cell.occupied.length == 0) && (thing == "foe")) {
+                cell.add(foe[j]);
+                boo = true;
+              }
+              if (thing == "item") {
+                cell.add(foe[j]);
+                boo = true;
               }
             }
           }
         }
       }
     }
-
   }
+
+
+
+  /*
+  for(all of the rooms){
+    if(){
+    check to make sure that it is not the start room
+    check the chance
+    get our corners usuing roomCorners
+    get monsters from randomFoe
+    store monsters and roomCorners
+      for(all of our monsters){
+      use a bool to track to see if we can place a monster, assue that it is false bc it will be teacked with a while
+      while(we cant place it){
+        use randcoord to get some random coords
+        use corners generated before
+        check the map at the y and x coords to check if it is _occupied
+          if(!occupied){
+          Map.y.x.add(monsters[j])
+          bool = true;
+        }
+      }
+    }
+  }
+}
+*/
+
+
 
 }
