@@ -105,15 +105,12 @@ class Map{
   cells at the correct coordinates to match the room.
   */
   addRoom(map=this._map){
-
     let canAdd = 0;
     while(canAdd < 200){
       let border = Utils.randRoom(this.width, this.height, this.min+2, this.max+2); // make a set of coordinates based on the map constraints
       // changed the above ^^ +2 not +1 because 2 borders!!
       let overlap = false;
-
       let coords = Utils.removeBorder(border, this.width, this.height); // trimmed room
-
       for (let i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
@@ -137,13 +134,10 @@ class Map{
   returns the hall
   */
   makeHall(indexA, indexB){
-
     let roomA = Utils.removeBorder(this.rooms[indexA], this.width, this.height,"Map.makeHall");
     let roomB = Utils.removeBorder(this.rooms[indexB], this.width, this.height,"Map.makeHall");
-
     let aVals = Utils.roomCorners(roomA, this.width, this.height);
     let bVals = Utils.roomCorners(roomB, this.width, this.height);
-
     let coordA = Utils.randCoord(aVals.x.min, aVals.x.max, aVals.y.min, aVals.y.max, "Map.makeHall");
     let coordB = Utils.randCoord(bVals.x.min, bVals.x.max, bVals.y.min, bVals.y.max, "Map.makeHall");
     // make the hall
@@ -195,12 +189,13 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
-    this._addMonsters(map);
+    this.startRoom = Utils.shuffleIndex(this._rooms)[0];
+    this._addSomething(map, "item");
+    this._addSomething(map, "foe");
   return map; // this is where we make this._map
   }
 
-
-  /* _drawBorder()
+  /*_drawBorder()
   Makes a border top or bottom for the map. This border will be in the general
   design of +---------------+
   @return {string} a string border
@@ -214,7 +209,7 @@ class Map{
     return retString;
   }
 
-  /* _addMonsters()
+  /*_addMonsters()
   1. give each room a 82.25% chance to have a monster roll for it.
   2. it will then store those reults
   3. will then place them on the map, being mindful not using the same place twice.
@@ -239,9 +234,7 @@ class Map{
       }
     }
   }
-  ijklmnpoqrstuvwxyz
-*/
-/*for all of the rooms
+  for all of the rooms
   check to make sure it is not the start room
   check the chance if mob can spawn
     get corrners using roomCorners - store this
@@ -255,24 +248,31 @@ class Map{
           map x y .add
           set bool to true
 */
-  _addMonsters(map = this._map){
-    var chance = Math.random();
+  _addSomething(map, thing){
     for (var i = 0; i < this._rooms.length; i++) {
       if (i != this._startRoom) {
-        if (chance < .8225) {
+        if (Math.random() < .8225) {
           var corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
-          var enemy = randomFoe(this.level);
-          for (var j = 0; j < enemy.length; j++) {
-            var foePlaced = false;
-            while (foePlaced = false) {
+          if (thing == "item") { var otherThing = randomFoe(this.level); };
+          if (thing == "foe") { var otherThing = randomItem(this.level); };
+          for (var j = 0; j < otherThing.length; j++) {
+            var placed = false;
+            while (!placed) {
               var cord = Utils.randCoord(corners.x.min, corners.x.max, corners.y.min, corners.y.max);
-              
+              var cell = map["y" + cord.y]["x" + cord.x];
+              if ((cell.occupied.length == 0) && (thing == "foe")) {
+                cell.add(otherThing[j]);
+                placed = true;
+              }
+              if (thing == "item") {
+                cell.add(otherThing[j]);
+                placed = true;
+              }
             }
           }
         }
       }
     }
   }
-
 
 }
