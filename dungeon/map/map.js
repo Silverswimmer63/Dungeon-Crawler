@@ -145,29 +145,54 @@ class Map{
     return Utils.hallCoords(coordA, coordB, "Map.makeHall");
   }
 
+  _addthing(mon, item){
+    if (mon) {
+      for (var i = 0; i < this.rooms.length; i++) {
+          if (i != this._startRoom) {
+          if (Math.random() < .8225) {
+            var val = Utils.roomCorners(this.rooms[i], this.width, this.height);
+            var foe = randomFoe(this.level);
+            for (var j = 0; j < foe.length; j++) {
+              var bool = false;
+              while (!bool) {
+                var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+                  var cell = map["y" + cord.y]["x" + cord.x];
+                  if (cell.occupied.length == 0) {
+                    cell.add(foe[j]);
+                    bool = true;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   /* _addMonsters()
   1. give each room a 82.25% chance to have a monster roll for it.
   2. it will then store those reults
   3. will then place them on the map, being mindful not using the same place twice.
   */
-  _addMonster(){
-    var bool = true;
-    var foe = randomFoe(this.level);
-    while (bool) {
-      for (var i = 0; i < this._rooms.length; i++) {
-        var val = Utils.roomCorners(this._rooms[i], this.width, this.height);
-        var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
-          if (i != this._startRoom) {
-            if (Math.random() < .8225) {
-              for (var j = 0; j < foe.length; j++) {
-              var tst = Cell.add(foe[j]);
-                if (Cell.occupied[k] == 0) {
-                  for (var k = 0; k < cord.length; k++) {
-                }
+  _addMonster(map){
+    this._addthing(mon)
+  }
+  _addItem(map){
+    for (var i = 0; i < this.rooms.length; i++) {
+      if (i != this.startRoom) {
+        if (Math.random() < .8225) {
+          var val = Utils.roomCorners(this.rooms[i], this.width, this.height);
+          var foe = randomFoe(this.level);
+          for (var j = 0; j < foe.length; j++) {
+            var bool = false;
+            while (!bool) {
+              var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+                var cell = map["y" + cord.y]["x" + cord.x];
+                if (cell.occupied.length == 0) {
+                  cell.add(foe[j]);
+                  bool = true;
               }
             }
           }
-          bool = false;
         }
       }
     }
@@ -218,6 +243,8 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
+    this._addMonster(map);
   return map; // this is where we make this._map
   }
 
