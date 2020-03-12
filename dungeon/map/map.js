@@ -124,61 +124,7 @@ Then we will update the map to have a setter for map, this will use the two
     }
   }
 
-/*
-@param {start}: int
-@param {end}: int
-this takes the distnace between two numbers and returns it.
-*/
 
-
-  /* coordCheck(seta, setb)
-  takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
-  */
-  /*
-  3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
-  if any of them have the same coordinates, and if there is overlap, don't add the room
-  4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
-  5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
-  */
-
-/* _generateMap()
-A method to make a map filled with items of the this._fill value. The "map" is
-an object with a set of objects imbeded within it. All of the top level keys,
-which each owns it's own object, will begin with the letter y (ex y1, y2), and
-so on. The second level objects will be keyed in the same way, but with x
-rather than y for their start. This is done so that we may access the map by
-way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
-the inner objects will be the individual cells of the map.
-*/
-  _generateMap(){
-    var map = {};
-    for (var i = 1; i <= this.height; i++) {
-      var key = "y"+i;
-      map[key] = {};
-      for (var j = 1; j <= this.width; j++) {
-        var key2 = "x"+j;
-        map[key][key2] = new this.fill;
-      }
-    }
-    for (var i = 0; i < this.numRooms; i++) {
-      this.addRoom(map);
-    }
-    this._addHalls(map);
-    return map;
-  }
-
-  /* _drawBorder()
-  Makes a border top or bottom for the map. This border will be in the general
-  design of +---------------+
-  @return {string} a string border
-  */
-  _drawBorder(){
-    var retStr = "+";
-    for (var i = 0; i < this.width; i++) {
-      retStr += "-";
-    }
-    return retStr += "+";
-  }
 
 /*
   Four -
@@ -238,6 +184,61 @@ then change the setter to take the param number, and then use _addHalls to add n
     }
    }
   }
+  /*
+  @param {start}: int
+  @param {end}: int
+  this takes the distnace between two numbers and returns it.
+  */
+
+
+    /* coordCheck(seta, setb)
+    takes 2 arrays of coordinates and checks them to see if there is a coordinate in one that is this in the other. If so it returns a true, if not, it returns a false.
+    */
+    /*
+    3. add a step between making the room coordinates and changing the the map where you check each room in the map array to see
+    if any of them have the same coordinates, and if there is overlap, don't add the room
+    4. add the correct type of loop structure and other needed items to make said loop stop if the room can be added (per 3 above) or keep going if not added
+    5. modify the structure from 4 above so it stops after a room is added or after 200 tries, whichever comes first.
+    */
+
+  /* _generateMap()
+  A method to make a map filled with items of the this._fill value. The "map" is
+  an object with a set of objects imbeded within it. All of the top level keys,
+  which each owns it's own object, will begin with the letter y (ex y1, y2), and
+  so on. The second level objects will be keyed in the same way, but with x
+  rather than y for their start. This is done so that we may access the map by
+  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+  the inner objects will be the individual cells of the map.
+  */
+    _generateMap(){
+      var map = {};
+      for (var i = 1; i <= this.height; i++) {
+        var key = "y"+i;
+        map[key] = {};
+        for (var j = 1; j <= this.width; j++) {
+          var key2 = "x"+j;
+          map[key][key2] = new this.fill;
+        }
+      }
+      for (var i = 0; i < this.numRooms; i++) {
+        this.addRoom(map);
+      }
+      this._addHalls(map);
+      return map;
+    }
+
+    /* _drawBorder()
+    Makes a border top or bottom for the map. This border will be in the general
+    design of +---------------+
+    @return {string} a string border
+    */
+    _drawBorder(){
+      var retStr = "+";
+      for (var i = 0; i < this.width; i++) {
+        retStr += "-";
+      }
+      return retStr += "+";
+    }
   /* _addMonsters()
   1. give each room a 82.25% chance to have a monster roll for it.   randNum
   2. it will then store those reults     store in an array
@@ -248,13 +249,37 @@ then change the setter to take the param number, and then use _addHalls to add n
 2. it will then store those results
 3. will then place them on the map, being mindful not using the same place twice.
 */
+//for loop all rooms, check room if its start room, check chance to spawn monster,
+//check coerners using room chorners, put a if in the for, use randFoe to call to the monsters,
+//need another for statment for monsters, [0]track using a boolean to see if we can spawn,
+//tack if we place in true or false use while, check cordinates with randCoord and room cords and then ,
+//check the location, something cell.ocupied, check the cordinats if the cell is ocupied,
+//if not occupied(map.y, map.x .add monster from for loop j), change driving bool
   _addMonsters(mon){
     var mat = Utils.randMath()
     var roo = Map.addRoom()
-    if (mon =! "roo") {
-      //dont spawn if not on map
+    for (var i = 0; i < this._rooms.length; i++) {
+      //check if its the start room
+
+      if(Math.random() < .8225)
+      var rooms = Utils.roomCorners(this._rooms[i], this.width, this.height)
+      var coords = Utils.randCoord(rooms.x.min, rooms.x.max, rooms.y.min, rooms.y.max);
+      var foe = this._randFoe();
 
       }
+      for (var j = 0; j < array.length; j++) {
+       //use a boolean for monsters spawns
+       //use roomCorners to see if it can spawn in said room
+       /*track using a boolean to see if we can spawn,
+       tack if we place in true or false use while, check cordinates with randCoord and room cords and then ,
+       check the location, something cell.ocupied, check the cordinats if the cell is ocupied*/
+       var
+       
+      }
+
+
+
+
       else {
           // give a 82.25% chance to spawn in room
 
@@ -267,9 +292,10 @@ then change the setter to take the param number, and then use _addHalls to add n
       }
       }
       for (var j = 0; j < .length; j++) {//store the resulting info in an array over here
-        
+
       }
     }
+  }
 
   }
 
