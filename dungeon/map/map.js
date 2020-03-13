@@ -99,6 +99,7 @@ class Map{
   get level(){ return this._level; }
   set level(level){ this._level = Utils.typeCheck(item, "int", call="Utils.typeCheck"); }
 
+
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
   of coordinates based on our map. It will then go to the map, and update the
@@ -144,31 +145,32 @@ class Map{
     return Utils.hallCoords(coordA, coordB, "Map.makeHall");
   }
 
-  /* _addMonsters()
-  1. give each room a 82.25% chance to have a monster roll for it.
-  2. it will then store those reults
-  3. will then place them on the map, being mindful not using the same place twice.
-  */
-  _addMonster(map){
-    let chance = Math.random();
-    for (var i = 0; i < this.rooms.length; i++) {
-      if (i != this.startRoom) {
-        if (chance < .8225) {
-          let corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
-          let foe = randomFoe(this.level);
-          for (var j = 0; j < foe.length; j++) {
-            let bool = false;
-            while (!bool) {
-              let cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
-              let cell = map["y" + cords.y]["x" + cords.x];
-              if (cell.occupied.length == 0) {
-                cell.add(foe[j]);
+  _addThing(map, thing){
+      for (var i = 0; i < this.rooms.length; i++) {
+        if (i != this._startRoom) {
+          if (Math.random() < .8225) {
+            var val = Utils.roomCorners(this.rooms[i], this.width, this.height);
+            if (thing == "foe") {
+              var stuff = randomFoe(this.level);
+            }
+            if (thing == "item") {
+              var stuff = randomItem(this.level);
+            }
+            for (var j = 0; j < stuff.length; j++) {
+            var bool = false;
+              while (!bool) {
+                var cord = Utils.randCoord(val.x.min, val.x.max, val.y.min, val.y.max);
+                var cell = map["y" + cord.y]["x" + cord.x];
+                  if ((cell.occupied.length == 0)&&(thing == "foe")) {
+                  cell.add(stuff[j]);
+                  bool = true;
+              }
+              if (thing == "item") {
+                cell.add(stuff[j]);
                 bool = true;
-                //comment
               }
             }
           }
-          bool = false;
         }
       }
     }
@@ -219,6 +221,9 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
+    this._startRoom = Utils.shuffleIndex(this._rooms)[0];
+    this._addThing(map, "item");
+    this._addThing(map, "foe");
   return map; // this is where we make this._map
   }
 
