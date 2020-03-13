@@ -260,24 +260,33 @@ then change the setter to take the param number, and then use _addHalls to add n
     var roo = Map.addRoom()
     for (var i = 0; i < this._rooms.length; i++) {
       //check if its the start room
-
+       if (i != this.startRoom) {
       if(Math.random() < .8225)
       var rooms = Utils.roomCorners(this._rooms[i], this.width, this.height)
-      var coords = Utils.randCoord(rooms.x.min, rooms.x.max, rooms.y.min, rooms.y.max);
-      var foe = this._randFoe();
+      var corner = Utils.randCoord(rooms.x.min, rooms.x.max, rooms.y.min, rooms.y.max);
+      var foo = this._randFoe();
 
-      }
-      for (var j = 0; j < array.length; j++) {
+
+      for (var j = 0; j < foo.length; j++) {
        //use a boolean for monsters spawns
        //use roomCorners to see if it can spawn in said room
        /*track using a boolean to see if we can spawn,
        tack if we place in true or false use while, check cordinates with randCoord and room cords and then ,
-       check the location, something cell.ocupied, check the cordinats if the cell is ocupied*/
+       check the location, something cell.ocupied, check the cordinats if the cell is ocupied
+       */
        var
-       
+
       }
+      var foe = randomFoe(this.level);
 
-
+      for (var j = 0; j < foe.length; j++) {
+        var bool = false;
+        while (!bool) {
+          var cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
+          var cell = map["y" + cords.y]["x" + cords.x];
+          if (cell.occupied.length == 0) {
+            cell.add(foe[j]);
+            bool = true;
 
 
       else {
@@ -295,9 +304,15 @@ then change the setter to take the param number, and then use _addHalls to add n
 
       }
     }
+    bool = false;
   }
+}
+}
+}
 
   }
+
+
 
 
 
