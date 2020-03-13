@@ -20,7 +20,7 @@ class Map{
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
-    this._level = 0;
+    this._level = 1;
     this._map = this._generateMap(); // needs to be at the bottom
     this._startRoom = Utils.shuffleIndex(this._rooms)[0];
     // later: add a level, and a name,
@@ -155,15 +155,18 @@ class Map{
   */
   _addHalls(map, number="max"){
     let connections = Utils.shuffleIndex(this.rooms, "Map._addHalls");
-    if(number == "max") { number = connections.length; }
+    if (number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
     for (var i = 0; i < number -1; i++) {
       let hall = this.makeHall(connections[i], connections[i+1]);
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        if(cell.type != "room") { cell.type = "hall"; }
+          if (cell.type != "room") {
+          cell.type = "hall";
+          //cell.image = "X";
+          this._halls.push(hall);
+        }
       }
-      this._halls.push(hall);
     }
   }
 
