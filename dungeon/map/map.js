@@ -168,7 +168,6 @@ class Map{
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
         if(cell.type != "room") { cell.type = "hall"; }
-        cell.image = "X"
       }
       this._halls.push(hall);
     }
