@@ -21,9 +21,9 @@ class Map{
     this._roomMax = 10;
     this._roomNumber = 20;
     this._level = 0;
+    this._startRoom = undefined;
     this._map = this._generateMap(); // needs to be at the bottom
     // later: add a level, and a name,
-    this._startRoom = Utils.randMath(0,Utils.shuffleIndex(this.rooms,"Map.startRoom").length);
   }
 
   get width(){ return this._width; }
@@ -168,6 +168,7 @@ class Map{
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
         if(cell.type != "room") { cell.type = "hall"; }
+        cell.image = "X"
       }
       this._halls.push(hall);
     }
@@ -195,7 +196,9 @@ class Map{
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._addHalls(map);
-    this._addMonster(map)
+    this.startRoom = Utils.randMath(0,Utils.shuffleIndex(this.rooms,"Map.startRoom").length);
+    this._addSomthing(map, "Item");
+    this._addSomthing(map, "Monster");
   return map; // this is where we make this._map
   }
 
@@ -214,20 +217,27 @@ class Map{
     return retString;
   }
 
-  _addMonster(map){
-    let chance = Math.random();
+  _addSomthing(map, thing){
     for (var i = 0; i < this.rooms.length; i++) {
       if (i != this.startRoom) {
-        if (chance < .8225) {
+        if (Math.random() < .8225) {
           let corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
-          let enemy = randomFoe(this.level);
-          for (var j = 0; j < enemy.length; j++) {
+          if (thing == "Monster") {
+            var something = randomFoe(this.level);
+          }else {
+            var something = randomItem(this.level);
+          }
+          for (var j = 0; j < something.length; j++) {
             let boo = false;
             while (!boo) {
               let cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
               let cell = map["y" + cords.y]["x" + cords.x];
-              if (cell.occupied.length == 0) {
-                cell.add(enemy[j]);
+              if ((cell.occupied.length == 0) && (thing == "Monster")) {
+                cell.add(something[j]);
+                boo = true;
+              }
+              if (thing == "Item") {
+                cell.add(something[j]);
                 boo = true;
               }
             }
@@ -237,7 +247,7 @@ class Map{
     }
   }
 
- _fake(){
+// _fake(){
    /* for all the rooms
         check to see if the room is not the one where we have to start
         check to see if the chance is good
@@ -253,7 +263,7 @@ class Map{
                 monster[j]
                 shut off the while loop;
    */
- }
+ //}
 
 
 }
