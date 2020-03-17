@@ -193,9 +193,12 @@ class Map{
       let hall = this.makeHall(connections[i], connections[i+1]);
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        if(cell.type != "room") { cell.type = "hall"; }
+        if(cell.type != "room") {
+          cell.type = "hall";
+          this._halls.push(hall);
+          //cell.image = "x"
+        }
       }
-      this._halls.push(hall);
     }
   }
 
