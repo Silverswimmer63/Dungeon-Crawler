@@ -46,7 +46,7 @@ class Map{
   set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
 
   get map(){ // returns an html formated version of the map
-    let retString = this._drawBorder() + "<br>";
+    var retString = this._drawBorder() + "<br>";
     for (var i = 1; i <= this.height; i++) { // go though the y values
       retString += "|";
       for (var j = 1; j <= this.width; j++){ // go though the x values
@@ -72,11 +72,11 @@ class Map{
     array = Utils.arrayCheck(array, "Map.rooms"); // first level array
     if (array.length == 0) { this._rooms = array; } // this is clearing out the rooms
     else {
-      let room;
+      var room;
       for (room of array) {
         Utils.arrayCheck(room, "Map.rooms individual room."); // room check
         if(room.length == 0) { throw new Error("In Map.rooms: One or more room arrays is empty."); }
-        let coords;
+        var coords;
         for (coords of room) { // coords are {x: value, y: value}
           Utils.keyCheck(coords, ["x", "y"], "Map.rooms individual cell");
         }
@@ -108,20 +108,20 @@ class Map{
   */
   addRoom(map=this._map){
 
-    let canAdd = 0;
+    var canAdd = 0;
     while(canAdd < 200){
-      let border = Utils.randRoom(this.width, this.height, this.min+2, this.max+2); // make a set of coordinates based on the map constraints
+      var border = Utils.randRoom(this.width, this.height, this.min+2, this.max+2); // make a set of coordinates based on the map constraints
       // changed the above ^^ +2 not +1 because 2 borders!!
-      let overlap = false;
+      var overlap = false;
 
-      let coords = Utils.removeBorder(border, this.width, this.height); // trimmed room
+      var coords = Utils.removeBorder(border, this.width, this.height); // trimmed room
 
-      for (let i = 0; i < this._rooms.length; i++) {
+      for (var i = 0; i < this._rooms.length; i++) {
         if(!overlap) { overlap = Utils.coordCheck(border, this._rooms[i]); } // so we don't lose a true
       }
       if(!overlap){
-        for (let i = 0; i < coords.length; i++) {
-          let cell = map["y" + coords[i].y]["x" + coords[i].x];
+        for (var i = 0; i < coords.length; i++) {
+          var cell = map["y" + coords[i].y]["x" + coords[i].x];
           cell.type = "room";
         }
         this._rooms.push(coords);
@@ -140,14 +140,14 @@ class Map{
   */
   makeHall(indexA, indexB){
 
-    let roomA = Utils.removeBorder(this.rooms[indexA], this.width, this.height,"Map.makeHall");
-    let roomB = Utils.removeBorder(this.rooms[indexB], this.width, this.height,"Map.makeHall");
+    var roomA = Utils.removeBorder(this.rooms[indexA], this.width, this.height,"Map.makeHall");
+    var roomB = Utils.removeBorder(this.rooms[indexB], this.width, this.height,"Map.makeHall");
 
-    let aVals = Utils.roomCorners(roomA, this.width, this.height);
-    let bVals = Utils.roomCorners(roomB, this.width, this.height);
+    var aVals = Utils.roomCorners(roomA, this.width, this.height);
+    var bVals = Utils.roomCorners(roomB, this.width, this.height);
 
-    let coordA = Utils.randCoord(aVals.x.min, aVals.x.max, aVals.y.min, aVals.y.max, "Map.makeHall");
-    let coordB = Utils.randCoord(bVals.x.min, bVals.x.max, bVals.y.min, bVals.y.max, "Map.makeHall");
+    var coordA = Utils.randCoord(aVals.x.min, aVals.x.max, aVals.y.min, aVals.y.max, "Map.makeHall");
+    var coordB = Utils.randCoord(bVals.x.min, bVals.x.max, bVals.y.min, bVals.y.max, "Map.makeHall");
     // make the hall
     return Utils.hallCoords(coordA, coordB, "Map.makeHall");
   }
@@ -161,24 +161,37 @@ class Map{
   "max" if the value is "max" then set number to connections.length in the function
   in your for loop replace connections.length with number.
   */
+
+  //add a key "end" to the coordinates for both ends of the hall during hall generation.
   _addHalls(map, number="max"){
-    let connections = Utils.shuffleIndex(this.rooms, "Map._addHalls");
+    var connections = Utils.shuffleIndex(this.rooms, "Map._addHalls");
     if(number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
+    for (var i = 0; i < this.halls.length; i++) ;
     for (var i = 0; i < number -1; i++) {
-      let hall = this.makeHall(connections[i], connections[i+1]);
-      for (let j = 0; j < hall.length; j++) {
-        let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        if(cell.type != "room") { cell.type = "hall"; }
+      var hall = this.makeHall(connections[i], connections[i+1]);
+      for (var j = 0; j < hall.length; j++) {
+        var cell = map["y" + hall[j].y]["x" + hall[j].x];
+        if(cell.type != "room") {
+          cell.type = "hall";
+          this._halls.push(hall);
+        }
       }
-      this._halls.push(hall);
+    }
+  }
+
+  _hallEnds(map){
+  var end = {end1:this.halls[0], end2:this.halls.length-1} ;
+    if (this.halls.length == [0] || this.halls.length-1) {
+      cell.type = "end";
+      this._halls.push(end)
     }
   }
 
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
-  which each owns it's own object, will begin with the letter y (ex y1, y2), and
+  which each owns it's own object, will begin with the varter y (ex y1, y2), and
   so on. The second level objects will be keyed in the same way, but with x
   rather than y for their start. This is done so that we may access the map by
   way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
@@ -186,20 +199,21 @@ class Map{
   @ return {object} an object per the description above
   */
   _generateMap(){
-    let map  = {};
-    for (let i = 1; i <= this.height; i++) { // go though the y values
+    var map  = {};
+    for (var i = 1; i <= this.height; i++) { // go though the y values
       map["y"+ i] = {} // give them the key values
-      for (let j = 1; j <= this.width; j++){ // go though the x values
+      for (var j = 1; j <= this.width; j++){ // go though the x values
         map["y" + i]["x" + j] = new this.fill; // add the new key values
       }
     }
-    for (let i = 0; i < this._roomNumber; i++) {
+    for (var i = 0; i < this._roomNumber; i++) {
       this.addRoom(map); //addRoom expects this._map to exist.
     }
     this._startRoom = Utils.shuffleIndex(this._rooms)[0];
     this._addHalls(map);
     this._addThing(map, "item");
     this._addThing(map, "foe");
+
   return map; // this is where we make this._map
   }
 
@@ -210,7 +224,7 @@ class Map{
   @return {string} a string border
   */
   _drawBorder(){
-    let retString = "+";
+    var retString = "+";
     for (var i = 0; i < this.width; i++) {
       retString += "-";
     }

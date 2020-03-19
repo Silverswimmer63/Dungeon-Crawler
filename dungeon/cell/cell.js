@@ -20,7 +20,7 @@ class Cell{
     this._type = type;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    //if(this._type == "room") { this.image = "R";}
+    if(this._type == "end") { this.image = "z";}
   }
 
   get open(){
