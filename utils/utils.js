@@ -206,8 +206,8 @@ class Utils {
       if(distance.x > 0){
        if(Math.ceil(midOne.x)-j >= 0){
         var posStatX = Math.ceil(midOne.x)-j;
-       }
         hallCords.push({x:Math.abs(posStatX), y:hallCords[hallYmath].y});
+       }
       }   
       else if(distance.x < 0){
        var negStatX = Math.ceil(midOne.x)+j;
@@ -420,15 +420,10 @@ class Utils {
     return newReturn;
   }
   
-  
-  
-  
-  
-  
-  
-  //AI movement
-  //moveAInvs() stands for move AI not very smart
-  //its for the stupidly simple ai that only use directions to calculate movement :)
+  /*AI movement
+  moveAInvs() stands for move AI not very smart
+  its for the stupidly simple ai that only use directions to calculate movement :)
+  */
   static moveAInvs(direction, aiCoords){
     var newCoords = {x:aiCoords.x, y:aiCoords.y};
     if(direction == "North"){
@@ -450,82 +445,71 @@ class Utils {
     aiCoords.y = newCoords.y;
     return aiCoords;
   }
-  //Random/Fun AI
-  static funAI(aiCoords){
-    var randDirection = this.randMath(1,4);
-    var direction = undefined;
-      if(randDirection == 1){
-        direction = "North";
-      }
-      if(randDirection == 2){
-        direction = "South";
-      }
-      if(randDirection == 3){
-        direction = "East";
-      }
-      if(randDirection == 4){
-        direction = "West";
-      }
-      return this.moveAInvs(direction,aiCoords);
-  }
-  //Smart AI
-  static smartAi(aiCoords, characterCoords){
-    var calculateDist = {x:Math.abs(aiCoords.x-characterCoords.x),y:Math.abs(aiCoords.y-characterCoords.y)};
-    var negYdis = undefined;
-    var negXdis = undefined;
-    var newCoords = {x:aiCoords.x,y:aiCoords.y};
-    if((aiCoords.y-characterCoords.y) < 0){
-      negYdis = true;
-    }
-    else{
-      negYdis = false;
-    }
-    if((aiCoords.x-characterCoords.x) < 0){
-      negXdis = true;
-    }
-    else{
-      negXdis = false;
-    }
-        if(newCoords !== characterCoords){
-        if((negYdis == true) && characterCoords.y !== newCoords.y){
-            newCoords.y = aiCoords.y + 1;
-                return newCoords;
-        }
-        else if((negYdis == false) && characterCoords.y !== newCoords.y){
-          newCoords.y = aiCoords.y - 1;
-                return newCoords;
-        }
-        if((negXdis == true) && characterCoords.x !== newCoords.x){
-            newCoords.x = aiCoords.x + 1;
-            return newCoords;
-          }
-          else if((negXdis == false) && characterCoords.x !== newCoords.x){
-            newCoords.x = aiCoords.x - 1;
-            return newCoords;
-          }
-        return newCoords; 
-        }
-  }
-  //God AI
-  godAI(aiCoords){
     
-  }
-  //Vision is going the be the main one
-  //+==========+
-  //|5555555555|
-  //|5444444445|
-  //|5433333345| 1 being the payer 
-  //|5432222345|
-  //|5432112345|
-  //|5432222345|
-  //|5433333345|
-  //|5444444445|
-  //|5555555555|
-  //+==========+
-  static visionAI(aiCoords, playerCoords){
-    var plc = playerCoords;
-    for(){
-      
+    /*checkhighest()
+     *this is to check for the highest with the ai coords
+     */
+    static checkhighest(array){
+    var yes = undefined;
+    var first = [];
+    if(array.length > 2){
+    for(var i = 1; i < array.length-1;i++){
+    if(array[i].importance !== undefined){
+      console.log(array[i].importance)
+      if(array[i].importance < array[i-1].importance && i == 1){
+        first.push(array[i]);
+      }
+      else if(array[i].importance > array[i-1].importance && i == 1){
+        first.push(array[i-1]);
+      }
+      else if(first[first.length-1].importance < array[i].importance && i > 1 && first.length > 1){
+      }
+      else if(first[first.length-1].importance > array[i].importance && i > 1 && first.length > 1){
+        first.push(array[i]);
+      }
+      else if(first[first.length-1].importance == array[i].importance && i > 1 && first.lenth > 1){
+      }
     }
+    }
+    }
+    else if(array.length == 2){
+      if(array[0].importance < array[1].importance){
+       first.push(array[0])  
+      }
+      else if(array[0].importance > array[1].importance){
+       first.push(array[1]);
+      }
+      else if(array[0].importance > array[1].importance){
+       first.push(array[0]); 
+      }
+    }
+    else{
+      first.push(array[0])  
+    }
+    return first[first.length-1];
   }
+  /*distFromPlayer
+   *is the overall base for our ais
+   */
+  static distFromPlayer(playerCoords, map){
+    var distToBoarderX = Math.abs(playerCoords.x - map.width);
+    var distToBoarderY = Math.abs(playerCoords.y - map.height);
+    var importa = [];
+    for(var i = 0; i < distToBoarderY;i++){
+      for(var j = 0; j < distToBoarderX;j++){
+        var important = {x:j,y:i}
+        if(important.x>=important.y){
+          var imp = important.x ;
+        }
+        else if(important.y>=important.x){
+          var imp = important.y ;          
+        }
+        important = {coords:{y:i+playerCoords.y,x:j+playerCoords.x},importance:imp};        
+            importa.push(important);
+          
+      }
+    }
+    return importa;
+  }
+
 }
