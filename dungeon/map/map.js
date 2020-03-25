@@ -168,51 +168,32 @@ class Map{
     if(number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
     for (var i = 0; i < number -1; i++) {
-      var hall = this.makeHall(connections[i], connections[i+1]);
-      for (var j = 0; j < hall.length; j++) {
-        var cell = map["y" + hall[j].y]["x" + hall[j].x];
+      let hall = this.makeHall(connections[i], connections[i+1]);
+      for (let j = 0; j < hall.length; j++) {
+        let cell = map["y" + hall[j].y]["x" + hall[j].x];
         if(cell.type != "room") {
           cell.type = "hall";
           this._halls.push(hall);
-          }
+          cell.image = " ";
+          var best = {distance : (Math.abs()), first: {"coords from 0"}, second: {"coords from 1"}}
         }
       }
-      var lower = undefined;
-    var greater = undefined;
-    for (var k = 0; k < this.halls.length;  k++) {
-      var hall = this.halls[k];
-      for (var l = 0; l < hall.length-1; l++) {
-            var ex = hall[l].x;
-            var why = hall[l].y;
-            var num = hall[l].x+hall[l].y;
-            var newNum = hall[l+1].x+hall[l+1].y;
-            if (num < newNum) {
-              lower = num;
-            }else {
-              lower = newNum;
-            }
-            if (num > newNum) {
-              greater = num;
-            }else {
-              greater = newNum;
-            }
-          }
-          if (ex + why == lower) {
-            var lowest = {x:ex,y:why};
-            var cell = map["y" + lowest.y]["x" + lowest.x];
-            cell.image = "O";
-          }
-          if (ex + why == greater) {
-            var greatest = {x:ex,y:why};
-            var cell = map["y" + greatest.y]["x" + greatest.x];
-            cell.image = "O";
-          }
-        }
     }
-
-
-
-
+  }
+  /*var best = {distance : (do some math),  first: {coordiantes from 0} second: {coordinates from 1}}
+  in the loop for i (or whatever)
+  for j actually or my example will be confusing
+  var test = this._halls[i][j]
+  var testCase1 = {distance: (do some math), first: {coordinates from 0}, second {coordinates from j}}
+  var testCase2 = {distance: (do some math), first: {coordinates from j}, second {coordinates from 1}}
+  var bigDist = Math.max(best.distance, testCase1.distance, testCase2.distance)
+  if (testCase1.distance == bigDist) { best = testCase1}
+  if(testCase2.distance == bigDist) {best = testCase2}
+  and test.x and test.y would be your itterable coordinates
+  this will not work as is
+  but this should give you a better idea.
+  all you are doing is finding the biggest distance from 3 options - best.first and best.second, best.first and _hall[i][j], and _hall[i][j] and best second
+  Then you just update if test case 1 or 2 is better than the old "best"*/
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
