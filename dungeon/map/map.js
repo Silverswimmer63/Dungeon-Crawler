@@ -174,9 +174,23 @@ class Map{
         if(cell.type != "room") {
           cell.type = "hall";
           this._halls.push(hall);
-          cell.image = " ";
-          var best = {distance : (Math.abs()), first: {"coords from 0"}, second: {"coords from 1"}}
+          cell.image = "X";
         }
+      }
+    }
+  }
+
+  _hallEnds(){
+    var best = {distance : (Math.abs()), first: {}, second: {}};
+    for (var i = 0; i < this.halls.length; i++) {
+      for (var j = 0; j < this.halls.length; j++) {
+        var test = this._halls[i][j]
+        var testCase1 = {distance : (Math.abs()), first: {}, second: {}};
+        var testCase2 = {distance : (Math.abs()), first: {}, second: {}};
+        var bigDist = Math.max(best.distance, testCase1.distance, testCase2.distance);
+        if (testCase1.distance == bigDist) { best = testCase1 }
+        if (testCase2.distance == bigDist) { best = testCase2 }
+        cell.image = "X"
       }
     }
   }
