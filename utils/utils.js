@@ -1,6 +1,6 @@
 /* Class Utils
 A set of utility functions that may want to be used all over the project
-*/ 
+*/
 class Utils {
 
   /* typeCheck(item, type, call);
@@ -380,5 +380,45 @@ makes a line with chance of a turn between start and end
     }
     return retArr;
   }
+
+  static rawDist(coord1, coord2){
+   return Math.abs(coord1.x - coord2.x) + Math.abs(coord1.y - coord2.y);
+ }
+
+  static getNeighbors(coords){
+    var retArr = [];
+    var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
+    var diagCases = [{x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
+    for (var i = 0; i < baseCases.length; i++) {
+
+    }
+    for (var i = 0; i < diagCases.length; i++) {
+
+    }
+    if () {
+
+    }
+  }
+/*
+Here's a hint to help you get 3 done and to get you ready for the next part - you may want a helper function to help you come up with the neighbors for the cell of interest.
+
+You may have noticed my function
+getNeighbors(coords) on the screen shot yesterday too...
+I would recommend implementing this:
+
+getNeighbors(coords)
+a function that takes an x & y keyed coordinate object and returns an array of 8 objects, all of which have the following keys: x, y, and diag where diag is true or false
+based on if the coordinate is a diagonal or not.
+This function can be easily do by starting with 3 variable declarations - retArr baseCases, and diagCases. Base case and diag case should each be arrays that have 4 objects
+in them - those objects are mutations for the coordinates.
+
+For example, 2 of the objects in baseCase would be {x:0, y:1}  and {x:-1, y:0}
+the numbers there are simply going to be added to the coordinate, so in the examples above, the first one would give you the coordinate for the space below the coord and
+the second would give you the space to the left.
+
+You would then do 2 for loops in series (not embedded, in series) adding those to the coord, and then pushing the new value to the retArray, along with the .diag key.
+
+With that for #3 you'd just have to check to see if there is more than 1 other hall bordering our hall, on the non diagonal only. If there is... NO DOOR FOR YOU
+*/
 
 }
