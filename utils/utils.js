@@ -385,23 +385,20 @@ makes a line with chance of a turn between start and end
    return Math.abs(coord1.x - coord2.x) + Math.abs(coord1.y - coord2.y);
  }
 
- static getNeighbors(coords){
-   var retArr = [];
-   var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:0, y:-1, diag:false}, {x:1, y:0, diag:false}];
-   var diagCases = [{x:-1, y:-1, diag:false}, {x:1, y:-1, diag:false}, {x:1, y:1, diag:false}, {x:1, y:-1, diag:false}];
-   for (var i = 0; i < baseCases.length; i++) {
-     baseCases[i].x += coords.x;
-     baseCases[i].y += coords.y;
-     retArr.push(baseCases[i]);
-   }
-   for (var i = 0; i < diagCases.length; i++) {
-     diagCases.diag = true;
-     diagCases[i].x += coords.x;
-     diagCases[i].y += coords.y;
-     retArr.push(diagCases[i]);
-   }
-   return retArr;
- }
+  static getNeighbors(coords){
+    var retArr = [];
+    var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
+    var diagCases = [{x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
+    for (var i = 0; i < baseCases.length; i++) {
+
+    }
+    for (var i = 0; i < diagCases.length; i++) {
+
+    }
+    if () {
+
+    }
+  }
 /*
 Here's a hint to help you get 3 done and to get you ready for the next part - you may want a helper function to help you come up with the neighbors for the cell of interest.
 
