@@ -234,7 +234,7 @@ class Map{
           }
 
           if((halls.length < 2) && (rooms == 0) && (Math.random() < chance)){ // add the door here in the end and random chance
-            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "X"; // will replace this in a few days
+            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "D"; // will replace this in a few days
           }
         }
       }
@@ -336,4 +336,6 @@ class Map{
     retString += "+";
     return retString;
   }
-}
+
+
+  }

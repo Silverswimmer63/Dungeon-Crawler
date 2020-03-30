@@ -402,26 +402,17 @@ makes a line with chance of a turn between start and end
    }
    return retArr;
  }
-/*
-Here's a hint to help you get 3 done and to get you ready for the next part - you may want a helper function to help you come up with the neighbors for the cell of interest.
 
-You may have noticed my function
-getNeighbors(coords) on the screen shot yesterday too...
-I would recommend implementing this:
-
-getNeighbors(coords)
-a function that takes an x & y keyed coordinate object and returns an array of 8 objects, all of which have the following keys: x, y, and diag where diag is true or false
-based on if the coordinate is a diagonal or not.
-This function can be easily do by starting with 3 variable declarations - retArr baseCases, and diagCases. Base case and diag case should each be arrays that have 4 objects
-in them - those objects are mutations for the coordinates.
-
-For example, 2 of the objects in baseCase would be {x:0, y:1}  and {x:-1, y:0}
-the numbers there are simply going to be added to the coordinate, so in the examples above, the first one would give you the coordinate for the space below the coord and
-the second would give you the space to the left.
-
-You would then do 2 for loops in series (not embedded, in series) adding those to the coord, and then pushing the new value to the retArray, along with the .diag key.
-
-With that for #3 you'd just have to check to see if there is more than 1 other hall bordering our hall, on the non diagonal only. If there is... NO DOOR FOR YOU
-*/
-
+ _addDoors(map, chance=.9){
+// check every hall in the map for it's ends
+   for (var i = 0; i < this._halls.length; i++) { // array of ALL HALLS
+      for (var j = 0; j < this._halls[i].length; j++) { // HALL ARRAY OF COORDS
+        if (this._halls[i][j].hasOwnProperty('end')) { // Only the ends will have ends
+          var halls = []; // track hall neighbors so that if this == 1 then use that for hall next to room check
+          var rooms = 0; // for the check for part 4
+          let neighbors = Utils.getNeighbors(this._halls[i][j]); // will give all 8 neighbors make sure to use a conditional to trim (.diag == false)
+        }
+      }
+    }
+  }
 }

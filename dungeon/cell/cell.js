@@ -9,32 +9,36 @@ class Cell{
     this._open = false; // if the cell allows movement
     this._inventory = []; //items in the cell
     this._occupied = []; // for livings in the cell
+    this._door = false;
     // ## add a property here for _door, this should be a boolean mied class, false by default, then either "open" or "closed";
   }
   /* ---------------------------- Setters methods ----------------------------*/
   get image(){ return this._image; }
   set image(image){ this._image = image; }
 
-  // ## add a getter for door that returns the value of this._door
-  /* ## -add a setter for door
-     -this should accept false, "open" and "closed", use Utils.listCheck to make it so
-     -check to see if this.door == "open", if so, set the image to "O"
-     -check to see if this.door == "Closed", it so, set the image to "D"
-  */
+  get door(){ return this._door; }
+  set door(door){
+    Utils.listCheck(type, ["door"])
+    if (this.door == "open") {
+      cell.image == "O";
+    }
+    if (this.door == "closed") {
+      cell.image == "D";
+    }
+  }
 
   get type(){ return this._type; }
   set type(type){
     type = Utils.listCheck(type, ["wall", "room", "hall"]);
     this._type = type;
+    this._door = false;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    // ## as the type has changed, this should not be eligable for a door, set this._door to false
-
   }
 
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
-    // ## add a check to see if this.door is set to "closed", return false if it is
+    if (this._door == "closed") { return false; }
     return this._open; // otherwise return this._open;
   }
   set open(open){
@@ -124,8 +128,12 @@ class Cell{
     - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
     - if cell.door == "open" set it to closed using this.door
     - if cell.door == "closed" set it to open using cell.door
-
   */
+  toggleDoor(){
+    if (this._door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");}
+    if (cell.door == "open") {this._door == "closed";}
+    if (cell.door == "closed") {this._door == "open";}
+  }
 
   /* --------------------------- Internal methods ----------------------------*/
   /*_ocHandler(thing, call="Cell._ocHandler")
