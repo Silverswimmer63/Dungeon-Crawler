@@ -17,10 +17,10 @@ class Map{
     this._fill = Cell;
     this._rooms = [];
     this._halls = [];
+    this._level = 0;
     this._roomMin = 3;
     this._roomMax = 10;
     this._roomNumber = 20;
-    this._level = 0;
     this._startRoom = undefined;
     this._map = this._generateMap(); // needs to be at the bottom
     // later: add a level, and a name,
@@ -42,7 +42,7 @@ class Map{
   set halls(number) { this._addHalls(this._map, number); }
 
   get fill(){ return this._fill; }
-  set fill(fill){ this._fill= Utils.keyCheck(fill, "image", "Map.fill"); }
+  set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill"); }
 
   get map(){ // returns an html formated version of the map
     let retString = this._drawBorder() + "<br>";
@@ -84,6 +84,9 @@ class Map{
     }
   }
 
+  get level() { return this._level; }
+  set level(level) { this._level = Utils.intCheck(number, "Map.level"); }
+
   get min() { return this._roomMin; }
   set min(number){ this._roomMin = Utils.intCheck(number, "Map.min"); }
 
@@ -96,8 +99,10 @@ class Map{
     this._map = this._generateMap();
   }
 
+  get startRoom() { return this._startRoom; }
+
   get level() { return this._level; }
-  set level(level){ this._level = Utils.typeCheck(level, "int", "Map.level"); }
+  set level(number) { this._level = Utils.intCheck(number, "Map.level");}
 
   /* addRoom()
   add room will use the appropiate functions in our program to generate a set
@@ -164,15 +169,77 @@ class Map{
     if(number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
     for (var i = 0; i < number -1; i++) {
+
+      // trimming the halls
       let hall = this.makeHall(connections[i], connections[i+1]);
+      let trimmed = [];
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-        if(cell.type != "room") { cell.type = "hall"; }
+        if(cell.type != "room") {
+          cell.type = "hall";
+          trimmed.push(hall[j]);
+        }
       }
-      this._halls.push(hall);
+
+      // check for the ends of halls .. longest distance model
+      var bestIdx = {a: 0, b: 1} // for adding the key to the correct hall
+
+      for (var j = 2; j < trimmed.length; j++) {
+
+        // find the distances
+        let startEnd = Utils.rawDist(trimmed[bestIdx.a], trimmed[bestIdx.b]);
+        let startJ = Utils.rawDist(trimmed[bestIdx.a], trimmed[j]);
+        let endJ = Utils.rawDist(trimmed[bestIdx.b], trimmed[j])
+
+        // find the biggest
+        let distance = Math.max(startEnd, startJ, endJ);
+
+        // use the correct one -- if start end is the best pair, nothing need be done
+        if (startJ == distance) { bestIdx.b = j; }
+        if (endJ == distance) { bestIdx.a = j; }
+
+      }
+      trimmed[bestIdx.a].end = true;
+      if (trimmed.length > 1) { trimmed[bestIdx.b].end = true; }
+
+      this._halls.push(trimmed);
+
     }
   }
 
+  /* _addDoors(map, chance=.9)
+  makes doors for the map
+  */
+  _addDoors(map, chance=.9){
+    // check every hall in the map for it's ends
+    for (var i = 0; i < this._halls.length; i++) { // array of ALL HALLS
+      for (var j = 0; j < this._halls[i].length; j++) { // HALL ARRAY OF COORDS
+        if (this._halls[i][j].hasOwnProperty('end')) { // Only the ends will have ends
+          var halls = []; // track hall neighbors so that if this == 1 then use that for hall next to room check
+          var rooms = 0; // for the check for part 4
+          let neighbors = Utils.getNeighbors(this._halls[i][j]); // will give all 8 neighbors make sure to use a conditional to trim (.diag == false)
+          for (var k = 0; k < neighbors.length; k++) {
+            let neighbor = map["y" + neighbors[k].y]["x" + neighbors[k].x];
+            if((neighbors[k].diag == false) && (neighbor.type == "hall")){
+              halls.push({y: neighbors[k].y, x: neighbors[k].x});
+            }
+          }
+
+          if (halls.length == 1) { // now check for rooms next to the other hall
+            let neighbors = Utils.getNeighbors({y: halls[0].y, x: halls[0].x});
+            for (var k = 0; k < neighbors.length; k++) {
+              let neighbor = map["y" + neighbors[k].y]["x" + neighbors[k].x];
+              if((neighbors[k].diag == false) && (neighbor.type == "room")){ rooms ++; }
+            }
+          }
+
+          if((halls.length < 2) && (rooms == 0) && (Math.random() < chance)){ // add the door here in the end and random chance
+            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "X"; // will replace this in a few days
+          }
+        }
+      }
+    }
+  }
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
@@ -194,19 +261,73 @@ class Map{
     for (let i = 0; i < this._roomNumber; i++) {
       this.addRoom(map); //addRoom expects this._map to exist.
     }
+    this._startRoom = Utils.shuffleIndex(this._rooms, "Map.constructor")[0];
     this._addHalls(map);
-    this.startRoom = Utils.randMath(0,Utils.shuffleIndex(this.rooms,"Map.startRoom").length);
-    this._addSomthing(map, "Item");
-    this._addSomthing(map, "Monster");
+    this._addDoors(map);
+    this._addItems(map);
+    this._addMonsters(map);
+
   return map; // this is where we make this._map
   }
 
+  /* _addThing(map, type)
+  An internal function used by addMonsters and addItems to make things
+  */
+  _addThing(map, type="foe"){
+    for (var i = 0; i < this.rooms.length; i++) { // check all the rooms
+      if( (i != this.startRoom) && (Math.random() < .8225) ) { //critera
+        let things = [];
+        if(type == "foe") { things = randomFoe(this.level); } // make stuff
+        else { things = randomItem(this.level); } // make other stuff
+        let corners = Utils.roomCorners(this.rooms[i], this.width, this.height); // use for all cords
+        let used = [];
+
+        for (var j = 0; j < things.length; j++) {
+          let placement = false;
+
+          while(!placement){
+            let goodPlacement = true; // assume good placement
+            let loc = Utils.randCoord(corners.x.min, corners.x.max,
+                                      corners.y.min, corners.y.max, "Map._addThing");
+
+            for (var k = 0; k < used.length; k++) {
+              if((used[k].x == loc.x) && (used[k].y == loc.y)) { goodPlacement = false; }
+            }
+
+            if((goodPlacement) || (type != "foe")){
+              map["y" + loc.y]["x" + loc.x].add(things[j]);
+              used.push(loc);
+              placement = true;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* _addMonsters(map)
+  1. give each room a 82.25% chance to have a monster roll for it.
+  2. it will then store those reults
+  3. will then place them on the map, being mindful not using the same place twice.
+  */
+  _addMonsters(map){
+    this._addThing(map, "foe");
+  }
+
+  /* _addItems()
+  1. give each room a 82.25% chance to have a item roll for it.
+  2. it will then store those results
+  3. will then place them on the map, being mindful not using the same place twice.
+  */
+  _addItems(map){
+    this._addThing(map, "items");
+  }
 
   /* _drawBorder()
-  Makes a border top or bottom for the map. This border will be in the general
-  design of +---------------+
-  @return {string} a string border
-  */
+    Makes a border top or bottom for the map. This border will be in the general
+    design of +---------------+
+    @return {string} a string border
+    */
   _drawBorder(){
     let retString = "+";
     for (var i = 0; i < this.width; i++) {
@@ -216,53 +337,5 @@ class Map{
     return retString;
   }
 
-  _addSomthing(map, thing){
-    for (var i = 0; i < this.rooms.length; i++) {
-      if (i != this.startRoom) {
-        if (Math.random() < .8225) {
-          let corners = Utils.roomCorners(this.rooms[i], this.width, this.height);
-          if (thing == "Monster") {
-            var something = randomFoe(this.level);
-          }else {
-            var something = randomItem(this.level);
-          }
-          for (var j = 0; j < something.length; j++) {
-            let boo = false;
-            while (!boo) {
-              let cords = Utils.randCoord(corners.x.min,corners.x.max,corners.y.min,corners.y.max);
-              let cell = map["y" + cords.y]["x" + cords.x];
-              if ((cell.occupied.length == 0) && (thing == "Monster")) {
-                cell.add(something[j]);
-                boo = true;
-              }
-              if (thing == "Item") {
-                cell.add(something[j]);
-                boo = true;
-              }
-            }
-          }
-        }
-      }
-    }
+
   }
-
-// _fake(){
-   /* for all the rooms
-        check to see if the room is not the one where we have to start
-        check to see if the chance is good
-          get are corners using room corners/store
-          get monsters and store them
-            for the mosnters .length
-            use a bool and asume its false to place the mosnters
-              use a while bool = false after this to try to place monsters
-              use randcord to get rand coordinates using room corners
-              check the map at the y and x cooridnates to see if it is occupied
-                if not occupied place monster
-                map y x .add were going to have to create the keys
-                monster[j]
-                shut off the while loop;
-   */
- //}
-
-
-}

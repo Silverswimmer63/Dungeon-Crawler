@@ -76,8 +76,8 @@ function randomSomthing(level, type){
       else { var item = this._makeFoe(); } // add an NPC if type is not item
 
       if (item.level+1 <= remains) {
-        retAry.push(item);
         goodItem = true;
+        retAry.push(item);
       }
 
     }
