@@ -154,21 +154,58 @@ class Map{
   in your for loop replace connections.length with number.
   */
   _addHalls(map, number="max"){
-    let connections = Utils.shuffleIndex(this.rooms, "Map._addHalls");
+    var connections = Utils.shuffleIndex(this.rooms, "Map._addHalls");
     if (number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
     for (var i = 0; i < number -1; i++) {
       let hall = this.makeHall(connections[i], connections[i+1]);
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
-          if (cell.type != "room") {
-          cell.type = "hall";
-          //cell.image = "X";
-          this._halls.push(hall);
+        if (cell.type != "room") {
+        cell.type = "hall";
+        //cell.image = "X";
+        this._halls.push(hall);
         }
       }
     }
+    var lower = undefined;
+    var greater = undefined;
+    for (var k = 0; k < this.halls.length; k++) {
+      var hall = this.halls[k]
+      for (var l = 0; l < hall.length-1; l++) {
+        var ex = hall[l].x;
+        var why = hall[l].y;
+        var num = hall[l].x + hall[l].y;
+        var newNum = hall[l+1].x + hall[l+1].y;
+        if (num < newNum) {
+          lower = num;
+        }else {
+          lower = newNum;
+        }
+        if (num > newNum) {
+          greater = num;
+        }else {
+          greater = newNum;
+        }
+      }
+      if (ex + why == lower) {
+        var lowest = {x:ex, y:why};
+        var cell = map["y" + lowest.y]["x" + lowest.x];
+        cell.image = "D";
+      }
+      if (ex + why == greater) {
+        var greatest = {x:ex, y:why};
+        var cell = map["y" + greatest.y]["x" + greatest.x];
+        cell.image = "D";
+      }
+    }
   }
+//    for (var k = 0; k < hall.length; k++) {
+//      var good = [];
+//      var best = {dist: good, coordA: 0,coordB: 1};
+      //use Math.abs
+//      good.push(Math.abs(hall[k] - hall[k+1]));
+//    }
 
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is

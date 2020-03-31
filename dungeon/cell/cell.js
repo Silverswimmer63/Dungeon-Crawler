@@ -9,10 +9,29 @@ class Cell{
     this._open = false; // if the cell allows movement
     this._inventory = []; //items in the cell
     this._occupied = []; // for livings in the cell
+    this._door = false;
+    // ## add a property here for _door, this should be a boolean mixed class, false by default, then either "open" or "closed";
   }
   /* ---------------------------- Setters methods ----------------------------*/
   get image(){ return this._image; }
   set image(image){ this._image = image; }
+
+  get door(){return this._door;}
+  set door(door){
+    this.door = Utils.listCheck(door,[false, "open", "Closed"], "Cell._door")
+  if (this.door == "open") {
+    this.door.image = "D";
+    }
+    if (this.door == "Closed") {
+      this.door.image = "D";
+    }
+  }
+  // ## add a getter for door that returns the value of this._door
+  /* ## -add a setter for door
+     -this should accept false, "open" and "closed", use Utils.listCheck to make it so
+     -check to see if this.door == "open", if so, set the image to "O"
+     -check to see if this.door == "Closed", it so, set the image to "D"
+  */
 
   get type(){ return this._type; }
   set type(type){
@@ -20,11 +39,14 @@ class Cell{
     this._type = type;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    // if(this._type == "room") { this.image = "R";}
+    this._door = false;
   }
 
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
+    if (this.door == "Closed") {
+      return false;
+    }// ## add a check to see if this.door is set to "closed", return false if it is
     return this._open; // otherwise return this._open;
   }
   set open(open){
@@ -41,7 +63,6 @@ class Cell{
   }
 
   get occupied(){ return this._occupied; }
-  set occupied(thing){ this._ocHandler(thing, "Cell.occupied"); }
 
   /* for the occupied setter-
   if there is a nonmob in the cell do not allow another nonmob
@@ -49,6 +70,7 @@ class Cell{
   if we try to add things we cant, throw an error that reads
   "Cell.occupied - cell already had a mob/nonmob and was given" + thing
   */
+  set occupied(thing){ this._ocHandler(thing, "Cell.occupied"); }
 
   /* --------------------------- External methods ----------------------------*/
   /* add(thing)
@@ -110,6 +132,22 @@ class Cell{
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
+  /* ##  - add toggleDoor()
+    - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
+    - if cell.door == "open" set it to closed using this.door
+    - if cell.door == "closed" set it to open using cell.door
+  */
+  toggleDoor(){
+    if (this.door == false) {
+      throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist")
+    }
+    if (this.door == "open") {
+      this.door = "Closed";
+    }
+    if (this.door == "Closed") {
+      this.door == "open";
+    }
+  }
   /* --------------------------- Internal methods ----------------------------*/
   /*_ocHandler(thing, call="Cell._ocHandler")
   This will do all of the interior work for set occupied.
@@ -117,6 +155,9 @@ class Cell{
   @pram {string}call where to toss error messages from.
   */
   _ocHandler(thing, call="Cell._ocHandler"){
+    /* ## - add a new if here to check to see if the cell is open
+          - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
+    */
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -145,7 +186,8 @@ class Cell{
         throw new Error(call + " - cell already had a nonmob and was given " + thing[i].name + ".");
       }
       else if (hasMob && (thing[i] instanceof Mob))  {
-        throw new Error(call + " - cell already had a mob and was given " + thing[i].name + ".")
+        throw new Error(call + " - cell already had a mob and was given " + thing[i].name + ".");
+
       } else {
         this._occupied.push(thing[i]);
       }
@@ -185,7 +227,9 @@ class Cell{
       let order = [Item, Potion, Armor, Weapon]; // for lowest to best.
       for (let i = 0; i < order.length; i++) {
         let testCase = this._stringHandler(order[i]);
-        if (testCase != undefined) { image = testCase; }
+        if (testCase != undefined) {
+          image = testCase;
+        }
       }
     } //ignore this for showing this step
     if (this.occupied.length == 1) {image = this.occupied[0]; } // only 1 thing here
@@ -193,6 +237,11 @@ class Cell{
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
+    /* ## add an if at this point to see if image is D or O. Should this be the
+      case, have there be a return inside the if statement that returns the
+      instruction code for brown + image rather than "" + image, look at mobs
+      or items if you forgot how to do this.
+    */
     return "" + image;
   }
 }
