@@ -136,7 +136,6 @@ class Cell{
     - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
     - if cell.door == "open" set it to closed using this.door
     - if cell.door == "closed" set it to open using cell.door
-
   */
   toggleDoor(){
     if (this.door == false) {
