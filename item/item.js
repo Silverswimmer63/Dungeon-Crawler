@@ -2,13 +2,13 @@
 /* class Item(name, icon, desc, value, type="trash")
 The basic item class. Will be extended for other types of items.
 @param name {string} the name of the item
-@param icon {string} the single character that shows up on the map
+@param icon {string} the singlr character that shows up on the map
 @param desc {string} the description of the item
 @param value {number} the value of the item
 @param type {string} either the name of the collection the item belings to or trash
 */
 class Item {
-  constructor(name, icon, desc, value, type, level){
+  constructor(name, icon, desc, value, type = "trash", level){
 
     this._name = name;
     this._icon = icon; // the single character that shows up on the map
@@ -16,15 +16,11 @@ class Item {
     this._value = value;
     this._type = type; // if the item is in a collection or trash
     this._level = level;
-
-    this._level = level;// a integer for the level
-
   }
-  /*********************** Getter and Setters *****************************/
+  /**************************************** Getter and Setters *********************************/
   get name(){ return this._name; }
   set name(name){ this._name = name }
 
-  get icon(){ return "<span class='item'>" + this._icon + "</span>"; } // a single character
   get icon(){ return "<spam class = 'item'>" + this._icon + "</spam>"; }
   set icon(icon){ this._icon = icon; }
 
@@ -37,20 +33,12 @@ class Item {
   get type(){ return this._type; }
   set type(type){ this._type = type; }
 
-  get level(){ return this._level; }
-  set level(level){ this._level = level; }
-
-  /* text()
-  returns a user friendly line of text output to the screen
-  @return {string} text for output to the screen
-
   get level(){return this._level; }
   set level(level){this._level = level; }
 
   /*text()
   retruns a user friendly line of text for output
   @return {string} text for output ot the screen
-
   */
   text(){
       var retString = this.name + "<br>";
@@ -63,3 +51,4 @@ class Item {
     return "<span style=\"color:purple\">"+ this.icon +"</span>";
     }
 }
+//hi

@@ -19,31 +19,24 @@ class Utils {
     if(type === "int"){ type = "integer"};
     var whitelist = ["int", "integer",  "function", "object", "number", "string", "boolean", "array"];
     var errorText = "The method " + call + " expected a(n) " + type + " and received " + item + ".";
-
     // check to see if the type is null, if so, return the error.
     if(item == null){ throw new Error(errorText); }
-
     // chuck out an error if the type is not on the whitelist.
     if(whitelist.indexOf(type) === -1){
       throw new Error("Unexpected type of variable '"+ type + "' for check in method " + call + ".");
     }
-
     // special case: array
     if(type == "array"){
       if(Array.isArray(item)){ return item; }
       else{ throw new Error(errorText); }
     }
-
     // special case: number is int
     if (["int", "integer"].indexOf(type) !== -1){
       if(Number.isInteger(item)){ return item; }
       else{ throw new Error(errorText); }
     }
-
-
     // base case
     if (typeof item == type){ return item; }
-
     // return base error
     else { throw new Error(errorText); }
   }
@@ -89,15 +82,12 @@ class Utils {
   static keyCheck(item, key, call="Utils.keyCheck"){
     item = this.objCheck(item, call); // check to see if it is an item.
     if(!Array.isArray(key)){key = [key]} // make the key an array if not
-
     // check for missing keys
     let missingKeys = [];
     for (var i = 0; i < key.length; i++) {
       if(!(key[i] in item)) { missingKeys.push(key[i]); }
     }
-
     if(missingKeys.length == 0) { return item; } // if no missing, returns good
-
     // make the error otherwise
     let errorText = "The method " + call + " expected an object with the key(s): ";
     for (var i = 0; i < key.length; i++) { // add the expected keys
@@ -111,7 +101,6 @@ class Utils {
     }
     errorText += ".";
     throw new Error(errorText);
-
   }
 
   /* listCheck(item, list, call)
@@ -195,16 +184,13 @@ class Utils {
   }
 
   static roomCorners(room, width, height){
-
     let corners = {x: {min: width, max: 0}, y: {min: height, max: 0} };
-
     for (var i = 0; i < room.length; i++) {
       corners.x.min = Math.min(room[i].x, corners.x.min);
       corners.x.max = Math.max(room[i].x, corners.x.max);
       corners.y.min = Math.min(room[i].y, corners.y.min);
       corners.y.max = Math.max(room[i].y, corners.y.max);
     }
-
     return corners;
   }
 
@@ -241,7 +227,6 @@ class Utils {
   */
   static removeBorder(room, width, height, call="Utils.removeBorder"){
     let border = this.arrayCheck(room, call); // make a set of coordinates based on the map constraints
-
     let max = {x: 0, y: 0};
     let min = {x: width+1, y: height+1};
     for (let i = 0; i < border.length; i++) {
@@ -251,7 +236,6 @@ class Utils {
       if(border[i].x > max.x){ max.x = border[i].x}
       if(border[i].y > max.y){ max.y = border[i].y}
     }
-
     let coords = [];
     for (let i = 0; i < border.length; i++) {
       let isBorder = false; // fix for in class issue
@@ -275,9 +259,7 @@ class Utils {
     //this.keyCheck(end, ["x", "y"], call); //for debugging
     let xVals = {min : Math.min(start.x, end.x), max : Math.max(start.x, end.x)}
     let yVals = {min : Math.min(start.y, end.y), max : Math.max(start.y, end.y)}
-
     let line = [];
-
     if(xVals.min !== xVals.max) {
       for (var i = xVals.min + 1; i < xVals.max; i++) { line.push({x: i, y: yVals.min}); }
     } else {
@@ -293,16 +275,13 @@ class Utils {
   @return: {array} an array of the coordinates between the two input coordinates
   */
   static hallCoords(start, end, call="Utils.hallCords"){
-
     // check to see if the hall is a stright line:
     if((start.x == end.x)|| (start.y == end.y)){ // hall is a stright line in either condition
       return this.cordLine(start, end);
     }
     else {
-
       let turn = {};
       let choice = this.randMath(1, 2, call); // pick one of the 2 other corners
-
       if(choice == 1){ turn = {x: start.x, y: end.y} }; // corner "A"
       if(choice == 2){ turn = {x: end.x, y: start.y} }; // corner "B"
       let retArr = this.cordLine(start, turn); // one side of turn
@@ -320,13 +299,10 @@ class Utils {
   static shuffleIndex(array, call="Utils.shuffleIndex"){
     //this.arrayCheck(array, call) //for debugging
     let pullFrom  = []; // for the indexes pre randomized
-
     // javaScript low rent version of a generator
     for (let i = 0; i < array.length; i++) { pullFrom.push(i); }
-
     let length = array.length; // We will need a while loop because errors.
     let retArr = [];  // for the return
-
     while(length > 0){
       let removeIndex = this.randMath(0, length-1);
       retArr.push(pullFrom.splice(removeIndex, 1)[0]); // kids gonna hate this
@@ -341,12 +317,10 @@ class Utils {
     }
   }
 
-
-
   static removeBorder(room, width, height){
     let border = room;
     let max = {x:0,y:0};
-    let min = {x:width+1, y:height+1};
+    let min = {x:width+1,y:height+1};
     for (var i = 0; i < border.length; i++) {
       if (border[i].x < min.x) { min.x = border[i].x; }
       if (border[i].y < min.y) { min.y = border[i].y; }
@@ -355,10 +329,12 @@ class Utils {
     }
     let coords = [];
     for (var i = 0; i < border.length; i++) {
+
       var isBorder = false;
       if ((border[i].x == max.x)||(border[i].y == max.y)
         ||(border[i].x == min.x)||(border[i].y == min.y)) {
         isBorder = true;
+
       }
       if (!isBorder) {
         coords.push(border[i]);
@@ -405,29 +381,38 @@ makes a line with chance of a turn between start and end
     return retArr;
   }
 
-  /* shuffleIndex(array)
-  @param array: {array} an array to shuffle the index of
-  @return array: an array of number index (eg: array of length 5 might
-  give you a result of [2, 3, 0, 1, 4])
-  */
-  static something(array) {
-    var i = array.length, j, temp;
-    if ( i == 0 ) return this;
-    while ( --i ) {
-       j = Math.floor( Math.random() * ( i + 1 ) );
-       temp = array[i];
-       array[i] = array[j];
-       array[j] = temp;
+  static rawDist(coord1, coord2){
+   return Math.abs(coord1.x - coord2.x) + Math.abs(coord1.y - coord2.y);
+ }
+
+ static getNeighbors(coords){
+   var retArr = [];
+   var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:0, y:-1, diag:false}, {x:1, y:0, diag:false}];
+   var diagCases = [{x:-1, y:-1, diag:false}, {x:1, y:-1, diag:false}, {x:1, y:1, diag:false}, {x:1, y:-1, diag:false}];
+   for (var i = 0; i < baseCases.length; i++) {
+     baseCases[i].x += coords.x;
+     baseCases[i].y += coords.y;
+     retArr.push(baseCases[i]);
+   }
+   for (var i = 0; i < diagCases.length; i++) {
+     diagCases.diag = true;
+     diagCases[i].x += coords.x;
+     diagCases[i].y += coords.y;
+     retArr.push(diagCases[i]);
+   }
+   return retArr;
+ }
+
+ _addDoors(map, chance=.9){
+// check every hall in the map for it's ends
+   for (var i = 0; i < this._halls.length; i++) { // array of ALL HALLS
+      for (var j = 0; j < this._halls[i].length; j++) { // HALL ARRAY OF COORDS
+        if (this._halls[i][j].hasOwnProperty('end')) { // Only the ends will have ends
+          var halls = []; // track hall neighbors so that if this == 1 then use that for hall next to room check
+          var rooms = 0; // for the check for part 4
+          let neighbors = Utils.getNeighbors(this._halls[i][j]); // will give all 8 neighbors make sure to use a conditional to trim (.diag == false)
+        }
+      }
     }
-    return array;
-  }
-  
-  static shuffleIndex(array){
-  let numArr = [];
-  for (var i = 0; i < array.length; i++) {
-  numArr.push(i);
-  }
-  let retAry = this.something(numArr)
-  return retAry;
   }
 }

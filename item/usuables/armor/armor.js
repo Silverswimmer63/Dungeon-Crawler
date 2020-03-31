@@ -8,7 +8,6 @@ is the basis of all types of armor
 class Armor extends Item {
   constructor (name, icon, desc, value, type, damageresist, level) {
     super (name, icon, desc, value, type, level);
-
     this._damageresist = damageresist;
   }
   // name: this shows the monsters' name.
@@ -19,8 +18,6 @@ class Armor extends Item {
 
   get damageresist(){ return this._damageresist; }
   set damageresist(damageresist){ this._damageresist = damageresist; }
-
-
 
   /*text()
   retruns a user friendly line of text for output

@@ -1,4 +1,4 @@
-//Class Inventory is for mobs that have an inventory
+//Class Inventory is for mobs that have an inventory 
 class Inventory extends Mob{
   constructor(name, type, hp, desc, icon, attackDam, level){
     super(name, type, hp, desc, icon, attackDam, level);
@@ -56,7 +56,4 @@ the _inventory as multiple things. The _inventory is an array as well. The inven
   drop(index){
     return this._inventory.splice(index, 1);
   }
-
-
-
 }

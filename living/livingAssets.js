@@ -153,7 +153,7 @@ const COMPLETE_INVENTORY_SPACE_LIST = [
     name: "Self-Driving Cars",
     type: Space,
     hp: 60,
-    desc: "That typeic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
+    desc: "That classic, beloved Vroom-Vroom noise becomes the stuff of nightmares in this dystopian universe. You better watch out since they're stopping for no one.",
     icon: "$",
     attackDam: {min: 40, max: 50, type:"damage"},
     drop: "Bronze Armor",

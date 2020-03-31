@@ -1,4 +1,3 @@
-
 body {
 background-color: #f0f0f2;
 margin: 0;
@@ -47,11 +46,11 @@ margin: 0 auto;
 }
 
 .item{
-  color: purple;
+color: purple;
 }
 
 .mob{
-  color: red;
+color: red;
 }
 
 #playerControls, #gameControls, #lootScreen{

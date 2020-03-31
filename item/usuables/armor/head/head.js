@@ -11,7 +11,7 @@ class Head extends Armor {
 }
 
 }
-  // name: this shows the armors' name.
+  // name: this shows the monsters' name.
   // icon: the single character that shows up on the map
   // desc: the description of the item
   // damageresist: The amount of protection a piece of armor can provide for the player.
