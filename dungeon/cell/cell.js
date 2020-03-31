@@ -34,6 +34,7 @@ class Cell{
     this._door = false;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
+  //  if(this._type == "room") { this.image = "R";}
   }
 
   get open(){

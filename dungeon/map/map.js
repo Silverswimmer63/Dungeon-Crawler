@@ -172,76 +172,46 @@ class Map{
     if(number == "max") { number = connections.length; }
     number = Utils.intCheck(number);
     for (var i = 0; i < number -1; i++) {
-
-      // trimming the halls
       let hall = this.makeHall(connections[i], connections[i+1]);
-      let trimmed = [];
       for (let j = 0; j < hall.length; j++) {
         let cell = map["y" + hall[j].y]["x" + hall[j].x];
         if(cell.type != "room") {
           cell.type = "hall";
-          trimmed.push(hall[j]);
-        }
-      }
-
-      // check for the ends of halls .. longest distance model
-      var bestIdx = {a: 0, b: 1} // for adding the key to the correct hall
-
-      for (var j = 2; j < trimmed.length; j++) {
-
-        // find the distances
-        let startEnd = Utils.rawDist(trimmed[bestIdx.a], trimmed[bestIdx.b]);
-        let startJ = Utils.rawDist(trimmed[bestIdx.a], trimmed[j]);
-        let endJ = Utils.rawDist(trimmed[bestIdx.b], trimmed[j])
-
-        // find the biggest
-        let distance = Math.max(startEnd, startJ, endJ);
-
-        // use the correct one -- if start end is the best pair, nothing need be done
-        if (startJ == distance) { bestIdx.b = j; }
-        if (endJ == distance) { bestIdx.a = j; }
-
-      }
-      trimmed[bestIdx.a].end = true;
-      if (trimmed.length > 1) { trimmed[bestIdx.b].end = true; }
-
-      this._halls.push(trimmed);
-
-    }
-
-  /* _addDoors(map, chance=.9)
-  makes doors for the map
-  */
-  _addDoors(map, chance=.9){
-    // check every hall in the map for it's ends
-    for (var i = 0; i < this._halls.length; i++) { // array of ALL HALLS
-      for (var j = 0; j < this._halls[i].length; j++) { // HALL ARRAY OF COORDS
-        if (this._halls[i][j].hasOwnProperty('end')) { // Only the ends will have ends
-          var halls = []; // track hall neighbors so that if this == 1 then use that for hall next to room check
-          var rooms = 0; // for the check for part 4
-          let neighbors = Utils.getNeighbors(this._halls[i][j]); // will give all 8 neighbors make sure to use a conditional to trim (.diag == false)
-          for (var k = 0; k < neighbors.length; k++) {
-            let neighbor = map["y" + neighbors[k].y]["x" + neighbors[k].x];
-            if((neighbors[k].diag == false) && (neighbor.type == "hall")){
-              halls.push({y: neighbors[k].y, x: neighbors[k].x});
-            }
-          }
-
-          if (halls.length == 1) { // now check for rooms next to the other hall
-            let neighbors = Utils.getNeighbors({y: halls[0].y, x: halls[0].x});
-            for (var k = 0; k < neighbors.length; k++) {
-              let neighbor = map["y" + neighbors[k].y]["x" + neighbors[k].x];
-              if((neighbors[k].diag == false) && (neighbor.type == "room")){ rooms ++; }
-            }
-          }
-
-          if((halls.length < 2) && (rooms == 0) && (Math.random() < chance)){ // add the door here in the end and random chance
-            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "D"; // will replace this in a few days
-          }
+          this._halls.push(hall);
+          cell.image = "X";
         }
       }
     }
   }
+
+  _hallEnds(){
+    var best = {distance : (Math.abs()), first: {}, second: {}};
+    for (var i = 0; i < this.halls.length; i++) {
+      for (var j = 0; j < this.halls.length; j++) {
+        var test = this._halls[i][j]
+        var testCase1 = {distance : (Math.abs()), first: {}, second: {}};
+        var testCase2 = {distance : (Math.abs()), first: {}, second: {}};
+        var bigDist = Math.max(best.distance, testCase1.distance, testCase2.distance);
+        if (testCase1.distance == bigDist) { best = testCase1 }
+        if (testCase2.distance == bigDist) { best = testCase2 }
+        cell.image = "X"
+      }
+    }
+  }
+  /*var best = {distance : (do some math),  first: {coordiantes from 0} second: {coordinates from 1}}
+  in the loop for i (or whatever)
+  for j actually or my example will be confusing
+  var test = this._halls[i][j]
+  var testCase1 = {distance: (do some math), first: {coordinates from 0}, second {coordinates from j}}
+  var testCase2 = {distance: (do some math), first: {coordinates from j}, second {coordinates from 1}}
+  var bigDist = Math.max(best.distance, testCase1.distance, testCase2.distance)
+  if (testCase1.distance == bigDist) { best = testCase1}
+  if(testCase2.distance == bigDist) {best = testCase2}
+  and test.x and test.y would be your itterable coordinates
+  this will not work as is
+  but this should give you a better idea.
+  all you are doing is finding the biggest distance from 3 options - best.first and best.second, best.first and _hall[i][j], and _hall[i][j] and best second
+  Then you just update if test case 1 or 2 is better than the old "best"*/
   /* _generateMap()
   A method to make a map filled with items of the this._fill value. The "map" is
   an object with a set of objects imbeded within it. All of the top level keys,
