@@ -20,7 +20,7 @@ class Cell{
   set door(door){
     this.door = Utils.listCheck(door,[false, "open", "Closed"], "Cell._door")
   if (this.door == "open") {
-    this.door.image = "D";
+    this.door.image = "O";
     }
     if (this.door == "Closed") {
       this.door.image = "D";
@@ -136,6 +136,7 @@ class Cell{
     - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
     - if cell.door == "open" set it to closed using this.door
     - if cell.door == "closed" set it to open using cell.door
+
   */
   toggleDoor(){
     if (this.door == false) {

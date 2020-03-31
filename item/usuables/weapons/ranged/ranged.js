@@ -23,5 +23,6 @@ class Ranged extends Weapon {
     var retString = super.text();
     return retstring;
   }
+  
 
 }
