@@ -158,6 +158,9 @@ class Cell{
     /* ## - add a new if here to check to see if the cell is open
           - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
     */
+    if (!this._open) {
+      throw new Error (call + " attempted to add "  + thing + " to a closed cell.")
+    }
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -242,6 +245,10 @@ class Cell{
       instruction code for brown + image rather than "" + image, look at mobs
       or items if you forgot how to do this.
     */
-    return "" + image;
+    if (this._image == "D") {
+      return "<span style=\"color:brown\">"+ image +"</span>"
+    } else {
+      return "" + image;
+    }
   }
 }
