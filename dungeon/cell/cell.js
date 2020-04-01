@@ -124,11 +124,6 @@ class Cell{
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
-  /* ##  - add toggleDoor()
-    - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
-    - if cell.door == "open" set it to closed using this.door
-    - if cell.door == "closed" set it to open using cell.door
-  */
   toggleDoor(){
     if (this._door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");}
     if (cell.door == "open") {this._door == "closed";}
@@ -145,6 +140,9 @@ class Cell{
     /* ## - add a new if here to check to see if the cell is open
           - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
     */
+    if (!this._open) {
+      throw new Error (call + " attempted to add "  + thing + " to a closed cell.")
+    }
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -224,11 +222,10 @@ class Cell{
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
-    /* ## add an if at this point to see if image is D or O. Should this be the
-      case, have there be a return inside the if statement that returns the
-      instruction code for brown + image rather than "" + image, look at mobs
-      or items if you forgot how to do this.
-    */
-    return "" + image;
+    if (this._image == "D") {
+      return "<span style=\"color:brown\">"+ image +"</span>"
+    } else {
+      return "" + image;
+    }
   }
 }
