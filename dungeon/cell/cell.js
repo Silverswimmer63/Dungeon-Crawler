@@ -139,15 +139,9 @@ class Cell{
 
   */
   toggleDoor(){
-    if (this.door == false) {
-      throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist")
-    }
-    if (this.door == "open") {
-      this.door = "Closed";
-    }
-    if (this.door == "Closed") {
-      this.door == "open";
-    }
+    if (this.door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist")}
+    if (this.door == "open") {this.door = "Closed";}
+    if (this.door == "Closed") {this.door = "open";}
   }
   /* --------------------------- Internal methods ----------------------------*/
   /*_ocHandler(thing, call="Cell._ocHandler")
@@ -159,6 +153,9 @@ class Cell{
     /* ## - add a new if here to check to see if the cell is open
           - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
     */
+    if (this.open != true) {
+      throw new Error("call +  attempted to add " + thing + " to a closed cell.")
+    }
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -238,6 +235,9 @@ class Cell{
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
+    if ((this.image == "D") || (this.image == "O")) {
+      return "<span style=\"color:brown\">"+ this.image +"</span>";
+    }
     /* ## add an if at this point to see if image is D or O. Should this be the
       case, have there be a return inside the if statement that returns the
       instruction code for brown + image rather than "" + image, look at mobs
@@ -245,4 +245,5 @@ class Cell{
     */
     return "" + image;
   }
+
 }
