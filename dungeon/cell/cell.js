@@ -16,6 +16,11 @@ class Cell{
   get image(){ return this._image; }
   set image(image){ this._image = image; }
 
+  /* door(door)
+A function to check if type is door,
+then change the image based on open or closed
+@param door {bool} - door there or no
+*/
   get door(){ return this._door; }
   set door(door){
     Utils.listCheck(type, ["door"])
@@ -27,6 +32,11 @@ class Cell{
     }
   }
 
+  /* type(type)
+A function to check if type is wall,room,or hall,
+then set image to space if room or hall
+@param type {str} - the type
+*/
   get type(){ return this._type; }
   set type(type){
     type = Utils.listCheck(type, ["wall", "room", "hall"]);
@@ -36,6 +46,12 @@ class Cell{
     if(this._open) { this.image = " "; }
   }
 
+  /* open() & open(open)
+A function to see if a cell is Open
+throw an error if it is set wrong
+@param {bool} bool of open
+@return {bool} the bool of open
+*/
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
     if (this._door == "closed") { return false; }
@@ -45,6 +61,11 @@ class Cell{
     throw new Error("Open status should only be set by the cell type.");
   }
 
+  /* inventory(inventory)
+A function to see if nothing is in inventory,
+then make it itself or an array
+@param inventory {arr} - arr of inventory
+*/
   get inventory(){ return this._inventory; }
   set inventory(inventory){
     if(this._inventory.length == 0){ this._inventory = inventory; }
@@ -55,13 +76,6 @@ class Cell{
   }
 
   get occupied(){ return this._occupied; }
-
-  /* for the occupied setter-
-  if there is a nonmob in the cell do not allow another nonmob
-  if there is a mob in the cell do not allow annother mob
-  if we try to add things we cant, throw an error that reads
-  "Cell.occupied - cell already had a mob/nonmob and was given" + thing
-  */
   set occupied(thing){ this._ocHandler(thing, "Cell.occupied"); }
 
   /* --------------------------- External methods ----------------------------*/
@@ -124,6 +138,11 @@ class Cell{
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
+  /* toggleDoor()
+A function to make the door open or closed
+along with its image,
+if the door is false, throw error
+*/
   toggleDoor(){
     if (this._door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");}
     if (cell.door == "open") {this._door == "closed";}

@@ -44,6 +44,12 @@ class Map{
   get fill(){ return this._fill; }
   set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill"); }
 
+  /* map(dimensions)
+A function to draw map,
+check if the dimensions are correct,
+then make Map
+@param dimensions {} -
+*/
   get map(){ // returns an html formated version of the map
     let retString = this._drawBorder() + "<br>";
     for (var i = 1; i <= this.height; i++) { // go though the y values
@@ -66,6 +72,10 @@ class Map{
     this._map = this._generateMap();
   }
 
+  /* rooms(array)
+A function to make rooms
+@param array {array} - array of coords for room
+*/
   get rooms() { return this._rooms; }
   set rooms(array) {
     array = Utils.arrayCheck(array, "Map.rooms"); // first level array
@@ -240,13 +250,9 @@ class Map{
       }
     }
   }
+
   /* _generateMap()
-  A method to make a map filled with items of the this._fill value. The "map" is
-  an object with a set of objects imbeded within it. All of the top level keys,
-  which each owns it's own object, will begin with the letter y (ex y1, y2), and
-  so on. The second level objects will be keyed in the same way, but with x
-  rather than y for their start. This is done so that we may access the map by
-  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+  The values of the keys in
   the inner objects will be the individual cells of the map.
   @ return {object} an object per the description above
   */
@@ -336,6 +342,4 @@ class Map{
     retString += "+";
     return retString;
   }
-
-
   }
