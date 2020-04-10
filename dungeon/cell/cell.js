@@ -9,32 +9,42 @@ class Cell{
     this._open = false; // if the cell allows movement
     this._inventory = []; //items in the cell
     this._occupied = []; // for livings in the cell
-    // ## add a property here for _door, this should be a boolean mied class, false by default, then either "open" or "closed";
+    this._door = false;
   }
   /* ---------------------------- Setters methods ----------------------------*/
   get image(){ return this._image; }
   set image(image){ this._image = image; }
 
-  // ## add a getter for door that returns the value of this._door
-  /* ## -add a setter for door
-     -this should accept false, "open" and "closed", use Utils.listCheck to make it so
-     -check to see if this.door == "open", if so, set the image to "O"
-     -check to see if this.door == "Closed", it so, set the image to "D"
+  get door(){ return this._door; }
+  /*set door(door = Utils.listCheck(this.door, [false, "open", "closed"],call="Utils.listCheck"))
+  checks if the type is door and whether it is open or closed. Then it assigns an image that is determined if the door is open or closed.
+  @param door {boolean}: is first checked by listCheck
   */
+  set door(door = Utils.listCheck(this.door, [false, "open", "closed"],call="Utils.listCheck")){
+    if (this.door == "open") { this.door.image = "O"; }
+    if (this.door == "closed") { this.door.image = "D"; }
+  }
 
   get type(){ return this._type; }
-  set type(type){
-    type = Utils.listCheck(type, ["wall", "room", "hall"]);
+  /*set type(type)
+  checks if the type is either wall, room, or hall. If it is a room or hall, then it will be open.
+  @param type {"string"}: makes it easy to trace whether if something should be open or closed.
+  */
+  set type(type = Utils.listCheck(type, ["wall", "room", "hall"])){
     this._type = type;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    // ## as the type has changed, this should not be eligable for a door, set this._door to false
-
+    this._door = false;
   }
 
+  /*set & get open()
+  checks to see if the cell is occupied or open. Then throws an error if set wrong.
+  @return this._open {boolean}: this allows movement
+  @param open {boolean}
+  */
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
-    // ## add a check to see if this.door is set to "closed", return false if it is
+    if (this.door == "closed") { this.door = false; }
     return this._open; // otherwise return this._open;
   }
   set open(open){
@@ -42,6 +52,11 @@ class Cell{
   }
 
   get inventory(){ return this._inventory; }
+  /*set inventory(inventory)
+  checks if there is anything in inventory, setting it to itself or to an array if there is nothing.
+  then throws an error if inventory is not empty
+  @param inventory [array]: items in the cell
+  */
   set inventory(inventory){
     if(this._inventory.length == 0){ this._inventory = inventory; }
     else if(inventory.length == 0){ this._inventory = [];}
@@ -51,7 +66,6 @@ class Cell{
   }
 
   get occupied(){ return this._occupied; }
-
   /* for the occupied setter-
   if there is a nonmob in the cell do not allow another nonmob
   if there is a mob in the cell do not allow annother mob
@@ -70,7 +84,6 @@ class Cell{
   */
   add(thing){
     let bad = true;
-
     if(thing instanceof Item){
       thing = [thing];
       bad = false;
@@ -91,7 +104,6 @@ class Cell{
     if (bad == true){
       throw new Error("Cell.add recived illegal item.");
     }
-
   }
 
   /* remove(index)
@@ -120,12 +132,16 @@ class Cell{
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
-  /* ##  - add toggleDoor()
-    - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
-    - if cell.door == "open" set it to closed using this.door
-    - if cell.door == "closed" set it to open using cell.door
-
+  /*toggleDoor()
+  makes the door open or closed along with its image, but if the door is false, it throws an error.
   */
+  toggleDoor(){
+    if (this.door == false) {
+      throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");
+    }
+    if (this.door == "open") { this.door = "closed"; }
+    if (this.door == "closed") { this.door = "open"; }
+  }
 
   /* --------------------------- Internal methods ----------------------------*/
   /*_ocHandler(thing, call="Cell._ocHandler")
@@ -134,9 +150,9 @@ class Cell{
   @pram {string}call where to toss error messages from.
   */
   _ocHandler(thing, call="Cell._ocHandler"){
-    /* ## - add a new if here to check to see if the cell is open
-          - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
-    */
+    if (this.open != true) {
+      throw new Error(call + " attempted to add " + thing + " to a closed cell.")
+    }
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -152,7 +168,6 @@ class Cell{
       if((thing[0] instanceof Nonmob) && (thing[1] instanceof Nonmob)){ word = "nonmob";}
       if(word != null) { throw new Error(call + " was sent 2 " + word + "s and can only take 1."); }
     }
-
     for (let i = 0; i < thing.length; i++) { // check each one to make sure they can be added
       let hasMob = false;
       let hasNon = false;
@@ -160,26 +175,23 @@ class Cell{
         if(this._occupied[j] instanceof Mob){ hasMob = true; }  // undefined case for students i & j
         if(this._occupied[j] instanceof Nonmob) { hasNon = true; }
       }
-
       if (hasNon && (thing[i] instanceof Nonmob)) {
         throw new Error(call + " - cell already had a nonmob and was given " + thing[i].name + ".");
       }
       else if (hasMob && (thing[i] instanceof Mob))  {
         throw new Error(call + " - cell already had a mob and was given " + thing[i].name + ".");
-
       } else {
         this._occupied.push(thing[i]);
       }
     }
-
   }
 
-  /*_stringHandler(proto)
+  /*_stringHandler(className)
     deals with the issue of how to display when there is more than 1 item in
     the inventory.
     order of display: most important  - weapons, armor, potions, other -least
     order of display part 2: most important - level, value, index -least
-    @param proto: {class} the class to be be used for refining the search.
+    @param className: {class} the class to be be used for refining the search.
   */
   _stringHandler(className){
     let hits = []; // all the items in the inventory that are of the given class.
@@ -216,11 +228,9 @@ class Cell{
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
-    /* ## add an if at this point to see if image is D or O. Should this be the
-      case, have there be a return inside the if statement that returns the
-      instruction code for brown + image rather than "" + image, look at mobs
-      or items if you forgot how to do this.
-    */
+    if ((this.image == "D") || (this.image == "O")) {
+      return "<span style=\"color:brown\">"+ this.image +"</span>"
+    }
     return "" + image;
   }
 }

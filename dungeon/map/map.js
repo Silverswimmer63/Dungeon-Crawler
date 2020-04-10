@@ -43,7 +43,13 @@ class Map{
 
   get fill(){ return this._fill; }
   set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill"); }
-
+  /* map(dimensions)
+  This function draws the map
+  checks to see if the dimensions are correct
+  then makes the Map.
+  @param dimensions {string}: checks the width, height, etc.
+  @return retString + this._drawBorder {string}: Shown on the Map
+  */
   get map(){ // returns an html formated version of the map
     let retString = this._drawBorder() + "<br>";
     for (var i = 1; i <= this.height; i++) { // go though the y values
@@ -65,7 +71,11 @@ class Map{
     this._height = dimensions.height;
     this._map = this._generateMap();
   }
-
+  /*rooms(array)
+  This function makes rooms (by using and checking coordinates).
+  Also clears out the room and checks the rooms
+  @param array [array]: array of coords for the room
+  */
   get rooms() { return this._rooms; }
   set rooms(array) {
     array = Utils.arrayCheck(array, "Map.rooms"); // first level array
@@ -234,7 +244,7 @@ class Map{
           }
 
           if((halls.length < 2) && (rooms == 0) && (Math.random() < chance)){ // add the door here in the end and random chance
-            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "X"; // will replace this in a few days
+            map["y" + this._halls[i][j].y]["x" + this._halls[i][j].x].image = "D"; // will replace this in a few days
           }
         }
       }

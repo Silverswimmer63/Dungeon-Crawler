@@ -387,25 +387,22 @@ makes a line with chance of a turn between start and end
 
   static getNeighbors(coords){
     var retArr = [];
-    var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
-    var diagCases = [{x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}, {x:, y:, diag:false}];
+    var baseCases = [{x:0, y:1, diag:false}, {x:-1, y:0, diag:false}, {x:0, y:-1, diag:false}, {x:1, y:0, diag:false}];
+    var diagCases = [{x:-1, y:-1, diag:false}, {x:1, y:-1, diag:false}, {x:1, y:1, diag:false}, {x:1, y:-1, diag:false}];
     for (var i = 0; i < baseCases.length; i++) {
-
+      baseCases[i].x += coords.x;
+      baseCases[i].y += coords.y;
+      retArr.push(baseCases[i]);
     }
     for (var i = 0; i < diagCases.length; i++) {
-
+      diagCases.diag = true;
+      diagCases[i].x += coords.x;
+      diagCases[i].y += coords.y;
+      retArr.push(diagCases[i]);
     }
-    if () {
-
-    }
+    return retArr;
   }
 /*
-Here's a hint to help you get 3 done and to get you ready for the next part - you may want a helper function to help you come up with the neighbors for the cell of interest.
-
-You may have noticed my function
-getNeighbors(coords) on the screen shot yesterday too...
-I would recommend implementing this:
-
 getNeighbors(coords)
 a function that takes an x & y keyed coordinate object and returns an array of 8 objects, all of which have the following keys: x, y, and diag where diag is true or false
 based on if the coordinate is a diagonal or not.
