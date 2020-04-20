@@ -60,6 +60,13 @@ Working wih recursion - baby steps.
 I will be using the ## to guide you to where to do things, and whenever
 something = undefined you need to change it to something else.
 */
+/* function four(number)
+This function you are just going to finish the function as I ask you too, and then
+once it is done, run it.
+## ONCE YOU HAVE RUN IT, please, at the end of the file, tell me what you think the function is
+is giving you, and how you think it is coming to that solution. You will want to test it
+with numbers lower than 10 to try and come up with an idea of what the function is doing
+*/
 
 function four(number){
     // ## finish this if statement
@@ -71,36 +78,6 @@ function four(number){
     // ## have the function return number times four(number -1)
     return number *four(number -1);
 }
-/* function four(number)
-This function you are just going to finish the function as I ask you too, and then
-once it is done, run it.
-## ONCE YOU HAVE RUN IT, please, at the end of the file, tell me what you think the function is
-is giving you, and how you think it is coming to that solution. You will want to test it
-with numbers lower than 10 to try and come up with an idea of what the function is doing
-*/
-
-
-/*If you had done that, and read the last ## comment, you would have realized that this function was a factorial math calculator. For example, had you given it four(5) you would have gotten 120.
-If you had done four(4) you would have gotten 24, four(3) yields 6, it is an obvious factorial progression.
-
-This is because if the number is not 1 the return statement is evaluated to a recursive loop - this function calls itself in the return statement, meaning it will not evaluate the return until it reaches as case where it is not going to call itself anymore (in this case, number == 0);
-
-If we did this with the number 4:
-1. four(4) will not stop (number != 0) so it will evaluate to 4 * four(number -1) or 4 * four(3), the return will look like:
-return 4 * four(3);
-
-2. four(3) will then be calculated during the return of the above. that will evaluate to 3 * four(2). Now, this is happening inside the return above, so it's really so far looking like:
-return 4 * 3 * four(2);
-
-3. four(2) will then evaluate. This becomes 2 * four(1), which in turn is still all happening inside the first return. Which means it really looks like:
-return 4 * 3 * 2 * four(1);
-
-4. four(1) will then evaluate. This becomes 1 * four(0), which is is STILL happening all inside the first return. Which means it really looks like:
-return 4 * 3 * 2 * 1 * four(0);
-
-5. Finally four(0) evaluates, this is our termination/ending case, and this returns a 1, so now the original return looks like:
-return 4 * 3 * 2 * 1 * 1 (we could have actually ended this with number == 1 return 1, but that I worried would confuse people.)
-*/
 
 function five(first, second){
   if(second == 0){ //}## replace this true with any statement that evaluates to if second is equal to 0
@@ -144,5 +121,32 @@ is 17) and adds it for the next number. The array goes through the function agai
 the array, so it will return the last number (this time it is 45), adds it to the last number (so you get 17+45 = 62) and repeats
 again. This sees that there is still more than one item so it pops the last number (10) and adds it to 62 to get 72. It goes through
 the functino one last time, sees that there is only one item so it goes into the if statement, return the only number left and adding
-it(5) to 72 to get 77. 
+it(5) to 72 to get 77.
 */
+
+function seven(num1, num2){
+  if(num2 == 0){ //## replace this with any way to see if num2 is equal to zero
+    return 1;
+  }
+  // ## change this return to be the product of num1 times seven(num1, num2-1)
+  return num1 * seven(num1, num2-1);
+}
+
+/* ## What does the above function do? Test with the same num1 and a number of num2s,
+ideally small ones. Write in this comment what the function does.
+--I think this is basically turning the num1 into a base and num2 into an exponent. For example, if you have seven(3,2)
+then 3 will become the base and 2 will be the exponent. So you basically do 3^2 to get 9. Another example is seven(4,3)
+4^3 is 64.
+*/
+
+function eight(num1, num2){
+  /* ## in this function you will write the code to do the same thing as above, but
+  without using recursion. You also can not use the javaScript built in function to
+  do this operation. You may work with others to make this function.
+  */
+  var number = num1;
+  for (var i = 1; i < num2; i++){
+    num1 *= number;
+  }
+  return num1;
+}
