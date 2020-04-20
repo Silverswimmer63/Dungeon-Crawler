@@ -10,49 +10,62 @@ class Cell{
     this._inventory = []; //items in the cell
     this._occupied = []; // for livings in the cell
     this._door = false;
-    // ## add a property here for _door, this should be a boolean mixed class, false by default, then either "open" or "closed";
+    // ## add a property here for _door, this should be a boolean mied class, false by default, then either "open" or "closed";
   }
   /* ---------------------------- Setters methods ----------------------------*/
   get image(){ return this._image; }
   set image(image){ this._image = image; }
 
-  get door(){return this._door;}
+  /* door(door)
+A function to check if type is door,
+then change the image based on open or closed
+@param door {bool} - door there or no
+*/
+  get door(){ return this._door; }
   set door(door){
-    this.door = Utils.listCheck(door,[false, "open", "Closed"], "Cell._door")
-  if (this.door == "open") {
-    this.door.image = "O";
+    Utils.listCheck(type, ["door"])
+    if (this.door == "open") {
+      cell.image == "O";
     }
-    if (this.door == "Closed") {
-      this.door.image = "D";
+    if (this.door == "closed") {
+      cell.image == "D";
     }
   }
-  // ## add a getter for door that returns the value of this._door
-  /* ## -add a setter for door
-     -this should accept false, "open" and "closed", use Utils.listCheck to make it so
-     -check to see if this.door == "open", if so, set the image to "O"
-     -check to see if this.door == "Closed", it so, set the image to "D"
-  */
 
+  /* type(type)
+A function to check if type is wall,room,or hall,
+then set image to space if room or hall
+@param type {str} - the type
+*/
   get type(){ return this._type; }
   set type(type){
     type = Utils.listCheck(type, ["wall", "room", "hall"]);
     this._type = type;
+    this._door = false;
     this._open = ["room", "hall"].includes(type);
     if(this._open) { this.image = " "; }
-    this._door = false;
   }
 
+  /* open() & open(open)
+A function to see if a cell is Open
+throw an error if it is set wrong
+@param {bool} bool of open
+@return {bool} the bool of open
+*/
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
-    if (this.door == "Closed") {
-      return false;
-    }// ## add a check to see if this.door is set to "closed", return false if it is
+    if (this._door == "closed") { return false; }
     return this._open; // otherwise return this._open;
   }
   set open(open){
     throw new Error("Open status should only be set by the cell type.");
   }
 
+  /* inventory(inventory)
+A function to see if nothing is in inventory,
+then make it itself or an array
+@param inventory {arr} - arr of inventory
+*/
   get inventory(){ return this._inventory; }
   set inventory(inventory){
     if(this._inventory.length == 0){ this._inventory = inventory; }
@@ -63,13 +76,6 @@ class Cell{
   }
 
   get occupied(){ return this._occupied; }
-
-  /* for the occupied setter-
-  if there is a nonmob in the cell do not allow another nonmob
-  if there is a mob in the cell do not allow annother mob
-  if we try to add things we cant, throw an error that reads
-  "Cell.occupied - cell already had a mob/nonmob and was given" + thing
-  */
   set occupied(thing){ this._ocHandler(thing, "Cell.occupied"); }
 
   /* --------------------------- External methods ----------------------------*/
@@ -132,22 +138,17 @@ class Cell{
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
-  /* ##  - add toggleDoor()
-    - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
-    - if cell.door == "open" set it to closed using this.door
-    - if cell.door == "closed" set it to open using cell.door
-  */
+  /* toggleDoor()
+A function to make the door open or closed
+along with its image,
+if the door is false, throw error
+*/
   toggleDoor(){
-    if (this.door == false) {
-      throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist")
-    }
-    if (this.door == "open") {
-      this.door = "Closed";
-    }
-    if (this.door == "Closed") {
-      this.door == "open";
-    }
+    if (this._door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");}
+    if (cell.door == "open") {this._door == "closed";}
+    if (cell.door == "closed") {this._door == "open";}
   }
+
   /* --------------------------- Internal methods ----------------------------*/
   /*_ocHandler(thing, call="Cell._ocHandler")
   This will do all of the interior work for set occupied.
@@ -240,11 +241,6 @@ class Cell{
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
-    /* ## add an if at this point to see if image is D or O. Should this be the
-      case, have there be a return inside the if statement that returns the
-      instruction code for brown + image rather than "" + image, look at mobs
-      or items if you forgot how to do this.
-    */
     if (this._image == "D") {
       return "<span style=\"color:brown\">"+ image +"</span>"
     } else {
