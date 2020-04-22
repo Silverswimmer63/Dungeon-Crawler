@@ -138,3 +138,38 @@ again. This sees that there is still more than one item so it pops the last numb
 the functino one last time, sees that there is only one item so it goes into the if statement, return the only number left and adding
 it(5) to 72 to get 77.
 */
+
+/*
+Working wih recursion - baby steps.
+
+I will be using the ## to gide you to where to do things, and wherewhever
+something = undefined you need to change it to something else.
+*/
+
+
+function seven(num1, num2){
+  if(num2 == 0){ //## replace this with any way to see if num2 is equal to zero
+    return 1;
+  }
+  // ## change this return to be the product of num1 times seven(num1, num2-1)
+  return num1 * seven(num1, num2-1);
+}
+
+/* ## What does the above function do? Test with the same num1 and a number of num2s,
+ideally small ones. Write in this comment what the function does.
+--I think this is basically turning the num1 into a base and num2 into an exponent. For example, if you have seven(3,2)
+then 3 will become the base and 2 will be the exponent. So you basically do 3^2 to get 9. Another example is seven(4,3)
+4^3 is 64.
+*/
+
+function eight(num1, num2){
+  /* ## in this function you will write the code to do the same thing as above, but
+  without using recursion. You also can not use the javaScript built in function to
+  do this operation. You may work with others to make this function.
+  */
+  var number = num1;
+  for (var i = 1; i < num2; i++){
+    num1 *= number;
+  }
+  return num1;
+}
