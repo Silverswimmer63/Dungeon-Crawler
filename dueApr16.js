@@ -173,3 +173,17 @@ function eight(num1, num2){
   }
   return num1;
 }
+
+function nine(number){
+  /* ## use recursion to figure out if a number is even or odd. The only function
+  you are allowed to use other than this function is Math.abs You may not use the
+  remainder operator either (%).
+  */
+  if (number == 2) {
+    return "This number is even"
+  }
+  if (number == 1) {
+    return "This number is odd"
+  }
+  return nine(Math.abs(number -2))
+}
