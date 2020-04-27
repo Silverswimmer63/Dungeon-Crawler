@@ -164,3 +164,15 @@ function nine(number){
   }
   return nine(Math.abs(number -2))
 }
+
+function ten(array){
+  /* ## our final function to help understand recursion is to do the following:
+  using recursion take an array of numbers, and add them all togather. To do this,
+  you will want to rip the back off the array recursively until it has a length of
+  1.
+  */
+  if (array.length == 1) {
+    return array[0];
+  }
+  return array.pop() + ten(array);
+}
