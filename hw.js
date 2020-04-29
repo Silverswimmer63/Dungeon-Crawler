@@ -7,16 +7,16 @@ something = undefined you need to change it to something else.
 
 
 
-function nine(number){
-  /* ## use recursion to figure out if a number is even or odd. The only function
-  you are allowed to use other than this function is Math.abs You may not use the
-  remainder operator either (%).
+function ten(array){
+  /* ## our final function to help understand recursion is to do the following:
+  using recursion take an array of numbers, and add them all togather. To do this,
+  you will want to rip the back off the array recursively until it has a length of
+  1.
   */
-  if (number == 2) {
-    return "This fool even";
+  //return array.reduce((a, b) => a + b, 0); <== Another way i saw online
+  var sum = 0;
+  for (var i = 0; i < array.length; i++) {
+    sum += array[i]
   }
-  if (number == 1) {
-    return "This boi odd";
-  }
-  return nine(Math.abs(number-2));
+  return sum
 }
