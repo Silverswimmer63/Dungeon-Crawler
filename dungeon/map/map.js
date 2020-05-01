@@ -44,6 +44,12 @@ class Map{
   get fill(){ return this._fill; }
   set fill(fill){ this._fill = Utils.keyCheck(fill, "image", "Map.fill"); }
 
+  /* map(dimensions)
+A function to draw map,
+check if the dimensions are correct,
+then make Map
+@param dimensions {} -
+*/
   get map(){ // returns an html formated version of the map
     var retString = this._drawBorder() + "<br>";
     for (var i = 1; i <= this.height; i++) { // go though the y values
@@ -66,6 +72,10 @@ class Map{
     this._map = this._generateMap();
   }
 
+  /* rooms(array)
+A function to make rooms
+@param array {array} - array of coords for room
+*/
   get rooms() { return this._rooms; }
   set rooms(array) {
     array = Utils.arrayCheck(array, "Map.rooms"); // first level array
@@ -198,27 +208,9 @@ class Map{
       }
     }
   }
-  /*var best = {distance : (do some math),  first: {coordiantes from 0} second: {coordinates from 1}}
-  in the loop for i (or whatever)
-  for j actually or my example will be confusing
-  var test = this._halls[i][j]
-  var testCase1 = {distance: (do some math), first: {coordinates from 0}, second {coordinates from j}}
-  var testCase2 = {distance: (do some math), first: {coordinates from j}, second {coordinates from 1}}
-  var bigDist = Math.max(best.distance, testCase1.distance, testCase2.distance)
-  if (testCase1.distance == bigDist) { best = testCase1}
-  if(testCase2.distance == bigDist) {best = testCase2}
-  and test.x and test.y would be your itterable coordinates
-  this will not work as is
-  but this should give you a better idea.
-  all you are doing is finding the biggest distance from 3 options - best.first and best.second, best.first and _hall[i][j], and _hall[i][j] and best second
-  Then you just update if test case 1 or 2 is better than the old "best"*/
+
   /* _generateMap()
-  A method to make a map filled with items of the this._fill value. The "map" is
-  an object with a set of objects imbeded within it. All of the top level keys,
-  which each owns it's own object, will begin with the varter y (ex y1, y2), and
-  so on. The second level objects will be keyed in the same way, but with x
-  rather than y for their start. This is done so that we may access the map by
-  way of using map.y15.x22 to avoid x and y confusion. The values of the keys in
+  The values of the keys in
   the inner objects will be the individual cells of the map.
   @ return {object} an object per the description above
   */
@@ -306,8 +298,4 @@ class Map{
       retString += "-";
     }
   }
-}
-*/
-
-
   }
