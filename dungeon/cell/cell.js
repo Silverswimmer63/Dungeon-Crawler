@@ -16,11 +16,6 @@ class Cell{
   get image(){ return this._image; }
   set image(image){ this._image = image; }
 
-  /* door(door)
-A function to check if type is door,
-then change the image based on open or closed
-@param door {bool} - door there or no
-*/
   get door(){ return this._door; }
   set door(door){
     Utils.listCheck(type, ["door"])
@@ -32,11 +27,6 @@ then change the image based on open or closed
     }
   }
 
-  /* type(type)
-A function to check if type is wall,room,or hall,
-then set image to space if room or hall
-@param type {str} - the type
-*/
   get type(){ return this._type; }
   set type(type){
     type = Utils.listCheck(type, ["wall", "room", "hall"]);
@@ -47,12 +37,6 @@ then set image to space if room or hall
   //  if(this._type == "room") { this.image = "R";}
   }
 
-  /* open() & open(open)
-A function to see if a cell is Open
-throw an error if it is set wrong
-@param {bool} bool of open
-@return {bool} the bool of open
-*/
   get open(){
     if(this._occupied.length > 0){ return false; } // check to see if occupied
     if (this._door == "closed") { return false; }
@@ -62,11 +46,6 @@ throw an error if it is set wrong
     throw new Error("Open status should only be set by the cell type.");
   }
 
-  /* inventory(inventory)
-A function to see if nothing is in inventory,
-then make it itself or an array
-@param inventory {arr} - arr of inventory
-*/
   get inventory(){ return this._inventory; }
   set inventory(inventory){
     if(this._inventory.length == 0){ this._inventory = inventory; }
@@ -77,6 +56,13 @@ then make it itself or an array
   }
 
   get occupied(){ return this._occupied; }
+
+  /* for the occupied setter-
+  if there is a nonmob in the cell do not allow another nonmob
+  if there is a mob in the cell do not allow annother mob
+  if we try to add things we cant, throw an error that reads
+  "Cell.occupied - cell already had a mob/nonmob and was given" + thing
+  */
   set occupied(thing){ this._ocHandler(thing, "Cell.occupied"); }
 
   /* --------------------------- External methods ----------------------------*/
@@ -139,11 +125,11 @@ then make it itself or an array
     throw new Error("Cell.remove expected a number or mob and recived " + index + ".");
   }
 
-  /* toggleDoor()
-A function to make the door open or closed
-along with its image,
-if the door is false, throw error
-*/
+  /* ##  - add toggleDoor()
+    - if door is false, toss a new error reading ("Cell.toggleDoor attempted to open or close a door that does not exist")
+    - if cell.door == "open" set it to closed using this.door
+    - if cell.door == "closed" set it to open using cell.door
+  */
   toggleDoor(){
     if (this._door == false) {throw new Error("Cell.toggleDoor attempted to open or close a door that does not exist");}
     if (cell.door == "open") {this._door == "closed";}
@@ -160,9 +146,6 @@ if the door is false, throw error
     /* ## - add a new if here to check to see if the cell is open
           - if the cell is not open, throw a new error "call + " attempted to add " + thing + " to a closed cell.")"
     */
-    if (!this._open) {
-      throw new Error (call + " attempted to add "  + thing + " to a closed cell.")
-    }
     if(!Array.isArray(thing)){ thing = [thing]; } // check for an array
     if(thing.length > 2){
       throw new Error(call + " as most one mob and one nonmob and was given an array of legth" + thing.length +".");
@@ -242,10 +225,11 @@ if the door is false, throw error
       if (this.occupied[0] instanceof Mob) { image = this.occupied[0]; }
       else { image = this.occupied[1]; }
     }
-    if (this._image == "D") {
-      return "<span style=\"color:brown\">"+ image +"</span>"
-    } else {
-      return "" + image;
-    }
+    /* ## add an if at this point to see if image is D or O. Should this be the
+      case, have there be a return inside the if statement that returns the
+      instruction code for brown + image rather than "" + image, look at mobs
+      or items if you forgot how to do this.
+    */
+    return "" + image;
   }
 }
