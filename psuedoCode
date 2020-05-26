@@ -1,0 +1,20 @@
+mergeSort(array){
+  if(array<1) //check if the array is more than 1
+  var mid = Math.floor(array.length / 2)  //divide it in half
+  var leftInd = 0 //two indexes for left and right
+  var rightInd = 0
+  var left = array.slice(0, mid)  //left side of array
+  var right = array.slice(mid)  //right side of array
+  while leftInd<left.length & rightInd<right.length { //make the while so it continuously divides until it cant
+    if (left[leftInd] < right[rightInd]) {  //push to left array when ready
+      array.push(left[leftInd])
+      leftInd++
+    } else {  //push to right array when ready
+      array.push(right[rightInd])
+      rightInd++
+    }
+  }
+  return array  //return the array with the correct .concat
+          .concat(left.slice(leftIndex))
+          .concat(right.slice(rightIndex));
+}

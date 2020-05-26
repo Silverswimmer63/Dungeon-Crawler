@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <strings>
+    <string id="prebackstory.spcwandererzzexampleforstudentstheexample" text="NPC: Hi, you want to know my story"/>
+    <string id="backstory_a.spcwandererzzexampleforstudentstheexample" text="NPC: I am just a basic example"/>
+    <string id="backstory_b.spcwandererzzexampleforstudentstheexample" text="NPC: And I am from a long line of examples"/>
+    <string id="backstory_c.spcwandererzzexampleforstudentstheexample" text="NPC: One day I might be over-written with something more!"/>
+    <string id="response_1.spcwandererzzexampleforstudentstheexample" text="Player: That's legit"/>
+    <string id="response_2.spcwandererzzexampleforstudentstheexample" text="Player: That's dumb"/>
+    <string id="backstory_d.spcwandererzzexampleforstudentstheexample" text="NPC: This response should not assume you think I am smart or dumb"/>
+  </strings>
+</base>
+<NPCCharacters>
+  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="the Example" age="20" voice="ironic" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Wanderer">
+    <face>
+      <face_key_template value="NPCCharacter.villager_empire"/>
+      <hair_tags>
+        <hair_tag name="ShortAndThin"/>
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="MediumMustache"/>
+      </beard_tags>
+    </face>
+    <skills>
+      <skill id="OneHanded" value="210"/>
+      <skill id="TwoHanded" value="20"/>
+      <skill id="Polearm" value="50"/>
+      <skill id="Bow" value="160"/>
+      <skill id="Crossbow" value="20"/>
+      <skill id="Throwing" value="20"/>
+      <skill id="Riding" value="160"/>
+      <skill id="Athletics" value="50"/>
+      <skill id="Crafting" value="10"/>
+      <skill id="Scouting" value="40"/>
+      <skill id="Tactics" value="60"/>
+      <skill id="Roguery" value="200"/>
+      <skill id="Charm" value="150"/>
+      <skill id="Leadership" value="30"/>
+      <skill id="Trade" value="20"/>
+      <skill id="Steward" value="20"/>
+      <skill id="Medicine" value="10"/>
+      <skill id="Engineering" value="10"/>
+    </skills>
+    <Traits>
+      <Trait id="Calculating" value="1"/>
+      <Trait id="Generosity" value="-1"/>
+      <Trait id="Honor" value="2"/>
+      <Trait id="Mercy" value="-1"/>
+      <Trait id="Valor" value="2"/>
+    </Traits>
+  </NPCCharacter>
+</NPCCharacters>

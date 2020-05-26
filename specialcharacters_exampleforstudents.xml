@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <strings>
+    <string id="prebackstory.spcwandererzzexampleforstudentstheexample" text="NPC: Well hello there, let me tell ya a story..."/>
+    <string id="backstory_a.spcwandererzzexampleforstudentstheexample" text="NPC: I'm pretty handy with a blade, the name's Blacktooth."/>
+    <string id="backstory_b.spcwandererzzexampleforstudentstheexample" text="NPC: I am a Sturgian with great blade skills."/>
+    <string id="backstory_c.spcwandererzzexampleforstudentstheexample" text="NPC: I am as smart as I am handsome. I have neither..."/>
+    <string id="response_1.spcwandererzzexampleforstudentstheexample" text="Player: Of course I can offer my strength!"/>
+    <string id="response_2.spcwandererzzexampleforstudentstheexample" text="Player: Yeah, no."/>
+    <string id="backstory_d.spcwandererzzexampleforstudentstheexample" text="NPC: I am a valorant warrior with slightly unethical means."/>
+  </strings>
+</base>
+<NPCCharacters>
+  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="the Example" age="20" voice="ironic" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Wanderer">
+    <skills>
+      <skill id="OneHanded" value="5"/>
+      <skill id="TwoHanded" value="5"/>
+      <skill id="Polearm" value="5"/>
+      <skill id="Bow" value="5"/>
+      <skill id="Crossbow" value="5"/>
+      <skill id="Throwing" value="5"/>
+      <skill id="Riding" value="5"/>
+      <skill id="Athletics" value="5"/>
+      <skill id="Crafting" value="5"/>
+      <skill id="Scouting" value="5"/>
+      <skill id="Tactics" value="5"/>
+      <skill id="Roguery" value="5"/>
+      <skill id="Charm" value="5"/>
+      <skill id="Leadership" value="5"/>
+      <skill id="Trade" value="5"/>
+      <skill id="Steward" value="5"/>
+      <skill id="Medicine" value="5"/>
+      <skill id="Engineering" value="5"/>
+    </skills>
+    <Traits>
+      <Trait id="Calculating" value="0"/>
+      <Trait id="Generosity" value="0"/>
+      <Trait id="Honor" value="0"/>
+      <Trait id="Mercy" value="0"/>
+      <Trait id="Valor" value="0"/>
+    </Traits>
+  </NPCCharacter>
+</NPCCharacters>
