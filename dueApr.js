@@ -176,3 +176,11 @@ function ten(array){
   }
   return array.pop() + ten(array);
 }
+/*
+Write a JavaScript function that reverse a number. Go to the editor
+Example x = 32243;
+Expected Output : 34223
+*/
+ function reverse(array){
+
+ }

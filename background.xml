@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <strings>
+    <string id="prebackstory.spcwandererzzexampleforstudentstheexample" text="NPC: Hi there! I am an Aserai Archer. You can call me Cowthief"/>
+    <string id="backstory_a.spcwandererzzexampleforstudentstheexample" text="NPC: I live in the southern desert lands of Calradia "/>
+    <string id="backstory_b.spcwandererzzexampleforstudentstheexample" text="NPC: I follow the sultan Unqid with footmen and horsemen in battle."/>
+    <string id="backstory_c.spcwandererzzexampleforstudentstheexample" text="NPC: I have a medium-sized mustache. My traits are calculating, but generous."/>
+    <string id="response_1.spcwandererzzexampleforstudentstheexample" text="Player: What can you do?"/>
+    <string id="response_2.spcwandererzzexampleforstudentstheexample" text="Player: Is that all?"/>
+    <string id="backstory_d.spcwandererzzexampleforstudentstheexample" text="NPC: I can shoot arrows at people. That is all I can do"/>
+  </strings>
+  <strings>
+    <string id="prebackstory.spcwandererzzexampleforstudentstheexample" text="NPC: Hi there! I am a Battanian Highborn Warrior. You can call me Blade"/>
+    <string id="backstory_a.spcwandererzzexampleforstudentstheexample" text="NPC: I follow the King Caladog"/>
+    <string id="backstory_b.spcwandererzzexampleforstudentstheexample" text="NPC: My people are famed for their marksmanship as archers throughout Calradia."/>
+    <string id="backstory_c.spcwandererzzexampleforstudentstheexample" text="NPC: However, I am just good with my sword."/>
+    <string id="response_1.spcwandererzzexampleforstudentstheexample" text="Player: What can you do?"/>
+    <string id="response_2.spcwandererzzexampleforstudentstheexample" text="Player: What's your strategy?"/>
+    <string id="backstory_d.spcwandererzzexampleforstudentstheexample" text="NPC: I can fight good with my sword. My preferred strategy is to fake out my opponents with my attacks and attack them when they are the most vulnerable."/>
+  </strings>
+</base>
