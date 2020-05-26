@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <NPCCharacters>
-  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="Cowthief" age="21" voice="sarcastic" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Wanderer">
+  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="Cowthief" age="21" voice="sarcastic" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Shooter">
     <face>
       <face_key_template value="NPCCharacter.villager_empire"/>
       <hair_tags>
@@ -38,7 +38,7 @@
       <Trait id="Valor" value="0"/>
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="Blade" age="109" voice="serious" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Wanderer">
+  <NPCCharacter id="spcwandererzzexampleforstudentstheexample" name="Blade" age="19" voice="serious" culture="Culture.sturgia" battleTemplate="NPCCharacter.imperial_recruit" civilianTemplate="NPCCharacter.npc_wanderer_equipment_template_empire" default_group="Infantry" is_template="true" is_hero="false" occupation="Fighter">
     <face>
       <face_key_template value="NPCCharacter.villager_empire"/>
       <hair_tags>
