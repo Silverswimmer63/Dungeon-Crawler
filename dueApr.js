@@ -185,19 +185,19 @@ Make a function that takes advantage of the fact that all arrays have index valu
 addArrays([3,4,5], [4,9,2]) should return
 [7,13,7]
 */
-  function addArrays(array1, array2){
-    var retArr = []; // I am making a new array so that I can combine the 2 arrays and add them
-    if (array1.length != array2.length) { // If not the same length
-      throw new Error("The two arrays are not the same length")
-    }
-    var index = 0; // lets me track this and see the number of times to repeat the while loop
-    var arrlength = array1.length -1;
-    while (index <= arrlength) {
-      var add = array1.shift() + array2.shift(); // adding the numbers in the 2 arrays
-      retArr.push(add); // pushing it into the new array
-      index ++;
-    }
-  return retArr;
+function addArrays(array1, array2){
+   var retArr = []; // I am making a new array so that I can combine the 2 arrays and add them
+   if (array1.length != array2.length) { // If not the same length
+     throw new Error("The two arrays are not the same length")
+   }
+   var index = 0; // lets me track this and see the number of times to repeat the while loop
+   var arrlength = array1.length -1;
+   while (index <= arrlength) {
+     var add = array1.shift() + array2.shift(); // adding the numbers in the 2 arrays
+     retArr.push(add); // pushing it into the new array
+     index ++;
+   }
+ return retArr;
 }
 /*
 Function 2:
@@ -210,31 +210,46 @@ A more generalized version of above
 addAnyArrays([3,4,5],[4,9,2,6,11,5]) should return:
 [7,13,7,6,11,5]
 */
-  function addAnyArrays(array1, array2) {
-    if (array1.length > array2.length) { // checks to see which one is longer
-      var longer = array1;
-      var shorter = array2;
-      return helpAddArr(shorter, longer);
-    }
-    if (array2.length > array1.length) { // checks to see which one is longer
-      var longer = array2;
-      var shorter = array1;
-      return helpAddArr(shorter, longer);
-    }
-  }
-  function helpAddArr(array1, array2){// this is a helper function
-    var retArr = []; // this is the new array that I am going to be combining array 1 and array2 into
-    var index = 0; // tracks the number of times the while loop is going to repeat
-    var arrlength = array1.length -1; // gets the last number of the array for the shorter array so that I know the number of times to iterate through
-    while (index <= arrlength) {
-      var add = array1.shift() + array2.shift(); // adds the 2 arrays
-      retArr.push(add); // push it to the new array
+ function addAnyArrays(array1, array2) {
+   if (array1.length == array2.length) {
+     return addArrays(array1, array2);
+   }
+   if (array1.length > array2.length) { // checks to see which one is longer
+     var longer = array1;
+     var shorter = array2;
+     return helpAddArr(shorter, longer);
+   }
+   if (array2.length > array1.length) { // checks to see which one is longer
+     var longer = array2;
+     var shorter = array1;
+     return helpAddArr(shorter, longer);
+   }
+ }
+ function helpAddArr(array1, array2){// this is a helper function
+   var retArr = []; // this is the new array that I am going to be combining array 1 and array2 into
+   var index = 0; // tracks the number of times the while loop is going to repeat
+   var arrlength = array1.length -1; // gets the last number of the array for the shorter array so that I know the number of times to iterate through
+   while (index <= arrlength) {
+     var add = array1.shift() + array2.shift(); // adds the 2 arrays
+     retArr.push(add); // push it to the new array
+     index ++;
+   }
+   var ind = (array2.length-1) - (array1.length-1); // checks the last few numbers remaining in the longer array
+   var length = array2.length-1; // tracks the number of times to repeat
+   for (var i = 0; i < ind; i++) {
+     retArr.push(array2[i]); // pushes the last remaining numbers to the new array. These are the numbers that I couldn't add since array1 is too short and I can't add to it
+   }
+ return retArr; // new array of the combined 2 arrays from the parameter
+ }
+
+  function reverseArray(array){
+    var retArr = [];
+    var index = 0;
+    var length = array.length;
+    while (index < length) {
+      var remove = array.pop();
+      retArr.push(remove);
       index ++;
     }
-    var ind = (array2.length-1) - (array1.length-1); // checks the last few numbers remaining in the longer array
-    var length = array2.length-1; // tracks the number of times to repeat
-    for (var i = 0; i < ind; i++) {
-      retArr.push(array2[i]); // pushes the last remaining numbers to the new array. These are the numbers that I couldn't add since array1 is too short and I can't add to it
-    }
-  return retArr; // new array of the combined 2 arrays from the parameter
+    return retArr;
   }
