@@ -253,3 +253,27 @@ addAnyArrays([3,4,5],[4,9,2,6,11,5]) should return:
     }
     return retArr;
   }
+
+  function sevenBoom(array){
+    var length = array.length;
+    var index = 0;
+    while (index < length) {
+      var num = array.pop();
+      if (num == 7) {
+        return "Boom!";
+      }
+      index ++;
+    }
+    return "There is no 7 in the array!"
+  }
+  function palindromeCheck(array){
+    var retArr = [];
+    var divide = Math.floor(array.length/2);
+    var firstHalf = array.splice(0,divide);
+    for (var i = 0; i < firstHalf.length; i++) {
+      var num = array.pop();
+      retArr.push(num);
+    }
+    if (JSON.stringify(retArr)==JSON.stringify(firstHalf)) { return "This IS a palindrome!" }
+    else { return "This IS NOT a palindrome!" }
+  }
